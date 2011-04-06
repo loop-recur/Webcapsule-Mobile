@@ -2,7 +2,7 @@ var tabGroup = Titanium.UI.createTabGroup();
 
 var win1 = Titanium.UI.createWindow({  
     title:'Stories',
-    // url:'main_windows/play.js',
+    // url:'play.js',
     backgroundColor:'#fff'
 });
 
@@ -14,7 +14,7 @@ var tab1 = Titanium.UI.createTab({
 
 var win2 = Titanium.UI.createWindow({
 	title:'Record',
-    // url:'main_windows/record.js',
+    // url:'record.js',
  	backgroundColor:'#fff'
 });
 
@@ -26,7 +26,7 @@ var tab2 = Titanium.UI.createTab({
 
 var win3 = Titanium.UI.createWindow({  
     title:'Users',
-    // url:'main_windows/play.js',
+    // url:'play.js',
     backgroundColor:'#fff'
 });
 
