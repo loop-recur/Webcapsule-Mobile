@@ -1,3 +1,8 @@
+Titanium.include('../lib/framework/support/functional.js');
+Titanium.include('../lib/framework/lib/base.js');
+Titanium.include('../lib/framework/lib/http_client.js');
+Titanium.include('../lib/framework/lib/basic_auth.js');
+
 var win = Titanium.UI.currentWindow;  
 
 var logo = Ti.Filesystem.getFile(Titanium.Filesystem.resourcesDirectory,'images/logo.png');
@@ -41,18 +46,26 @@ var loginBtn = Titanium.UI.createButton({
     height:35,  
     borderRadius:1,  
     font:{fontFamily:'Arial',fontWeight:'bold',fontSize:14}  
-});  
+});
+
+loginBtn.addEventListener('click', function(){
+	authstr = 'Basic ' + Titanium.Utils.base64encode(username.value+":"+password.value);
+	// var dir = Titanium.Filesystem.applicationDataDirectory;
+	// var file = Titanium.Filesystem.getFile(dir,'credentials');
+	// file.write(authstr);
+	var http_client = LoopRecur.HttpClient(Titanium.Network.createHTTPClient(), authstr);
+	var basic_auth = LoopRecur.BasicAuth(http_client);
+	basic_auth.login();
+});
 
 var new_account_label = Titanium.UI.createLabel({
 	text:'Create an Account',
-	top: 230,
+	top: 330,
 	width:150,
 	height:'auto',
 	color:'#616161',
 	textAlign:'center'
 });
-
-new_account_label.addEventListener('click', BasicAuth.login);
 
 win.add(imageView);
 win.add(username);

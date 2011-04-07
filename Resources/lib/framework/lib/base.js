@@ -1,0 +1,2 @@
+Functional.install();
+LoopRecur = {};

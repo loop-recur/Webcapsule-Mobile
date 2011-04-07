@@ -11,7 +11,9 @@
 #   - dist/**/*.js
 #
 src_files:
-    - public/javascripts/**/*.js
+    - support/functional.js
+    - lib/base.js
+    - lib/**/*.js
 
 # stylesheets
 #
@@ -46,9 +48,9 @@ helpers:
 # EXAMPLE:
 #
 # spec_files:
-#   - **/*[sS]pec.js
+#   - 
 #
-spec_files:
+spec_files: **/*[sS]pec.js
 
 # src_dir
 #
@@ -70,4 +72,4 @@ src_dir:
 #
 # spec_dir: spec/javascripts
 #
-spec_dir:
+spec_dir: spec/javascripts
