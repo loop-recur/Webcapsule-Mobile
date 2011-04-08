@@ -5,7 +5,11 @@ HttpClient = {
 	send: function(){}
 };
 
+FakeFile = { write:function(){} };
+
 Titanium = {
+	include: function(){},
 	Network: {createHTTPClient:function(){ return HttpClient; }},
-	Utils: {base64encode:function(){}}
+	Utils: {base64encode:function(){}},
+	Filesystem: {applicationDataDirectory: "", getFile: function(){ return FakeFile; }}
 };
