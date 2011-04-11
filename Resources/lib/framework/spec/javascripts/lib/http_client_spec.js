@@ -12,12 +12,12 @@ describe("HttpClient", function() {
 
 	it("uses credentials if it has them", function() {
 		http_client.credentials = "encodedCredentials";
-		http_client.get("http://myurl.com", {}, call_backs);
+		http_client.get("http://myurl.com", call_backs);
 		expect(titanium_client.setRequestHeader).toHaveBeenCalledWith('Authorization', 'encodedCredentials');
 	});
 	
 	it("doesn't credentials if it doesn't have them", function() {
-		http_client.get("http://myurl.com", {}, call_backs);
+		http_client.get("http://myurl.com", call_backs);
 		expect(titanium_client.setRequestHeader).not.toHaveBeenCalledWith('Authorization', 'encodedCredentials');
 	});
 	

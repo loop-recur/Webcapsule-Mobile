@@ -49,7 +49,7 @@ Views.login = function () {
 	});
 
 	loginBtn.addEventListener('click', function(){
-		AuthController(alert).login(username.value, password.value);
+		Controllers.user_sessions.create(username.value, password.value);
 	});
 
 	var new_account_label = Titanium.UI.createLabel({
@@ -67,4 +67,4 @@ Views.login = function () {
 	win.add(loginBtn);
 	
 	win.open();
-}
+};

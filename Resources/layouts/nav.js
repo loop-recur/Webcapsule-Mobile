@@ -1,7 +1,16 @@
 Views.nav = function () {
+	
 	var tabGroup = Titanium.UI.createTabGroup();
-
-	var win1 = Views.stories();
+	
+	var win1 = Titanium.UI.createWindow({
+	    title:'Stories',
+	    backgroundColor:'#fff'
+	});
+	
+	win1.addEventListener('open', function() {
+		App.action(win1, "stories#index");
+	});
+	
 
 	var tab1 = Titanium.UI.createTab({  
 	    icon:'KS_nav_ui.png',
@@ -47,4 +56,4 @@ Views.nav = function () {
 	tabGroup.open({
 		transition:Titanium.UI.iPhone.AnimationStyle.FLIP_FROM_LEFT
 	});
-}
+};

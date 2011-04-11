@@ -1,0 +1,30 @@
+Controllers.user_sessions = {
+	alerter : alert,
+	
+	create: function(username, password) {
+		var authstr = this.makeAuthString(username, password);
+		App.http_client.credentials = authstr;
+		
+		App.http_client.get("http://localhost:3000/i_phone/accounts.json", {
+			success: function(response) {
+				Controllers.user_sessions.cache(authstr);
+				var json = JSON.parse(response.responseText);
+				App.current_user = json.user;
+				Views.nav();
+			},
+			error: function(response) {
+				Controllers.user_sessions.alerter("Invalid login");
+			}
+		});
+	},
+	
+	makeAuthString: function(username, password) {
+		return 'Basic ' + Titanium.Utils.base64encode(username+":"+password);	
+	},
+	
+	cache: function(authstr) {
+		var dir = Titanium.Filesystem.applicationDataDirectory;
+		var file = Titanium.Filesystem.getFile(dir,'credentials');
+		file.write(authstr);
+	}
+};
