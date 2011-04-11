@@ -17,6 +17,7 @@ src_files:
     - spec/javascripts/helpers/timock.js
     - initializers/bootstrap.js
     - /controllers/**/*.js
+    - main_windows/*
 
 # stylesheets
 #

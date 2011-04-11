@@ -1,15 +1,6 @@
-Titanium.include('../lib/framework/support/functional.js');
-Titanium.include('../lib/framework/lib/base.js');
-Titanium.include('../lib/framework/lib/http_client.js');
-Titanium.include('../initializers/bootstrap.js');
-App.bootstrap();
-
 AuthController = function(alerter) {
 	function login(username, password) {
-		Titanium.API.info(username);
-		Titanium.API.info(password);
 		var authstr = makeAuthString(username, password);
-		Titanium.API.info(authstr);
 		App.http_client.credentials = authstr;
 		
 		App.http_client.get("http://localhost:3000/i_phone/accounts.json", {}, {
@@ -17,7 +8,8 @@ AuthController = function(alerter) {
 				cache(authstr);
 				var json = JSON.parse(response.responseText);
 				alerter("Login successful");
-				return App.current_user = json.user;
+				App.current_user = json.user;
+				Views.nav();
 			},
 			error: function(response) {
 				alerter("Invalid login");
