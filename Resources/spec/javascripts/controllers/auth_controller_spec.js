@@ -29,7 +29,10 @@ describe("AuthController", function() {
 			spyOn(Titanium.Filesystem, "getFile").andReturn(FakeFile);
 			Titanium.Filesystem.applicationDataDirectory = "/somedir";
 			App.http_client.get = jasmine.createSpy().andCallFake(function(url, params, callback) {
-				if(App.http_client.credentials) callback.success({responseText:"{\"user\": {\"full_name\":\"brian\"}}"});
+				if(App.http_client.credentials) 
+				{
+					callback.success({responseText:"{\"user\": {\"full_name\":\"brian\"}}"});
+				};
 			});
 			AuthController(alerter).login("brian","password");
 		});

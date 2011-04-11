@@ -9,10 +9,11 @@ AuthController = function(alerter) {
 		var authstr = makeAuthString(username, password);
 		App.http_client.credentials = authstr;
 		
-		App.http_client.get("http://webcapsule.local/i_phone/accounts.json", {}, {
+		App.http_client.get("http://webcapsule.dev/i_phone/accounts.json", {}, {
 			success: function(response) {
 				cache(authstr);
 				var json = JSON.parse(response.responseText);
+				alerter("Login successful");
 				return App.current_user = json.user;
 			},
 			error: function(response) {
