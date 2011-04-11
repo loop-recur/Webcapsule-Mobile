@@ -6,10 +6,13 @@ App.bootstrap();
 
 AuthController = function(alerter) {
 	function login(username, password) {
+		Titanium.API.info(username);
+		Titanium.API.info(password);
 		var authstr = makeAuthString(username, password);
+		Titanium.API.info(authstr);
 		App.http_client.credentials = authstr;
 		
-		App.http_client.get("http://webcapsule.dev/i_phone/accounts.json", {}, {
+		App.http_client.get("http://localhost:3000/i_phone/accounts.json", {}, {
 			success: function(response) {
 				cache(authstr);
 				var json = JSON.parse(response.responseText);

@@ -1,3 +1,5 @@
+var win = Titanium.UI.currentWindow; 
+
 var tabGroup = Titanium.UI.createTabGroup();
 
 var win1 = Titanium.UI.createWindow({  
@@ -40,7 +42,8 @@ tabGroup.addTab(tab1);
 tabGroup.addTab(tab2); 
 tabGroup.addTab(tab3);  
 
+win.add(tabGroup);
+// tabGroup.open({
+//   transition:Titanium.UI.iPhone.AnimationStyle.FLIP_FROM_LEFT 
+// });
 
-tabGroup.open({
-  transition:Titanium.UI.iPhone.AnimationStyle.FLIP_FROM_LEFT 
-});
