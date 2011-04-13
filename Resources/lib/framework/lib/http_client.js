@@ -3,14 +3,14 @@ LoopRecur.HttpClient = function(client) {
 	
 	function post(url, params_or_call_backs, call_backs) {
 		var fixed_args = fixArgs(params_or_call_backs, call_backs);
-		call_backs = fixed_args[0]
+		call_backs = fixed_args[0];
 		params = fixed_args[1];
 		prepare("POST", url, call_backs).send(params);
 	}
 	
 	function get(url, params_or_call_backs, call_backs) {
 		var fixed_args = fixArgs(params_or_call_backs, call_backs);
-		call_backs = fixed_args[0]
+		call_backs = fixed_args[0];
 		params = fixed_args[1];
 		url = url+queryString(params);
 		prepare("GET", url, call_backs).send();
@@ -28,6 +28,7 @@ LoopRecur.HttpClient = function(client) {
 	}
 
 	function prepare(method, url, call_backs) {
+		url = App.base_url+url;
 		client.open(method, url);
 		setHeaders();
 		client.onload = function() { call_backs.success(this); };

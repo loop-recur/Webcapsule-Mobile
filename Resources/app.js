@@ -1,4 +1,5 @@
 Titanium.include('initializers/bootstrap.js');
+App.base_url = 'http://www.webcapsule.com/i_phone';
 App.bootstrap();
 
 Titanium.UI.setBackgroundColor('#000');

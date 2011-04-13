@@ -1,6 +1,6 @@
 Controllers.stories = {
 	index: function(view) {
-		App.http_client.get("http://localhost:3000/i_phone/stories.json", {
+		App.http_client.get("/stories.json", {
 			success: function(response) {
 				var stories = JSON.parse(response.responseText);
 				view(stories);
@@ -12,7 +12,7 @@ Controllers.stories = {
 	},
 	
 	show: function(view, id) {
-		App.http_client.get("http://localhost:3000/i_phone/stories/"+id+".json", {
+		App.http_client.get("/stories/"+id+".json", {
 			success: function(response) {
 				var stories = JSON.parse(response.responseText);
 				view(stories);

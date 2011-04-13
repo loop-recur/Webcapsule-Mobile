@@ -5,7 +5,7 @@ Controllers.user_sessions = {
 		var authstr = this.makeAuthString(username, password);
 		App.http_client.credentials = authstr;
 		
-		App.http_client.get("http://localhost:3000/i_phone/accounts.json", {
+		App.http_client.get("/accounts.json", {
 			success: function(response) {
 				Controllers.user_sessions.cache(authstr);
 				var json = JSON.parse(response.responseText);

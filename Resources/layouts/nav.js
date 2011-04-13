@@ -20,8 +20,7 @@ Views.nav = function () {
 
 	var win2 = Titanium.UI.createWindow({
 		title:'Record',
-	    // url:'record.js',
-	 	backgroundColor:'#fff'
+		url:'overlays/record.js'
 	});
 
 	var tab2 = Titanium.UI.createTab({  
@@ -51,7 +50,7 @@ Views.nav = function () {
 		Titanium.UI.setBackgroundColor('#fff');
 	});
 
-	tabGroup.setActiveTab(1); 
+	tabGroup.setActiveTab(0); 
 	// open tab group with a transition animation
 	tabGroup.open({
 		transition:Titanium.UI.iPhone.AnimationStyle.FLIP_FROM_LEFT
