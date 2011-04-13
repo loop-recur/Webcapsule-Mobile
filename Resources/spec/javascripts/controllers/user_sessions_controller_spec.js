@@ -21,7 +21,7 @@ describe("Controllers.user_sessions", function() {
 		});
 		
 		it("calls the right url", function() {
-			expect(App.http_client.get).toHaveBeenCalledWith("http://localhost:3000/i_phone/accounts.json", {
+			expect(App.http_client.get).toHaveBeenCalledWith("/accounts.json", {
 				success: jasmine.any(Function),
 				error: jasmine.any(Function)
 		  });

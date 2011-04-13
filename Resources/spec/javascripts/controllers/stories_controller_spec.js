@@ -14,6 +14,13 @@ describe("StoriesController", function() {
 			Controllers.stories.index(view);
 		});
 		
+		it("calls the right url", function() {
+			expect(App.http_client.get).toHaveBeenCalledWith("/stories.json", {
+		        success: jasmine.any(Function),
+						error: jasmine.any(Function)
+		    });
+		});
+		
 		it("renders stories view with the stories", function() {
 			expect(view).toHaveBeenCalledWith(JSON.parse("[{\"story\": {\"title\":\"Yo\"}}]"));
 		});
@@ -28,7 +35,7 @@ describe("StoriesController", function() {
 		});
 		
 		it("calls the right url", function() {
-			expect(App.http_client.get).toHaveBeenCalledWith("http://localhost:3000/i_phone/stories/10.json", {
+			expect(App.http_client.get).toHaveBeenCalledWith("/stories/10.json", {
 		        success: jasmine.any(Function),
 						error: jasmine.any(Function)
 		    });

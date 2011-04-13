@@ -1,6 +1,5 @@
 LoopRecur.HttpClient = function(client) {
-	client.setTimeout(20000);
-	
+		
 	function post(url, params_or_call_backs, call_backs) {
 		var fixed_args = fixArgs(params_or_call_backs, call_backs);
 		call_backs = fixed_args[0];
@@ -28,19 +27,18 @@ LoopRecur.HttpClient = function(client) {
 	}
 
 	function prepare(method, url, call_backs) {
-		url = App.base_url+url;
+		client.options.onload = call_backs.success
+		client.options.onerror = call_backs.error
 		client.open(method, url);
 		setHeaders();
-		client.onload = function() { call_backs.success(this); };
-		client.onerror = function() { call_backs.error(this); };
 		return client;
 	}
 
 	function queryString(params) {
-		qstring = "";
-		for (var key in params) {
-			qstring += key + '=' + params[key] + '&';
-		}
+		var keys = [];
+		for (var key in params) { keys.push([key, params[key]]); };
+		// var keys = Object.keys(params)
+		var qstring = Functional.reduce("y += x[0] + '=' + x[1] + '&'".lambda(), "", keys);
 		if (qstring !== "") qstring = '?'+qstring;
 		return qstring;
 	}

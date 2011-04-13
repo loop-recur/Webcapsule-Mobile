@@ -5,6 +5,5 @@ Mocks.FakeHttpClient = {
 	setRequestHeader:function(){},
 	open: function(){},
 	send: function(){},
-	onerror: function(){},
-	onload: function(){}
+	options: {}
 };

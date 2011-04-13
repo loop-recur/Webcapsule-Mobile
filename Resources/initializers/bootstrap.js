@@ -1,17 +1,21 @@
 Titanium.include('lib/framework/support/functional.js');
 Titanium.include('lib/framework/lib/base.js');
+Titanium.include('lib/framework/support/http_client_with_cache.js');
 Titanium.include('lib/framework/lib/http_client.js');
 
 App = {};
 Views = {};
 Controllers = {};
 Layouts = {};
+Config = {};
 
 App.bootstrap = function() {
-	App.http_client = LoopRecur.HttpClient(Titanium.Network.createHTTPClient());
+	includeAllFiles("config");
 	includeAllFiles("views");
 	includeAllFiles("layouts");
 	includeAllFiles("controllers");
+	var client = new HTTPClientWithCache({baseUrl: App.base_url, retryCount: 2, cacheSeconds: 60});
+	App.http_client = LoopRecur.HttpClient(client);
 };
 
 function includeAllFiles(name) {
@@ -32,7 +36,7 @@ function includeFile(name) {
 };
 
 function makeNamespace(name) {
-	var kinds = {"views": Views, "controllers": Controllers, "layouts": Layouts};
+	var kinds = {"views": Views, "controllers": Controllers, "layouts": Layouts, "config": Config};
 	var paths = name.split('/');
 	var kind = paths[0];
 	var namespace = paths[1];
