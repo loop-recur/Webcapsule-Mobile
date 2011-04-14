@@ -4,7 +4,7 @@ describe("Controllers.user_sessions", function() {
 		spyOn(App.http_client, "get");
 		spyOn(Titanium.Utils, "base64encode");
 		spyOn(FakeFile, "write");
-		spyOn(FakeFile, "deleteFile")
+		spyOn(FakeFile, "deleteFile");
 		Layouts.nav = jasmine.createSpy("nav");
 		Layouts.login = jasmine.createSpy("login");
   });
@@ -86,7 +86,7 @@ describe("Controllers.user_sessions", function() {
 				expect(FakeFile.deleteFile).toHaveBeenCalled();
 			});
 		
-			it("clears the authstring from the http client", function() {
+			it("clears the authstring cache from the http client", function() {
 		  	
 			});
 		

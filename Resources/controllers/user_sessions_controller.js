@@ -22,6 +22,7 @@ Controllers.user_sessions = {
 		var dir = Titanium.Filesystem.applicationDataDirectory;
 		var file = Titanium.Filesystem.getFile(dir,'credentials');
 		file.deleteFile();
+		App.http_client.credentials = "";
 		Layouts.login();
 	},
 	

@@ -60,6 +60,6 @@ Layouts.nav = function () {
 
 	tabGroup.setActiveTab(0); 
 	tabGroup.open({
-		transition:Titanium.UI.iPhone.AnimationStyle.FLIP_FROM_LEFT
+		transition:Titanium.UI.iPhone.AnimationStyle.FLIP_FROM_RIGHT
 	});
 };
