@@ -21,7 +21,8 @@ FileListHack = [
 
 App.bootstrap = function() {
 	includeAllFiles();
-	var environment = (Titanium.Filesystem.resourcesDirectory.split("/")[0] == "var") ? "production" : "development";
+	var isIphone = Titanium.Filesystem.resourcesDirectory.split("/")[1] === "var";
+	var environment = isIphone ? "production" : "development";
 	App.environments[environment]();
 	var client = new HTTPClientWithCache({baseUrl: App.base_url, retryCount: 2, cacheSeconds: 60});
 	App.http_client = LoopRecur.HttpClient(client);
