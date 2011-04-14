@@ -56,7 +56,7 @@ describe("StoriesController", function() {
 		  });
 		
 			it("calls the right url", function() {
-				expect(App.http_client.post).toHaveBeenCalledWith("/stories.json", {video: "fake video"}, {
+				expect(App.http_client.post).toHaveBeenCalledWith("/stories.json", {upload: "fake video"}, {
 			        success: jasmine.any(Function),
 							error: jasmine.any(Function)
 			    });

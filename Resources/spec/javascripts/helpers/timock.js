@@ -16,3 +16,7 @@ Titanium = {
 	Filesystem: {applicationDataDirectory: "", getFile: function(){ return FakeFile; }},
 	UI: {createTabGroup:function(){return FakeGroup; },createWindow:function(){},createTab:function(){},iPhone:FakeiPhone}
 };
+
+Ti = {
+	API: {info: function() {}}
+};

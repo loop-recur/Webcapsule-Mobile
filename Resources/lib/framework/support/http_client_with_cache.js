@@ -124,6 +124,7 @@
         this._reset_xhr();
         this.xhr.setTimeout(this.options.timeout);
         Ti.App.fireEvent(this.options.showActivityEvent);
+				this.xhr.onsendstream = this.options.onsendstream;
         this.xhr.open(this.options.method, this.options.baseUrl + this.options.url);
         this._setRequestHeaders();
         return this.xhr.send(this.options.data != null ? this.options.data : void 0);

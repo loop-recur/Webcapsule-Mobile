@@ -16,14 +16,13 @@ FileListHack = [
 	"layouts/login.js",
 	"layouts/nav.js",
 	"views/stories/index.js",
-	"views/stories/show.js"
+	"views/stories/show.js",
+	"views/stories/create.js"
 ]
 
 App.bootstrap = function() {
 	includeAllFiles();
-	var isIphone = Titanium.Filesystem.resourcesDirectory.split("/")[1] === "var";
-	var environment = isIphone ? "production" : "development";
-	App.environments[environment]();
+	runEnvironment();
 	var client = new HTTPClientWithCache({baseUrl: App.base_url, retryCount: 2, cacheSeconds: 60});
 	App.http_client = LoopRecur.HttpClient(client);
 };
@@ -46,10 +45,19 @@ function makeNamespace(name) {
 	return name;
 };
 
+function runEnvironment() {
+	var isIphone = Titanium.Filesystem.resourcesDirectory.split("/")[1] === "var";
+	var environment = isIphone ? "production" : "development";
+	App.environments[environment]();
+}
+
 App.action = function(win, controller_action, args) {
 	var names = controller_action.split("#");
 	var controller = names[0];
 	var action = names[1];
+	alert("Calling "+controller+ " # " + action);
 	var callBack = Views[controller][action].partial(win);
+	alert("with "+Views[controller][action].toString());
+	alert("and "+Controllers[controller][action].toString());
 	Controllers[controller][action](callBack, args);
 };

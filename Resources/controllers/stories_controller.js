@@ -12,15 +12,25 @@ Controllers.stories = {
 	},
 	
 	create: function(view, params) {
-		App.http_client.post("/stories.json", params, {
+		alert("in create");
+		var video = params.video;
+		var progress = params.progress;
+		alert("write movie");
+		var movieFile = Titanium.Filesystem.getFile(Titanium.Filesystem.applicationDataDirectory,'mymovie.mov');
+		movieFile.write(video);
+		alert("post start");
+		
+		App.http_client.post("/stories.json", {upload:video}, {
 			success: function(response) {
-				var stories = JSON.parse(response.responseText);
-				// something
+				Ti.API.info(response.responseText);
 			},
 			error: function(response) {
 				alert(response.error);
-			}
+			},
+			progress_bar : progress
 		});
+		
+		alert("done");
 		view();
 	},
 	

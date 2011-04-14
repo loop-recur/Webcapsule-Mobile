@@ -27,6 +27,8 @@ LoopRecur.HttpClient = function(client) {
 	}
 
 	function prepare(method, url, call_backs) {
+		var progress_bar = call_backs.progress_bar;
+		client.options.onsendstream = progress_bar ? function(e){ progress_bar.value = e.progress } : null;
 		client.options.onload = call_backs.success;
 		client.options.onerror = call_backs.error;
 		client.open(method, url);

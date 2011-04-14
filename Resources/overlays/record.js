@@ -94,27 +94,13 @@ button.addEventListener('click',function()
 	cameraFlash.visible = false;
 });
 
+
 Titanium.Media.showCamera({
-
-	success:function(event)
-	{
-		Ti.API.debug("video was taken");
-
-		// programatically hide the camera
-		Ti.Media.hideCamera();
-
-		var activeMovie = Titanium.Media.createVideoPlayer({
-			media:event.media,
-			backgroundColor:'#111',
-			movieControlMode:Titanium.Media.VIDEO_CONTROL_DEFAULT,
-			movieControlStyle:Titanium.Media.VIDEO_CONTROL_FULLSCREEN,
-			scalingMode:Titanium.Media.VIDEO_SCALING_MODE_FILL
-		});
-		win.add(activeMovie);
+	success: function(event){
+		win.add(progressBar());
+		App.action(win, "stories#create", {video: event.media, progress: progress});
 	},
-	cancel:function()
-	{
-	},
+	cancel:function(){},
 	error:function(error)
 	{
 		var a = Titanium.UI.createAlertDialog({title:'Camera'});
@@ -134,3 +120,19 @@ Titanium.Media.showCamera({
 	videoQuality:Ti.Media.QUALITY_640x480,
 	autohide:false 	// tell the system not to auto-hide and we'll do it ourself
 });
+
+
+function progressBar() {
+	return Titanium.UI.createProgressBar({
+		width:200,
+		height:80,
+		min:0,
+		max:1,
+		value:0,
+		style:Titanium.UI.iPhone.ProgressBarStyle.PLAIN,
+		top:10,
+		message:'',
+		font:{fontSize:12, fontWeight:'bold'},
+		color:'#888'
+	});	
+};
