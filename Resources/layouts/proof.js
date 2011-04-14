@@ -1,7 +1,5 @@
 Layouts.proof = function() {
-	var win = Titanium.UI.createWindow({  
-		backgroundImage:'images/toolbar/bg_full.png'
-	});
+	var win = Titanium.UI.currentWindow;
 	
 	var functionalityView = Titanium.UI.createView({
 		height:225,
@@ -106,6 +104,4 @@ Layouts.proof = function() {
 	functionalityView.add(addPhotosButton);
 	functionalityView.add(addDateButton);
 	functionalityView.add(saveButton);
-
-	win.open();
 }
