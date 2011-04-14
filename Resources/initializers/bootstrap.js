@@ -15,6 +15,7 @@ FileListHack = [
 	"controllers/user_sessions_controller.js",
 	"layouts/login.js",
 	"layouts/nav.js",
+	"layouts/proof.js",
 	"views/stories/index.js",
 	"views/stories/show.js"
 ]

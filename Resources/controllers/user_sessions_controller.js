@@ -18,6 +18,13 @@ Controllers.user_sessions = {
 		});
 	},
 	
+	destroy: function() {
+		var dir = Titanium.Filesystem.applicationDataDirectory;
+		var file = Titanium.Filesystem.getFile(dir,'credentials');
+		file.deleteFile();
+		Layouts.login();
+	},
+	
 	makeAuthString: function(username, password) {
 		return 'Basic ' + Titanium.Utils.base64encode(username+":"+password);	
 	},

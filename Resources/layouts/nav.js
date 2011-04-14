@@ -11,7 +11,6 @@ Layouts.nav = function () {
 		App.action(win1, "stories#index");
 	});
 	
-
 	var tab1 = Titanium.UI.createTab({  
 	    icon:'KS_nav_ui.png',
 	    title:'Stories',
@@ -31,7 +30,6 @@ Layouts.nav = function () {
 
 	var win3 = Titanium.UI.createWindow({  
 	    title:'Users',
-	    // url:'play.js',
 	    backgroundColor:'#fff'
 	});
 
@@ -41,6 +39,16 @@ Layouts.nav = function () {
 	    window:win3
 	});
 
+	var logoutBtn = Titanium.UI.createButton({
+		title:'Logout'
+	});
+		
+	logoutBtn.addEventListener('click', function(){
+		Controllers.user_sessions.destroy();
+	});
+	
+	win1.setRightNavButton(logoutBtn);
+	win3.setRightNavButton(logoutBtn);
 	tabGroup.addTab(tab1);
 	tabGroup.addTab(tab2);
 	tabGroup.addTab(tab3);
@@ -51,7 +59,6 @@ Layouts.nav = function () {
 	});
 
 	tabGroup.setActiveTab(0); 
-	// open tab group with a transition animation
 	tabGroup.open({
 		transition:Titanium.UI.iPhone.AnimationStyle.FLIP_FROM_LEFT
 	});

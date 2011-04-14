@@ -1,4 +1,4 @@
-Views.proof = function() {
+Layouts.proof = function() {
 	var win = Titanium.UI.createWindow({  
 		backgroundImage:'images/toolbar/bg_full.png'
 	});
