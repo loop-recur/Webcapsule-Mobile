@@ -27,8 +27,8 @@ LoopRecur.HttpClient = function(client) {
 	}
 
 	function prepare(method, url, call_backs) {
-		client.options.onload = call_backs.success
-		client.options.onerror = call_backs.error
+		client.options.onload = call_backs.success;
+		client.options.onerror = call_backs.error;
 		client.open(method, url);
 		setHeaders();
 		return client;
@@ -37,7 +37,6 @@ LoopRecur.HttpClient = function(client) {
 	function queryString(params) {
 		var keys = [];
 		for (var key in params) { keys.push([key, params[key]]); };
-		// var keys = Object.keys(params)
 		var qstring = Functional.reduce("y += x[0] + '=' + x[1] + '&'".lambda(), "", keys);
 		if (qstring !== "") qstring = '?'+qstring;
 		return qstring;

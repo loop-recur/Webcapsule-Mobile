@@ -1,4 +1,4 @@
-Views.nav = function () {
+Layouts.nav = function () {
 	
 	var tabGroup = Titanium.UI.createTabGroup();
 	

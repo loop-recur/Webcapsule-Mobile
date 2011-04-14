@@ -1,4 +1,4 @@
-Views.login = function () {
+Layouts.login = function () {
 
 	var win = Titanium.UI.createWindow({  
 	    title:'Login',

@@ -1,39 +1,41 @@
-Titanium.include('lib/framework/support/functional.js');
-Titanium.include('lib/framework/lib/base.js');
-Titanium.include('lib/framework/support/http_client_with_cache.js');
-Titanium.include('lib/framework/lib/http_client.js');
-
 App = {};
 Views = {};
 Controllers = {};
 Layouts = {};
 Config = {};
 
+Titanium.include('lib/framework/support/functional.js');
+Titanium.include('lib/framework/lib/base.js');
+Titanium.include('lib/framework/support/http_client_with_cache.js');
+Titanium.include('lib/framework/lib/http_client.js');
+Titanium.include('config/environments.js');
+
+FileListHack = [
+	"controllers/stories_controller.js",
+	"controllers/user_sessions_controller.js",
+	"layouts/login.js",
+	"layouts/nav.js",
+	"views/stories/index.js",
+	"views/stories/show.js"
+]
+
 App.bootstrap = function() {
-	includeAllFiles("config");
-	includeAllFiles("views");
-	includeAllFiles("layouts");
-	includeAllFiles("controllers");
+	includeAllFiles();
+	var isIphone = Titanium.Filesystem.resourcesDirectory.split("/")[1] === "var";
+	var environment = isIphone ? "production" : "development";
+	App.environments[environment]();
 	var client = new HTTPClientWithCache({baseUrl: App.base_url, retryCount: 2, cacheSeconds: 60});
 	App.http_client = LoopRecur.HttpClient(client);
 };
 
-function includeAllFiles(name) {
-	var files = Ti.Filesystem.getFile(name).getDirectoryListing();
-	var full_names = Functional.map("name+'/'+file".lambda().partial(name), files);
-	Functional.map(includeFile, full_names);
-};
+function includeAllFiles() {
+	Functional.map(includeFile, FileListHack);
+}
 
 function includeFile(name) {
-	var isFolder = ".split('.')[1] !== 'js'".lambda();
-	
-	if(isFolder(name)) {
-		includeAllFiles(name);
-	} else {
-		makeNamespace(name);
-		Titanium.include(name);
-	}
-};
+	makeNamespace(name);
+	Titanium.include(name);
+}
 
 function makeNamespace(name) {
 	var kinds = {"views": Views, "controllers": Controllers, "layouts": Layouts, "config": Config};
@@ -41,6 +43,7 @@ function makeNamespace(name) {
 	var kind = paths[0];
 	var namespace = paths[1];
 	if(!kinds[kind][namespace]) kinds[kind][namespace] = {};
+	return name;
 };
 
 App.action = function(win, controller_action, args) {
