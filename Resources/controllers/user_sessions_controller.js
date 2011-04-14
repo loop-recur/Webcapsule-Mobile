@@ -10,7 +10,7 @@ Controllers.user_sessions = {
 				Controllers.user_sessions.cache(authstr);
 				var json = JSON.parse(response.responseText);
 				App.current_user = json.user;
-				Views.nav();
+				Layouts.nav();
 			},
 			error: function(response) {
 				Controllers.user_sessions.alerter("Invalid login");

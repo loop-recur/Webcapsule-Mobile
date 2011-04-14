@@ -4,7 +4,7 @@ describe("Controllers.user_sessions", function() {
 		spyOn(App.http_client, "get");
 		spyOn(Titanium.Utils, "base64encode");
 		spyOn(FakeFile, "write");
-		Views.nav = jasmine.createSpy("nav");
+		Layouts.nav = jasmine.createSpy("nav");
   });
 
 	describe("Create", function() {
@@ -44,7 +44,7 @@ describe("Controllers.user_sessions", function() {
 			});
 		
 			it("calls the nav", function() {
-				expect(Views.nav).toHaveBeenCalled();
+				expect(Layouts.nav).toHaveBeenCalled();
 			});
 		
 			it("writes credentials to disk", function() {

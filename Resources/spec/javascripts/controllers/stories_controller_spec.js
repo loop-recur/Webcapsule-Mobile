@@ -45,4 +45,26 @@ describe("StoriesController", function() {
 			expect(view).toHaveBeenCalledWith(JSON.parse("{\"story\": {\"title\":\"Yo\"}}"));
 		});
 	});
+	
+	describe("create", function() {
+		describe("valid", function() {
+		  beforeEach(function() {
+		    App.http_client.post = jasmine.createSpy().andCallFake(function(url, params, callback) {
+					callback.success({responseText:"{\"story\": {\"title\":\"Yo\"}}"});
+				});
+				Controllers.stories.create(view, {video: "fake video"});
+		  });
+		
+			it("calls the right url", function() {
+				expect(App.http_client.post).toHaveBeenCalledWith("/stories.json", {video: "fake video"}, {
+			        success: jasmine.any(Function),
+							error: jasmine.any(Function)
+			    });
+			});
+			
+			it("renders the view", function() {
+			  expect(view).toHaveBeenCalled();
+			});
+		});
+	});
 });
