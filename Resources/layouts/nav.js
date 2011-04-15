@@ -6,7 +6,7 @@ Layouts.nav = function () {
 	// 	
 	// 	var win1 = Titanium.UI.createWindow({
 	// 	    title:'Stories',
-	// 	    backgroundColor:'#fff'
+	// 	    backgroundColor:'#fff',
 	// 	});
 	// 	
 	// 	win1.addEventListener('open', function() {
@@ -62,6 +62,6 @@ Layouts.nav = function () {
 	// 
 	// 	tabGroup.setActiveTab(0); 
 	// 	tabGroup.open({
-	// 		transition:Titanium.UI.iPhone.AnimationStyle.FLIP_FROM_RIGHT
-	// 	});
+			// transition:Titanium.UI.iPhone.AnimationStyle.FLIP_FROM_RIGHT
+		// });
 };

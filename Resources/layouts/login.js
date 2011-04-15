@@ -7,7 +7,7 @@ Layouts.login = function () {
 
 	var logo = Ti.Filesystem.getFile(Titanium.Filesystem.resourcesDirectory,'images/logo.png');
 
-	var imageView = Titanium.UI.createImageView({
+	var image_view = Titanium.UI.createImageView({
 		image:logo,
 		width:304,
 		height:89,
@@ -39,7 +39,7 @@ Layouts.login = function () {
 	    borderStyle:Titanium.UI.INPUT_BORDERSTYLE_ROUNDED  
 	});
 
-	var loginBtn = Titanium.UI.createButton({  
+	var login_button = Titanium.UI.createButton({  
 	    title:'Login',  
 	    top:210,  
 	    width:90,  
@@ -48,7 +48,7 @@ Layouts.login = function () {
 	    font:{fontFamily:'Arial',fontWeight:'bold',fontSize:14}  
 	});
 
-	loginBtn.addEventListener('click', function(){
+	login_button.addEventListener('click', function(){
 		Controllers.user_sessions.create(username.value, password.value);
 	});
 
@@ -61,10 +61,10 @@ Layouts.login = function () {
 		textAlign:'center'
 	});
 
-	win.add(imageView);
+	win.add(image_view);
 	win.add(username);
 	win.add(password);
-	win.add(loginBtn);
+	win.add(login_button);
 	
 	win.open();
 };

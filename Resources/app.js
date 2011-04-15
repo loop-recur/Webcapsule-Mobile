@@ -8,7 +8,7 @@ var credentials = Titanium.Filesystem.getFile(dir,'credentials');
 
 if(credentials.exists()) {
 	App.http_client.credentials = credentials.read();
-	Layouts.nav();
+	Layouts.site();
 } else {
 	Layouts.login();
 };
