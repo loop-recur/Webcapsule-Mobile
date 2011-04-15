@@ -5,7 +5,7 @@ HttpClient = {
 	send: function(){}
 };
 
-FakeFile = { write:function(){} };
+FakeFile = { write:function(){}, deleteFile:function(){} };
 FakeGroup = { addTab:function(){}, addEventListener:function(){}, setActiveTab:function(){}, open:function(){} };
 FakeiPhone = {AnimationStyle:function(){} };
 

@@ -4,7 +4,9 @@ describe("Controllers.user_sessions", function() {
 		spyOn(App.http_client, "get");
 		spyOn(Titanium.Utils, "base64encode");
 		spyOn(FakeFile, "write");
+		spyOn(FakeFile, "deleteFile");
 		Layouts.nav = jasmine.createSpy("nav");
+		Layouts.login = jasmine.createSpy("login");
   });
 
 	describe("Create", function() {
@@ -69,6 +71,30 @@ describe("Controllers.user_sessions", function() {
 			it("doesn't write credentials to disk", function() {
 				expect(FakeFile.write).not.toHaveBeenCalled();
 			});
+		});
+	});
+
+	describe("Destroy", function() {
+
+		describe("Success", function() {
+			beforeEach(function() {
+				Controllers.user_sessions.create("brian","password");
+			});
+			
+			it("deletes credentials from disk", function() {
+				Controllers.user_sessions.destroy();
+				expect(FakeFile.deleteFile).toHaveBeenCalled();
+			});
+		
+			it("clears the authstring cache from the http client", function() {
+		  	
+			});
+		
+			it("calls the login", function() {
+				Controllers.user_sessions.destroy();
+				expect(Layouts.login).toHaveBeenCalled();
+			});
+		
 		});
 	});
 });

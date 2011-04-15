@@ -1,10 +1,10 @@
 var win = Titanium.UI.currentWindow;
 
 var button = Titanium.UI.createButton({
-	color:'#fff',
-	// backgroundImage:'../images/BUTT_grn_on.png',
-	// backgroundSelectedImage:'../images/BUTT_grn_off.png',
-	// backgroundDisabledImage: '../images/BUTT_gry_on.png',
+	color:'black',
+	backgroundImage:'../images/BUTT_grn_on.png',
+	backgroundSelectedImage:'../images/BUTT_grn_off.png',
+	backgroundDisabledImage: '../images/BUTT_gry_on.png',
 	bottom:10,
 	width:120,
 	height:40,
@@ -16,7 +16,7 @@ var overlay = Titanium.UI.createView();
 overlay.add(button);
 
 var cameraFlash = Ti.UI.createButton({
-	color:'#fff',
+	color:'black',
 	title:"auto",
 	left:20,
 	top:20,
@@ -49,7 +49,7 @@ cameraFlash.addEventListener('click',function()
 });
 
 var cameraType = Ti.UI.createButton({
-	color:'#fff',
+	color:'black',
 	title:"front",
 	top:20,
 	right:20,
@@ -88,8 +88,8 @@ button.addEventListener('click',function()
 {
 	Ti.Media.startVideoCapture();
 	button.title = "Stop Video";
-	// button.backgroundImage = "../images/BUTT_red_on.png";
-	// button.backgroundSelectedImage = '../images/BUTT_red_off.png';
+	button.backgroundImage = "../images/BUTT_red_on.png";
+	button.backgroundSelectedImage = '../images/BUTT_red_off.png';
 	cameraType.visible = false;
 	cameraFlash.visible = false;
 });
@@ -97,8 +97,34 @@ button.addEventListener('click',function()
 
 Titanium.Media.showCamera({
 	success: function(event){
-		win.add(progressBar());
-		App.action(win, "stories#create", {video: event.media, progress: progress});
+		// programatically hide the camera
+		Ti.Media.hideCamera();
+
+		var activeMovie = Titanium.Media.createVideoPlayer({
+			media:event.media,
+			backgroundColor:'#111',
+			movieControlMode:Titanium.Media.VIDEO_CONTROL_DEFAULT,
+			movieControlStyle:Titanium.Media.VIDEO_CONTROL_FULLSCREEN,
+			scalingMode:Titanium.Media.VIDEO_SCALING_MODE_FILL
+		});
+		win.add(activeMovie);
+		
+		var b = Titanium.UI.createButton({
+			title:'Close',
+			height:30,
+			width:150,
+			top:0,
+			right:0
+		});
+		
+		win.add(b);
+		
+		b.addEventListener('click', function()
+		{
+			win.close();
+		});
+		
+		Layouts.proof();
 	},
 	cancel:function(){},
 	error:function(error)
@@ -110,7 +136,7 @@ Titanium.Media.showCamera({
 		}
 		else
 		{
-			a.setMessage('Unexpected error: ' + error);
+			a.setMessage('Unexpected error: ' + error.code);
 		}
 		a.show();
 	},
@@ -121,18 +147,4 @@ Titanium.Media.showCamera({
 	autohide:false 	// tell the system not to auto-hide and we'll do it ourself
 });
 
-
-function progressBar() {
-	return Titanium.UI.createProgressBar({
-		width:200,
-		height:80,
-		min:0,
-		max:1,
-		value:0,
-		style:Titanium.UI.iPhone.ProgressBarStyle.PLAIN,
-		top:10,
-		message:'',
-		font:{fontSize:12, fontWeight:'bold'},
-		color:'#888'
-	});	
 };
