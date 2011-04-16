@@ -5,7 +5,10 @@ Views.stories.index = function(win, stories) {
 	}
 
 	var data = Functional.map(createTableViewRow, stories);
-	var tableview = Titanium.UI.createTableView({ data:data });
+	var tableview = Titanium.UI.createTableView({ 
+		data:data,
+		top:40
+	 });
 
 	tableview.addEventListener('click', function(e)
 	{
@@ -22,16 +25,25 @@ Views.stories.index = function(win, stories) {
 			right:0
 		});
 		
-		win.add(b);
-		
-		b.addEventListener('click', function()
-		{
-			win.close();
-		});
-		
+		b.addEventListener('click', function() { win.close(); });
+
 		win.add(b);
 		win.open();
 	});
 
+	var buttonObjects = [
+		{title:'My Stories', width:110, enabled:true},
+		{title:'Friends\' Stories', width:140}
+	];
+	
+	var tabbed_bar = Titanium.UI.createTabbedBar({
+		labels:buttonObjects,
+		top:0,
+		style:Titanium.UI.iPhone.SystemButtonStyle.BAR,
+		height:40,
+		index:1
+	});
+	
+	win.add(tabbed_bar);
 	win.add(tableview);
 };
