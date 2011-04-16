@@ -13,6 +13,7 @@ Titanium.include('config/environments.js');
 FileListHack = [
 	"controllers/stories_controller.js",
 	"controllers/user_sessions_controller.js",
+	"layouts/site.js",	
 	"layouts/login.js",
 	"layouts/nav.js",
 	"layouts/proof.js",

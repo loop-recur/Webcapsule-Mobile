@@ -1,7 +1,7 @@
 Layouts.proof = function() {
 	var win = Titanium.UI.currentWindow;
 	
-	var functionalityView = Titanium.UI.createView({
+	var functionality_view = Titanium.UI.createView({
 		height:225,
 		bottom:-190
 	}); 
@@ -16,7 +16,7 @@ Layouts.proof = function() {
 	});
 
 	open.addEventListener('click', function() {
-		functionalityView.animate({bottom:0, duration:500});
+		functionality_view.animate({bottom:0, duration:500});
 	});
 		
 	var close = Titanium.UI.createButton({
@@ -29,10 +29,10 @@ Layouts.proof = function() {
 	});
 	
 	close.addEventListener('click', function() {
-		functionalityView.animate({bottom:-190, duration:500});
+		functionality_view.animate({bottom:-190, duration:500});
 	});
 	
-	var storyTitle = Titanium.UI.createTextField({  
+	var story_title_field = Titanium.UI.createTextField({  
 	    color:'#303030',
 			backgroundColor:'#d6d6d6',
 			borderRadius:4,
@@ -45,7 +45,7 @@ Layouts.proof = function() {
 	    returnKeyType:Titanium.UI.RETURNKEY_DONE,  
 	});
 
-	var tagFriendsButton = Titanium.UI.createButton({
+	var tag_friends_button = Titanium.UI.createButton({
 		value:false,
 		top:100,
 		left: 20,
@@ -55,7 +55,7 @@ Layouts.proof = function() {
 		backgroundSelectedImage:'images/record/tag_pressed.png'
 	});
 
-	var locationButton = Titanium.UI.createButton({
+	var location_button = Titanium.UI.createButton({
 		value:false,
 		top:100,
 		left: 94,
@@ -65,7 +65,7 @@ Layouts.proof = function() {
 		backgroundSelectedImage:'images/record/location_pressed.png'
 	});
 
-	var addPhotosButton = Titanium.UI.createButton({
+	var add_photos_button = Titanium.UI.createButton({
 		value:false,
 		top:100,
 		right: 94,
@@ -75,7 +75,7 @@ Layouts.proof = function() {
 		backgroundSelectedImage:'images/record/addphotos_pressed.png'
 	});
 
-	var addDateButton = Titanium.UI.createButton({
+	var add_date_button = Titanium.UI.createButton({
 		value:false,
 		top:100,
 		right: 20,
@@ -85,7 +85,7 @@ Layouts.proof = function() {
 		backgroundSelectedImage:'images/record/date_pressed.png'
 	});
 	
-	var saveButton = Titanium.UI.createButton({
+	var save_button = Titanium.UI.createButton({
 		value:false,
 		top:170,
 		height:44,
@@ -94,14 +94,14 @@ Layouts.proof = function() {
 	});
 
 	
-	win.add(functionalityView);
+	win.add(functionality_view);
 	
-	functionalityView.add(open);
-	functionalityView.add(close);
-	functionalityView.add(storyTitle);
-	functionalityView.add(tagFriendsButton);
-	functionalityView.add(locationButton);
-	functionalityView.add(addPhotosButton);
-	functionalityView.add(addDateButton);
-	functionalityView.add(saveButton);
+	functionality_view.add(open);
+	functionality_view.add(close);
+	functionality_view.add(story_title_field);
+	functionality_view.add(tag_friends_button);
+	functionality_view.add(location_button);
+	functionality_view.add(add_photos_button);
+	functionality_view.add(add_date_button);
+	functionality_view.add(save_button);
 }
