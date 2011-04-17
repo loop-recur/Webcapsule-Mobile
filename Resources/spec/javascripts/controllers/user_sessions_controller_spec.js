@@ -5,8 +5,8 @@ describe("Controllers.user_sessions", function() {
 		spyOn(Titanium.Utils, "base64encode");
 		spyOn(FakeFile, "write");
 		spyOn(FakeFile, "deleteFile");
-		Layouts.nav = jasmine.createSpy("nav");
 		Layouts.login = jasmine.createSpy("login");
+		Layouts.site = jasmine.createSpy("site");
   });
 
 	describe("Create", function() {
@@ -45,8 +45,8 @@ describe("Controllers.user_sessions", function() {
 				expect(App.current_user.full_name).toEqual('brian');
 			});
 		
-			it("calls the nav", function() {
-				expect(Layouts.nav).toHaveBeenCalled();
+			it("calls the site", function() {
+				expect(Layouts.site).toHaveBeenCalled();
 			});
 		
 			it("writes credentials to disk", function() {
