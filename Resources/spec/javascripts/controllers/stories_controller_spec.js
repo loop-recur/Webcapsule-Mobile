@@ -47,12 +47,16 @@ describe("StoriesController", function() {
 	});
 	
 	describe("create", function() {
+		var bar;
+		
 		describe("valid", function() {
 		  beforeEach(function() {
 		    App.http_client.post = jasmine.createSpy().andCallFake(function(url, params, callback) {
 					callback.success({responseText:"{\"story\": {\"title\":\"Yo\"}}"});
 				});
-				Controllers.stories.create(view, {video: "fake video"});
+				bar = jasmine.createSpy("bar");
+				spyOn(bar, "hide");
+				Controllers.stories.create(view, {video: "fake video" progress:bar});
 		  });
 		
 			it("calls the right url", function() {

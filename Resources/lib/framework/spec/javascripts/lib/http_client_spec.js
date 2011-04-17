@@ -43,13 +43,13 @@ describe("HttpClient", function() {
 		it("posts to the server", function() {
 			http_client.post("/test", {test:"yup"}, call_backs);
 			expect(titanium_client.open).toHaveBeenCalledWith("POST", "/test");
-			expect(titanium_client.send).toHaveBeenCalledWith({test:"yup"});
+			expect(titanium_client.send).toHaveBeenCalledWith({ data: {test:"yup"}});
 		});
 		
 		it("posts to the server w/o params", function() {
 			http_client.post("/test", call_backs);
 			expect(titanium_client.open).toHaveBeenCalledWith("POST", "/test");
-			expect(titanium_client.send).toHaveBeenCalledWith({});
+			expect(titanium_client.send).toHaveBeenCalledWith({ data : {}});
 		});
 	});
 	
