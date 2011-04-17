@@ -1,6 +1,6 @@
 Views.stories.index = function(win, stories) {
 
-	function createTableViewRow(item) {
+	function createTableViewRow(story) {
 		
 		var row = Ti.UI.createTableViewRow({
 			backgroundImage:'images/feed/item_bg.png',
@@ -25,7 +25,7 @@ Views.stories.index = function(win, stories) {
 			top:0,
 			height:30,
 			width:200,
-			text:item.story.name
+			text:story.name
 		});
 		
 		var description = Ti.UI.createLabel({
@@ -92,7 +92,7 @@ Views.stories.index = function(win, stories) {
 			text:'23 videos'
 		});
 		
-		row.id = item.story.id;
+		row.id = story.id;
 
 		row.add(duration);
 		row.add(user);		

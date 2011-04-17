@@ -72,7 +72,7 @@ Layouts.bottomNav = function() {
 	record_tab.addEventListener('click', function()
 	{
 		var win2 = Titanium.UI.createWindow({ title:'Record'});
-		Lib.record(win2);
+		App.action(win2, "stories#init");
 			
 		var tab2 = Titanium.UI.createTab({  
 			    icon:'KS_nav_views.png',

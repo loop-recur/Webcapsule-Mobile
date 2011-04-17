@@ -1,4 +1,4 @@
-Lib.record = function(win) {
+Views.stories.init = function(win, story) {
 	var button = Titanium.UI.createButton({
 		color:'black',
 		backgroundImage:'../images/BUTT_grn_on.png',
@@ -99,7 +99,8 @@ Lib.record = function(win) {
 			var progress = progressBar();
 			win.add(progress);
 			progress.show();
-			App.action(win, "stories#create", {story: {upload: event.media}, progress: progress});
+			story.upload = event.media;
+			App.action(win, "stories#create", {story: story, progress: progress});
 		},
 		cancel:function(){},
 		error:function(error)

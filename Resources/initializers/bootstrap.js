@@ -7,8 +7,10 @@ Lib = {};
 
 Titanium.include('lib/framework/support/functional.js');
 Titanium.include('lib/framework/lib/base.js');
+Titanium.include('lib/framework/lib/cache.js');
 Titanium.include('lib/framework/support/http_client_with_cache.js');
 Titanium.include('lib/framework/lib/http_client.js');
+Titanium.include('lib/framework/lib/db.js');
 Titanium.include('config/environments.js');
 
 FileListHack = [
@@ -19,9 +21,9 @@ FileListHack = [
 	"layouts/nav.js",
 	"layouts/proof.js",
 	"layouts/bottom_nav.js",
-	"lib/record.js",
 	"views/stories/index.js",
 	"views/stories/show.js",
+	"views/stories/init.js",
 	"views/stories/create.js"
 ]
 

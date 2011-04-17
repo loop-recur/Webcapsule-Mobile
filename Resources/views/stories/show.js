@@ -1,7 +1,7 @@
-Views.stories.show = function(view, item) {
+Views.stories.show = function(view, story) {
 			
 	var story_label = Titanium.UI.createLabel({
-		text: item.story.name,
+		text: story.name,
 		height:'auto',
 		color:'#616161',
 		textAlign:'center'
