@@ -58,9 +58,6 @@ App.action = function(win, controller_action, args) {
 	var names = controller_action.split("#");
 	var controller = names[0];
 	var action = names[1];
-	alert("Calling "+controller+ " # " + action);
 	var callBack = Views[controller][action].partial(win);
-	alert("with "+Views[controller][action].toString());
-	alert("and "+Controllers[controller][action].toString());
 	Controllers[controller][action](callBack, args);
 };
