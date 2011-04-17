@@ -57,7 +57,6 @@ function runEnvironment() {
 }
 
 App.action = function(win, controller_action, args) {
-	alert("Action!");
 	var names = controller_action.split("#");
 	var controller = names[0];
 	var action = names[1];
