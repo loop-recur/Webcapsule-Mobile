@@ -71,10 +71,8 @@ Layouts.bottomNav = function() {
 	
 	record_tab.addEventListener('click', function()
 	{
-		var win2 = Titanium.UI.createWindow({
-			title:'Record',
-			url:'overlays/record.js'
-		});
+		var win2 = Titanium.UI.createWindow({ title:'Record'});
+		Lib.record(win2);
 			
 		var tab2 = Titanium.UI.createTab({  
 			    icon:'KS_nav_views.png',

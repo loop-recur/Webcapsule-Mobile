@@ -3,6 +3,7 @@ Views = {};
 Controllers = {};
 Layouts = {};
 Config = {};
+Lib = {};
 
 Titanium.include('lib/framework/support/functional.js');
 Titanium.include('lib/framework/lib/base.js');
@@ -18,6 +19,7 @@ FileListHack = [
 	"layouts/nav.js",
 	"layouts/proof.js",
 	"layouts/bottom_nav.js",
+	"lib/record.js",
 	"views/stories/index.js",
 	"views/stories/show.js",
 	"views/stories/create.js"
@@ -40,7 +42,7 @@ function includeFile(name) {
 }
 
 function makeNamespace(name) {
-	var kinds = {"views": Views, "controllers": Controllers, "layouts": Layouts, "config": Config};
+	var kinds = {"views": Views, "controllers": Controllers, "layouts": Layouts, "config": Config, "lib": Lib};
 	var paths = name.split('/');
 	var kind = paths[0];
 	var namespace = paths[1];
@@ -55,6 +57,7 @@ function runEnvironment() {
 }
 
 App.action = function(win, controller_action, args) {
+	alert("Action!");
 	var names = controller_action.split("#");
 	var controller = names[0];
 	var action = names[1];

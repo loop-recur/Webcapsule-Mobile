@@ -4,7 +4,7 @@ LoopRecur.HttpClient = function(client) {
 		var fixed_args = fixArgs(params_or_call_backs, call_backs);
 		call_backs = fixed_args[0];
 		params = fixed_args[1];
-		prepare("POST", url, call_backs).send(params);
+		prepare("POST", url, call_backs).send({data : params});
 	}
 	
 	function get(url, params_or_call_backs, call_backs) {
@@ -28,7 +28,7 @@ LoopRecur.HttpClient = function(client) {
 
 	function prepare(method, url, call_backs) {
 		var progress_bar = call_backs.progress_bar;
-		client.options.onsendstream = progress_bar ? function(e){ progress_bar.value = e.progress } : null;
+		if(progress_bar) client.options.onsendstream = function(e){ progress_bar.value = e.progress };
 		client.options.onload = call_backs.success;
 		client.options.onerror = call_backs.error;
 		client.open(method, url);
