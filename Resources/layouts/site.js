@@ -17,7 +17,8 @@ Layouts.site = function () {
 	var site_toolbar = Titanium.UI.createToolbar({
 		items:[logout_button],
 		top:0,
-		translucent:true
+		borderTop:false,
+		barColor:'black'
 	});
 	
 	var content_window = Titanium.UI.createWindow({

@@ -24,7 +24,7 @@ Layouts.bottomNav = function() {
 	});
 	
 	var stories_view = Ti.UI.createView({
-		backgroundColor:'white'
+		backgroundColor:'gray'
 	});
 	
 	stories_tab.addEventListener('click', function()

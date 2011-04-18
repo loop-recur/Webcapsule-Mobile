@@ -1,3 +1,4 @@
+Titanium.UI.iPhone.statusBarStyle = Titanium.UI.iPhone.StatusBar.OPAQUE_BLACK;
 Titanium.include('initializers/bootstrap.js');
 try { App.bootstrap(); } catch(E) { alert("Failed with "+E); }
 

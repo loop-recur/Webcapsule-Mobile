@@ -109,6 +109,7 @@ Views.stories.index = function(win, stories) {
 
 	var data = Functional.map(createTableViewRow, stories);
 	var tableview = Titanium.UI.createTableView({ 
+		backgroundColor:'gray',
 		data:data,
 		top:40
 	 });
@@ -145,7 +146,8 @@ Views.stories.index = function(win, stories) {
 		top:0,
 		style:Titanium.UI.iPhone.SystemButtonStyle.BAR,
 		height:40,
-		index:1
+		index:1,
+		backgroundColor:'gray'
 	});
 	
 	win.add(tabbed_bar);
