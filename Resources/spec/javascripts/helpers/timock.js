@@ -19,5 +19,5 @@ Titanium = {
 
 Ti = {
 	API: {info: function() {}},
-	Utils: {md5HexDigest:function(){ return "temp-123"; }},
+	Utils: {md5HexDigest:function(){ return "123"; }},
 };

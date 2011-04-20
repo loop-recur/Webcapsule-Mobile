@@ -17,7 +17,7 @@ Controllers.stories = {
 	
 	init: function(view) {
 		var date = new Date;
-		var story = {id: Ti.Utils.md5HexDigest("temp-"+date.toString())};
+		var story = {id: "temp-" + Ti.Utils.md5HexDigest(date.toString())};
 		view(story);
 	},
 	

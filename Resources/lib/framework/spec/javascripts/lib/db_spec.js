@@ -135,6 +135,16 @@ describe("Db", function() {
 		    });
 			});
 
+			it("calls the right url when temp", function() {
+				var story = {name : "fake", id : "temp-123"};
+				db.save(story, successFun, {progress_bar: "bar"});
+				expect(App.http_client.post).toHaveBeenCalledWith("/stories.json", story, {
+						progress_bar: "bar",
+		        success: jasmine.any(Function),
+						error: jasmine.any(Function)
+		    });
+			});
+
 			it("calls the success fun", function() {
 				db.save({name : "fake"}, successFun, {progress_bar: "bar"});
 				expect(successFun).toHaveBeenCalledWith(story);
