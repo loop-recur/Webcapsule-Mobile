@@ -138,7 +138,7 @@ Views.stories.init = function(win, story) {
 			top:30,
 			message:'Uploading',
 			font:{fontSize:12, fontWeight:'bold'},
-			color:'#888'
+			color:'black'
 		});	
 	};
 };

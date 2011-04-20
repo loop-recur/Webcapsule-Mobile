@@ -5,17 +5,17 @@ Views.stories.create = function(win, story, progress) {
 	var activeMovie = Titanium.Media.createVideoPlayer({
 		media:story.upload,
 		backgroundColor:'#111',
-		mediaControlStyle:Titanium.Media.VIDEO_CONTROL_NONE,
+		movieControlStyle:Titanium.Media.VIDEO_CONTROL_NONE,
 		scalingMode:Titanium.Media.VIDEO_SCALING_MODE_FILL,
 		autoplay:false
 	});
 
 	var close_btn = Titanium.UI.createButton({
-		title:'Close',
-		height:30,
-		width:150,
-		top:0,
-		right:0
+		backgroundImage:"images/postrecord/return.png",
+		height:36,
+		width:38,
+		top:3,
+		left:3
 	});
 
 	close_btn.addEventListener('click', function() {

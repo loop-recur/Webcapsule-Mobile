@@ -90,8 +90,8 @@ Layouts.video_options = function(win) {
 	
 	var save_button = Titanium.UI.createButton({
 		value:false,
-		top:132,
-		right:10,
+		top:137,
+		right:7,
 		height:44,
 		width:131,
 		backgroundImage:'images/postrecord/save_btn.png',
