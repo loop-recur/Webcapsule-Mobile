@@ -1,9 +1,13 @@
 Views.stories.init = function(win, story) {
-	var button = Titanium.UI.createButton({
+
+	var overlay = Titanium.UI.createView();
+
+	var start_stop_button = Titanium.UI.createButton({
 		color:'black',
-		backgroundImage:'../images/BUTT_grn_on.png',
-		backgroundSelectedImage:'../images/BUTT_grn_off.png',
-		backgroundDisabledImage: '../images/BUTT_gry_on.png',
+		backgroundColor:'orange',
+		// backgroundImage:'',
+		// backgroundSelectedImage:'',
+		// backgroundDisabledImage: '',
 		bottom:10,
 		width:120,
 		height:40,
@@ -11,50 +15,51 @@ Views.stories.init = function(win, story) {
 		title:'Start Video'
 	});
 
-	var overlay = Titanium.UI.createView();
-	overlay.add(button);
-
-	var cameraFlash = Ti.UI.createButton({
+	var camera_flash = Ti.UI.createButton({
 		color:'black',
+		backgroundColor:'green',
 		title:"auto",
 		left:20,
 		top:20,
 		height:40,
 		width:80,
-		backgroundImage:"../images/BUTT_drk_on.png",
+		// backgroundImage:"",
 		font:{fontSize:16,fontWeight:'bold',fontFamily:'Helvetica Neue'}
 	});
-	overlay.add(cameraFlash);
+	
+	overlay.add(start_stop_button);
+	overlay.add(camera_flash);
 
 	var current = Ti.Media.CAMERA_FLASH_AUTO;
 	var cameraFlashModes = Ti.Media.availableCameraFlashModes;
-	cameraFlash.addEventListener('click',function()
+	camera_flash.addEventListener('click',function()
 	{
 		if (Ti.Media.cameraFlashMode == Ti.Media.CAMERA_FLASH_AUTO)
 		{
-			cameraFlash.title = "on";
+			camera_flash.title = "on";
 			Ti.Media.cameraFlashMode = Ti.Media.CAMERA_FLASH_ON;
 		}
 		else if (Ti.Media.cameraFlashMode == Ti.Media.CAMERA_FLASH_ON)
 		{
-			cameraFlash.title = "off";
+			camera_flash.title = "off";
 			Ti.Media.cameraFlashMode = Ti.Media.CAMERA_FLASH_OFF;
 		}
 		else
 		{
-			cameraFlash.title = "auto";
+			camera_flash.title = "auto";
 			Ti.Media.cameraFlashMode = Ti.Media.CAMERA_FLASH_AUTO;
 		}
 	});
 
-	var cameraType = Ti.UI.createButton({
+	var camera_type = Ti.UI.createButton({
 		color:'black',
+		backgroundColor:'brown',
 		title:"front",
 		top:20,
 		right:20,
 		height:40,
 		width:80,
-		backgroundImage:"../images/BUTT_drk_on.png",
+		// backgroundImage:"",
 		font:{fontSize:16,fontWeight:'bold',fontFamily:'Helvetica Neue'}
 	});
 
@@ -64,18 +69,18 @@ Views.stories.init = function(win, story) {
 		// if we have a rear camera ... we add switch button
 		if (cameras[c]==Ti.Media.CAMERA_REAR)
 		{
-			overlay.add(cameraType);
+			overlay.add(camera_type);
 
-			cameraType.addEventListener('click',function()
+			camera_type.addEventListener('click',function()
 			{
 				if (Ti.Media.camera == Ti.Media.CAMERA_FRONT)
 				{
-					cameraType.title = "front";
+					camera_type.title = "front";
 					Ti.Media.switchCamera(Ti.Media.CAMERA_REAR);
 				}
 				else
 				{
-					cameraType.title = "rear";
+					camera_type.title = "rear";
 					Ti.Media.switchCamera(Ti.Media.CAMERA_FRONT);
 				}
 			});
@@ -83,22 +88,20 @@ Views.stories.init = function(win, story) {
 		}
 	}
 
-	button.addEventListener('click',function()
+	start_stop_button.addEventListener('click',function()
 	{
 		Ti.Media.startVideoCapture();
-		button.title = "Stop Video";
-		button.backgroundImage = "../images/BUTT_red_on.png";
-		button.backgroundSelectedImage = '../images/BUTT_red_off.png';
-		cameraType.visible = false;
-		cameraFlash.visible = false;
+		start_stop_button.title = "Stop Video";
+		// start_stop_button.backgroundImage = "";
+		// start_stop_button.backgroundSelectedImage = '';
+		camera_type.visible = false;
+		camera_flash.visible = false;
 	});
 
 
 	Titanium.Media.showCamera({
 		success: function(event){
 			var progress = progressBar();
-			win.add(progress);
-			progress.show();
 			story.upload = event.media;
 			App.action(win, "stories#create", {story: story, progress: progress});
 		},
@@ -127,12 +130,12 @@ Views.stories.init = function(win, story) {
 	function progressBar() {
 		return Titanium.UI.createProgressBar({
 			width:200,
-			height:80,
+			height:40,
 			min:0,
 			max:1,
 			value:0,
 			style:Titanium.UI.iPhone.ProgressBarStyle.PLAIN,
-			top:10,
+			top:30,
 			message:'Uploading',
 			font:{fontSize:12, fontWeight:'bold'},
 			color:'#888'

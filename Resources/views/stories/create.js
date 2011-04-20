@@ -1,4 +1,4 @@
-Views.stories.create = function(win, story) {
+Views.stories.create = function(win, story, progress) {
 	// programatically hide the camera
 	Ti.Media.hideCamera();
 
@@ -7,20 +7,11 @@ Views.stories.create = function(win, story) {
 		backgroundColor:'#111',
 		movieControlMode:Titanium.Media.VIDEO_CONTROL_DEFAULT,
 		movieControlStyle:Titanium.Media.VIDEO_CONTROL_FULLSCREEN,
-		scalingMode:Titanium.Media.VIDEO_SCALING_MODE_FILL
+		scalingMode:Titanium.Media.VIDEO_SCALING_MODE_FILL,
+		autoplay:false
 	});
-	
-	var a = Titanium.UI.createButton({
-		title:'Play',
-		height:30,
-		width:150,
-		top:0,
-		right:50
-	});
-	
-	win.add(a);
 
-	var b = Titanium.UI.createButton({
+	var close_btn = Titanium.UI.createButton({
 		title:'Close',
 		height:30,
 		width:150,
@@ -28,16 +19,13 @@ Views.stories.create = function(win, story) {
 		right:0
 	});
 
-	win.add(b);
-	
-	a.addEventListener("click", function() {
-		win.add(activeMovie);
-	})
-
-	b.addEventListener('click', function() {
+	close_btn.addEventListener('click', function() {
 		win.close();
 	});
-	
 
-	Layouts.proof();
+	win.add(activeMovie);
+	win.add(close_btn);
+	win.add(progress);
+	progress.show();
+	Layouts.proof(win);
 };

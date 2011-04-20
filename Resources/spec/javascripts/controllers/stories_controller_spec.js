@@ -72,7 +72,7 @@ describe("StoriesController", function() {
 			});
 			
 			it("renders the view", function() {
-			  expect(view).toHaveBeenCalledWith({upload: "fake upload"});
+			  expect(view).toHaveBeenCalledWith({upload: "fake upload"}, bar);
 			});
 		});
 	});

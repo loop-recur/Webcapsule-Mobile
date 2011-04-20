@@ -1,4 +1,4 @@
-// BOTTOM TAB BAR
+// BOTTOM NAVIGATION
 Layouts.bottomNav = function() {
 
 	var win = Titanium.UI.createWindow({
@@ -13,7 +13,7 @@ Layouts.bottomNav = function() {
 		backgroundImage:'images/toolbar/toolbar_bg.png'
 	}); 
 
-	var stories_tab = Titanium.UI.createButton({
+	var stories_button = Titanium.UI.createButton({
 		value:false,
 		bottom:5,
 		left:30,
@@ -27,13 +27,13 @@ Layouts.bottomNav = function() {
 		backgroundColor:'gray'
 	});
 	
-	stories_tab.addEventListener('click', function()
+	stories_button.addEventListener('click', function()
 	{			
 		App.action(stories_view, "stories#index");
 		Layouts.replaceContent(stories_view);
 	});
 	
-	var users_tab = Titanium.UI.createButton({
+	var users_button = Titanium.UI.createButton({
 		value:false,
 		bottom:7,
 		right:23,
@@ -43,24 +43,16 @@ Layouts.bottomNav = function() {
 		zIndex:51
 	});
 	
-	
 	var users_view = Ti.UI.createView({
 		backgroundColor:'orange'
 	});
 	
-	users_tab.addEventListener('click', function()
+	users_button.addEventListener('click', function()
 	{
-		
 		Layouts.replaceContent(users_view);
-		// var users_view = Ti.UI.createWindow({
-		// 	backgroundColor:'blue',
-		// 	url:'layouts/table1.js'
-		// });
-		// 
-		// users_view.open();
 	});
 
-	var record_tab = Titanium.UI.createButton({
+	var record_button = Titanium.UI.createButton({
 		value:false,
 		bottom:0,
 		height:69,
@@ -69,25 +61,17 @@ Layouts.bottomNav = function() {
 		zIndex:51
 	});
 	
-	record_tab.addEventListener('click', function()
+	record_button.addEventListener('click', function()
 	{
-		var win2 = Titanium.UI.createWindow({ title:'Record'});
-		App.action(win2, "stories#init");
-			
-		var tab2 = Titanium.UI.createTab({  
-			    icon:'KS_nav_views.png',
-			    title:'Record',
-			    window:win2
-		});
-		
-		win2.open();
+		var camera_window = Titanium.UI.createWindow({ title:'Record'});
+		App.action(camera_window, "stories#init");
+		camera_window.open();
 	});
-	
 
 	win.add(bottom_view);
-	win.add(stories_tab);
-	win.add(users_tab);
-	win.add(record_tab);
+	win.add(stories_button);
+	win.add(users_button);
+	win.add(record_button);
 	
 	return win;
 };

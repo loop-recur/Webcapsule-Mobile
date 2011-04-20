@@ -12,7 +12,7 @@ Controllers.stories = {
 		
 		movieFile.write(story.upload);
 		this.db.save(story, progress.hide, { progress_bar : progress });
-		view(story);
+		view(story, progress);
 	},
 	
 	init: function(view) {

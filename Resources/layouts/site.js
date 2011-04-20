@@ -40,7 +40,7 @@ Layouts.site = function () {
 		content_window.remove(content_view);
 		content_view = new_content;
 		content_window.add(content_view);
-	},
+	}
 	
 	site_window.add(site_toolbar);
 	site_window.add(content_window);

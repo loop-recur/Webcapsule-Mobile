@@ -1,9 +1,10 @@
-Layouts.proof = function() {
-	var win = Titanium.UI.currentWindow;
-	
+Layouts.proof = function(win) {
+
 	var functionality_view = Titanium.UI.createView({
-		height:225,
-		bottom:-190
+		height:270,
+		bottom:45,
+		backgroundColor:'pink',
+		opacity:.7
 	}); 
 	
 	var open = Titanium.UI.createButton({
@@ -16,7 +17,7 @@ Layouts.proof = function() {
 	});
 
 	open.addEventListener('click', function() {
-		functionality_view.animate({bottom:0, duration:500});
+		functionality_view.animate({bottom:45, duration:500});
 	});
 		
 	var close = Titanium.UI.createButton({
@@ -29,7 +30,7 @@ Layouts.proof = function() {
 	});
 	
 	close.addEventListener('click', function() {
-		functionality_view.animate({bottom:-190, duration:500});
+		functionality_view.animate({bottom:-234, duration:500});
 	});
 	
 	var story_title_field = Titanium.UI.createTextField({  
