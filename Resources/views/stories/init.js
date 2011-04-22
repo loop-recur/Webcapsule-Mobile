@@ -4,9 +4,9 @@ Views.stories.init = function(win, story) {
 
 	var start_stop_button = Titanium.UI.createButton({
 		color:'#fff',
-		backgroundImage:'../images/record/BUTT_grn_on.png',
-		backgroundSelectedImage:'../images/record/BUTT_grn_off.png',
-		backgroundDisabledImage: '../images/record/BUTT_gry_on.png',
+		backgroundImage:'images/record/BUTT_grn_on.png',
+		backgroundSelectedImage:'images/record/BUTT_grn_off.png',
+		backgroundDisabledImage:'images/record/BUTT_gry_on.png',
 		bottom:10,
 		width:120,
 		height:40,
@@ -21,7 +21,7 @@ Views.stories.init = function(win, story) {
 		top:20,
 		height:40,
 		width:80,
-		backgroundImage:"../images/record/BUTT_drk_on.png",
+		backgroundImage:"images/record/BUTT_drk_on.png",
 		font:{fontSize:16,fontWeight:'bold',fontFamily:'Helvetica Neue'}
 	});
 	
@@ -56,7 +56,7 @@ Views.stories.init = function(win, story) {
 		right:20,
 		height:40,
 		width:80,
-		backgroundImage:"../images/record/BUTT_drk_on.png",
+		backgroundImage:"images/record/BUTT_drk_on.png",
 		font:{fontSize:16,fontWeight:'bold',fontFamily:'Helvetica Neue'}
 	});
 
@@ -89,8 +89,8 @@ Views.stories.init = function(win, story) {
 	{
 		Ti.Media.startVideoCapture();
 		start_stop_button.title = "Stop Video";
-		button.backgroundImage = "../images/record/BUTT_red_on.png";
-			button.backgroundSelectedImage = '../images/record/BUTT_red_off.png';
+		button.backgroundImage = "images/record/BUTT_red_on.png";
+		button.backgroundSelectedImage = 'images/record/BUTT_red_off.png';
 		camera_type.visible = false;
 		camera_flash.visible = false;
 	});

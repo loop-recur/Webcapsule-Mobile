@@ -15,15 +15,6 @@ Layouts.video_options = function(win) {
 		left:0
 	});
 	
-	var edit_details_btn2 = Titanium.UI.createButton({
-		backgroundImage:'images/postrecord/edit_details_pressed.png',
-		backgroundSelectedImage:'images/postrecord/edit_details_normal.png',
-		height:56,
-		width:55,
-		top:0,
-		left:55
-	});
-	
 	var tray = Titanium.UI.createView({
 		backgroundImage:'images/postrecord/edit_details_drawer.png',
 		height:191,
@@ -32,7 +23,6 @@ Layouts.video_options = function(win) {
 	});
 	
 	functionality_view.add(edit_details_btn);
-	functionality_view.add(edit_details_btn2);
 	functionality_view.add(tray);
 	
 	var story_title_field = Titanium.UI.createTextField({  
@@ -99,11 +89,15 @@ Layouts.video_options = function(win) {
 	});
 
 	edit_details_btn.addEventListener('click', function() {
-		functionality_view.animate({bottom:0, duration:500});
-	});
-	
-	edit_details_btn2.addEventListener('click', function() {
-		functionality_view.animate({bottom:-191, duration:500});
+		if(edit_details_btn.backgroundImage === 'images/postrecord/edit_details_normal.png') {
+				functionality_view.animate({bottom:-191, duration:500});
+				edit_details_btn.backgroundImage = 'images/postrecord/edit_details_pressed.png';
+				edit_details_btn.backgroundSelectedImage = 'images/postrecord/edit_details_normal.png';
+			} else {
+				functionality_view.animate({bottom:0, duration:500});
+				edit_details_btn.backgroundImage = 'images/postrecord/edit_details_normal.png';
+				edit_details_btn.backgroundSelectedImage = 'images/postrecord/edit_details_pressed.png';
+			};
 	});
 	
 	tray.add(story_title_field);

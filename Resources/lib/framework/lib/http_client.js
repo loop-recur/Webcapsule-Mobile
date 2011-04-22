@@ -1,4 +1,8 @@
-LoopRecur.HttpClient = function(client) {
+LoopRecur.HttpClient = function() {
+	
+	function getClient() {
+		return new HTTPClientWithCache({baseUrl: App.base_url, retryCount: 0, cacheSeconds: 0});
+	}
 		
 	function post(url, params_or_call_backs, call_backs) {
 		var fixed_args = fixArgs(params_or_call_backs, call_backs);
@@ -27,6 +31,7 @@ LoopRecur.HttpClient = function(client) {
 	}
 
 	function prepare(method, url, call_backs) {
+		client = getClient();
 		var progress_bar = call_backs.progress_bar;
 		if(progress_bar) client.options.onsendstream = function(e){ progress_bar.value = e.progress };
 		client.options.onload = call_backs.success;

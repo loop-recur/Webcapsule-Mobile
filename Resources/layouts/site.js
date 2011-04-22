@@ -22,14 +22,13 @@ Layouts.site = function () {
 	});
 	
 	var content_window = Titanium.UI.createWindow({
-		backgroundColor:'red',
 		top:44,
 		height:362,
 		zIndex:20
 	});
 	
 	var content_view = Titanium.UI.createView({
-		backgroundColor:'pink'
+
 	});
 	
 	content_window.add(content_view);
