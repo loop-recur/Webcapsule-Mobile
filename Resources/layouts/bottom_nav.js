@@ -63,7 +63,7 @@ Layouts.bottomNav = function() {
 	
 	record_button.addEventListener('click', function()
 	{
-		var camera_window = Titanium.UI.createWindow({ title:'Record'});
+		var camera_window = Titanium.UI.createWindow();
 		App.action(camera_window, "stories#init");
 		camera_window.open();
 	});

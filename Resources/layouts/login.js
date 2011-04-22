@@ -2,46 +2,38 @@ Layouts.login = function () {
 
 	var win = Titanium.UI.createWindow({  
 	    title:'Login',
-	    backgroundColor:'#fff'
-	});
-
-	var logo = Ti.Filesystem.getFile(Titanium.Filesystem.resourcesDirectory,'images/logo.png');
-
-	var image_view = Titanium.UI.createImageView({
-		image:logo,
-		width:304,
-		height:89,
-		top:10
+			backgroundImage:'images/login/splash-bg.png'
 	});
 
 	var username = Titanium.UI.createTextField({  
-	    color:'#336699',  
-	    top:110,  
-	    left:10,  
-	    width:300,  
+	    color:'#336699',
+	    top:145,   
+	    width:270,  
 	    height:40,  
-	    hintText:'Username',  
-	    keyboardType:Titanium.UI.KEYBOARD_DEFAULT,  
-	    returnKeyType:Titanium.UI.RETURNKEY_DEFAULT,  
+	    hintText:'Email',  
+	    keyboardType:Titanium.UI.KEYBOARD_EMAIL,  
+	    returnKeyType:Titanium.UI.RETURNKEY_NEXT,  
 	    borderStyle:Titanium.UI.INPUT_BORDERSTYLE_ROUNDED  
 	});  
 
 	var password = Titanium.UI.createTextField({  
-	    color:'#336699',  
-	    top:160,  
-	    left:10,  
-	    width:300,  
+	    color:'#336699',
+	    top:195,  
+	    width:270,  
 	    height:40,  
 	    hintText:'Password',  
 	    passwordMask:true,  
 	    keyboardType:Titanium.UI.KEYBOARD_DEFAULT,  
-	    returnKeyType:Titanium.UI.RETURNKEY_DEFAULT,  
+	    returnKeyType:Titanium.UI.RETURNKEY_DONE,  
 	    borderStyle:Titanium.UI.INPUT_BORDERSTYLE_ROUNDED  
 	});
 
 	var login_button = Titanium.UI.createButton({  
-	    title:'Login',  
-	    top:210,  
+	    value:false,
+			backgroundImage:'images/login/login-normal.png',
+			backgroundSelectedImage:'images/login/login-pressed.png',  
+	    top:245,
+	  	right:10,
 	    width:90,  
 	    height:35,  
 	    borderRadius:1,  
@@ -49,6 +41,8 @@ Layouts.login = function () {
 	});
 
 	login_button.addEventListener('click', function(){
+		password.blur();
+		username.blur();
 		Controllers.user_sessions.create(username.value, password.value);
 	});
 
@@ -61,7 +55,6 @@ Layouts.login = function () {
 		textAlign:'center'
 	});
 
-	win.add(image_view);
 	win.add(username);
 	win.add(password);
 	win.add(login_button);

@@ -29,7 +29,7 @@ FileListHack = [
 App.bootstrap = function() {
 	includeAllFiles();
 	runEnvironment();
-	var client = new HTTPClientWithCache({baseUrl: App.base_url, retryCount: 2, cacheSeconds: 60});
+	var client = new HTTPClientWithCache({baseUrl: App.base_url, retryCount: 2, cacheSeconds: 10});
 	App.http_client = LoopRecur.HttpClient(client);
 };
 
