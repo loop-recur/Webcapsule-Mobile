@@ -44,11 +44,12 @@ Layouts.bottomNav = function() {
 	});
 	
 	var users_view = Ti.UI.createView({
-		backgroundColor:'orange'
+		backgroundColor:'gray'
 	});
 	
 	users_button.addEventListener('click', function()
 	{
+		App.action(users_view, "followings#index");
 		Layouts.replaceContent(users_view);
 	});
 

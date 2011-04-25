@@ -11,7 +11,7 @@ Controllers.stories = {
 		var movieFile = Titanium.Filesystem.getFile(Titanium.Filesystem.applicationDataDirectory,'mymovie.mov');
 		
 		movieFile.write(story.upload);
-		this.db.save(story, function(response){alert("Finished!"); progress.hide();}, { progress_bar : progress });
+		this.db.save(story, function(response){progress.hide();}, { progress_bar : progress });
 		view(story, progress);
 	},
 	
