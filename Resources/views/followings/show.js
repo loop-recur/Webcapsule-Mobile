@@ -16,6 +16,8 @@ Views.followings.show = function(view, following) {
 		textAlign:'center'
 	});
 	
+	Ti.API.info(following);
+	
 	view.add(following_label);
 	view.add(email);
 	
