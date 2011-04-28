@@ -27,19 +27,13 @@ Layouts.site = function () {
 		zIndex:20
 	});
 	
-	var content_view = Titanium.UI.createView({
-
-	});
+	Layouts.content_window = content_window;
 	
-	content_window.add(content_view);
+	var content_view = Titanium.UI.createView();
+	
+	Layouts.replaceContent(content_view);
 	
 	var bottom_nav = Layouts.bottomNav();
-	
-	Layouts.replaceContent = function(new_content) {		
-		content_window.remove(content_view);
-		content_view = new_content;
-		content_window.add(content_view);
-	}
 	
 	site_window.add(site_toolbar);
 	site_window.add(content_window);

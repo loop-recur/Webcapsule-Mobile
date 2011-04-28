@@ -1,8 +1,8 @@
 Controllers.stories = {
 	db: Db("stories"),
 
-	index: function(view) {
-		this.db.all(view);
+	index: function(view, params) {
+		this.db.all(view, params);
 	},
 	
 	create: function(view, params) {

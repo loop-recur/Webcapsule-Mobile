@@ -1,5 +1,5 @@
 Views.stories.init = function(win, story) {
-
+	
 	var overlay = Titanium.UI.createView();
 
 	var start_stop_button = Titanium.UI.createButton({
@@ -13,7 +13,17 @@ Views.stories.init = function(win, story) {
 		font:{fontSize:16,fontWeight:'bold',fontFamily:'Helvetica Neue'},
 		title:'Start Video'
 	});
-
+	
+	start_stop_button.addEventListener('click',function()
+	{
+		Ti.Media.startVideoCapture();
+		start_stop_button.title = "Stop Video";
+		button.backgroundImage = "images/record/BUTT_red_on.png";
+		button.backgroundSelectedImage = 'images/record/BUTT_red_off.png';
+		camera_type.visible = false;
+		camera_flash.visible = false;
+	});
+	
 	var camera_flash = Ti.UI.createButton({
 		color:'#fff',
 		title:"auto",
@@ -60,7 +70,7 @@ Views.stories.init = function(win, story) {
 		backgroundImage:"images/record/BUTT_drk_on.png",
 		font:{fontSize:16,fontWeight:'bold',fontFamily:'Helvetica Neue'}
 	});
-
+	
 	var cameras = Ti.Media.availableCameras;
 	for (var c=0;c<cameras.length;c++)
 	{
@@ -85,17 +95,6 @@ Views.stories.init = function(win, story) {
 			break;
 		}
 	}
-
-	start_stop_button.addEventListener('click',function()
-	{
-		Ti.Media.startVideoCapture();
-		start_stop_button.title = "Stop Video";
-		button.backgroundImage = "images/record/BUTT_red_on.png";
-		button.backgroundSelectedImage = 'images/record/BUTT_red_off.png';
-		camera_type.visible = false;
-		camera_flash.visible = false;
-	});
-
 
 	Titanium.Media.showCamera({
 		success: function(event){
@@ -123,8 +122,6 @@ Views.stories.init = function(win, story) {
 		videoQuality:Ti.Media.QUALITY_640x480,
 		autohide:false 	// tell the system not to auto-hide and we'll do it ourself
 	});
-	
-	
 	
 	function progressBar() {
 		return Titanium.UI.createProgressBar({

@@ -16,17 +16,16 @@ describe("Db", function() {
 	describe("all", function() {
 		beforeEach(function() {
 			Cache.stories = {};
-		  spyOn(Cache, "stories");
 		});
 		
 		describe("success", function() {
 		  beforeEach(function() {
 				stubHttp("get", stories_response);
-				db.all(successFun);
+				db.all(successFun, {awesome : true});
 		  });
 
 			it("calls the correct url", function() {
-				expect(App.http_client.get).toHaveBeenCalledWith("/stories.json", {}, {
+				expect(App.http_client.get).toHaveBeenCalledWith("/stories.json", {awesome : true}, {
 		        success: jasmine.any(Function),
 						error: jasmine.any(Function)
 		    });

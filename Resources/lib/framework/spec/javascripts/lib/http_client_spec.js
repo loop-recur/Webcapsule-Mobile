@@ -3,10 +3,11 @@ describe("HttpClient", function() {
 
   beforeEach(function() {
 		titanium_client = Mocks.FakeHttpClient;
+		HTTPClientWithCache = function(){ return titanium_client; };
 		spyOn(titanium_client, "open");
 		spyOn(titanium_client, "send");
 		spyOn(titanium_client, 'setRequestHeader');
-		http_client = LoopRecur.HttpClient(titanium_client);
+		http_client = LoopRecur.HttpClient();
 		http_client.base_url = "http://myurl.com";
 		call_backs = {success: function(){}, error: function(){} };
   });

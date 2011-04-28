@@ -1,8 +1,8 @@
 Controllers.followings = {
 	db: Db("followings"),
 
-	index: function(view) {
-		this.db.all(view);
+	index: function(view, params) {
+		this.db.all(view, params);
 	},
 		
 	show: function(view, id) {
@@ -10,13 +10,10 @@ Controllers.followings = {
 	},
 	
 	create: function(view, id) {
-		alert("create");
-		alert(id);
+
 	},
 	
 	destroy: function(view, id) {
-		alert("destroy");
-		alert(id);
 	}
 	
 };

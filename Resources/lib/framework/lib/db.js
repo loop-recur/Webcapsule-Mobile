@@ -1,7 +1,7 @@
 Db = function(name) {
 	pub_obj = {};
 	
-	function all(callbacks) {
+	function all(callbacks, params) {
 		var oldSuccess = callbacks.success || callbacks;
 		var oldError = callbacks.error || function(){};
 				
@@ -16,7 +16,7 @@ Db = function(name) {
 			oldSuccess(json);
 		};
 				
-		callApi("get", getPath(), callbacks);
+		callApi("get", getPath(), callbacks, params);
 	};
 	
 	function find(id, callbacks) {

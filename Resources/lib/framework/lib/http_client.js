@@ -37,7 +37,7 @@ LoopRecur.HttpClient = function() {
 		client.options.onload = call_backs.success;
 		client.options.onerror = call_backs.error;
 		client.open(method, url);
-		setHeaders();
+		setHeaders(client);
 		return client;
 	}
 
@@ -49,7 +49,7 @@ LoopRecur.HttpClient = function() {
 		return qstring;
 	}
 	
-	function setHeaders() {
+	function setHeaders(client) {
 		if(priv_obj.credentials) client.setRequestHeader('Authorization', priv_obj.credentials);
 		client.setRequestHeader("content-type", "application/json");
 	}

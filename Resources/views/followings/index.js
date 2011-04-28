@@ -1,10 +1,8 @@
 Views.followings.index = function(win, followings) {
 	
 	function createTableViewRow(following) {
-		
 		var row = Ti.UI.createTableViewRow({
 			backgroundImage:'images/feed/item_bg.png',
-			// selectedBackgroundColor:'#385292',
 			height:80,
 			width:320,
 			hasChild:true
@@ -38,13 +36,14 @@ Views.followings.index = function(win, followings) {
 	var data = Functional.map(createTableViewRow, followings);
 	var tableview = Titanium.UI.createTableView({ 
 		backgroundColor:'gray',
-		data:data
+		data:data,
+		top:40
 	 });
 
 	tableview.addEventListener('click', function(e)
 	{
 		var win = Titanium.UI.createWindow({ title:'User', backgroundColor:'#fff' });
-		var following_id = e.rowData.id
+		var following_id = e.rowData.id;
 		
 		win.addEventListener('open', function() {
 			App.action(win, "followings#show", following_id);
@@ -70,9 +69,7 @@ Views.followings.index = function(win, followings) {
 		});
 		
 		friend_button.addEventListener('click', function()
-		{
-			// win = Titanium.UI.createWindow({ title:'User', backgroundColor:'#fff' });
-			
+		{	
 			if(friend_button.title === "Unfollow") {
 				App.action(win, "followings#destroy", following_id);
 				friend_button.title = "Follow";
@@ -87,5 +84,7 @@ Views.followings.index = function(win, followings) {
 		win.open();
 	});
 
+
 	win.add(tableview);
+	Layouts.replaceContent(win);	
 };

@@ -23,14 +23,9 @@ Layouts.bottomNav = function() {
 		zIndex:51
 	});
 	
-	var stories_view = Ti.UI.createView({
-		backgroundColor:'gray'
-	});
-	
 	stories_button.addEventListener('click', function()
 	{			
-		App.action(stories_view, "stories#index");
-		Layouts.replaceContent(stories_view);
+		Layouts.stories();
 	});
 	
 	var users_button = Titanium.UI.createButton({
@@ -42,15 +37,10 @@ Layouts.bottomNav = function() {
 		backgroundImage:'images/toolbar/users_ico.png',
 		zIndex:51
 	});
-	
-	var users_view = Ti.UI.createView({
-		backgroundColor:'gray'
-	});
-	
+
 	users_button.addEventListener('click', function()
 	{
-		App.action(users_view, "followings#index");
-		Layouts.replaceContent(users_view);
+		Layouts.users();
 	});
 
 	var record_button = Titanium.UI.createButton({
@@ -64,9 +54,7 @@ Layouts.bottomNav = function() {
 	
 	record_button.addEventListener('click', function()
 	{
-		var camera_window = Titanium.UI.createWindow();
-		App.action(camera_window, "stories#init");
-		camera_window.open();
+		Layouts.record();
 	});
 
 	win.add(bottom_view);

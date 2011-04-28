@@ -21,6 +21,8 @@ FileListHack = [
 	"layouts/login.js",
 	"layouts/video_options.js",
 	"layouts/bottom_nav.js",
+	"layouts/users.js",
+	"layouts/stories.js",
 	"views/stories/index.js",
 	"views/stories/show.js",
 	"views/stories/init.js",
@@ -66,3 +68,9 @@ App.action = function(win, controller_action, args) {
 	var callBack = Views[controller][action].partial(win);
 	Controllers[controller][action](callBack, args);
 };
+
+Layouts.replaceContent = function(new_content) {		
+	if(Layouts.current_content) Layouts.content_window.remove(Layouts.current_content);
+	Layouts.content_window.add(new_content);
+	Layouts.current_content = new_content;
+}

@@ -14,7 +14,7 @@ describe("StoriesController", function() {
 		});
 		
 		it("calls the db", function() {
-			expect(Controllers.stories.db.all).toHaveBeenCalledWith(view);
+			expect(Controllers.stories.db.all).toHaveBeenCalledWith(view, undefined);
 		});
 		
 		it("renders stories view with the stories", function() {
@@ -22,6 +22,21 @@ describe("StoriesController", function() {
 		});
 	});
 	
+	
+	describe("feed", function() {
+		beforeEach(function() {
+			Controllers.stories.db.all = jasmine.createSpy().andCallFake(function(fun){ fun(response); });
+			Controllers.stories.index(view, {feed : true});
+		});
+		
+		it("calls the db", function() {
+			expect(Controllers.stories.db.all).toHaveBeenCalledWith(view, {feed : true});
+		});
+		
+		it("renders stories view with the stories", function() {
+			expect(view).toHaveBeenCalledWith(response);
+		});
+	});
 	
 	describe("show", function() {
 		beforeEach(function() {
@@ -60,7 +75,7 @@ describe("StoriesController", function() {
 		  });
 
 			it("calls save", function() {
-			  expect(Controllers.stories.db.save).toHaveBeenCalledWith({upload: "fake upload"}, bar.hide, {progress_bar: bar});
+			  expect(Controllers.stories.db.save).toHaveBeenCalledWith({upload: "fake upload"}, jasmine.any(Function), {progress_bar: bar});
 			});
 			
 			it("writes the file", function() {
