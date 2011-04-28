@@ -10,12 +10,12 @@ Views.followings.index = function(win, followings) {
 			hasChild:true
 		});		
 		
-		var logo = Ti.Filesystem.getFile(Titanium.Filesystem.resourcesDirectory,'images/logo.png');
-		var photo = Titanium.UI.createImageView({
-			image:logo,
-			left:5,
-			width:70,
-			height:45
+		var avatar = Titanium.UI.createImageView({
+			image:following.avatar_link,
+			defaultImage:'images/avatar_medium.jpg',
+			left:10,
+			width:55,
+			height:55
 		});
 		
 		var title = Ti.UI.createLabel({
@@ -31,7 +31,7 @@ Views.followings.index = function(win, followings) {
 		row.id = following.id;
 				
 		row.add(title);
-		row.add(photo);
+		row.add(avatar);
 		return row;
 	}
 
@@ -43,10 +43,11 @@ Views.followings.index = function(win, followings) {
 
 	tableview.addEventListener('click', function(e)
 	{
-		var win = Titanium.UI.createWindow({ title:'Story', backgroundColor:'#fff' });
+		var win = Titanium.UI.createWindow({ title:'User', backgroundColor:'#fff' });
+		var following_id = e.rowData.id
 		
 		win.addEventListener('open', function() {
-			App.action(win, "followings#show", e.rowData.id);
+			App.action(win, "followings#show", following_id);
 		});
 		
 		var b = Titanium.UI.createButton({
@@ -58,8 +59,31 @@ Views.followings.index = function(win, followings) {
 		});
 		
 		b.addEventListener('click', function() { win.close(); });
-
+		
+		var friend_button = Titanium.UI.createButton({
+			title:"Unfollow",
+			left:10,
+			top: 40, 
+			height:30,
+			width:70,
+			zIndex:60
+		});
+		
+		friend_button.addEventListener('click', function()
+		{
+			// win = Titanium.UI.createWindow({ title:'User', backgroundColor:'#fff' });
+			
+			if(friend_button.title === "Unfollow") {
+				App.action(win, "followings#destroy", following_id);
+				friend_button.title = "Follow";
+			} else {
+				App.action(win, "followings#create", following_id);
+				friend_button.title = "Unfollow";
+			};
+		});
+	
 		win.add(b);
+		win.add(friend_button);
 		win.open();
 	});
 

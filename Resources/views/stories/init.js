@@ -7,7 +7,7 @@ Views.stories.init = function(win, story) {
 		backgroundImage:'images/record/BUTT_grn_on.png',
 		backgroundSelectedImage:'images/record/BUTT_grn_off.png',
 		backgroundDisabledImage:'images/record/BUTT_gry_on.png',
-		bottom:10,
+		top:20,
 		width:120,
 		height:40,
 		font:{fontSize:16,fontWeight:'bold',fontFamily:'Helvetica Neue'},
@@ -27,6 +27,7 @@ Views.stories.init = function(win, story) {
 	
 	overlay.add(start_stop_button);
 	overlay.add(camera_flash);
+	Layouts.video_options(overlay);
 
 	var current = Ti.Media.CAMERA_FLASH_AUTO;
 	var cameraFlashModes = Ti.Media.availableCameraFlashModes;
@@ -122,6 +123,7 @@ Views.stories.init = function(win, story) {
 		videoQuality:Ti.Media.QUALITY_640x480,
 		autohide:false 	// tell the system not to auto-hide and we'll do it ourself
 	});
+	
 	
 	
 	function progressBar() {

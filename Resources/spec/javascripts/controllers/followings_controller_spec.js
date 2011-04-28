@@ -37,4 +37,20 @@ describe("FollowingsController", function() {
 			expect(view).toHaveBeenCalledWith(response);
 		});
 	});
+
+	describe("create", function() {
+		describe("valid", function() {
+		  beforeEach(function() {
+				Controllers.followings.create(view, {following: {} });
+		  });
+
+			it("calls save", function() {
+			  expect(Controllers.followings.db.save).toHaveBeenCalled();
+			});
+			
+			it("renders the view", function() {
+			  expect(view).toHaveBeenCalled();
+			});
+		});
+	});
 });
