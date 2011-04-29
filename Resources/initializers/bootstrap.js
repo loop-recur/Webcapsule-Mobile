@@ -23,6 +23,7 @@ FileListHack = [
 	"layouts/bottom_nav.js",
 	"layouts/users.js",
 	"layouts/stories.js",
+	"layouts/record.js",	
 	"views/stories/index.js",
 	"views/stories/show.js",
 	"views/stories/init.js",

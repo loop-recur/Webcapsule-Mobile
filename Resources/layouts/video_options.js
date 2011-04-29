@@ -37,6 +37,16 @@ Layouts.video_options = function(win) {
 	    keyboardType:Titanium.UI.KEYBOARD_DEFAULT,  
 	    returnKeyType:Titanium.UI.RETURNKEY_DONE
 	});
+	
+	story_title_field.addEventListener('focus', function()
+	{			
+		functionality_view.animate({bottom:75, duration:250});
+	});
+
+	story_title_field.addEventListener('blur', function()
+	{			
+		functionality_view.animate({bottom:0, duration:250});
+	});
 
 	var tag_friends_button = Titanium.UI.createButton({
 		value:false,
