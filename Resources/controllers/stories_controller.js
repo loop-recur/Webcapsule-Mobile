@@ -23,5 +23,11 @@ Controllers.stories = {
 	
 	show: function(view, id) {
 		this.db.find(id, view);
+	},
+	
+	update: function(view, params) {
+		var story = params.story;
+		this.db.save(story, function(response){ });
+		view(story);
 	}
 };

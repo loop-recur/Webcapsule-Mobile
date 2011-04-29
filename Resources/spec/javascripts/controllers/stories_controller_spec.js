@@ -91,4 +91,23 @@ describe("StoriesController", function() {
 			});
 		});
 	});
+	
+	describe("update", function() {
+		describe("valid", function() {
+		  beforeEach(function() {
+				story = {name: "some name"};
+				Controllers.stories.db.save = jasmine.createSpy().andCallFake(function(obj, fun){ fun(response); });
+				spyOn(FakeFile, "write");
+				Controllers.stories.update(view, {story: {name: "blah"}});
+		  });
+
+			it("calls save", function() {
+			  expect(Controllers.stories.db.save).toHaveBeenCalledWith({name: "blah"}, jasmine.any(Function));
+			});
+			
+			it("renders the view", function() {
+			  expect(view).toHaveBeenCalledWith({name: "blah"});
+			});
+		});
+	});
 });
