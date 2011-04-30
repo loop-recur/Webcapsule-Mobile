@@ -82,7 +82,6 @@ Layouts.video_options = function(win, story) {
 		
 	});
 	
-
 	var location_button = Titanium.UI.createButton({
 		value:false,
 		top:64,
@@ -96,8 +95,8 @@ Layouts.video_options = function(win, story) {
 	location_button.addEventListener('click', function() {
 		
 		var location_win = Titanium.UI.createWindow({
-			opacity:.8,
-			backgroundColor:'black',
+			backgroundColor:'white',
+			url:'geolocation.js'
 		});
 		
 		var done_button = Titanium.UI.createButton({
