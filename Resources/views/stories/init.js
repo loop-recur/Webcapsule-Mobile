@@ -41,8 +41,8 @@ Views.stories.init = function(win, story) {
 	var camera_flash = Ti.UI.createButton({
 		color:'#fff',
 		title:"auto",
-		left:20,
-		top:20,
+		right:20,
+		top:60,
 		height:40,
 		width:80,
 		backgroundImage:"images/record/BUTT_drk_on.png",

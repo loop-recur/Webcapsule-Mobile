@@ -98,9 +98,22 @@ Layouts.video_options = function(win, story) {
 		backgroundSelectedImage:'images/postrecord/save_btn_pressed.png'
 	});
 	
+	var saving_label = Titanium.UI.createLabel({
+		text:'Saving your story...',
+		right:-150,
+		bottom:25,
+		width:150,
+		height:'auto',
+		color:'black',
+		textAlign:'center'
+	});
+	
 	save_button.addEventListener('click', function() {
+		win.add(saving_label);
+		saving_label.animate({right:10, duration:700});
+		save_button.visible = false;
 		story.name = story_title_field.value;
-		App.action(win, 'stories#update', {story : story, callback : function(updated){ alert("saved!"); story = updated; }});
+		App.action(win, 'stories#update', {story : story, callback : function(updated){ save_button.visible = true; win.remove(saving_label); story = updated; }});
 	});
 
 	edit_details_btn.addEventListener('click', function() {
