@@ -41,7 +41,7 @@ describe("StoriesController", function() {
 	describe("show", function() {
 		beforeEach(function() {
 			Controllers.stories.db.find = jasmine.createSpy().andCallFake(function(id, fun){ fun(response); });
-			Controllers.stories.show(view, 10);
+			Controllers.stories.show(view, {id : 10});
 		});
 		
 		it("calls the db", function() {
@@ -70,18 +70,13 @@ describe("StoriesController", function() {
 		  beforeEach(function() {
 				Controllers.stories.db.save = jasmine.createSpy().andCallFake(function(obj, fun){ fun(response); });
 				bar = {hide: jasmine.createSpy()};
-				spyOn(FakeFile, "write");
 				Controllers.stories.create(view, {story: {upload: "fake upload"}, progress:bar});
 		  });
 
 			it("calls save", function() {
 			  expect(Controllers.stories.db.save).toHaveBeenCalledWith({upload: "fake upload"}, jasmine.any(Function), {progress_bar: bar});
 			});
-			
-			it("writes the file", function() {
-			  expect(FakeFile.write).toHaveBeenCalledWith("fake upload");
-			});
-			
+						
 			it("hides the progress bar", function() {
 			  expect(bar.hide).toHaveBeenCalled();
 			});

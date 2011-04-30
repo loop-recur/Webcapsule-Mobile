@@ -45,7 +45,7 @@ describe("Db", function() {
 				stubHttp("get", stories_response, true);
 		  });
 
-			it("calls the error callback and success callback", function() {
+			it("calls the error callback", function() {
 				db.all({success: successFun, error: errorFun});
 				expect(errorFun).toHaveBeenCalledWith(stories_response);
 				expect(successFun).toHaveBeenCalledWith(Cache.stories);
@@ -91,20 +91,14 @@ describe("Db", function() {
 			it("pushes a new story into the cache if it didn't exist", function() {
 				Cache.stories = [{id: 1, name: "whatever"}];
 				db.find(2, successFun);
-				expect(Cache.stories).toEqual([{id: 1, name: "whatever"}, story]);
+				expect(Cache.stories).toEqual([story, {id: 1, name: "whatever"}]);
 			});
 		});
 		
 		describe("error", function() {
 			beforeEach(function() {
-				stubHttp("get", story_response, true);
+				stubHttp("get", story_response, 500);
 		  });
-
-			it("calls the error callback and success", function() {
-				db.find(2, {success: successFun, error: errorFun});
-				expect(errorFun).toHaveBeenCalledWith(story_response);
-				expect(successFun).toHaveBeenCalledWith(story);
-			});
 
 			it("calls success with the last response", function() {
 				db.find(2, successFun);
@@ -152,7 +146,7 @@ describe("Db", function() {
 			it("pushes a new story into the cache if it didn't exist", function() {
 				Cache.stories = [{id: 1, name: "whatever"}];
 				db.save({name : "fake"}, successFun, {progress_bar: "bar"});
-				expect(Cache.stories).toEqual([{id: 1, name: "whatever"}, story]);
+				expect(Cache.stories).toEqual([story, {id: 1, name: "whatever"}]);
 			});
 			
 			it("recaches the response", function() {
@@ -163,29 +157,47 @@ describe("Db", function() {
 		});
 		
 		describe("error", function() {
-			beforeEach(function() {
-				stubHttp("post", story_response, true);
-				db.save({name : "fake"}, {success:successFun, error: errorFun}, {progress_bar: "bar"});
-		  });
+			
+			describe("validation error", function() {
+			  beforeEach(function() {
+					stubHttp("post", story_response, 400);
+					db.save({name : "fake"}, {success:successFun, error: errorFun}, {progress_bar: "bar"});
+			  });
+			
+				it("calls the error callback", function() {
+					expect(errorFun).toHaveBeenCalledWith(story_response);
+				});
+
+				it("doesn't call success with the response", function() {
+					expect(successFun).not.toHaveBeenCalledWith({name : "fake"});
+				});
+			});
 		
-			it("calls the error callback", function() {
-				expect(errorFun).toHaveBeenCalledWith(story_response);
-			});
+			describe("Server down", function() {
+				beforeEach(function() {
+					stubHttp("post", story_response, 500);
+					db.save({name : "fake"}, {success:successFun, error: errorFun}, {progress_bar: "bar"});
+			  });
 			
-			it("calls success with the response", function() {
-				expect(successFun).toHaveBeenCalledWith({name : "fake"});
-			});
-			
-			it("pushes a new story into the cache if it didn't exist", function() {
-				Cache.stories = [{id: 1, name: "whatever"}];
-				db.save({id: "temp-123", name : "fake"}, successFun, {progress_bar: "bar"});
-				expect(Cache.stories).toEqual([{id: 1, name: "whatever"}, {id: "temp-123", name: "fake"}]);
-			});
-			
-			it("updates the cache", function() {
-				Cache.stories = [{id: "temp-123", name: "whatever"}];
-				db.save({id: "temp-123", name : "fake"}, successFun, {progress_bar: "bar"});
-				expect(Cache.stories).toEqual([{id: "temp-123", name: "fake"}]);
+				it("doesn't call the error callback", function() {
+					expect(errorFun).not.toHaveBeenCalledWith(story_response);
+				});
+
+				it("calls success with the cached response", function() {
+					expect(successFun).toHaveBeenCalledWith({name : "fake"});
+				});
+
+				it("pushes a new story into the cache if it didn't exist", function() {
+					Cache.stories = [{id: 1, name: "whatever"}];
+					db.save({id: "temp-123", name : "fake"}, successFun, {progress_bar: "bar"});
+					expect(Cache.stories).toEqual([{id: "temp-123", name: "fake"}, {id: 1, name: "whatever"}]);
+				});
+
+				it("updates the cache", function() {
+					Cache.stories = [{id: "temp-123", name: "whatever"}];
+					db.save({id: "temp-123", name : "fake"}, successFun, {progress_bar: "bar"});
+					expect(Cache.stories).toEqual([{id: "temp-123", name: "fake"}]);
+				});
 			});
 		});
 		

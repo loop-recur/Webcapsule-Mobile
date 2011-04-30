@@ -40,5 +40,4 @@ Layouts.site = function () {
 	site_window.add(bottom_nav);
 	
 	site_window.open();
-
 };

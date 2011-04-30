@@ -1,4 +1,4 @@
-Views.stories.create = function(win, story, progress) {
+Views.stories.create = function(win, story, progress, overlay) {
 	// programatically hide the camera
 	Ti.Media.hideCamera();
 
@@ -26,5 +26,6 @@ Views.stories.create = function(win, story, progress) {
 	win.add(close_btn);
 	win.add(progress);
 	progress.show();
-	Layouts.video_options(win, story);
+	win.add(overlay);
+	Views.stories._form(overlay, story);
 };

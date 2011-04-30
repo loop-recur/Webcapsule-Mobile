@@ -142,7 +142,7 @@
     };
     HTTPClientWithCache.prototype.onload_hook = function(self, response) {
       if (response.status >= 400) {
-        this.onerror_hook(self);
+        this.onerror_hook(self, response);
         return;
       }
       Ti.App.fireEvent(this.options.hideActivityEvent);
@@ -153,8 +153,7 @@
         return Ti.API.error("HTTPClientWithCache: Please specify an onload callback!");
       }
     };
-    HTTPClientWithCache.prototype.onerror_hook = function(self) {
-      var response;
+    HTTPClientWithCache.prototype.onerror_hook = function(self, response) {
       if ((this.currentRetryCount++) <= this.options.retryCount) {
         Ti.API.info("HTTPClientWithCache: Retry Count " + this.currentRetryCount + " of " + this.options.retryCount);
         this.xhr.abort();
@@ -164,7 +163,7 @@
       }
       Ti.App.fireEvent(this.options.hideActivityEvent);
       if (this.options.onerror != null) {
-        response = this._get_cached_response(9999999);
+        if(this.options.method !== "POST") response = this._get_cached_response(9999999);
         return this.options.onerror(response);
       } else {
         return Ti.API.info("You might want to specify an onerror callback.");

@@ -8,26 +8,31 @@ Controllers.stories = {
 	create: function(view, params) {
 		var story = params.story;
 		var progress = params.progress;
-		var movieFile = Titanium.Filesystem.getFile(Titanium.Filesystem.applicationDataDirectory,'mymovie.mov');
 		
-		movieFile.write(story.upload);
-		this.db.save(story, function(response){progress.hide();}, { progress_bar : progress });
-		view(story, progress);
+		this.db.save(story, function(new_story) {
+				progress.hide();
+				Views.stories.edit(params.overlay, new_story);
+			},
+			{ progress_bar : progress }
+		);
+		view(story, progress, params.overlay);
 	},
 	
-	init: function(view) {
+	init: function(view, params) {
 		var date = new Date;
 		var story = {id: "temp-" + Ti.Utils.md5HexDigest(date.toString())};
-		view(story);
+		view(params.overlay, story);
 	},
 	
-	show: function(view, id) {
-		this.db.find(id, view);
+	show: function(view, params) {
+		this.db.find(params.id, view);
 	},
 	
 	update: function(view, params) {
 		var story = params.story;
-		var callback = params.callback;
-		this.db.save(story, callback);
+		this.db.save(story, {
+			success: params.success,
+			error: params.error
+		});
 	}
 };

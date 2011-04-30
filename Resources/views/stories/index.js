@@ -118,7 +118,7 @@ Views.stories.index = function(win, stories) {
 		var win = Titanium.UI.createWindow({ title:'Story', backgroundColor:'#fff' });
 		
 		win.addEventListener('open', function() {
-			App.action(win, "stories#show", e.rowData.id);
+			App.action(win, "stories#show", {id: e.rowData.id});
 		});
 		
 		var b = Titanium.UI.createButton({

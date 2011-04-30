@@ -21,18 +21,16 @@ Db = function(name) {
 	
 	function find(id, callbacks) {
 		var oldSuccess = callbacks.success || callbacks;
-		var oldError = callbacks.error || function(){};
 				
 		callbacks.error = function(r) {
 			var old_record = Functional.select("id == x.id".lambda().partial(id), Cache[name])[0];
 			oldSuccess(old_record);
-			oldError(r.responseText);
 		};
 		
 		callbacks.success = function(r) {
 			var json = JSON.parse(r.responseText);
 			var old_record = Functional.select("id == x.id".lambda().partial(id), Cache[name])[0];
-			old_record ? replace(Cache[name], old_record, json) : Cache[name].push(json);
+			old_record ? replace(Cache[name], old_record, json) : Cache[name].unshift(json);
 			oldSuccess(json);
 		};
 		
@@ -45,16 +43,23 @@ Db = function(name) {
 		var oldError = callbacks.error || function(){};
 				
 		callbacks.error = function(r) {
-			var old_record = Functional.select("id == x.id".lambda().partial(id), Cache[name])[0];
-			old_record ? replace(Cache[name], old_record, obj) : Cache[name].push(obj);
-			oldSuccess(old_record);
-			oldError(r.responseText);
+			if(r) {
+				oldError(r.responseText);
+			} else {
+				if(Cache[name]) {
+					var old_record = Functional.select("id == x.id".lambda().partial(id), Cache[name])[0];
+					old_record ? replace(Cache[name], old_record, obj) : Cache[name].unshift(obj);
+				}
+				oldSuccess(old_record);
+			}
 		};
 		
 		callbacks.success = function(r) {
 			var json = JSON.parse(r.responseText);
-			var old_record = Functional.select("id == x.id".lambda().partial(id), Cache[name])[0];
-			old_record ? replace(Cache[name], old_record, json) : Cache[name].push(json);
+			if(Cache[name]) {
+				var old_record = Functional.select("id == x.id".lambda().partial(id), Cache[name])[0];
+				old_record ? replace(Cache[name], old_record, json) : Cache[name].unshift(json);
+			}
 			oldSuccess(json);
 		};
 		

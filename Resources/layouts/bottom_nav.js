@@ -62,6 +62,6 @@ Layouts.bottomNav = function() {
 	win.add(users_button);
 	win.add(record_button);
 	
-	stories_button.fireEvent('click');
+	record_button.fireEvent('click');
 	return win;
 };

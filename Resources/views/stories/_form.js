@@ -1,4 +1,5 @@
-Layouts.video_options = function(win, story) {
+Views.stories._form = function(win, story) {
+	var overlay = Titanium.UI.createView({bottom: 0, height: 245, zIndex:10});
 
 	var functionality_view = Titanium.UI.createView({
 		height:247,
@@ -125,7 +126,7 @@ Layouts.video_options = function(win, story) {
 	add_date_button.addEventListener('click', function() {
 		
 		var date_win = Titanium.UI.createWindow({
-			opacity:.9,
+			opacity:0.9,
 			backgroundColor:'black',
 			url:'layouts/add_date.js'
 		});
@@ -151,15 +152,29 @@ Layouts.video_options = function(win, story) {
 		width:150,
 		height:'auto',
 		color:'black',
-		textAlign:'center'
+		textAlign:'center',
+		visible: false
 	});
 	
 	save_button.addEventListener('click', function() {
-		win.add(saving_label);
+		saving_label.visible = true;
 		saving_label.animate({right:10, duration:700});
 		save_button.visible = false;
 		story.name = story_title_field.value;
-		App.action(win, 'stories#update', {story : story, callback : function(updated){ save_button.visible = true; win.remove(saving_label); story = updated; }});
+		
+		App.action(overlay, 'stories#update', {
+			story : story,
+			success : function(updated) {
+				save_button.visible = true;
+				saving_label.visible = false;
+				story = updated;
+			},
+			error : function(errors) {
+				alert(errors);
+				save_button.visible = true;
+				saving_label.visible = false;
+			}
+		});
 	});
 
 	edit_details_btn.addEventListener('click', function() {
@@ -180,6 +195,8 @@ Layouts.video_options = function(win, story) {
 	tray.add(add_photos_button);
 	tray.add(add_date_button);
 	tray.add(save_button);
+	tray.add(saving_label);
 	
-	win.add(functionality_view);
-}
+	overlay.add(functionality_view);
+	win.add(overlay);
+};

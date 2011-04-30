@@ -19,13 +19,14 @@ FileListHack = [
 	"controllers/followings_controller.js",
 	"layouts/site.js",	
 	"layouts/login.js",
-	"layouts/video_options.js",
 	"layouts/bottom_nav.js",
 	"layouts/users.js",
 	"layouts/stories.js",
 	"layouts/record.js",	
 	"views/stories/index.js",
 	"views/stories/show.js",
+	"views/stories/edit.js",
+	"views/stories/_form.js",
 	"views/stories/init.js",
 	"views/stories/create.js",
 	"views/followings/show.js",
@@ -63,11 +64,13 @@ function runEnvironment() {
 }
 
 App.action = function(win, controller_action, args) {
+	var params = args || {};
+	params.win = win;
 	var names = controller_action.split("#");
 	var controller = names[0];
 	var action = names[1];
-	var callBack = Views[controller][action] ? Views[controller][action].partial(win) : function(){};
-	Controllers[controller][action](callBack, args);
+	var view = Views[controller][action] ? Views[controller][action].partial(win) : function(){};
+	Controllers[controller][action](view, params);
 };
 
 Layouts.replaceContent = function(new_content) {		
