@@ -66,7 +66,7 @@ Layouts.video_options = function(win, story) {
 			url:'layouts/add_tag.js'
 		});
 
-		tag_friends_win.open();
+		tag_friends_win.open({fullscreen:true});
 		
 	});
 	
@@ -84,24 +84,10 @@ Layouts.video_options = function(win, story) {
 		
 		var location_win = Titanium.UI.createWindow({
 			backgroundColor:'white',
-			url:'geolocation.js'
-		});
-		
-		var done_button = Titanium.UI.createButton({
-			title:"DONE",
-			height:50,
-			width:70,
-			bottom:40,
-			right:10
+			url:'layouts/geolocation.js'
 		});
 
-		done_button.addEventListener('click', function() {
-			location_win.close();
-		});
-
-		location_win.add(done_button);
-		location_win.open();
-		
+		location_win.open({fullscreen:true});
 	});
 
 	var add_photos_button = Titanium.UI.createButton({
@@ -122,8 +108,7 @@ Layouts.video_options = function(win, story) {
 			url:'layouts/add_photo.js'
 		});
 
-		add_photos_win.open();
-		
+		add_photos_win.open({fullscreen:true});
 	});
 	
 
@@ -145,14 +130,9 @@ Layouts.video_options = function(win, story) {
 			url:'layouts/add_date.js'
 		});
 
-		date_win.open();
+		date_win.open({fullscreen:true});
 		
 	});
-	
-	
-	
-	
-	
 	
 	var save_button = Titanium.UI.createButton({
 		value:false,

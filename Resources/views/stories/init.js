@@ -2,20 +2,20 @@ Views.stories.init = function(win, story) {
 	
 	var overlay = Titanium.UI.createView();
 	
-	var close_button = Titanium.UI.createButton({
+	var close_btn = Titanium.UI.createButton({
 		backgroundImage:"images/postrecord/return.png",
 		height:36,
 		width:38,
-		top:10,
-		left:10
+		top:3,
+		left:3
 	});
 
-	close_button.addEventListener('click', function() {
+	close_btn.addEventListener('click', function() {
 		win.close();
 	});
+		
+	overlay.add(close_btn);
 	
-	overlay.add(close_button);
-
 	var start_stop_button = Titanium.UI.createButton({
 		color:'#fff',
 		backgroundImage:'images/record/BUTT_grn_on.png',
@@ -98,12 +98,12 @@ Views.stories.init = function(win, story) {
 			{
 				if (Ti.Media.camera == Ti.Media.CAMERA_FRONT)
 				{
-					camera_type.title = "front";
+					camera_type.title = "rear";
 					Ti.Media.switchCamera(Ti.Media.CAMERA_REAR);
 				}
 				else
 				{
-					camera_type.title = "rear";
+					camera_type.title = "front";
 					Ti.Media.switchCamera(Ti.Media.CAMERA_FRONT);
 				}
 			});
