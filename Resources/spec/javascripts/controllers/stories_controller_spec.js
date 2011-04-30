@@ -104,10 +104,6 @@ describe("StoriesController", function() {
 			it("calls save", function() {
 			  expect(Controllers.stories.db.save).toHaveBeenCalledWith({name: "blah"}, jasmine.any(Function));
 			});
-			
-			it("renders the view", function() {
-			  expect(view).toHaveBeenCalledWith({name: "blah"});
-			});
 		});
 	});
 });

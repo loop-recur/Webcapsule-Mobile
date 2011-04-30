@@ -1,6 +1,20 @@
 Views.stories.init = function(win, story) {
 	
 	var overlay = Titanium.UI.createView();
+	
+	var close_btn = Titanium.UI.createButton({
+		backgroundImage:"images/postrecord/return.png",
+		height:36,
+		width:38,
+		top:40,
+		left:3
+	});
+
+	close_btn.addEventListener('click', function() {
+		win.close();
+	});
+	
+	overlay.add(close_btn);
 
 	var start_stop_button = Titanium.UI.createButton({
 		color:'#fff',
@@ -18,8 +32,8 @@ Views.stories.init = function(win, story) {
 	{
 		Ti.Media.startVideoCapture();
 		start_stop_button.title = "Stop Video";
-		button.backgroundImage = "images/record/BUTT_red_on.png";
-		button.backgroundSelectedImage = 'images/record/BUTT_red_off.png';
+		start_stop_button.backgroundImage = "images/record/BUTT_red_on.png";
+		start_stop_button.backgroundSelectedImage = 'images/record/BUTT_red_off.png';
 		camera_type.visible = false;
 		camera_flash.visible = false;
 	});
@@ -37,10 +51,22 @@ Views.stories.init = function(win, story) {
 	
 	overlay.add(start_stop_button);
 	overlay.add(camera_flash);
-	Layouts.video_options(overlay);
+	Layouts.video_options(overlay, story);
+	
+	var camera_type = Ti.UI.createButton({
+		color:'#fff',
+		title:"front",
+		top:20,
+		right:20,
+		height:40,
+		width:80,
+		backgroundImage:"images/record/BUTT_drk_on.png",
+		font:{fontSize:16,fontWeight:'bold',fontFamily:'Helvetica Neue'}
+	});
 
 	var current = Ti.Media.CAMERA_FLASH_AUTO;
 	var cameraFlashModes = Ti.Media.availableCameraFlashModes;
+	
 	camera_flash.addEventListener('click',function()
 	{
 		if (Ti.Media.cameraFlashMode == Ti.Media.CAMERA_FLASH_AUTO)
@@ -60,17 +86,6 @@ Views.stories.init = function(win, story) {
 		}
 	});
 
-	var camera_type = Ti.UI.createButton({
-		color:'#fff',
-		title:"front",
-		top:20,
-		right:20,
-		height:40,
-		width:80,
-		backgroundImage:"images/record/BUTT_drk_on.png",
-		font:{fontSize:16,fontWeight:'bold',fontFamily:'Helvetica Neue'}
-	});
-	
 	var cameras = Ti.Media.availableCameras;
 	for (var c=0;c<cameras.length;c++)
 	{
@@ -105,16 +120,8 @@ Views.stories.init = function(win, story) {
 		cancel:function(){},
 		error:function(error)
 		{
-			var a = Titanium.UI.createAlertDialog({title:'Camera'});
-			if (error.code == Titanium.Media.NO_CAMERA)
-			{
-				a.setMessage('Please run this test on device');
-			}
-			else
-			{
-				a.setMessage('Unexpected error: ' + error.code);
-			}
-			a.show();
+			win.add(overlay);
+			win.open();
 		},
 		overlay:overlay,
 		showControls:false,	// don't show system controls

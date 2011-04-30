@@ -66,7 +66,7 @@ App.action = function(win, controller_action, args) {
 	var names = controller_action.split("#");
 	var controller = names[0];
 	var action = names[1];
-	var callBack = Views[controller][action].partial(win);
+	var callBack = Views[controller][action] ? Views[controller][action].partial(win) : function(){};
 	Controllers[controller][action](callBack, args);
 };
 

@@ -1,14 +1,14 @@
-Layouts.video_options = function(win) {
+Layouts.video_options = function(win, story) {
 
 	var functionality_view = Titanium.UI.createView({
 		height:247,
 		width:320,
-		bottom:0
+		bottom:-191
 	});
 	
 	var edit_details_btn = Titanium.UI.createButton({
-		backgroundImage:'images/postrecord/edit_details_normal.png',
-		backgroundSelectedImage:'images/postrecord/edit_details_pressed.png',
+		backgroundImage:'images/postrecord/edit_details_pressed.png',
+		backgroundSelectedImage:'images/postrecord/edit_details_normal.png',
 		height:56,
 		width:55,
 		top:0,
@@ -96,6 +96,11 @@ Layouts.video_options = function(win) {
 		width:131,
 		backgroundImage:'images/postrecord/save_btn.png',
 		backgroundSelectedImage:'images/postrecord/save_btn_pressed.png'
+	});
+	
+	save_button.addEventListener('click', function() {
+		story.name = story_title_field.value;
+		App.action(win, 'stories#update', {story : story, callback : function(updated){ alert("saved!"); story = updated; }});
 	});
 
 	edit_details_btn.addEventListener('click', function() {

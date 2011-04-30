@@ -26,5 +26,5 @@ Views.stories.create = function(win, story, progress) {
 	win.add(close_btn);
 	win.add(progress);
 	progress.show();
-	Layouts.video_options(win);
+	Layouts.video_options(win, story);
 };

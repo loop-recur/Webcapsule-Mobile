@@ -27,7 +27,7 @@ Controllers.stories = {
 	
 	update: function(view, params) {
 		var story = params.story;
-		this.db.save(story, function(response){ });
-		view(story);
+		var callback = params.callback;
+		this.db.save(story, callback);
 	}
 };
