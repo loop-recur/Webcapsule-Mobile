@@ -61,23 +61,11 @@ Layouts.video_options = function(win, story) {
 	tag_friends_button.addEventListener('click', function() {
 		
 		var tag_friends_win = Titanium.UI.createWindow({
-			opacity:.8,
+			opacity:.9,
 			backgroundColor:'black',
-		});
-		
-		var done_button = Titanium.UI.createButton({
-			title:"DONE",
-			height:50,
-			width:70,
-			bottom:40,
-			right:10
+			url:'layouts/add_tag.js'
 		});
 
-		done_button.addEventListener('click', function() {
-			tag_friends_win.close();
-		});
-
-		tag_friends_win.add(done_button);
 		tag_friends_win.open();
 		
 	});
@@ -129,23 +117,11 @@ Layouts.video_options = function(win, story) {
 	add_photos_button.addEventListener('click', function() {
 		
 		var add_photos_win = Titanium.UI.createWindow({
-			opacity:.8,
+			opacity:.9,
 			backgroundColor:'black',
-		});
-		
-		var done_button = Titanium.UI.createButton({
-			title:"DONE",
-			height:50,
-			width:70,
-			bottom:40,
-			right:10
+			url:'layouts/add_photo.js'
 		});
 
-		done_button.addEventListener('click', function() {
-			add_photos_win.close();
-		});
-
-		add_photos_win.add(done_button);
 		add_photos_win.open();
 		
 	});
@@ -164,33 +140,11 @@ Layouts.video_options = function(win, story) {
 	add_date_button.addEventListener('click', function() {
 		
 		var date_win = Titanium.UI.createWindow({
-			opacity:.8,
+			opacity:.9,
 			backgroundColor:'black',
+			url:'layouts/add_date.js'
 		});
 
-		var value = new Date();
-
-		var picker = Ti.UI.createPicker({
-			type:Ti.UI.PICKER_TYPE_DATE,
-			maxDate:value,
-			value:value
-		});
-		picker.selectionIndicator = true;
-		
-		var done_button = Titanium.UI.createButton({
-			title:"DONE",
-			height:50,
-			width:70,
-			bottom:40,
-			right:10
-		});
-
-		done_button.addEventListener('click', function() {
-			date_win.close();
-		});
-
-		date_win.add(done_button);
-		date_win.add(picker);
 		date_win.open();
 		
 	});

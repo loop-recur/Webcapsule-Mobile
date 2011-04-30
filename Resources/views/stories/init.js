@@ -2,19 +2,19 @@ Views.stories.init = function(win, story) {
 	
 	var overlay = Titanium.UI.createView();
 	
-	var close_btn = Titanium.UI.createButton({
+	var close_button = Titanium.UI.createButton({
 		backgroundImage:"images/postrecord/return.png",
 		height:36,
 		width:38,
-		top:40,
-		left:3
+		top:10,
+		left:10
 	});
 
-	close_btn.addEventListener('click', function() {
+	close_button.addEventListener('click', function() {
 		win.close();
 	});
 	
-	overlay.add(close_btn);
+	overlay.add(close_button);
 
 	var start_stop_button = Titanium.UI.createButton({
 		color:'#fff',
