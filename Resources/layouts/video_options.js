@@ -57,6 +57,31 @@ Layouts.video_options = function(win, story) {
 		backgroundImage:'images/postrecord/tag_normal.png',
 		backgroundSelectedImage:'images/postrecord/tag_pressed.png'
 	});
+	
+	tag_friends_button.addEventListener('click', function() {
+		
+		var tag_friends_win = Titanium.UI.createWindow({
+			opacity:.8,
+			backgroundColor:'black',
+		});
+		
+		var done_button = Titanium.UI.createButton({
+			title:"DONE",
+			height:50,
+			width:70,
+			bottom:40,
+			right:10
+		});
+
+		done_button.addEventListener('click', function() {
+			tag_friends_win.close();
+		});
+
+		tag_friends_win.add(done_button);
+		tag_friends_win.open();
+		
+	});
+	
 
 	var location_button = Titanium.UI.createButton({
 		value:false,
@@ -66,6 +91,30 @@ Layouts.video_options = function(win, story) {
 		width:55,
 		backgroundImage:'images/postrecord/location_normal.png',
 		backgroundSelectedImage:'images/postrecord/location_pressed.png'
+	});
+	
+	location_button.addEventListener('click', function() {
+		
+		var location_win = Titanium.UI.createWindow({
+			opacity:.8,
+			backgroundColor:'black',
+		});
+		
+		var done_button = Titanium.UI.createButton({
+			title:"DONE",
+			height:50,
+			width:70,
+			bottom:40,
+			right:10
+		});
+
+		done_button.addEventListener('click', function() {
+			location_win.close();
+		});
+
+		location_win.add(done_button);
+		location_win.open();
+		
 	});
 
 	var add_photos_button = Titanium.UI.createButton({
@@ -77,6 +126,31 @@ Layouts.video_options = function(win, story) {
 		backgroundImage:'images/postrecord/addphotos_normal.png',
 		backgroundSelectedImage:'images/postrecord/addphotos_pressed.png'
 	});
+	
+	add_photos_button.addEventListener('click', function() {
+		
+		var add_photos_win = Titanium.UI.createWindow({
+			opacity:.8,
+			backgroundColor:'black',
+		});
+		
+		var done_button = Titanium.UI.createButton({
+			title:"DONE",
+			height:50,
+			width:70,
+			bottom:40,
+			right:10
+		});
+
+		done_button.addEventListener('click', function() {
+			add_photos_win.close();
+		});
+
+		add_photos_win.add(done_button);
+		add_photos_win.open();
+		
+	});
+	
 
 	var add_date_button = Titanium.UI.createButton({
 		value:false,
@@ -87,6 +161,45 @@ Layouts.video_options = function(win, story) {
 		backgroundImage:'images/postrecord/date_normal.png',
 		backgroundSelectedImage:'images/postrecord/date_pressed.png'
 	});
+	
+	add_date_button.addEventListener('click', function() {
+		
+		var date_win = Titanium.UI.createWindow({
+			opacity:.8,
+			backgroundColor:'black',
+		});
+
+		var value = new Date();
+
+		var picker = Ti.UI.createPicker({
+			type:Ti.UI.PICKER_TYPE_DATE,
+			maxDate:value,
+			value:value
+		});
+		picker.selectionIndicator = true;
+		
+		var done_button = Titanium.UI.createButton({
+			title:"DONE",
+			height:50,
+			width:70,
+			bottom:40,
+			right:10
+		});
+
+		done_button.addEventListener('click', function() {
+			date_win.close();
+		});
+
+		date_win.add(done_button);
+		date_win.add(picker);
+		date_win.open();
+		
+	});
+	
+	
+	
+	
+	
 	
 	var save_button = Titanium.UI.createButton({
 		value:false,
