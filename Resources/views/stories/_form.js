@@ -64,7 +64,7 @@ Views.stories._form.template = function() {
 	});
 	
 	tag_friends_button.addEventListener('click', function() {
-		App.action(self.win, "tags#init");
+		App.action(overlay, "tags#init");
 	});
 	
 	var location_button = Titanium.UI.createButton({
