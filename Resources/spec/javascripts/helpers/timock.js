@@ -5,6 +5,10 @@ HttpClient = {
 	send: function(){}
 };
 
+FakeView = {
+	render : jasmine.createSpy("render")
+};
+
 FakeFile = { write:function(){}, deleteFile:function(){} };
 FakeGroup = { addTab:function(){}, addEventListener:function(){}, setActiveTab:function(){}, open:function(){} };
 FakeiPhone = {AnimationStyle:function(){} };
@@ -21,3 +25,4 @@ Ti = {
 	API: {info: function() {}},
 	Utils: {md5HexDigest:function(){ return "123"; }},
 };
+

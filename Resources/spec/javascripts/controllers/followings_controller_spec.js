@@ -3,7 +3,7 @@ describe("FollowingsController", function() {
 	
 	beforeEach(function() {
 		response = [{full_name : "joe"}];
-		view = jasmine.createSpy("view");
+		view = FakeView;
 	});
 	
 	describe("index", function() {
@@ -13,11 +13,11 @@ describe("FollowingsController", function() {
 		});
 		
 		it("calls the db", function() {
-			expect(Controllers.followings.db.all).toHaveBeenCalledWith(view, undefined);
+			expect(Controllers.followings.db.all).toHaveBeenCalledWith(jasmine.any(Function), undefined);
 		});
 		
 		it("renders followings view with the followings", function() {
-			expect(view).toHaveBeenCalledWith(response);
+			expect(view.render).toHaveBeenCalledWith(response);
 		});
 	});
 	
@@ -28,11 +28,11 @@ describe("FollowingsController", function() {
 		});
 		
 		it("calls the db", function() {
-			expect(Controllers.followings.db.all).toHaveBeenCalledWith(view, {followees : true});
+			expect(Controllers.followings.db.all).toHaveBeenCalledWith(jasmine.any(Function), {followees : true});
 		});
 		
 		it("renders followings view with the followings", function() {
-			expect(view).toHaveBeenCalledWith(response);
+			expect(view.render).toHaveBeenCalledWith(response);
 		});
 	});
 	
@@ -40,15 +40,15 @@ describe("FollowingsController", function() {
 	describe("show", function() {
 		beforeEach(function() {
 			Controllers.followings.db.find = jasmine.createSpy().andCallFake(function(id, vw){ vw(response); });
-			Controllers.followings.show(view, 10);
+			Controllers.followings.show(view, {id : 10});
 		});
 		
 		it("calls the db", function() {
-			expect(Controllers.followings.db.find).toHaveBeenCalledWith(10, view);
+			expect(Controllers.followings.db.find).toHaveBeenCalledWith(10, jasmine.any(Function));
 		});
 		
 		it("renders followings view with the followings", function() {
-			expect(view).toHaveBeenCalledWith(response);
+			expect(view.render).toHaveBeenCalledWith(response);
 		});
 	});
 
