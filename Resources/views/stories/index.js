@@ -1,4 +1,12 @@
-Views.stories.index = function(win, stories) {
+Views.stories.index = {
+	render : function(stories) {
+		this.source = stories;
+		this.template();
+	}
+};
+
+Views.stories.index.template = function() {
+	var self = this;
 
 	function createTableViewRow(story) {
 		
@@ -106,7 +114,7 @@ Views.stories.index = function(win, stories) {
 		return row;
 	}
 
-	var data = Functional.map(createTableViewRow, stories);
+	var data = Functional.map(createTableViewRow, self.source);
 	var tableview = Titanium.UI.createTableView({ 
 		backgroundColor:'gray',
 		data:data,
@@ -115,25 +123,8 @@ Views.stories.index = function(win, stories) {
 
 	tableview.addEventListener('click', function(e)
 	{
-		var win = Titanium.UI.createWindow({ title:'Story', backgroundColor:'#fff' });
-		
-		win.addEventListener('open', function() {
-			App.action(win, "stories#show", {id: e.rowData.id});
-		});
-		
-		var b = Titanium.UI.createButton({
-			title:'Close',
-			height:30,
-			width:150,
-			top:0,
-			right:0
-		});
-		
-		b.addEventListener('click', function() { win.close(); });
-
-		win.add(b);
-		win.open();
+		App.action(self.win, "stories#show", {id: e.rowData.id});
 	});
 	
-	win.add(tableview);
+	self.win.add(tableview);
 };

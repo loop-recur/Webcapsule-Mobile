@@ -15,4 +15,4 @@ function stubHttp(method, response, status) {
 		response_obj = (status == 500) ? null : {responseText:response, status:status};
 		callbacks[callback](response_obj);
 	});
-}
+};

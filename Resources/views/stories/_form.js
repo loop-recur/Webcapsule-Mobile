@@ -1,4 +1,14 @@
-Views.stories._form = function(win, story) {
+Views.stories._form = {
+	render : function(source, params) {
+		this.source = source;
+		this.params = params;
+		this.template();
+	}
+};
+
+Views.stories._form.template = function() {
+	var self = this;
+	
 	var overlay = Titanium.UI.createView({bottom: 0, height: 245, zIndex:10});
 
 	var functionality_view = Titanium.UI.createView({
@@ -104,7 +114,7 @@ Views.stories._form = function(win, story) {
 	add_photos_button.addEventListener('click', function() {
 		
 		var add_photos_win = Titanium.UI.createWindow({
-			opacity:.9,
+			opacity:0.9,
 			backgroundColor:'black',
 			url:'layouts/add_photo.js'
 		});
@@ -160,14 +170,14 @@ Views.stories._form = function(win, story) {
 		saving_label.visible = true;
 		saving_label.animate({right:10, duration:700});
 		save_button.visible = false;
-		story.name = story_title_field.value;
+		self.source.name = story_title_field.value;
 		
 		App.action(overlay, 'stories#update', {
-			story : story,
+			story : self.source,
 			success : function(updated) {
 				save_button.visible = true;
 				saving_label.visible = false;
-				story = updated;
+				self.source = updated;
 			},
 			error : function(errors) {
 				alert(errors);
@@ -198,5 +208,5 @@ Views.stories._form = function(win, story) {
 	tray.add(saving_label);
 	
 	overlay.add(functionality_view);
-	win.add(overlay);
+	self.params.win.add(overlay);
 };

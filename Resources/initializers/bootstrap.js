@@ -25,7 +25,6 @@ FileListHack = [
 	"layouts/record.js",	
 	"views/stories/index.js",
 	"views/stories/show.js",
-	"views/stories/edit.js",
 	"views/stories/_form.js",
 	"views/stories/init.js",
 	"views/stories/create.js",
@@ -65,11 +64,11 @@ function runEnvironment() {
 
 App.action = function(win, controller_action, args) {
 	var params = args || {};
-	params.win = win;
 	var names = controller_action.split("#");
 	var controller = names[0];
 	var action = names[1];
-	var view = Views[controller][action] ? Views[controller][action].partial(win) : function(){};
+	var view = Views[controller][action] ? Views[controller][action] : {};
+	view.win = win;
 	Controllers[controller][action](view, params);
 };
 

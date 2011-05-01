@@ -1,4 +1,13 @@
-Views.followings.index = function(win, followings) {
+Views.followings.index = {
+	render : function(source, params) {
+		this.source = source;
+		this.params = params;
+		this.template();
+	}
+};
+
+Views.followings.index.template = function() {
+	var self = this;
 	
 	function createTableViewRow(following) {
 		var row = Ti.UI.createTableViewRow({
@@ -33,58 +42,18 @@ Views.followings.index = function(win, followings) {
 		return row;
 	}
 
-	var data = Functional.map(createTableViewRow, followings);
+	var data = Functional.map(createTableViewRow, self.source);
 	var tableview = Titanium.UI.createTableView({ 
 		backgroundColor:'gray',
 		data:data,
 		top:40
 	 });
 
-	tableview.addEventListener('click', function(e)
-	{
-		var win = Titanium.UI.createWindow({ title:'User', backgroundColor:'#fff' });
-		var following_id = e.rowData.id;
-		
-		win.addEventListener('open', function() {
-			App.action(win, "followings#show", following_id);
-		});
-		
-		var b = Titanium.UI.createButton({
-			title:'Close',
-			height:30,
-			width:150,
-			top:0,
-			right:0
-		});
-		
-		b.addEventListener('click', function() { win.close(); });
-		
-		var friend_button = Titanium.UI.createButton({
-			title:"Unfollow",
-			left:10,
-			top: 40, 
-			height:30,
-			width:70,
-			zIndex:60
-		});
-		
-		friend_button.addEventListener('click', function()
-		{	
-			if(friend_button.title === "Unfollow") {
-				App.action(win, "followings#destroy", following_id);
-				friend_button.title = "Follow";
-			} else {
-				App.action(win, "followings#create", following_id);
-				friend_button.title = "Unfollow";
-			};
-		});
-	
-		win.add(b);
-		win.add(friend_button);
-		win.open();
+	tableview.addEventListener('click', function(e) {
+		App.action(self.win, "followings#show", { id : e.rowData.id});	
 	});
 
 
-	win.add(tableview);
-	Layouts.replaceContent(win);	
+	self.win.add(tableview);
+	Layouts.replaceContent(self.win);	
 };

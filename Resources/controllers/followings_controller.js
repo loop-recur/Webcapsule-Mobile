@@ -2,11 +2,11 @@ Controllers.followings = {
 	db: Db("followings"),
 
 	index: function(view, params) {
-		this.db.all(view, params);
+		this.db.all(function(users) { view.render(users); }, params);
 	},
 		
-	show: function(view, id) {
-		this.db.find(id, view);
+	show: function(view, params) {
+		this.db.find(params.id, function(user) { view.render(user); });
 	},
 	
 	create: function(view, id) {
