@@ -21,7 +21,7 @@ var done_button = Titanium.UI.createButton({
 });
 
 done_button.addEventListener('click', function() {
-	win.close();
+	win.close({opacity:0, duration:500});
 });
 
 win.add(done_button);
