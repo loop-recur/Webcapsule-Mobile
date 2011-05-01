@@ -64,15 +64,7 @@ Views.stories._form.template = function() {
 	});
 	
 	tag_friends_button.addEventListener('click', function() {
-		
-		var tag_friends_win = Titanium.UI.createWindow({
-			opacity:.9,
-			backgroundColor:'black',
-			url:'layouts/add_tag.js'
-		});
-
-		tag_friends_win.open({fullscreen:true});
-		
+		App.action(overlay, "tags#init");
 	});
 	
 	var location_button = Titanium.UI.createButton({

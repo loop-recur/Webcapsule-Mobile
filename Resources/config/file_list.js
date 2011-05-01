@@ -1,5 +1,6 @@
 FileList = [
 	"controllers/stories_controller.js",
+	"controllers/tags_controller.js",
 	"controllers/user_sessions_controller.js",
 	"controllers/followings_controller.js",
 	"layouts/site.js",	
@@ -14,5 +15,6 @@ FileList = [
 	"views/stories/init.js",
 	"views/stories/create.js",
 	"views/followings/show.js",
-	"views/followings/index.js"
+	"views/followings/index.js",
+	"views/tags/init.js"
 ];
