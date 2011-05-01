@@ -1,10 +1,4 @@
-Views.followings.show = {
-	render : function(source, params) {
-		this.source = source;
-		this.params = params;
-		this.template();
-	}
-};
+Views.followings.show = Views.extend();
 
 Views.followings.show.template = function() {
 	var self = this;

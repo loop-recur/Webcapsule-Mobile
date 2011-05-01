@@ -1,10 +1,4 @@
-Views.stories.create = {
-	render : function(source, params) {
-		this.source = source;
-		this.params = params;
-		this.template();
-	}
-};
+Views.stories.create = Views.extend();
 
 Views.stories.create.template = function() {
 	var self = this;

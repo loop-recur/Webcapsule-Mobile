@@ -1,10 +1,4 @@
-Views.stories._form = {
-	render : function(source, params) {
-		this.source = source;
-		this.params = params;
-		this.template();
-	}
-};
+Views.stories._form = Views.extend();
 
 Views.stories._form.template = function() {
 	var self = this;

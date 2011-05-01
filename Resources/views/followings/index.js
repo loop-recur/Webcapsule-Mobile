@@ -1,10 +1,4 @@
-Views.followings.index = {
-	render : function(source, params) {
-		this.source = source;
-		this.params = params;
-		this.template();
-	}
-};
+Views.followings.index = Views.extend();
 
 Views.followings.index.template = function() {
 	var self = this;

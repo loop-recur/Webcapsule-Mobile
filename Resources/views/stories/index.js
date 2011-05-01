@@ -1,9 +1,4 @@
-Views.stories.index = {
-	render : function(stories) {
-		this.source = stories;
-		this.template();
-	}
-};
+Views.stories.index = Views.extend();
 
 Views.stories.index.template = function() {
 	var self = this;

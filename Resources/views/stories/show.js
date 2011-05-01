@@ -1,15 +1,8 @@
-Views.stories.show = {
-	render : function(source, params) {
-		this.source = source;
-		this.params = params;
-		this.template();
-	}
-};
+Views.stories.show = Views.extend();
 
 Views.stories.show.template = function() {
 	var self = this;
-	
-	self.win = Titanium.UI.createWindow({ title:'Story', backgroundColor:'#fff' });
+	var win = Titanium.UI.createWindow({ title:'Story', backgroundColor:'#fff' });
 
 	var story_label = Titanium.UI.createLabel({
 		text: self.source.name,
@@ -18,7 +11,7 @@ Views.stories.show.template = function() {
 		textAlign:'center'
 	});
 	
-	var b = Titanium.UI.createButton({
+	var close_button = Titanium.UI.createButton({
 		title:'Close',
 		height:30,
 		width:150,
@@ -26,11 +19,11 @@ Views.stories.show.template = function() {
 		right:0
 	});
 	
-	b.addEventListener('click', function() { self.win.close(); });
+	close_button.addEventListener('click', function() { win.close(); });
 
-	self.win.add(b);
-	self.win.open();
+	win.add(close_button);
+	win.open();
 	
 
-	self.win.add(story_label);	
+	win.add(story_label);	
 };
