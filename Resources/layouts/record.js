@@ -12,7 +12,9 @@ Layouts.record = function() {
 	});
 
 	close_btn.addEventListener('click', function() {
+		Ti.Media.hideCamera();
 		win.close();
+		Layouts.stories();
 	});
 		
 	overlay.add(close_btn);
