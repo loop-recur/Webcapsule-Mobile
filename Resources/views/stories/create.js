@@ -32,5 +32,5 @@ Views.stories.create.template = function() {
 	
 	Views.stories._form.render(self.source, {win: self.win});
 	
-	progress.show();
+	self.params.progress.show();
 };
