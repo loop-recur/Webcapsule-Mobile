@@ -16,5 +16,6 @@ FileList = [
 	"views/stories/create.js",
 	"views/followings/show.js",
 	"views/followings/index.js",
-	"views/tags/init.js"
+	"views/tags/init.js",
+	"views/tags/create.js",
 ];

@@ -14,7 +14,7 @@ Views.tags.init.template = function() {
 	});
 
 	// needs real scroll
-	var scroll_view = Ti.UI.createView({
+	var founds_tags_view = Ti.UI.createView({
 		top : 140,
 		height:100,
 		width: 300
@@ -53,25 +53,36 @@ Views.tags.init.template = function() {
 	tag_tray.add(done_button);
 
 	win.add(tag_tray);
-	win.add(scroll_view);
+	win.add(founds_tags_view);
 
 	win.open();
 	
 	function updateFriends() {
-		Functional.reduce(makeFriends, 10, self.source);
+		Functional.reduce(makeFriends, 10, foundFriends());
 	};
 	
-	function makeFriends(n, friend) {
+	function foundFriends() {
+		return self.source;
+		var val = name.value.toString();
+		return Functional.select('x y -> y.match(x)'.lambda().partial(val), self.source);
+	};
+	
+	function makeFriends(position, friend) {
 		var image = Titanium.UI.createImageView({
 			image:friend.image,
 			defaultImage:'images/avatar_medium.jpg',
 			top:0,
-			left: n,
+			left: position,
 			width:50,
 			height:50
 		});
-		scroll_view.add(image);
-		return n+60;
+		
+		image.addEventListener('click', function() {
+			App.action(win, "tags#create", {friend : friend});
+		});
+		
+		founds_tags_view.add(image);
+		return position+60;
 	}
 
 };
