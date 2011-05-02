@@ -17,12 +17,13 @@ Views.stories.create.template = function() {
 		backgroundImage:"images/postrecord/return.png",
 		height:36,
 		width:38,
-		top:3,
-		left:3
+		top:180,
+		left:0
 	});
-
+	
 	close_btn.addEventListener('click', function() {
 		self.win.close();
+		Layouts.stories();
 	});
 
 	self.win.add(activeMovie);
