@@ -12,7 +12,7 @@ Views.tags.init.template = function() {
 		height:317,
 		backgroundImage:'images/add_tag/tag_friends_tray.png'
 	});
-	
+
 	// needs real scroll
 	var scroll_view = Ti.UI.createView({
 		top : 140,
@@ -73,4 +73,5 @@ Views.tags.init.template = function() {
 		scroll_view.add(image);
 		return n+60;
 	}
+
 };
