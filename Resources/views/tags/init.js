@@ -25,6 +25,22 @@ Views.tags.init.template = function() {
 	    keyboardType:Titanium.UI.KEYBOARD_DEFAULT,  
 	    returnKeyType:Titanium.UI.RETURNKEY_DONE
 	});
+	
+	name.addEventListener('change', function() {
+		if(name.value.length <= 3) return true;
+		
+		App.action(win, 'tags#index', {
+			search : name.value,
+			success : function(updated) {
+				self.source = updated;
+				update_people();
+			}
+		});
+	});
+	
+	function update_people() {
+		alert(self.source);
+	};
 
 	var done_button = Titanium.UI.createButton({  
 	    value:false,
