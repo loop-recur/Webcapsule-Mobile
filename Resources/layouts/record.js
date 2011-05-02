@@ -7,8 +7,8 @@ Layouts.record = function() {
 		backgroundImage:"images/postrecord/return.png",
 		height:36,
 		width:38,
-		top:3,
-		left:3
+		top:180,
+		left:0
 	});
 
 	close_btn.addEventListener('click', function() {
@@ -42,8 +42,8 @@ Layouts.record = function() {
 	var camera_flash = Ti.UI.createButton({
 		color:'#fff',
 		title:"auto",
-		right:20,
-		top:60,
+		left:20,
+		top:20,
 		height:40,
 		width:80,
 		backgroundImage:"images/record/BUTT_drk_on.png",
@@ -52,12 +52,12 @@ Layouts.record = function() {
 	
 	var camera_type = Ti.UI.createButton({
 		color:'#fff',
-		title:"front",
+		value:false,
 		top:20,
 		right:20,
 		height:40,
-		width:80,
-		backgroundImage:"images/record/BUTT_drk_on.png",
+		width:68,
+		backgroundImage:"images/postrecord/rotate_cameras.png",
 		font:{fontSize:16,fontWeight:'bold',fontFamily:'Helvetica Neue'}
 	});
 
@@ -86,21 +86,20 @@ Layouts.record = function() {
 	var cameras = Ti.Media.availableCameras;
 	for (var c=0;c<cameras.length;c++)
 	{
-		// if we have a rear camera ... we add switch button
 		if (cameras[c]==Ti.Media.CAMERA_REAR)
 		{
-			win.add(camera_type);
+			overlay.add(camera_type);
 
 			camera_type.addEventListener('click',function()
 			{
 				if (Ti.Media.camera == Ti.Media.CAMERA_FRONT)
 				{
-					camera_type.title = "rear";
+					// camera_type.title = "rear";
 					Ti.Media.switchCamera(Ti.Media.CAMERA_REAR);
 				}
 				else
 				{
-					camera_type.title = "front";
+					// camera_type.title = "front";
 					Ti.Media.switchCamera(Ti.Media.CAMERA_FRONT);
 				}
 			});
