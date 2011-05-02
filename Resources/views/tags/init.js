@@ -12,6 +12,13 @@ Views.tags.init.template = function() {
 		height:317,
 		backgroundImage:'images/add_tag/tag_friends_tray.png'
 	});
+	
+	// needs real scroll
+	var scroll_view = Ti.UI.createView({
+		top : 140,
+		height:100,
+		width: 300
+	});
 
 	var name = Titanium.UI.createTextField({  
 	    color:'#303030',
@@ -27,20 +34,8 @@ Views.tags.init.template = function() {
 	});
 	
 	name.addEventListener('change', function() {
-		if(name.value.length <= 3) return true;
-		
-		App.action(win, 'tags#index', {
-			search : name.value,
-			success : function(updated) {
-				self.source = updated;
-				update_people();
-			}
-		});
+		if(name.value.length >= 3) updateFriends();
 	});
-	
-	function update_people() {
-		alert(self.source);
-	};
 
 	var done_button = Titanium.UI.createButton({  
 	    value:false,
@@ -58,6 +53,24 @@ Views.tags.init.template = function() {
 	tag_tray.add(done_button);
 
 	win.add(tag_tray);
+	win.add(scroll_view);
 
 	win.open();
+	
+	function updateFriends() {
+		Functional.reduce(makeFriends, 10, self.source);
+	};
+	
+	function makeFriends(n, friend) {
+		var image = Titanium.UI.createImageView({
+			image:friend.image,
+			defaultImage:'images/avatar_medium.jpg',
+			top:0,
+			left: n,
+			width:50,
+			height:50
+		});
+		scroll_view.add(image);
+		return n+60;
+	}
 };
