@@ -98,16 +98,8 @@ Views.stories._form.template = function() {
 	});
 	
 	add_photos_button.addEventListener('click', function() {
-		
-		var add_photos_win = Titanium.UI.createWindow({
-			opacity:0.9,
-			backgroundColor:'black',
-			url:'layouts/add_photo.js'
-		});
-
-		add_photos_win.open({fullscreen:true});
-	});
-	
+		App.action(overlay, "photos#init");
+	});	
 
 	var add_date_button = Titanium.UI.createButton({
 		value:false,

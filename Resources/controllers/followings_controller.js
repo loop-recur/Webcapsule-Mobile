@@ -10,10 +10,11 @@ Controllers.followings = {
 	},
 	
 	create: function(view, id) {
-
+		
 	},
 	
 	destroy: function(view, id) {
+		
 	}
 	
 };

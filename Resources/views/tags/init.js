@@ -13,13 +13,6 @@ Views.tags.init.template = function() {
 		backgroundImage:'images/add_tag/tag_friends_tray.png'
 	});
 
-	// needs real scroll
-	var founds_tags_view = Ti.UI.createView({
-		top : 140,
-		height:100,
-		width: 300
-	});
-
 	var name = Titanium.UI.createTextField({  
 	    color:'#303030',
 			backgroundColor:'#d6d6d6',
@@ -34,7 +27,7 @@ Views.tags.init.template = function() {
 	});
 	
 	name.addEventListener('change', function() {
-		if(name.value.length >= 3) updateFriends();
+		if(name.value.length >= 1) { update() };
 	});
 
 	var done_button = Titanium.UI.createButton({  
@@ -53,21 +46,49 @@ Views.tags.init.template = function() {
 	tag_tray.add(done_button);
 
 	win.add(tag_tray);
-	win.add(founds_tags_view);
-
+	win.add(makeView());
+	
 	win.open();
 	
-	function updateFriends() {
-		Functional.reduce(makeFriends, 10, foundFriends());
+	var storys_tags = function() {
+		var tag_ids = Views.stories._form.source.tag_ids || "";
+		var ids = tag_ids.split(',');
+		var getTags = function(id){ self.source.id == id; };
+		Functional.select(getTags, ids);
+	}();
+	
+	Views.tags.create.win = win;
+	Views.tags.create.render(storys_tags);
+	
+	function makeView() {
+		self.view = Ti.UI.createView({
+			top : 140,
+			height:100,
+			width: 300
+		});
+		return self.view;
+	};
+	
+	function update() {
+		win.remove(self.view);
+		win.add(makeView());
+		makeFriends();
+	};
+	
+	function makeFriends() {
+		Functional.reduce(makeFriend, 10, foundFriends());
 	};
 	
 	function foundFriends() {
-		return self.source;
-		var val = name.value.toString();
-		return Functional.select('x y -> y.match(x)'.lambda().partial(val), self.source);
+		var matches = function(tag) {
+			if(!tag.label){ tag.label = ""; };
+			var label = (tag.label || "");
+			return (label.toLowerCase().indexOf(name.value) != -1);
+		};
+		return Functional.select(matches, self.source);
 	};
 	
-	function makeFriends(position, friend) {
+	function makeFriend(position, friend) {
 		var image = Titanium.UI.createImageView({
 			image:friend.image,
 			defaultImage:'images/avatar_medium.jpg',
@@ -81,7 +102,7 @@ Views.tags.init.template = function() {
 			App.action(win, "tags#create", {friend : friend});
 		});
 		
-		founds_tags_view.add(image);
+		self.view.add(image);
 		return position+60;
 	}
 

@@ -1,6 +1,6 @@
-Views.tags.create = Views.extend();
+Views.photos.create = Views.extend();
 
-Views.tags.create.template = function() {
+Views.photos.create.template = function() {
 	var self = this;
 	
 	update();
@@ -8,24 +8,24 @@ Views.tags.create.template = function() {
 	function update() {
 		if(self.view) self.win.remove(self.view);
 		self.win.add(makeView());
-		makeFriends();
+		makePhotos();
 	};
 	
 	function makeView() {
 		// needs real scroll
 		self.view = Ti.UI.createView({
-			top : 240,
-			height:70,
+			top : 130,
+			height:140,
 			width: 300
 		});
 		return self.view;
 	}
 	
-	function makeFriends(position, friend) {
-		Functional.reduce(makeFriend, 10, self.source);
+	function makePhotos(position, photo) {
+		Functional.reduce(makePhoto, 10, self.source);
 	}
 	
-	function makeFriend(position, friend) {
+	function makePhoto(position, photo) {
 		
 		var thumb = Ti.UI.createView({
 			top:0,
@@ -35,7 +35,7 @@ Views.tags.create.template = function() {
 		});
 		
 		var image = Titanium.UI.createImageView({
-			image:friend.image,
+			image: (photo.upload || App.file_url+photo.url),
 			defaultImage:'images/avatar_medium.jpg',
 			top:0,
 			left: 0,
@@ -52,7 +52,7 @@ Views.tags.create.template = function() {
 		});
 				
 		delete_button.addEventListener('click', function() {
-			App.action(self.view, "tags#destroy", {friend : friend});
+			App.action(self.view, "photos#destroy", {photo : photo});
 			update();
 		});
 		
@@ -60,6 +60,6 @@ Views.tags.create.template = function() {
 		thumb.add(delete_button);
 		self.view.add(thumb);
 		return position+70;
-	}
+	};
 	
 };
