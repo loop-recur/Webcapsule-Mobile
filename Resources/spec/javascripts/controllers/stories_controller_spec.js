@@ -96,15 +96,26 @@ describe("StoriesController", function() {
 		describe("valid", function() {
 		  beforeEach(function() {
 				story = {name: "some name"};
-				Controllers.stories.db.save = jasmine.createSpy();
+				response = {name: "blah", id : 1}
+				Views.stories = {_form : { source : story} };
+				Controllers.stories.db.save  = jasmine.createSpy().andCallFake(function(obj, callbacks){ callbacks.success(response); });
 				fakeSuccess = jasmine.createSpy("success");
 				fakeError = jasmine.createSpy("error");
 				Controllers.stories.update(view, {story: {name: "blah"}, success : fakeSuccess, error : fakeError});
 		  });
+		
+			it("updates the form's source", function() {
+			  expect(Views.stories._form.source).toEqual({name: "blah", id : 1});
+			});
 
 			it("calls save with the callbacks from the params", function() {
-			  expect(Controllers.stories.db.save).toHaveBeenCalledWith({name: "blah"}, {success : fakeSuccess, error : fakeError});
+			  expect(Controllers.stories.db.save).toHaveBeenCalledWith({name: "blah"}, {success : jasmine.any(Function), error : fakeError});
 			});
+			
+			it("calls success", function() {
+			  expect(fakeSuccess).toHaveBeenCalled();
+			});
+			
 		});
 	});
 });
