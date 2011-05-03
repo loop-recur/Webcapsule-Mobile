@@ -61,7 +61,7 @@ Views.photos.init.template = function() {
 	photo_tray.add(choose_existing);
 
 	win.add(photo_tray);
-	win.open();	
+	win.open({fullscreen: true});	
 
 	Views.photos.create.win = win;
 	Views.photos.create.render();

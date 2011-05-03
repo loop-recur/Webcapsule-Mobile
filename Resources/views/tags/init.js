@@ -48,17 +48,10 @@ Views.tags.init.template = function() {
 	win.add(tag_tray);
 	win.add(makeView());
 	
-	win.open();
-	
-	var storys_tags = function() {
-		var tag_ids = Views.stories._form.source.tag_ids || "";
-		var ids = tag_ids.split(',');
-		var getTags = function(id){ self.source.id == id; };
-		Functional.select(getTags, ids);
-	}();
+	win.open({fullscreen: true});
 	
 	Views.tags.create.win = win;
-	Views.tags.create.render(storys_tags);
+	Views.tags.create.render();
 	
 	function makeView() {
 		self.view = Ti.UI.createView({

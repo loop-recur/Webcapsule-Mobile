@@ -7,22 +7,22 @@ Views.tags.create.template = function() {
 	
 	function update() {
 		if(self.view) self.win.remove(self.view);
-		self.win.add(makeView());
+		self.view = makeView();
+		self.win.add(self.view);
 		makeFriends();
 	};
 	
 	function makeView() {
 		// needs real scroll
-		self.view = Ti.UI.createView({
+		return Ti.UI.createView({
 			top : 240,
 			height:70,
 			width: 300
 		});
-		return self.view;
 	}
 	
 	function makeFriends(position, friend) {
-		Functional.reduce(makeFriend, 10, self.source);
+		Functional.reduce(makeFriend, 10, (self.source || []));
 	}
 	
 	function makeFriend(position, friend) {

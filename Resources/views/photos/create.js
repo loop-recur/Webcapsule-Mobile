@@ -7,26 +7,25 @@ Views.photos.create.template = function() {
 	
 	function update() {
 		if(self.view) self.win.remove(self.view);
-		self.win.add(makeView());
+		self.view = makeView();
+		self.win.add(self.view);
 		makePhotos();
 	};
 	
 	function makeView() {
 		// needs real scroll
-		self.view = Ti.UI.createView({
+		 return Ti.UI.createView({
 			top : 130,
 			height:140,
 			width: 300
 		});
-		return self.view;
 	}
 	
 	function makePhotos(position, photo) {
-		Functional.reduce(makePhoto, 10, self.source);
+		Functional.reduce(makePhoto, 10, (self.source || []));
 	}
 	
 	function makePhoto(position, photo) {
-		
 		var thumb = Ti.UI.createView({
 			top:0,
 			left:position,
@@ -35,7 +34,7 @@ Views.photos.create.template = function() {
 		});
 		
 		var image = Titanium.UI.createImageView({
-			image: (photo.upload || App.file_url+photo.url),
+			image: photo.upload,
 			defaultImage:'images/avatar_medium.jpg',
 			top:0,
 			left: 0,
