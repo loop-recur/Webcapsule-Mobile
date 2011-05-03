@@ -31,7 +31,10 @@ Controllers.stories = {
 	update: function(view, params) {
 		var story = params.story;
 		this.db.save(story, {
-			success: params.success,
+			success: function(updated_story){
+				Views.stories._form.source = updated_story;
+				if(params.success) params.success();
+			},
 			error: params.error
 		});
 	}

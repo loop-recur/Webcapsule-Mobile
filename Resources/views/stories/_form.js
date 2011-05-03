@@ -2,6 +2,7 @@ Views.stories._form = Views.extend();
 
 Views.stories._form.template = function() {
 	var self = this;
+	var story = self.source;
 	
 	var overlay = Titanium.UI.createView({bottom: 0, height: 245, zIndex:10});
 
@@ -112,15 +113,7 @@ Views.stories._form.template = function() {
 	});
 	
 	add_date_button.addEventListener('click', function() {
-		
-		var date_win = Titanium.UI.createWindow({
-			opacity:0.9,
-			backgroundColor:'black',
-			url:'layouts/add_date.js'
-		});
-
-		date_win.open({fullscreen:true});
-		
+		Layouts.pick_date(story);
 	});
 	
 	var save_button = Titanium.UI.createButton({
@@ -148,14 +141,13 @@ Views.stories._form.template = function() {
 		saving_label.visible = true;
 		saving_label.animate({right:10, duration:700});
 		save_button.visible = false;
-		self.source.name = story_title_field.value;
+		story.name = story_title_field.value;
 		
 		App.action(overlay, 'stories#update', {
-			story : self.source,
-			success : function(updated) {
+			story : story,
+			success : function() {
 				save_button.visible = true;
 				saving_label.visible = false;
-				self.source = updated;
 			},
 			error : function(errors) {
 				alert(errors);
