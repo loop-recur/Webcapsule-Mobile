@@ -27,7 +27,7 @@ Views.tags.init.template = function() {
 	});
 	
 	name.addEventListener('change', function() {
-		if(name.value.length >= 1) { update() };
+		if(name.value.length >= 1) { update(); };
 	});
 
 	var done_button = Titanium.UI.createButton({  

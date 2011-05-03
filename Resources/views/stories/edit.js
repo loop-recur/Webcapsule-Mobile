@@ -2,7 +2,7 @@ Views.stories.edit = Views.extend();
 
 Views.stories.edit.template = function() {
 	var self = this;
-
+	
 	var activeMovie = Titanium.Media.createVideoPlayer({
 		media:self.source.upload,
 		backgroundColor:'#111',
