@@ -8,9 +8,9 @@ Views.stories._form.template = function() {
 	var overlay = Titanium.UI.createView({bottom: 0, height: 245, zIndex:10});
 
 	var functionality_view = Titanium.UI.createView({
-		height:247,
+		height:193,
 		width:320,
-		bottom:-191
+		bottom:-137
 	});
 	
 	var edit_details_btn = Titanium.UI.createButton({
@@ -24,7 +24,7 @@ Views.stories._form.template = function() {
 	
 	var tray = Titanium.UI.createView({
 		backgroundImage:'images/postrecord/edit_details_drawer.png',
-		height:191,
+		height:137,
 		width:320,
 		bottom:0
 	});
@@ -47,7 +47,7 @@ Views.stories._form.template = function() {
 	
 	story_title_field.addEventListener('focus', function()
 	{			
-		functionality_view.animate({bottom:75, duration:250});
+		functionality_view.animate({bottom:129, duration:250});
 	});
 
 	story_title_field.addEventListener('blur', function()
@@ -58,7 +58,7 @@ Views.stories._form.template = function() {
 	var tag_friends_button = Titanium.UI.createButton({
 		value:false,
 		top:64,
-		left: 20,
+		left: 8,
 		height:56,
 		width:55,
 		backgroundImage:'images/postrecord/tag_normal.png',
@@ -72,7 +72,7 @@ Views.stories._form.template = function() {
 	var location_button = Titanium.UI.createButton({
 		value:false,
 		top:64,
-		left: 94,
+		left: 71,
 		height:56,
 		width:55,
 		backgroundImage:'images/postrecord/location_normal.png',
@@ -92,7 +92,7 @@ Views.stories._form.template = function() {
 	var add_photos_button = Titanium.UI.createButton({
 		value:false,
 		top:64,
-		right: 94,
+		right: 133,
 		height:56,
 		width:55,
 		backgroundImage:'images/postrecord/addphotos_normal.png',
@@ -106,7 +106,7 @@ Views.stories._form.template = function() {
 	var add_date_button = Titanium.UI.createButton({
 		value:false,
 		top:64,
-		right: 20,
+		right: 71,
 		height:56,
 		width:55,
 		backgroundImage:'images/postrecord/date_normal.png',
@@ -115,6 +115,20 @@ Views.stories._form.template = function() {
 	
 	add_date_button.addEventListener('click', function() {
 		Layouts.pick_date(story);
+	});
+	
+	var share_button = Titanium.UI.createButton({
+		value:false,
+		top:64,
+		right: 8,
+		height:54,
+		width:53,
+		backgroundImage:'images/postrecord/share_normal.png',
+		backgroundSelectedImage:'images/postrecord/share_pressed.png'
+	});
+	
+	share_button.addEventListener('click', function() {
+		
 	});
 	
 	var save_button = Titanium.UI.createButton({
@@ -164,7 +178,7 @@ Views.stories._form.template = function() {
 
 	edit_details_btn.addEventListener('click', function() {
 		if(edit_details_btn.backgroundImage === 'images/postrecord/edit_details_normal.png') {
-				functionality_view.animate({bottom:-191, duration:500});
+				functionality_view.animate({bottom:-137, duration:500});
 				edit_details_btn.backgroundImage = 'images/postrecord/edit_details_pressed.png';
 				edit_details_btn.backgroundSelectedImage = 'images/postrecord/edit_details_normal.png';
 			} else {
@@ -179,6 +193,7 @@ Views.stories._form.template = function() {
 	tray.add(location_button);
 	tray.add(add_photos_button);
 	tray.add(add_date_button);
+	tray.add(share_button);
 	tray.add(save_button);
 	tray.add(saving_label);
 	
