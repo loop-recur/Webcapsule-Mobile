@@ -22,6 +22,70 @@ Views.stories._form.template = function() {
 		left:0
 	});
 	
+	functionality_view.add(edit_details_btn);
+	
+	var start_stop_button = Titanium.UI.createButton({
+		backgroundImage:'images/record/rec_button.png',
+		top:0,
+		width:54,
+		height:52,
+		value:false
+	});
+	
+	start_stop_button.addEventListener('click',function()
+	{
+		Ti.Media.startVideoCapture();
+		start_stop_button.backgroundImage = "images/record/rec_stop_button.png";
+		uploadvid_button.visible = false;
+		accept_button.visible = true;
+		// camera_type.visible = false;
+		// camera_flash.visible = false;
+	});
+	
+	functionality_view.add(start_stop_button);
+	
+	var uploadvid_button = Titanium.UI.createButton({
+		backgroundImage:'images/record/uploadvid_normal.png',
+		backgroundSelectedImage:'images/record/uploadvid_pressed.png',
+		top:0,
+		right:0,
+		width:54,
+		height:52,
+		value:false
+	});
+	
+	uploadvid_button.addEventListener('click',function() {
+		alert("bonjour");
+	});
+	
+	functionality_view.add(uploadvid_button);
+	
+	var accept_button = Titanium.UI.createButton({
+		value:false,
+		top:0,
+		right:0,
+		height:40,
+		width:39,
+		backgroundImage:'images/postrecord/accept_btn.png',
+		backgroundSelectedImage:'images/postrecord/accept_btn_pressed.png',
+		visible:false
+	});
+	
+	functionality_view.add(accept_button);
+	
+	var saving_label = Titanium.UI.createLabel({
+		text:'Saving...',
+		right:-100,
+		top:5,
+		width:100,
+		height:'auto',
+		color:'black',
+		textAlign:'center',
+		visible: false
+	});
+	
+	functionality_view.add(saving_label);
+	
 	var tray = Titanium.UI.createView({
 		backgroundImage:'images/postrecord/edit_details_drawer.png',
 		height:137,
@@ -29,7 +93,6 @@ Views.stories._form.template = function() {
 		bottom:0
 	});
 	
-	functionality_view.add(edit_details_btn);
 	functionality_view.add(tray);
 	
 	var story_title_field = Titanium.UI.createTextField({  
@@ -131,62 +194,6 @@ Views.stories._form.template = function() {
 		
 	});
 	
-	var start_stop_button = Titanium.UI.createButton({
-		backgroundImage:'images/record/rec_button.png',
-		top:0,
-		width:54,
-		height:52,
-		value:false
-	});
-	
-	start_stop_button.addEventListener('click',function()
-	{
-		Ti.Media.startVideoCapture();
-		start_stop_button.backgroundImage = "images/record/rec_stop_button.png";
-		// camera_type.visible = false;
-		// camera_flash.visible = false;
-	});
-	
-	functionality_view.add(start_stop_button);
-	
-	var uploadvid_button = Titanium.UI.createButton({
-		backgroundImage:'images/record/uploadvid_normal.png',
-		backgroundSelectedImage:'images/record/uploadvid_pressed.png',
-		top:0,
-		right:0,
-		width:54,
-		height:52,
-		value:false
-	});
-	
-	uploadvid_button.addEventListener('click',function() {alert("bonjour");});
-	
-	functionality_view.add(uploadvid_button);
-	
-	var accept_button = Titanium.UI.createButton({
-		value:false,
-		top:0,
-		right:0,
-		height:40,
-		width:39,
-		backgroundImage:'images/postrecord/accept_btn.png',
-		backgroundSelectedImage:'images/postrecord/accept_btn_pressed.png',
-		visible:false
-	});
-	
-	functionality_view.add(accept_button);
-	
-	var saving_label = Titanium.UI.createLabel({
-		text:'Saving your story...',
-		right:-150,
-		top:5,
-		width:150,
-		height:'auto',
-		color:'black',
-		textAlign:'center',
-		visible: false
-	});
-	
 	accept_button.addEventListener('click', function() {
 		saving_label.visible = true;
 		saving_label.animate({right:10, duration:700});
@@ -198,7 +205,6 @@ Views.stories._form.template = function() {
 			story : story,
 			success : function(updated) {
 				start_stop_button.visible = false;
-				uploadvid_button.visible = false;
 				accept_button.visible = true;
 				saving_label.visible = false;
 				if(http_options.progress_bar) http_options.progress_bar.hide();
@@ -207,7 +213,6 @@ Views.stories._form.template = function() {
 			error : function(errors) {
 				alert(errors);
 				start_stop_button.visible = false;
-				uploadvid_button.visible = false;
 				accept_button.visible = true;
 				saving_label.visible = false;
 			},
@@ -233,7 +238,6 @@ Views.stories._form.template = function() {
 	tray.add(add_photos_button);
 	tray.add(add_date_button);
 	tray.add(share_button);
-	tray.add(saving_label);
 	
 	overlay.add(functionality_view);
 	win.add(overlay);
