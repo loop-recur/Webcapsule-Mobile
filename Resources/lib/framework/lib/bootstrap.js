@@ -15,7 +15,7 @@ Bootstrap.run = function() {
 	}
 
 	function makeNamespace(name) {
-		var kinds = {"views": Views, "controllers": Controllers, "layouts": Layouts, "config": Config, "lib": Lib};
+		var kinds = {"views": Views, "controllers": Controllers, "layouts": Layouts, "config": Config, "lib": Lib, "helpers": Helpers};
 		var paths = name.split('/');
 		var kind = paths[0];
 		var namespace = paths[1];

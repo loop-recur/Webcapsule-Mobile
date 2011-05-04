@@ -12,6 +12,7 @@
 #
 src_files:
     - support/functional.js
+    - lib/bootstrap.js
     - lib/base.js
     - lib/**/*.js
 

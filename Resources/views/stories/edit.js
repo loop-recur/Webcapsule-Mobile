@@ -1,9 +1,7 @@
-Views.stories.create = Views.extend();
+Views.stories.edit = Views.extend();
 
-Views.stories.create.template = function() {
+Views.stories.edit.template = function() {
 	var self = this;
-	
-	Ti.Media.hideCamera();
 
 	var activeMovie = Titanium.Media.createVideoPlayer({
 		media:self.source.upload,
@@ -28,9 +26,6 @@ Views.stories.create.template = function() {
 
 	self.win.add(activeMovie);
 	self.win.add(close_btn);
-	self.win.add(self.params.progress);
 	
 	Views.stories._form.render(self.source, {win: self.win});
-	
-	self.params.progress.show();
 };

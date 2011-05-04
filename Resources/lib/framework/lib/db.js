@@ -75,12 +75,8 @@ Db = function(name) {
 
 	function getPath(id) {
 		var base_path = "/"+name;
-		if(id && !isTempId(id)) base_path = base_path +"/"+id;
+		if(id && !TempId.isTemp(id)) base_path = base_path +"/"+id;
 		return base_path+".json";
-	};
-	
-	function isTempId(id) {
-		return id.toString().match(/^temp/i);
 	};
 	
 	function callApi(method, path, callbacks, params, options) {

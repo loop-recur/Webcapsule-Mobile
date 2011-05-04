@@ -26,3 +26,9 @@ Ti = {
 	Utils: {md5HexDigest:function(){ return "123"; }},
 };
 
+function stubDb(response) {
+	return jasmine.createSpy().andCallFake(function(obj, callbacks){
+		if(callbacks && callbacks.success) callbacks.success(response);
+		if(callbacks && callbacks.error) callbacks.error(response);
+	});
+};

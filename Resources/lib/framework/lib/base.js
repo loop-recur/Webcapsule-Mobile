@@ -5,3 +5,4 @@ LoopRecur = {};
 Controllers = {};
 Config = {};
 Lib = {};
+Helpers = {};

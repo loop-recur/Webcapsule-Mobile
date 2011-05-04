@@ -4,6 +4,7 @@ Views.stories._form.template = function() {
 	var self = this;
 	var story = self.source;
 	
+	var win = self.params.win;
 	var overlay = Titanium.UI.createView({bottom: 0, height: 245, zIndex:10});
 
 	var functionality_view = Titanium.UI.createView({
@@ -142,18 +143,22 @@ Views.stories._form.template = function() {
 		saving_label.animate({right:10, duration:700});
 		save_button.visible = false;
 		story.name = story_title_field.value;
+		var http_options = getHttpOptions();
 		
 		App.action(overlay, 'stories#update', {
 			story : story,
-			success : function() {
+			success : function(updated) {
 				save_button.visible = true;
 				saving_label.visible = false;
+				if(http_options.progress_bar) http_options.progress_bar.hide();
+				story = updated; // TODO: don't know this is necessary, but it is.
 			},
 			error : function(errors) {
 				alert(errors);
 				save_button.visible = true;
 				saving_label.visible = false;
-			}
+			},
+			http_options : http_options
 		});
 	});
 
@@ -178,5 +183,16 @@ Views.stories._form.template = function() {
 	tray.add(saving_label);
 	
 	overlay.add(functionality_view);
-	self.params.win.add(overlay);
+	win.add(overlay);
+	
+	function getHttpOptions() {
+		return (TempId.isTemp(story.id) && story.upload) ? makeProgressBar() : {};
+	};
+	
+	function makeProgressBar() {
+		var progress_bar = Helpers.ui.progressBar();
+		progress_bar.show();
+		win.add(progress_bar);
+		return {progress_bar : progress_bar};
+	}
 };

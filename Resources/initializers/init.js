@@ -1,4 +1,5 @@
 Titanium.include('lib/framework/support/functional.js');
+Titanium.include('lib/framework/support/temp_id.js');
 Titanium.include('lib/framework/lib/base.js');
 Titanium.include('lib/framework/lib/bootstrap.js');
 Titanium.include('lib/framework/lib/app.js');

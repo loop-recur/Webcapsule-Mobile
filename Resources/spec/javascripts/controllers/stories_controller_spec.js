@@ -56,6 +56,7 @@ describe("StoriesController", function() {
 	
 	describe("init", function() {
 		beforeEach(function() {
+			TempId = { generate : function() { return "temp-123"; }};
 			Controllers.stories.init(view, {overlay : true});
 		});
 		
@@ -65,57 +66,67 @@ describe("StoriesController", function() {
 	});
 	
 	
-	describe("create", function() {
+	describe("edit", function() {
 		describe("valid", function() {
 		  beforeEach(function() {
 				Views.stories = {_form : {} };
 				Controllers.stories.db.save = jasmine.createSpy().andCallFake(function(obj, fun){ fun(response); });
-				bar = {hide: jasmine.createSpy()};
-				Controllers.stories.create(view, {story: {upload: "fake upload"}, progress:bar});
+				Controllers.stories.edit(view, {story: {upload: "fake upload"}});
 		  });
-
-			it("calls save", function() {
-			  expect(Controllers.stories.db.save).toHaveBeenCalledWith({upload: "fake upload"}, jasmine.any(Function), {progress_bar: bar});
-			});
-			
-			it("updates the source of the form when complete", function() {
-			  expect(Views.stories._form.source).toEqual({title: "Yo"});
-			});
-						
-			it("hides the progress bar", function() {
-			  expect(bar.hide).toHaveBeenCalled();
-			});
 			
 			it("renders the view", function() {
-			  expect(view.render).toHaveBeenCalledWith({upload: "fake upload"}, { progress : bar});
+			  expect(view.render).toHaveBeenCalledWith({upload: "fake upload"});
 			});
 		});
 	});
 	
 	describe("update", function() {
+		beforeEach(function() {
+		  story = {name: "some name"};
+			response = {name: "blah", id : 1}
+			Views.stories = {_form : { source : story} };
+			Controllers.stories.db.save = stubDb(response);
+		});
+		
 		describe("valid", function() {
+			var fakeSuccess;
+			
 		  beforeEach(function() {
-				story = {name: "some name"};
-				response = {name: "blah", id : 1}
-				Views.stories = {_form : { source : story} };
-				Controllers.stories.db.save  = jasmine.createSpy().andCallFake(function(obj, callbacks){ callbacks.success(response); });
 				fakeSuccess = jasmine.createSpy("success");
-				fakeError = jasmine.createSpy("error");
-				Controllers.stories.update(view, {story: {name: "blah"}, success : fakeSuccess, error : fakeError});
 		  });
 		
 			it("updates the form's source", function() {
+				Controllers.stories.update(view, {story: {name: "blah"}, success : fakeSuccess});
 			  expect(Views.stories._form.source).toEqual({name: "blah", id : 1});
 			});
 
-			it("calls save with the callbacks from the params", function() {
-			  expect(Controllers.stories.db.save).toHaveBeenCalledWith({name: "blah"}, {success : jasmine.any(Function), error : fakeError});
+			it("calls save", function() {
+				Controllers.stories.update(view, {story: {name: "blah"}});
+			  expect(Controllers.stories.db.save).toHaveBeenCalledWith({name: "blah"}, {success : jasmine.any(Function), error : undefined}, {});
 			});
 			
-			it("calls success", function() {
+			it("calls success if there is one", function() {
+				Controllers.stories.update(view, {story: {name: "blah"}, success : fakeSuccess});
 			  expect(fakeSuccess).toHaveBeenCalled();
 			});
 			
+			it("sets the progress bar if there is one", function() {
+				Controllers.stories.update(view, {story: {name: "blah"}, http_options : {progress_bar:"bar"}});
+				expect(Controllers.stories.db.save).toHaveBeenCalledWith({name: "blah"},{success : jasmine.any(Function), error : undefined}, {progress_bar : "bar"});
+			});
+		});
+		
+		describe("invalid", function() {
+			var fakeError;
+			
+		  beforeEach(function() {
+				fakeError = jasmine.createSpy("error");
+		  });
+		
+			it("calls the error callback if there is one", function() {
+				Controllers.stories.update(view, {story: {name: "blah"}, error : fakeError});
+			 	expect(fakeError).toHaveBeenCalled();
+			});
 		});
 	});
 });

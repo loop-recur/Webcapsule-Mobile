@@ -5,22 +5,12 @@ Controllers.stories = {
 		this.db.all(function(stories){ view.render(stories); }, params);
 	},
 	
-	create: function(view, params) {
-		var story = params.story;
-		var progress = params.progress;
-		
-		this.db.save(story, function(new_story) {
-				progress.hide();
-				Views.stories._form.source = new_story;
-			},
-			{ progress_bar : progress }
-		);
-		view.render(story, {progress : progress});
+	edit: function(view, params) {
+		view.render(params.story);
 	},
 	
 	init: function(view, params) {
-		var date = new Date;
-		var story = {id: "temp-" + Ti.Utils.md5HexDigest(date.toString())};
+		var story = {id: TempId.generate()};
 		view.render(story, params);
 	},
 	
@@ -30,12 +20,13 @@ Controllers.stories = {
 	
 	update: function(view, params) {
 		var story = params.story;
+		
 		this.db.save(story, {
 			success: function(updated_story){
 				Views.stories._form.source = updated_story;
-				if(params.success) params.success();
+				if(params.success) params.success(updated_story);
 			},
 			error: params.error
-		});
+		}, (params.http_options || {}));
 	}
 };
