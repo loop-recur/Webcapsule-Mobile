@@ -131,20 +131,55 @@ Views.stories._form.template = function() {
 		
 	});
 	
-	var save_button = Titanium.UI.createButton({
-		value:false,
-		top:137,
-		right:7,
-		height:44,
-		width:131,
-		backgroundImage:'images/postrecord/save_btn.png',
-		backgroundSelectedImage:'images/postrecord/save_btn_pressed.png'
+	var start_stop_button = Titanium.UI.createButton({
+		backgroundImage:'images/record/rec_button.png',
+		top:0,
+		width:54,
+		height:52,
+		value:false
 	});
+	
+	start_stop_button.addEventListener('click',function()
+	{
+		Ti.Media.startVideoCapture();
+		start_stop_button.backgroundImage = "images/record/rec_stop_button.png";
+		// camera_type.visible = false;
+		// camera_flash.visible = false;
+	});
+	
+	functionality_view.add(start_stop_button);
+	
+	var uploadvid_button = Titanium.UI.createButton({
+		backgroundImage:'images/record/uploadvid_normal.png',
+		backgroundSelectedImage:'images/record/uploadvid_pressed.png',
+		top:0,
+		right:0,
+		width:54,
+		height:52,
+		value:false
+	});
+	
+	uploadvid_button.addEventListener('click',function() {alert("bonjour");});
+	
+	functionality_view.add(uploadvid_button);
+	
+	var accept_button = Titanium.UI.createButton({
+		value:false,
+		top:0,
+		right:0,
+		height:40,
+		width:39,
+		backgroundImage:'images/postrecord/accept_btn.png',
+		backgroundSelectedImage:'images/postrecord/accept_btn_pressed.png',
+		visible:false
+	});
+	
+	functionality_view.add(accept_button);
 	
 	var saving_label = Titanium.UI.createLabel({
 		text:'Saving your story...',
 		right:-150,
-		bottom:25,
+		top:5,
 		width:150,
 		height:'auto',
 		color:'black',
@@ -152,24 +187,28 @@ Views.stories._form.template = function() {
 		visible: false
 	});
 	
-	save_button.addEventListener('click', function() {
+	accept_button.addEventListener('click', function() {
 		saving_label.visible = true;
 		saving_label.animate({right:10, duration:700});
-		save_button.visible = false;
+		accept_button.visible = false;
 		story.name = story_title_field.value;
 		var http_options = getHttpOptions();
 		
 		App.action(overlay, 'stories#update', {
 			story : story,
 			success : function(updated) {
-				save_button.visible = true;
+				start_stop_button.visible = false;
+				uploadvid_button.visible = false;
+				accept_button.visible = true;
 				saving_label.visible = false;
 				if(http_options.progress_bar) http_options.progress_bar.hide();
 				story = updated; // TODO: don't know this is necessary, but it is.
 			},
 			error : function(errors) {
 				alert(errors);
-				save_button.visible = true;
+				start_stop_button.visible = false;
+				uploadvid_button.visible = false;
+				accept_button.visible = true;
 				saving_label.visible = false;
 			},
 			http_options : http_options
@@ -194,7 +233,6 @@ Views.stories._form.template = function() {
 	tray.add(add_photos_button);
 	tray.add(add_date_button);
 	tray.add(share_button);
-	tray.add(save_button);
 	tray.add(saving_label);
 	
 	overlay.add(functionality_view);

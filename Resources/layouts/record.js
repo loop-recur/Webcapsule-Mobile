@@ -19,26 +19,6 @@ Layouts.record = function() {
 		
 	overlay.add(close_btn);
 	
-	var start_stop_button = Titanium.UI.createButton({
-		backgroundImage:'images/record/rec_button.png',
-		top:0,
-		right:0,
-		width:54,
-		height:52,
-		value:false
-	});
-	
-	start_stop_button.addEventListener('click',function()
-	{
-		Ti.Media.startVideoCapture();
-		start_stop_button.backgroundImage = "images/record/rec_stop_button.png";
-		camera_type.visible = false;
-		camera_flash.visible = false;
-	});
-	
-	overlay.add(start_stop_button);
-	
-	
 	var camera_flash = Ti.UI.createButton({
 		color:'#fff',
 		title:"auto",
