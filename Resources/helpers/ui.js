@@ -13,4 +13,4 @@ Helpers.ui.progressBar = function() {
 		font:{fontSize:12, fontWeight:'bold'},
 		color:'black'
 	});	
-}
+};
