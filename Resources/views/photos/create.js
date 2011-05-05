@@ -2,6 +2,7 @@ Views.photos.create = Views.extend();
 
 Views.photos.create.template = function() {
 	var self = this;
+	var photos = self.source || [];
 	
 	update();
 	
@@ -15,14 +16,14 @@ Views.photos.create.template = function() {
 	function makeView() {
 		// needs real scroll
 		 return Ti.UI.createView({
-			top : 130,
+			top : 140,
 			height:140,
 			width: 300
 		});
 	}
 	
 	function makePhotos(position, photo) {
-		Functional.reduce(makePhoto, 10, (self.source || []));
+		Functional.reduce(makePhoto, 10, photos);
 	}
 	
 	function makePhoto(position, photo) {
@@ -34,13 +35,14 @@ Views.photos.create.template = function() {
 		});
 		
 		var image = Titanium.UI.createImageView({
-			image: photo.upload,
 			defaultImage:'images/avatar_medium.jpg',
 			top:0,
 			left: 0,
 			width:50,
 			height:50
 		});
+		
+		image.image = photo.upload || App.file_url+photo.thumb;
 		
 		var delete_button = Titanium.UI.createButton({
 			title:"X",

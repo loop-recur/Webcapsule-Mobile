@@ -33,11 +33,11 @@ describe("PhotosController", function() {
 	
 	describe("init", function() {
 		beforeEach(function() {
-			Controllers.photos.init(view, {});
+			Controllers.photos.init(view, {photos : []});
 		});
 		
 		it("calls the view with a new story that has a temp id", function() {
-			expect(view.render).toHaveBeenCalledWith({id:"temp-123"});
+			expect(view.render).toHaveBeenCalledWith({id:"temp-123"}, {photos : []});
 		});
 	});
 	

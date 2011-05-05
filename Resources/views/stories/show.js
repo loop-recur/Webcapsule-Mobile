@@ -2,28 +2,21 @@ Views.stories.show = Views.extend();
 
 Views.stories.show.template = function() {
 	var self = this;
-	var win = Titanium.UI.createWindow({ title:'Story', backgroundColor:'#fff' });
-
-	var story_label = Titanium.UI.createLabel({
-		text: self.source.name,
-		height:'auto',
-		color:'#616161',
-		textAlign:'center'
-	});
+	var story = self.source;
+	var win = self.win;
+	var player = self.params.player;
 	
-	var close_button = Titanium.UI.createButton({
-		title:'Close',
-		height:30,
-		width:150,
-		top:0,
-		right:0
-	});
+	// TODO: test this on phone.
+	if(story.upload) {
+		player.media = story.upload;
+	} else {
+		player.url = App.file_url+story.video_url;
+	};
+	 
+	player.comments = story.comments;
+	player.photos = story.photos;
 	
-	close_button.addEventListener('click', function() { win.close(); });
-
-	win.add(close_button);
+	Views.stories._show_form.render(story, {win: win});
+	
 	win.open();
-	
-
-	win.add(story_label);	
 };

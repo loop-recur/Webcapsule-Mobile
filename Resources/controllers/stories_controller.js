@@ -15,7 +15,7 @@ Controllers.stories = {
 	},
 	
 	show: function(view, params) {
-		this.db.find(params.id, function(story){ view.render(story); });
+		this.db.find(params.id, function(story){ view.render(story, params); });
 	},
 	
 	update: function(view, params) {

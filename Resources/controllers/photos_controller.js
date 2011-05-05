@@ -19,9 +19,8 @@ Controllers.photos = {
 	},
 
 	init: function(view, params) {
-		var date = new Date;
-		var photo = {id: "temp-" + Ti.Utils.md5HexDigest(date.toString())};
-		view.render(photo);
+		var photo = {id: TempId.generate()};
+		view.render(photo, params);
 	},
 	
 	destroy: function(view, params) {

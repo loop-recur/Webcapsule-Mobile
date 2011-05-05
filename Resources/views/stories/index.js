@@ -116,9 +116,8 @@ Views.stories.index.template = function() {
 		top:40
 	 });
 
-	tableview.addEventListener('click', function(e)
-	{
-		App.action(self.win, "stories#show", {id: e.rowData.id});
+	tableview.addEventListener('click', function(e) {
+		Layouts.story(e.rowData.id);
 	});
 	
 	self.win.add(tableview);

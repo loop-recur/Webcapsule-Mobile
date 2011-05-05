@@ -64,5 +64,5 @@ Views.photos.init.template = function() {
 	win.open({fullscreen: true});	
 
 	Views.photos.create.win = win;
-	Views.photos.create.render();
+	Views.photos.create.render(self.params.photos);
 };

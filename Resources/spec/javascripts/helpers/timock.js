@@ -28,7 +28,11 @@ Ti = {
 
 function stubDb(response) {
 	return jasmine.createSpy().andCallFake(function(obj, callbacks){
-		if(callbacks && callbacks.success) callbacks.success(response);
-		if(callbacks && callbacks.error) callbacks.error(response);
+		if(typeof callbacks == "function") {
+			callbacks(response);
+		} else {
+			callbacks.error ? callbacks.error(response) : callbacks.success(response);
+		};
+		
 	});
 };

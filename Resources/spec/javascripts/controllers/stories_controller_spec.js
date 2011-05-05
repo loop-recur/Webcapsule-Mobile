@@ -83,7 +83,7 @@ describe("StoriesController", function() {
 	describe("update", function() {
 		beforeEach(function() {
 		  story = {name: "some name"};
-			response = {name: "blah", id : 1}
+			response = {name: "blah", id : 1};
 			Views.stories = {_form : { source : story} };
 			Controllers.stories.db.save = stubDb(response);
 		});
