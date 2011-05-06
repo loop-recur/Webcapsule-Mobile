@@ -15,7 +15,6 @@ Views.stories._form.template = function() {
 	
 	var edit_details_btn = Titanium.UI.createButton({
 		backgroundImage:'images/postrecord/edit_details_pressed.png',
-		backgroundSelectedImage:'images/postrecord/edit_details_normal.png',
 		height:56,
 		width:55,
 		top:0,
@@ -35,6 +34,7 @@ Views.stories._form.template = function() {
 	
 	start_stop_button.addEventListener('click',function()
 	{
+		Views.stories._form.toggle_upload(false);
 		Ti.Media.startVideoCapture();
 		start_stop_button.backgroundImage = "images/record/rec_stop_button.png";
 	});
@@ -50,17 +50,17 @@ Views.stories._form.template = function() {
 		backgroundSelectedImage:'images/record/uploadvid_pressed.png',
 		top:0,
 		right:0,
-		width:54,
-		height:52,
+		width:47,
+		height:47,
 		value:false,
 		visible:false
 	});
 	
 	uploadvid_button.addEventListener('click',function() {
-		alert("bonjour");
+		alert("hello, sir");
 	});
 	
-	Views.stories._form.toggle_upload = function (state) {
+	Views.stories._form.toggle_upload = function(state) {
 		uploadvid_button.visible = state;
 	};
 	
@@ -79,8 +79,8 @@ Views.stories._form.template = function() {
 	
 	functionality_view.add(accept_button);
 	
-	Views.stories._form.accept_button_toggle = function (state) {
-		accept_button_toggle.visible = state;
+	Views.stories._form.accept_button_toggle = function(state) {
+		accept_button.visible = state;
 	};
 	
 	var saving_label = Titanium.UI.createLabel({
@@ -230,15 +230,17 @@ Views.stories._form.template = function() {
 
 	edit_details_btn.addEventListener('click', function() {
 		if(edit_details_btn.backgroundImage === 'images/postrecord/edit_details_normal.png') {
-				functionality_view.animate({bottom:-137, duration:500});
 				edit_details_btn.backgroundImage = 'images/postrecord/edit_details_pressed.png';
-				edit_details_btn.backgroundSelectedImage = 'images/postrecord/edit_details_normal.png';
+				functionality_view.animate({bottom:-137, duration:500});
 			} else {
-				functionality_view.animate({bottom:0, duration:500});
 				edit_details_btn.backgroundImage = 'images/postrecord/edit_details_normal.png';
-				edit_details_btn.backgroundSelectedImage = 'images/postrecord/edit_details_pressed.png';
+				functionality_view.animate({bottom:0, duration:500});
 			};
 	});
+	
+	Views.stories._form.accept_button_toggle = function(state) {
+		accept_button.visible = state;
+	};
 	
 	tray.add(story_title_field);
 	tray.add(tag_friends_button);
