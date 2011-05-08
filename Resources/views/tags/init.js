@@ -46,21 +46,24 @@ Views.tags.init.template = function() {
 	tag_tray.add(done_button);
 
 	win.add(tag_tray);
+	
+	function makeView() {
+		self.view = Ti.UI.createScrollableView({
+			contentHeight:100,
+			contentWidth:1000,
+			top:140,
+			height:100,
+			width:300
+		});
+		return self.view;
+	};	
+	
 	win.add(makeView());
 	
 	win.open({fullscreen: true});
 	
 	Views.tags.create.win = win;
 	Views.tags.create.render();
-	
-	function makeView() {
-		self.view = Ti.UI.createView({
-			top : 140,
-			height:100,
-			width: 300
-		});
-		return self.view;
-	};
 	
 	function update() {
 		win.remove(self.view);

@@ -14,10 +14,12 @@ Views.tags.create.template = function() {
 	
 	function makeView() {
 		// needs real scroll
-		return Ti.UI.createView({
-			top : 240,
+		return Ti.UI.createScrollableView({
+			contentHeight:70,
+			contentWidth:1000,
+			top:240,
 			height:70,
-			width: 300
+			width:300
 		});
 	}
 	
