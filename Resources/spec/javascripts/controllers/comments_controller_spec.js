@@ -21,14 +21,13 @@ describe("CommentsController", function() {
 	
 	
 	describe("create", function() {
-		var old_comment, comment, response;
+		var old_comment, comment, response, story;
 		
 		beforeEach(function() {
 			old_comment = {content: "old", story_id : 3, appear_at : 2};
 		  comment = {content: "blah", story_id : 3};
 			response = {content: "blah", appear_at : 1, story_id : 3};
-			story = {comments : [old_comment] };
-			Views.stories = {_form : { source : story }};
+			story = {comments : [old_comment], id : 100 };
 			Controllers.comments.db.save = stubDb(response);
 		});
 		
@@ -38,31 +37,20 @@ describe("CommentsController", function() {
 		  });
 		
 			it("calls save", function() {
-				Controllers.comments.create(view, {comment: comment, success : fakeSuccess});
+				Controllers.comments.create(view, {comment: comment, story : story, success : fakeSuccess});
 			  expect(Controllers.comments.db.save).toHaveBeenCalledWith(comment, jasmine.any(Function));
 			});
 		
 			it("updates the story form's source", function() {
-				Controllers.comments.create(view, {comment: comment, success : fakeSuccess});
-			  expect(Views.stories._form.source.comments).toEqual([old_comment, response]);
+				Controllers.comments.create(view, {comment: comment, story : story, success : fakeSuccess});
+			  expect(story.comments).toEqual([old_comment, response]);
 			});
 			
 			it("calls the success", function() {
+				Controllers.comments.create(view, {comment: comment, story : story, success : fakeSuccess});
 			  expect(fakeSuccess).toHaveBeenCalled();
 			});
 		});
-		
-		describe("invalid", function() {
-			var fakeError;
-			
-		  beforeEach(function() {
-				fakeError = jasmine.createSpy("error");
-		  });
-		
-			it("calls the error callback if there is one", function() {
-				Controllers.comments.create(view, {comment: {name: "blah"}, error : fakeError});
-			 	expect(fakeError).toHaveBeenCalled();
-			});
-		});
+
 	});
 });

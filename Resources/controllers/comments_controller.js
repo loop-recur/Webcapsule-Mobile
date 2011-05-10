@@ -3,9 +3,9 @@ Controllers.comments = {
 
 	create: function(view, params) {
 		var comment = params.comment;
+		var story = params.story;
 		
 		this.db.save(comment, function(new_comment) {
-			var story = Views.stories._form.source;
 			story.comments.push(new_comment);
 			params.success();
 		});
