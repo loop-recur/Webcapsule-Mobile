@@ -1,12 +1,15 @@
 Views.stories._form = Views.extend();
 
 Views.stories._form.template = function() {
+
 	var self = this;
 	var story = self.source;
 	
-	var win = self.params.win;
-	var overlay = Titanium.UI.createView({bottom: 0, height: 245, zIndex:10});
+	var camera_overlay = self.params.win;
+	var form_view = Titanium.UI.createView({bottom: 0, height: 245, zIndex:10});
 
+	Layouts.pick_date(camera_overlay, story);
+	
 	var functionality_view = Titanium.UI.createView({
 		height:193,
 		width:320,
@@ -20,9 +23,7 @@ Views.stories._form.template = function() {
 		top:0,
 		left:0
 	});
-	
-	functionality_view.add(edit_details_btn);
-	
+
 	var start_stop_button = Titanium.UI.createButton({
 		backgroundImage:'images/record/rec_button.png',
 		top:0,
@@ -43,8 +44,6 @@ Views.stories._form.template = function() {
 		start_stop_button.visible = state;
 	};
 	
-	functionality_view.add(start_stop_button);
-	
 	var uploadvid_button = Titanium.UI.createButton({
 		backgroundImage:'images/record/uploadvid_normal.png',
 		backgroundSelectedImage:'images/record/uploadvid_pressed.png',
@@ -63,9 +62,7 @@ Views.stories._form.template = function() {
 	Views.stories._form.toggle_upload = function(state) {
 		uploadvid_button.visible = state;
 	};
-	
-	functionality_view.add(uploadvid_button);
-	
+		
 	var accept_button = Titanium.UI.createButton({
 		value:false,
 		top:0,
@@ -76,8 +73,6 @@ Views.stories._form.template = function() {
 		backgroundSelectedImage:'images/postrecord/accept_btn_pressed.png',
 		visible:false
 	});
-	
-	functionality_view.add(accept_button);
 	
 	Views.stories._form.accept_button_toggle = function(state) {
 		accept_button.visible = state;
@@ -94,16 +89,12 @@ Views.stories._form.template = function() {
 		visible: false
 	});
 	
-	functionality_view.add(saving_label);
-	
 	var tray = Titanium.UI.createView({
 		backgroundImage:'images/postrecord/edit_details_drawer.png',
 		height:137,
 		width:320,
 		bottom:0
 	});
-	
-	functionality_view.add(tray);
 	
 	var story_title_field = Titanium.UI.createTextField({  
 	    color:'#303030',
@@ -139,7 +130,7 @@ Views.stories._form.template = function() {
 	});
 	
 	tag_friends_button.addEventListener('click', function() {
-		App.action(overlay, "tags#init");
+		App.action(camera_overlay, "tags#init");
 	});
 	
 	var location_button = Titanium.UI.createButton({
@@ -159,7 +150,6 @@ Views.stories._form.template = function() {
 			url:'layouts/geolocation.js'
 		});
 
-		location_win.open({fullscreen:true});
 	});
 
 	var add_photos_button = Titanium.UI.createButton({
@@ -173,7 +163,7 @@ Views.stories._form.template = function() {
 	});
 	
 	add_photos_button.addEventListener('click', function() {
-		App.action(overlay, "photos#init");
+		App.action(camera_overlay, "photos#init");
 	});	
 
 	var add_date_button = Titanium.UI.createButton({
@@ -187,7 +177,7 @@ Views.stories._form.template = function() {
 	});
 	
 	add_date_button.addEventListener('click', function() {
-		Layouts.pick_date(story);
+		Layouts.pick_date.toggle_pick_date(true);
 	});
 	
 	var share_button = Titanium.UI.createButton({
@@ -211,7 +201,7 @@ Views.stories._form.template = function() {
 		story.name = story_title_field.value;
 		var http_options = getHttpOptions();
 		
-		App.action(overlay, 'stories#update', {
+		App.action(form_view, 'stories#update', {
 			story : story,
 			success : function(updated) {
 				accept_button.visible = true;
@@ -242,15 +232,23 @@ Views.stories._form.template = function() {
 		accept_button.visible = state;
 	};
 	
+	functionality_view.add(edit_details_btn);
+	functionality_view.add(start_stop_button);
+	functionality_view.add(uploadvid_button);
+	functionality_view.add(accept_button);
+	functionality_view.add(saving_label);
+	functionality_view.add(tray);
+	
 	tray.add(story_title_field);
 	tray.add(tag_friends_button);
 	tray.add(location_button);
 	tray.add(add_photos_button);
 	tray.add(add_date_button);
 	tray.add(share_button);
+
+	form_view.add(functionality_view);
+	camera_overlay.add(form_view);
 	
-	overlay.add(functionality_view);
-	win.add(overlay);
 	
 	function getHttpOptions() {
 		return (TempId.isTemp(story.id) && story.upload) ? makeProgressBar() : {};

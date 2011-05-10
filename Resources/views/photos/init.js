@@ -10,7 +10,7 @@ Views.photos.init.template = function() {
 	
 	var photo_tray = Titanium.UI.createView({
 		height:240,
-		backgroundImage:'images/add_photo/add_photos_tray.png',
+		backgroundImage:'images/add_photo/add_photos_tray.png'
 	});
 
 	var take_picture = Titanium.UI.createButton({  
@@ -56,7 +56,6 @@ Views.photos.init.template = function() {
 	});
 
 	photo_tray.add(done_button);
-
 	photo_tray.add(take_picture);
 	photo_tray.add(choose_existing);
 

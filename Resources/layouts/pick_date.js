@@ -1,8 +1,17 @@
-Layouts.pick_date = function(story) {	
-	var win = Titanium.UI.createWindow({
+Layouts.pick_date = function(win, story) {	
+	
+	var view = Titanium.UI.createView({
 		opacity:0.9,
-		backgroundColor:'black'
+		backgroundColor:'black',
+		height:400,
+		top:0,
+		zIndex:90,
+		visible:false
 	});
+	
+	Layouts.pick_date.toggle_pick_date = function(state) {
+		view.visible = state;
+	};
 	
 	var value = new Date();
 
@@ -10,7 +19,8 @@ Layouts.pick_date = function(story) {
 		type:Ti.UI.PICKER_TYPE_DATE,
 		maxDate:value,
 		value:value,
-		selectionIndicator : true
+		selectionIndicator : true,
+		zIndex:500
 	});
 
 	var done_button = Titanium.UI.createButton({  
@@ -20,16 +30,17 @@ Layouts.pick_date = function(story) {
 	  	right:15,
 			bottom:20,
 	    width:83,  
-	    height:49
+	    height:49,
+			zIndex:500
 	});
 
 	done_button.addEventListener('click', function() {
 		story.when = picker.value;
 		App.action(win, "stories#update", {story : story});
-		win.close({opacity:0, duration:500});
+		view.hide();
 	});
 
-	win.add(done_button);
-	win.add(picker);
-	win.open({fullscreen:true});
+	view.add(done_button);
+	view.add(picker);
+	win.add(view);
 };

@@ -155,7 +155,7 @@
     };
     HTTPClientWithCache.prototype.onerror_hook = function(self, response) {
       if ((this.currentRetryCount++) <= this.options.retryCount) {
-        Ti.API.info("HTTPClientWithCache: Retry Count " + this.currentRetryCount + " of " + this.options.retryCount);
+        Ti.API.info("HTTPClientWithCache: Retry Count " + this.currentRetryCount + " of " + this.options.retryCount + " " + this.options.url);
         this.xhr.abort();
         this.xhr.open(this.options.method, this.options.baseUrl + this.options.url);
         this.xhr.send(this.options.data != null ? this.options.data : void 0);

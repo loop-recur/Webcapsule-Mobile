@@ -26,4 +26,5 @@ Views.stories.init.template = function() {
 		videoQuality:Ti.Media.QUALITY_MEDIUM,
 		autohide:true
 	});	
+
 };

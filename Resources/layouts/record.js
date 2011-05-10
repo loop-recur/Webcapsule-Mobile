@@ -1,7 +1,7 @@
 Layouts.record = function() {	
 	var win = Titanium.UI.createWindow({backgroundColor: "#ccc"});
 	
-	var overlay = Titanium.UI.createView();
+	var overlay = Titanium.UI.createView({opacity:.7});
 	
 	var close_btn = Titanium.UI.createButton({
 		backgroundImage:"images/postrecord/return.png",
@@ -22,7 +22,6 @@ Layouts.record = function() {
 	var camera_flash = Ti.UI.createButton({
 		color:'#fff',
 		title:"auto",
-		left:20,
 		top:20,
 		height:40,
 		width:80,
