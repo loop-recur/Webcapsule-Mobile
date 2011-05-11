@@ -2,11 +2,11 @@
 <ti:app xmlns:ti="http://www.webcapsule.com">
 <id>com.looprecur.webcapsulemobile</id>
 <name>webcapsule-mobile</name>
-<version>0.5</version>
-<publisher>Webcapsule</publisher>
-<url>www.webcapsule.com</url>
-<description>Webcapsule: Share your story</description>
-<copyright>2011 by loop/recur</copyright>
+<version>1.0</version>
+<publisher>taylorsmith</publisher>
+<url>www.looprecur.com</url>
+<description>No description provided</description>
+<copyright>2011 by taylorsmith</copyright>
 <icon>default_app_icon.png</icon>
     <persistent-wifi>true</persistent-wifi>
     <prerendered-icon>false</prerendered-icon>

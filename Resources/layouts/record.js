@@ -1,13 +1,13 @@
 Layouts.record = function() {	
 	var win = Titanium.UI.createWindow({backgroundColor: "#ccc"});
 	
-	var overlay = Titanium.UI.createView();
+	var overlay = Titanium.UI.createView({opacity:.7});
 	
 	var close_btn = Titanium.UI.createButton({
 		backgroundImage:"images/postrecord/return.png",
 		height:36,
 		width:38,
-		top:180,
+		top:0,
 		left:0
 	});
 
@@ -19,38 +19,23 @@ Layouts.record = function() {
 		
 	overlay.add(close_btn);
 	
-	var start_stop_button = Titanium.UI.createButton({
-		color:'#fff',
-		backgroundImage:'images/record/BUTT_grn_on.png',
-		backgroundSelectedImage:'images/record/BUTT_grn_off.png',
-		backgroundDisabledImage:'images/record/BUTT_gry_on.png',
-		top:20,
-		width:120,
-		height:40,
-		font:{fontSize:16,fontWeight:'bold',fontFamily:'Helvetica Neue'},
-		title:'Start Video'
-	});
-	
-	start_stop_button.addEventListener('click',function()
-	{
-		Ti.Media.startVideoCapture();
-		start_stop_button.title = "Stop Video";
-		start_stop_button.backgroundImage = "images/record/BUTT_red_on.png";
-		start_stop_button.backgroundSelectedImage = 'images/record/BUTT_red_off.png';
-		camera_type.visible = false;
-		camera_flash.visible = false;
-	});
-	
 	var camera_flash = Ti.UI.createButton({
 		color:'#fff',
 		title:"auto",
-		left:20,
 		top:20,
 		height:40,
 		width:80,
 		backgroundImage:"images/record/BUTT_drk_on.png",
 		font:{fontSize:16,fontWeight:'bold',fontFamily:'Helvetica Neue'}
 	});
+	
+	Layouts.record.toggle_flash = function(state) {
+		camera_flash.visible = state;
+	};
+
+	Layouts.record.toggle_camera_type = function(state) {
+		camera_type.visible = state;
+	};
 	
 	var camera_type = Ti.UI.createButton({
 		color:'#fff',
@@ -109,7 +94,6 @@ Layouts.record = function() {
 		}
 	}
 	
-	overlay.add(start_stop_button);
 	overlay.add(camera_flash);
 
 	// TODO: Remove need for branching due to dev.  Mocks are better.

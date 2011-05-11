@@ -51,6 +51,5 @@ describe("CommentsController", function() {
 			  expect(fakeSuccess).toHaveBeenCalled();
 			});
 		});
-
 	});
 });

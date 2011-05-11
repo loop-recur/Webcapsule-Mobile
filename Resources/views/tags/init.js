@@ -3,14 +3,37 @@ Views.tags.init = Views.extend();
 Views.tags.init.template = function() {
 	var self = this;
 	
-	var win = Titanium.UI.createWindow({
-		opacity:0.9,
-		backgroundColor:'black'
-	});
+	var camera_overlay = self.win;
 
 	var tag_tray = Titanium.UI.createView({
 		height:317,
-		backgroundImage:'images/add_tag/tag_friends_tray.png'
+		top:0,
+		backgroundImage:'images/add_tag/tag_friends_tray.png',
+		opacity:0.9,
+		zIndex:100,
+		visible:false
+	});
+	
+	Views.tags.init.template.toggle_tag_tray = function(state) {
+		tag_tray.visible = state;
+	};
+	
+	var available_tags_view = Titanium.UI.createScrollView({
+		top:75,
+		height:70,
+		width:300,
+		contentWidth:'auto',
+		contentHeight:90,
+		showHorizontalScrollIndicator:true
+	});
+	
+	var added_tags_view = Titanium.UI.createScrollView({
+		top:155,
+		height:80,
+		width:300,
+		contentWidth:'auto',
+		contentHeight:70,
+		showHorizontalScrollIndicator:true
 	});
 
 	var name = Titanium.UI.createTextField({  
@@ -27,7 +50,7 @@ Views.tags.init.template = function() {
 	});
 	
 	name.addEventListener('change', function() {
-		if(name.value.length >= 1) { update() };
+		if(name.value.length >= 1) { update(); };
 	});
 
 	var done_button = Titanium.UI.createButton({  
@@ -40,31 +63,34 @@ Views.tags.init.template = function() {
 	    height:49
 	});
 
-	done_button.addEventListener('click', function() { win.close(); });
+	done_button.addEventListener('click', function() { Views.tags.init.template.toggle_tag_tray(false); });
 
 	tag_tray.add(name);
+	tag_tray.add(available_tags_view);
+	tag_tray.add(added_tags_view);
 	tag_tray.add(done_button);
-
-	win.add(tag_tray);
-	win.add(makeView());
+	camera_overlay.add(tag_tray);
 	
-	win.open({fullscreen: true});
-	
-	Views.tags.create.win = win;
-	Views.tags.create.render();
 	
 	function makeView() {
-		self.view = Ti.UI.createView({
-			top : 140,
+		self.view = Titanium.UI.createView({
+			width:70,
 			height:100,
-			width: 300
+			left:0
 		});
+		
 		return self.view;
-	};
+	};	
+	
+	available_tags_view.add(makeView());
+	
+	// Views.tags.create.win = win; I DON'T THINK I'M USING THIS
+	Views.tags.create.added_tags_view = added_tags_view;
+	Views.tags.create.render();
 	
 	function update() {
-		win.remove(self.view);
-		win.add(makeView());
+		tag_tray.remove(self.view);
+		available_tags_view.add(makeView());
 		makeFriends();
 	};
 	
@@ -87,16 +113,16 @@ Views.tags.init.template = function() {
 			defaultImage:'images/avatar_medium.jpg',
 			top:0,
 			left: position,
-			width:50,
-			height:50
+			width:60,
+			height:60
 		});
 		
 		image.addEventListener('click', function() {
-			App.action(win, "tags#create", {friend : friend});
+			App.action(tag_tray, "tags#create", {friend : friend});
 		});
 		
+		self.view.width += 70;
 		self.view.add(image);
-		return position+60;
+		return position+70;
 	}
-
 };

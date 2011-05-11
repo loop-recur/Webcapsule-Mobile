@@ -6,20 +6,19 @@ Views.tags.create.template = function() {
 	update();
 	
 	function update() {
-		if(self.view) self.win.remove(self.view);
+		if(self.view) Views.tags.create.added_tags_view.remove(self.view);
 		self.view = makeView();
-		self.win.add(self.view);
+		Views.tags.create.added_tags_view.add(self.view);
 		makeFriends();
 	};
 	
 	function makeView() {
-		// needs real scroll
-		return Ti.UI.createView({
-			top : 240,
+		return Titanium.UI.createView({
+			width:60,
 			height:70,
-			width: 300
+			left:0
 		});
-	}
+	};
 	
 	function makeFriends(position, friend) {
 		Functional.reduce(makeFriend, 10, (self.source || []));
@@ -59,6 +58,7 @@ Views.tags.create.template = function() {
 		thumb.add(image);
 		thumb.add(delete_button);
 		self.view.add(thumb);
+		self.view.width += 70;
 		return position+70;
 	}
 	

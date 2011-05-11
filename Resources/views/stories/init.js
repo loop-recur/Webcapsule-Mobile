@@ -6,6 +6,11 @@ Views.stories.init.template = function() {
 	
 	Views.stories._form.render(story, {win: self.params.overlay});
 
+	Layouts.record.toggle_flash(true);
+	Layouts.record.toggle_camera_type(true);
+	Views.stories._form.toggle_upload(true);
+	Views.stories._form.toggle_start_stop(true);
+	
 	Titanium.Media.showCamera({
 		success: function(event){
 			story.upload = event.media;
@@ -21,4 +26,5 @@ Views.stories.init.template = function() {
 		videoQuality:Ti.Media.QUALITY_MEDIUM,
 		autohide:true
 	});	
+
 };

@@ -14,3 +14,4 @@ Helpers.ui.progressBar = function() {
 		color:'black'
 	});	
 };
+
