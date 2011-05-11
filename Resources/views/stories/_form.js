@@ -129,8 +129,10 @@ Views.stories._form.template = function() {
 		backgroundSelectedImage:'images/postrecord/tag_pressed.png'
 	});
 	
+	App.action(camera_overlay, "tags#init");
+	
 	tag_friends_button.addEventListener('click', function() {
-		App.action(camera_overlay, "tags#init");
+		Views.tags.init.template.toggle_tag_tray(true);	
 	});
 	
 	var location_button = Titanium.UI.createButton({
@@ -161,9 +163,11 @@ Views.stories._form.template = function() {
 		backgroundImage:'images/postrecord/addphotos_normal.png',
 		backgroundSelectedImage:'images/postrecord/addphotos_pressed.png'
 	});
+
+	App.action(camera_overlay, "photos#init");	
 	
 	add_photos_button.addEventListener('click', function() {
-		App.action(camera_overlay, "photos#init");
+		Views.photos.init.toggle_photo_tray(true);
 	});	
 
 	var add_date_button = Titanium.UI.createButton({

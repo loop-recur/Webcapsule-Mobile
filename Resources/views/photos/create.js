@@ -7,15 +7,14 @@ Views.photos.create.template = function() {
 	update();
 	
 	function update() {
-		if(self.view) self.win.remove(self.view);
+		if(self.view) Views.photos.create.added_photo_view.remove(self.view);
 		self.view = makeView();
-		self.win.add(self.view);
+		Views.photos.create.added_photo_view.add(self.view);
 		makePhotos();
 	};
 	
 	function makeView() {
-		// needs real scroll
-		 return Ti.UI.createView({
+		 return Titanium.UI.createView({
 			top : 140,
 			height:140,
 			width: 300

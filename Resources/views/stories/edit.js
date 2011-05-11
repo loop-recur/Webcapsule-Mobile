@@ -13,6 +13,7 @@ Views.stories.edit.template = function() {
 	
 	var play_pause_button = Titanium.UI.createButton({
 		backgroundImage:"images/playercontrols/play_btn.png",
+		backgroundColor:'black',
 		height:36,
 		width:38,
 		top:180,

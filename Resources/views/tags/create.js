@@ -13,12 +13,11 @@ Views.tags.create.template = function() {
 	};
 	
 	function makeView() {
-		self.view = Titanium.UI.createView({
+		return Titanium.UI.createView({
 			width:60,
 			height:70,
 			left:0
 		});
-		return self.view;
 	};
 	
 	function makeFriends(position, friend) {

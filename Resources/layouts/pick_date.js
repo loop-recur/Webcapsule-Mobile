@@ -5,7 +5,7 @@ Layouts.pick_date = function(win) {
 	var view = Titanium.UI.createView({
 		opacity:0.9,
 		backgroundColor:'black',
-		height:400,
+		height:250,
 		top:0,
 		zIndex:90,
 		visible:false
@@ -15,7 +15,7 @@ Layouts.pick_date = function(win) {
 		view.visible = state;
 	};
 	
-	var value = new Date();
+	var value = story.when || new Date();
 
 	var picker = Ti.UI.createPicker({
 		type:Ti.UI.PICKER_TYPE_DATE,
