@@ -2,6 +2,7 @@ Views.tags.init = Views.extend();
 
 Views.tags.init.template = function() {
 	var self = this;
+	self.view = makeView();
 	
 	var camera_overlay = self.win;
 
@@ -22,7 +23,7 @@ Views.tags.init.template = function() {
 		top:75,
 		height:70,
 		width:300,
-		contentWidth:'auto',
+		contentWidth:300,
 		contentHeight:90,
 		showHorizontalScrollIndicator:true
 	});
@@ -31,7 +32,7 @@ Views.tags.init.template = function() {
 		top:155,
 		height:80,
 		width:300,
-		contentWidth:'auto',
+		contentWidth:300,
 		contentHeight:70,
 		showHorizontalScrollIndicator:true
 	});
@@ -64,6 +65,11 @@ Views.tags.init.template = function() {
 	});
 
 	done_button.addEventListener('click', function() { Views.tags.init.template.toggle_tag_tray(false); });
+	
+	available_tags_view.add(self.view);
+	
+	Views.tags.create.scrollview = added_tags_view;
+	Views.tags.create.render();
 
 	tag_tray.add(name);
 	tag_tray.add(available_tags_view);
@@ -73,25 +79,18 @@ Views.tags.init.template = function() {
 	
 	
 	function makeView() {
-		self.view = Titanium.UI.createView({
+		return Titanium.UI.createView({
 			width:70,
 			height:100,
 			left:0
 		});
-		
-		return self.view;
 	};	
 	
-	available_tags_view.add(makeView());
-	
-	// Views.tags.create.win = win; I DON'T THINK I'M USING THIS
-	Views.tags.create.added_tags_view = added_tags_view;
-	Views.tags.create.render();
-	
 	function update() {
-		tag_tray.remove(self.view);
-		available_tags_view.add(makeView());
+		available_tags_view.remove(self.view);
+		self.view = makeView();
 		makeFriends();
+		available_tags_view.add(self.view);
 	};
 	
 	function makeFriends() {
@@ -100,7 +99,6 @@ Views.tags.init.template = function() {
 	
 	function foundFriends() {
 		var matches = function(tag) {
-			if(!tag.label){ tag.label = ""; };
 			var label = (tag.label || "");
 			return (label.toLowerCase().indexOf(name.value) != -1);
 		};

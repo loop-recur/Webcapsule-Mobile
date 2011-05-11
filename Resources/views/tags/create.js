@@ -2,13 +2,14 @@ Views.tags.create = Views.extend();
 
 Views.tags.create.template = function() {
 	var self = this;
+	var scrollview = self.scrollview;
 	
 	update();
 	
 	function update() {
-		if(self.view) Views.tags.create.added_tags_view.remove(self.view);
+		if(self.view){ scrollview.remove(self.view); };
 		self.view = makeView();
-		Views.tags.create.added_tags_view.add(self.view);
+		scrollview.add(self.view);
 		makeFriends();
 	};
 	

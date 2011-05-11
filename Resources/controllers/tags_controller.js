@@ -22,8 +22,10 @@ Controllers.tags = {
 	init: function(view, params) {
 		this.db.all(function(users) {
 			fixed_users = Functional.map(function(u){ if(u.image.match("/files")) u.image = App.file_url + u.image; return u; }, users);
-			view.render(fixed_users);
+			view.source = fixed_users;
 		});
+		
+		view.template.toggle_tag_tray(true);	
 	},
 	
 	destroy: function(view, params) {

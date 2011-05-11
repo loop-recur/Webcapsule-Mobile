@@ -56,7 +56,7 @@ Views.stories._form.template = function() {
 	});
 	
 	uploadvid_button.addEventListener('click',function() {
-		alert("hello, sir");
+		alert("Upload coming soon...");
 	});
 	
 	Views.stories._form.toggle_upload = function(state) {
@@ -103,7 +103,7 @@ Views.stories._form.template = function() {
 			paddingLeft:5,
 	    top:10,  
 	    width:300,  
-	    height:30,  
+	    height:30,
 	    hintText:'Title',  
 	    keyboardType:Titanium.UI.KEYBOARD_DEFAULT,  
 	    returnKeyType:Titanium.UI.RETURNKEY_DONE
@@ -129,10 +129,11 @@ Views.stories._form.template = function() {
 		backgroundSelectedImage:'images/postrecord/tag_pressed.png'
 	});
 	
-	App.action(camera_overlay, "tags#init");
+	Views.tags.init.win = camera_overlay;
+	Views.tags.init.render([]);
 	
 	tag_friends_button.addEventListener('click', function() {
-		Views.tags.init.template.toggle_tag_tray(true);	
+		App.action(camera_overlay, "tags#init");
 	});
 	
 	var location_button = Titanium.UI.createButton({
@@ -202,6 +203,7 @@ Views.stories._form.template = function() {
 		accept_button.visible = false;
 		saving_label.visible = true;
 		saving_label.animate({right:10, duration:700});
+		if(story_title_field.value == "") { story_title_field.value = "Untitled Story"; };
 		story.name = story_title_field.value;
 		var http_options = getHttpOptions();
 		
@@ -211,7 +213,7 @@ Views.stories._form.template = function() {
 				accept_button.visible = true;
 				saving_label.visible = false;
 				if(http_options.progress_bar) http_options.progress_bar.hide();
-				story = updated; // TODO: don't know this is necessary, but it is.
+				story = updated; // TODO: don't know why this is necessary, but it is.
 			},
 			error : function(errors) {
 				alert(errors);
