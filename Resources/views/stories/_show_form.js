@@ -94,7 +94,7 @@ Views.stories._show_form.template = function() {
 		App.action(overlay, "photos#init", {photos : story.photos});
 	});	
 
-	var add_date_button = Titanium.UI.createButton({
+	var share_button = Titanium.UI.createButton({
 		value:false,
 		top:64,
 		right: 20,
@@ -104,8 +104,8 @@ Views.stories._show_form.template = function() {
 		backgroundSelectedImage:'images/postrecord/date_pressed.png'
 	});
 	
-	add_date_button.addEventListener('click', function() {
-		Layouts.pick_date(story);
+	share_button.addEventListener('click', function() {
+		App.action(overlay, "sharings#init", {story : story});
 	});
 	
 	var save_button = Titanium.UI.createButton({
@@ -169,7 +169,7 @@ Views.stories._show_form.template = function() {
 	tray.add(comment_button);
 	tray.add(video_reply_button);
 	tray.add(add_photos_button);
-	tray.add(add_date_button);
+	tray.add(share_button);
 	tray.add(save_button);
 	tray.add(saving_label);
 	
