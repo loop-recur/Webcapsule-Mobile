@@ -94,11 +94,7 @@ Views.stories._show_form.template = function() {
 		App.action(overlay, "photos#init", {photos : story.photos});
 	});	
 
-<<<<<<< HEAD
 	var share_button = Titanium.UI.createButton({
-=======
-	var add_date_button = Titanium.UI.createButton({
->>>>>>> fb0a0387df5561a5c0a91334959aca3872136655
 		value:false,
 		top:64,
 		right: 20,
