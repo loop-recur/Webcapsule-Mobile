@@ -12,8 +12,8 @@ Views.photos._photo.template = function() {
 		defaultImage:'images/avatar_medium.jpg',
 		top:0,
 		left: 0,
-		width:150,
-		height:150
+		width:70,
+		height:70
 	});
 	
 	parent_win.add(view);

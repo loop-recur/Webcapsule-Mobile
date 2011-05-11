@@ -56,7 +56,7 @@ Views.stories._form.template = function() {
 	});
 	
 	uploadvid_button.addEventListener('click',function() {
-		alert("Upload coming soon...");
+		alert("upload video");
 	});
 	
 	Views.stories._form.toggle_upload = function(state) {
