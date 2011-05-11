@@ -155,6 +155,7 @@ Views.stories._show_form.template = function() {
 
 	form_view.add(functionality_view);
 	win.add(form_view);
+
 	
 	function getHttpOptions() {
 		return (TempId.isTemp(story.id) && story.upload) ? makeProgressBar() : {};

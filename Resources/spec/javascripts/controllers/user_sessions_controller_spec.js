@@ -35,7 +35,7 @@ describe("Controllers.user_sessions", function() {
 				Titanium.Filesystem.applicationDataDirectory = "/somedir";
 				App.http_client.get = jasmine.createSpy().andCallFake(function(url, callback) {
 					if(App.http_client.credentials) {
-						callback.success({responseText:"{\"user\": {\"full_name\":\"brian\"}}"});
+						callback.success({responseText:"{\"full_name\":\"brian\"}"});
 					};
 				});
 				Controllers.user_sessions.create("brian","password");

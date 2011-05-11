@@ -8,8 +8,8 @@ Controllers.user_sessions = {
 		App.http_client.get("/accounts.json", {
 			success: function(response) {
 				Controllers.user_sessions.cache(authstr);
-				var json = JSON.parse(response.responseText);
-				App.current_user = json.user;
+				var user = JSON.parse(response.responseText);
+				App.current_user = user;
 				Layouts.site();
 			},
 			error: function(response) {

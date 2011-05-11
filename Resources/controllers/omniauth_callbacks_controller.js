@@ -1,12 +1,11 @@
-Controllers.comments = {
-	db: Db("comments"),
+Controllers.omniauth_callbacks = {
+	db: Db("omniauth_callbacks"),
 
 	create: function(view, params) {
-		var comment = params.comment;
-		var story = params.story;
+		var authentication = params.data;
 		
-		this.db.save(comment, function(new_comment) {
-			story.comments.push(new_comment);
+		this.db.save(authentication, function(user) {
+			App.current_user = user;
 			params.success();
 		});
 	},

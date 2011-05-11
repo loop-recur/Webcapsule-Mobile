@@ -21,8 +21,10 @@ Views.comments.init.template = function() {
 	});
 	
 	field.addEventListener('return', function() {
+		comment.content = field.value;
 		App.action(self.win, "comments#create", {
 			comment : comment,
+			story : story,
 			success : function() {
 				win.remove(view);
 			}
