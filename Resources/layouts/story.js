@@ -26,7 +26,6 @@ Layouts.story = function(id) {
 	
 	close_button.addEventListener('click', function() {
 		if (player.playing) { player.stop(); };
-		Titanium.API.info("Close button on player");
 		win.close();
 	});
 	
@@ -54,7 +53,6 @@ Layouts.story = function(id) {
 	win.add(asset_overlay);
 	win.add(play_pause_button);
 	win.add(close_button);
-	Titanium.API.info("1) added player, assets overlay, play/pause, close");
 	
 	App.action(win, "stories#show", {id: id, player: player});
 	

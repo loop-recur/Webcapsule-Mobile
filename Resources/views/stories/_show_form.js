@@ -38,8 +38,6 @@ Views.stories._show_form.template = function() {
 		width:300
 	});
 	
-	Ti.API.info(story.duration);
-	
 	var story_duration = Titanium.UI.createLabel({
 		text:story.duration,
 		font:{fontSize:11, fontWeight:'bold'},
@@ -157,8 +155,6 @@ Views.stories._show_form.template = function() {
 
 	form_view.add(functionality_view);
 	win.add(form_view);
-	
-	Titanium.API.info("3) added form view to win");
 	
 	function getHttpOptions() {
 		return (TempId.isTemp(story.id) && story.upload) ? makeProgressBar() : {};

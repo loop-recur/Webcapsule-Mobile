@@ -17,10 +17,7 @@ Views.stories.show.template = function() {
 	player.comments = story.comments;
 	player.photos = story.photos;
 
-	Titanium.API.info("2) right before story form");
-
 	Views.stories._show_form.render(story, {win: win, player:player});
-	
-	Titanium.API.info("4) right after story form before win.open");
+
 	win.open();
 };
