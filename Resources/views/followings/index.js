@@ -23,7 +23,7 @@ Views.followings.index.template = function() {
 			color:'#3D3D3D',
 			font:{fontSize:14,fontWeight:'bold', fontFamily:'Helvetica Neue'},
 			left:80,
-			top:0,
+			top:12,
 			height:30,
 			width:200,
 			text:following.full_name

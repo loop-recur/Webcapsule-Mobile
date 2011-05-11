@@ -6,10 +6,9 @@ Views.comments._comment.template = function() {
 	var comment = self.source;
 	
 	view = Ti.UI.createView({
-		top : 130,
 		height:100,
-		width: 300,
-		backgroundColor: '#fff'
+		width:300,
+		backgroundColor:'#fff'
 	});
 	
 	var title = Titanium.UI.createLabel({

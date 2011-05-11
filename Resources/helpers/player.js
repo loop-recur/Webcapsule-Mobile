@@ -2,14 +2,16 @@ Helpers.player = {};
 
 Helpers.player.timeMonitor = function(win, player, comments, photos) {
 	var appear_time = 4;
+	var self = this;
 	var done = false;
 	
 	player.addEventListener('complete',function(e){
 		done = true;
-	  hideAllOverlays();
+		hideAllOverlays();
 	});
 	
-	while (!done) { showOverlays(player.currentPlaybackTime); };
+	
+	// while (!done) { showOverlays(player.currentPlaybackTime); };
 	
 	
 	function hideAllOverlays() {

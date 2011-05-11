@@ -23,7 +23,6 @@ Views.photos.init.template = function() {
 		width:300,
 		contentWidth:'auto',
 		contentHeight:140,
-		backgroundColor:'green',
 		showHorizontalScrollIndicator:true
 	});
 
