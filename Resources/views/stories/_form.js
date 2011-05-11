@@ -8,7 +8,7 @@ Views.stories._form.template = function() {
 	var camera_overlay = self.params.win;
 	var form_view = Titanium.UI.createView({bottom: 0, height: 245, zIndex:10});
 
-	Layouts.pick_date(camera_overlay, story);
+	Layouts.pick_date(camera_overlay);
 	
 	var functionality_view = Titanium.UI.createView({
 		height:193,
@@ -257,7 +257,7 @@ Views.stories._form.template = function() {
 	function makeProgressBar() {
 		var progress_bar = Helpers.ui.progressBar();
 		progress_bar.show();
-		win.add(progress_bar);
+		camera_overlay.add(progress_bar);
 		return {progress_bar : progress_bar};
 	}
 };

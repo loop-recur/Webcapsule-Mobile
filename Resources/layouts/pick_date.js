@@ -1,4 +1,6 @@
-Layouts.pick_date = function(win, story) {	
+Layouts.pick_date = function(win) {	
+	
+	var story = Views.stories._form.source;
 	
 	var view = Titanium.UI.createView({
 		opacity:0.9,
