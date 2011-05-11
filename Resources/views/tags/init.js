@@ -10,7 +10,6 @@ Views.tags.init.template = function() {
 		height:317,
 		top:0,
 		backgroundImage:'images/add_tag/tag_friends_tray.png',
-		opacity:0.9,
 		zIndex:100,
 		visible:false
 	});

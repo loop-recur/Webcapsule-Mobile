@@ -3,7 +3,6 @@ Layouts.pick_date = function(win) {
 	var story = Views.stories._form.source;
 	
 	var view = Titanium.UI.createView({
-		opacity:0.9,
 		backgroundColor:'black',
 		height:250,
 		top:0,

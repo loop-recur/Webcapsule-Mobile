@@ -12,7 +12,6 @@ Layouts.story = function(id) {
 	var asset_overlay = Titanium.UI.createView({
 		height:180,
 		top:20,
-		opacity:.8,
 		id:"story play asset overlay"
 	});
 	
