@@ -22,6 +22,11 @@ Layouts.pick_date = function(win) {
 		selectionIndicator : true,
 		zIndex:500
 	});
+	
+	picker.addEventListener('change',function(e) {
+		var story = Views.stories._form.source;
+		story.when = e.value;
+	});
 
 	var done_button = Titanium.UI.createButton({  
 	    value:false,
@@ -35,8 +40,6 @@ Layouts.pick_date = function(win) {
 	});
 
 	done_button.addEventListener('click', function() {
-		var story = Views.stories._form.source;
-		story.when = picker.value;
 		App.action(win, "stories#update", {story : story});
 		view.hide();
 	});
