@@ -3,19 +3,16 @@ Views.photos.init = Views.extend();
 Views.photos.init.template = function() {
 	var self = this;
 	
-	var camera_overlay = self.win;
+	var win = Titanium.UI.createWindow({
+		backgroundColor:'pink'
+	});
 	
 	var photo_tray = Titanium.UI.createView({
 		top:0,
 		height:240,
 		backgroundImage:'images/add_photo/add_photos_tray.png',
 		zIndex:100,
-		visible:false
 	});
-	
-	Views.photos.init.toggle_photo_tray = function(state) {
-		photo_tray.visible = state;
-	};
 	
 	var added_photo_view = Titanium.UI.createScrollView({
 		top:15,
@@ -37,7 +34,7 @@ Views.photos.init.template = function() {
 	});
 
 	take_picture.addEventListener('click', function() {
-		Layouts.take_photo(camera_overlay, self.source);
+		Layouts.take_photo(win, self.source);
 	});
 
 	var choose_existing = Titanium.UI.createButton({  
@@ -51,7 +48,7 @@ Views.photos.init.template = function() {
 	});
 
 	choose_existing.addEventListener('click', function() {
-		Layouts.choose_photo(camera_overlay, self.source);
+		Layouts.choose_photo(win, self.source);
 	});
 
 	var done_button = Titanium.UI.createButton({  
@@ -65,8 +62,7 @@ Views.photos.init.template = function() {
 	});
 
 	done_button.addEventListener('click', function() {
-		Views.photos.init.toggle_photo_tray(false);
-		// camera_overlay.remove(photo_tray);
+		win.close();
 	});
 
 	photo_tray.add(added_photo_view);
@@ -74,10 +70,10 @@ Views.photos.init.template = function() {
 	photo_tray.add(take_picture);
 	photo_tray.add(choose_existing);
 
-	camera_overlay.add(photo_tray);
+	win.add(photo_tray);
 
-	Views.photos.create.win = camera_overlay;
 	Views.photos.create.added_photo_view = added_photo_view;
 	Views.photos.create.render(self.params.photos);
 
+	win.open();
 };

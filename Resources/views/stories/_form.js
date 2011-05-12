@@ -146,13 +146,12 @@ Views.stories._form.template = function() {
 		backgroundSelectedImage:'images/postrecord/location_pressed.png'
 	});
 	
+	// Views.stories._form.template.toggle_geolocation = function(state) {
+	// 	state ? backgroundImage:'images/postrecord/location_activated.png' : backgroundImage:'images/postrecord/location_normal.png';
+	// };
+	
 	location_button.addEventListener('click', function() {
-		
-		var location_win = Titanium.UI.createWindow({
-			backgroundColor:'white',
-			url:'layouts/geolocation.js'
-		});
-
+		Layouts.geolocation();
 	});
 
 	var add_photos_button = Titanium.UI.createButton({
@@ -165,10 +164,10 @@ Views.stories._form.template = function() {
 		backgroundSelectedImage:'images/postrecord/addphotos_pressed.png'
 	});
 
-	App.action(camera_overlay, "photos#init");	
+		
 	
 	add_photos_button.addEventListener('click', function() {
-		Views.photos.init.toggle_photo_tray(true);
+		App.action(camera_overlay, "photos#init");
 	});	
 
 	var add_date_button = Titanium.UI.createButton({
