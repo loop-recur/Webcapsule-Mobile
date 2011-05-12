@@ -2,7 +2,7 @@
 <ti:app xmlns:ti="http://www.webcapsule.com">
 <id>com.looprecur.webcapsulemobile</id>
 <name>webcapsule-mobile</name>
-<version>1.0</version>
+<version>.6</version>
 <publisher>taylorsmith</publisher>
 <url>www.looprecur.com</url>
 <description>No description provided</description>
