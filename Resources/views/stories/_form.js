@@ -145,14 +145,25 @@ Views.stories._form.template = function() {
 		backgroundImage:'images/postrecord/location_normal.png',
 		backgroundSelectedImage:'images/postrecord/location_pressed.png'
 	});
-	
-	// Views.stories._form.template.toggle_geolocation = function(state) {
-	// 	state ? backgroundImage:'images/postrecord/location_activated.png' : backgroundImage:'images/postrecord/location_normal.png';
-	// };
-	
+
 	location_button.addEventListener('click', function() {
-		Layouts.geolocation();
-	});
+		Ti.API.info("story.where before geo");
+		Ti.API.info(story.where);
+		Layouts.geolocation(story);
+		Ti.API.info("story.where after geo");
+		Ti.API.info(story.where);
+	});	
+
+	Views.stories._form.template.toggle_geolocation = function(state) {
+		if(state) {
+			Ti.API.info("location saved");
+			backgroundImage:'images/postrecord/location_activated.png'
+		} else {
+			backgroundImage:'images/postrecord/location_normal.png';
+		}
+	};
+	
+
 
 	var add_photos_button = Titanium.UI.createButton({
 		value:false,

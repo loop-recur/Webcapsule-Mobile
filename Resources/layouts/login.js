@@ -63,7 +63,9 @@ Layouts.login = function () {
 	win.add(password);
 	win.add(login_button);
 	win.add(new_account_label);
-	
+		
+		
+		
 	
 	win.open();
 };

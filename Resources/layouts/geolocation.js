@@ -1,216 +1,145 @@
-Layouts.geolocation = function() {	
-	// Ti.include("../version.js");
+Layouts.geolocation = function(story) {	
+	Ti.include("version.js");
 	
-	var win = Titanium.UI.createWindow({backgroundColor:'pink'});
-	// Views.stories._form.template.toggle_geolocation(true);
-	// 
-	// 
-	// function locateAndUpdate(button) {
-	// 	
-	// }
+	Ti.Geolocation.preferredProvider = "gps";
 
-// 
-// 
-// 
-// 
-// 
+	if (isIPhone3_2_Plus()) { Ti.Geolocation.purpose = "Find location to mark video";};
 
-	// Ti.Geolocation.preferredProvider = "gps";
-
-	// if (isIPhone3_2_Plus()) { Ti.Geolocation.purpose = "Find location to mark video";};
-
-	// function translateErrorCode(code) {
-	// 	if (code == null) {
-	// 		return null;
-	// 	}
-	// 	switch (code) {
-	// 		case Ti.Geolocation.ERROR_LOCATION_UNKNOWN:
-	// 			return "Location unknown";
-	// 		case Ti.Geolocation.ERROR_DENIED:
-	// 			return "Access denied";
-	// 		case Ti.Geolocation.ERROR_NETWORK:
-	// 			return "Network error";
-	// 		case Ti.Geolocation.ERROR_HEADING_FAILURE:
-	// 			return "Failure to detect heading";
-	// 		case Ti.Geolocation.ERROR_REGION_MONITORING_DENIED:
-	// 			return "Region monitoring access denied";
-	// 		case Ti.Geolocation.ERROR_REGION_MONITORING_FAILURE:
-	// 			return "Region monitoring access failure";
-	// 		case Ti.Geolocation.ERROR_REGION_MONITORING_DELAYED:
-	// 			return "Region monitoring setup delayed";
-	// 	}
-	// }
-
-	var reverseGeo = Titanium.UI.createLabel({
-		text:'',
-		font:{fontSize:11},
-		color:'#444',
-		top:310,
-		left:10,
-		height:15,
-		width:300
-	});
+	function translateErrorCode(code) {
+		if (code == null) {
+			return null;
+		}
+		switch (code) {
+			case Ti.Geolocation.ERROR_LOCATION_UNKNOWN:
+				return "Location unknown";
+			case Ti.Geolocation.ERROR_DENIED:
+				return "Access denied";
+			case Ti.Geolocation.ERROR_NETWORK:
+				return "Network error";
+			case Ti.Geolocation.ERROR_HEADING_FAILURE:
+				return "Failure to detect heading";
+			case Ti.Geolocation.ERROR_REGION_MONITORING_DENIED:
+				return "Region monitoring access denied";
+			case Ti.Geolocation.ERROR_REGION_MONITORING_FAILURE:
+				return "Region monitoring access failure";
+			case Ti.Geolocation.ERROR_REGION_MONITORING_DELAYED:
+				return "Region monitoring setup delayed";
+		}
+	}
 	
-	win.add(reverseGeo);
-	win.open();
-
-	// var locationAdded = false;
-	// 
-	// if (Titanium.Geolocation.locationServicesEnabled==false)
-	// {
-	// 	Titanium.UI.createAlertDialog({title:'Webcapsule', message:'Your device has geo turned off - turn it on.'}).show();
-	// }
-	// else
-	// {
-	// 	if (Titanium.Platform.name != 'android') {
-	// 		var authorization = Titanium.Geolocation.locationServicesAuthorization
-	// 		Ti.API.info('Authorization: '+authorization);
-	// 		if (authorization == Titanium.Geolocation.AUTHORIZATION_DENIED) {
-	// 			Ti.UI.createAlertDialog({
-	// 				title:'Webcapsule',
-	// 				message:'You have disallowed Webcapsule from running geolocation services.'
-	// 			}).show();
-	// 		}
-	// 		else if (authorization == Titanium.Geolocation.AUTHORIZATION_RESTRICTED) {
-	// 			Ti.UI.createAlertDialog({
-	// 				title:'Webcapsule',
-	// 				message:'Your system has disallowed Webcapsule from running geolocation services.'
-	// 			}).show();
-	// 		}
-	// 	}
-	// 
-	// 	// SET ACCURACY - THE FOLLOWING VALUES ARE SUPPORTED
-	// 	// Titanium.Geolocation.ACCURACY_BEST
-	// 	// Titanium.Geolocation.ACCURACY_NEAREST_TEN_METERS
-	// 	// Titanium.Geolocation.ACCURACY_HUNDRED_METERS
-	// 	// Titanium.Geolocation.ACCURACY_KILOMETER
-	// 	// Titanium.Geolocation.ACCURACY_THREE_KILOMETERS
-	// 	Titanium.Geolocation.accuracy = Titanium.Geolocation.ACCURACY_NEAREST_TEN_METERS;
-	// 	Titanium.Geolocation.distanceFilter = 10;
-	// 
-	// 	//
-	// 	// GET CURRENT POSITION - THIS FIRES ONCE
-	// 	//
-	// 	Titanium.Geolocation.getCurrentPosition(function(e)
-	// 	{
-	// 		if (!e.success || e.error)
-	// 		{
-	// 			Ti.API.info("Code translation: "+translateErrorCode(e.code));
-	// 			alert('error ' + JSON.stringify(e.error));
-	// 			return;
-	// 		}
-	// 
-	// 		var longitude = e.coords.longitude;
-	// 		var latitude = e.coords.latitude;
-	// 		var altitude = e.coords.altitude;
-	// 		var heading = e.coords.heading;
-	// 		var accuracy = e.coords.accuracy;
-	// 		var speed = e.coords.speed;
-	// 		var timestamp = e.coords.timestamp;
-	// 		var altitudeAccuracy = e.coords.altitudeAccuracy;
-	// 
-	// 		Titanium.API.info('geo - current location: ' + new Date(timestamp) + ' long ' + longitude + ' lat ' + latitude + ' accuracy ' + accuracy);
-	// 	});
-	// 
-	// 	//
-	// 	// EVENT LISTENER FOR GEO EVENTS - THIS WILL FIRE REPEATEDLY (BASED ON DISTANCE FILTER)
-	// 	//
-	// 	var locationCallback = function(e)
-	// 	{
-	// 		if (!e.success || e.error)
-	// 		{
-	// 			Ti.API.info("Code translation: "+translateErrorCode(e.code));
-	// 			return;
-	// 		}
-	// 
-	// 		var longitude = e.coords.longitude;
-	// 		var latitude = e.coords.latitude;
-	// 		var altitude = e.coords.altitude;
-	// 		var heading = e.coords.heading;
-	// 		var accuracy = e.coords.accuracy;
-	// 		var speed = e.coords.speed;
-	// 		var timestamp = e.coords.timestamp;
-	// 		var altitudeAccuracy = e.coords.altitudeAccuracy;
-	// 
-	// 		Titanium.Geolocation.distanceFilter = 100; //changed after first location event
-	// 
-	// 		setTimeout(function()
-	// 		{},100);
-	// 
-	// 		// reverse geo
-	// 		Titanium.Geolocation.reverseGeocoder(latitude,longitude,function(evt)
-	// 		{
-	// 			if (evt.success) {
-	// 				var places = evt.places;
-	// 				if (places && places.length) {
-	// 					reverseGeo.text = places[0].address;
-	// 					alert(reverseGeo);
-	// 				} else {
-	// 					reverseGeo.text = "No address found";
-	// 				}
-	// 				Ti.API.debug("reverse geolocation result = "+JSON.stringify(evt));
-	// 			}
-	// 			else {
-	// 				Ti.UI.createAlertDialog({
-	// 					title:'Reverse geo error',
-	// 					message:evt.error
-	// 				}).show();
-	// 				Ti.API.info("Code translation: "+translateErrorCode(e.code));
-	// 			}
-	// 		});
-	// 
-	// 
-	// 		Titanium.API.info('geo - location updated: ' + new Date(timestamp) + ' long ' + longitude + ' lat ' + latitude + ' accuracy ' + accuracy);
-	// 	};
-	// 	Titanium.Geolocation.addEventListener('location', locationCallback);
-	// 	locationAdded = true;
-	// }
-// };
-
-
-// var headingAdded = false;
-// 
-// 
-// if (Titanium.Platform.name == 'android')
-// {
-// 	//  as the destroy handler will remove the listener, only set the pause handler to remove if you need battery savings
-// 	Ti.Android.currentActivity.addEventListener('pause', function(e) {
-// 		Ti.API.info("pause event received");
-// 		if (headingAdded) {
-// 			Ti.API.info("removing heading callback on pause");
-// 			Titanium.Geolocation.removeEventListener('heading', headingCallback);
-// 			headingAdded = false;
-// 		}
-// 		if (locationAdded) {
-// 			Ti.API.info("removing location callback on pause");
-// 			Titanium.Geolocation.removeEventListener('location', locationCallback);
-// 			locationAdded = false;
-// 		}
-// 	});
-// 	Ti.Android.currentActivity.addEventListener('destroy', function(e) {
-// 		Ti.API.info("destroy event received");
-// 		if (headingAdded) {
-// 			Ti.API.info("removing heading callback on destroy");
-// 			Titanium.Geolocation.removeEventListener('heading', headingCallback);
-// 			headingAdded = false;
-// 		}
-// 		if (locationAdded) {
-// 			Ti.API.info("removing location callback on destroy");
-// 			Titanium.Geolocation.removeEventListener('location', locationCallback);
-// 			locationAdded = false;
-// 		}
-// 	});
-// 	Ti.Android.currentActivity.addEventListener('resume', function(e) {
-// 		Ti.API.info("resume event received");
-// 		if (!headingAdded) {
-// 			Ti.API.info("adding heading callback on resume");
-// 			Titanium.Geolocation.addEventListener('heading', headingCallback);
-// 			headingAdded = true;
-// 		}
-// 		if (!locationAdded) {
-// 			Ti.API.info("adding location callback on resume");
-// 			Titanium.Geolocation.addEventListener('location', locationCallback);
-// 			locationAdded = true;
-// 		}
-// 	});
-// }
+	var locationAdded = false;
+	
+	if (Titanium.Geolocation.locationServicesEnabled==false)
+	{
+		Titanium.UI.createAlertDialog({title:'Webcapsule', message:'Your device has geo turned off - turn it on.'}).show();
+	}
+	else
+	{
+		if (Titanium.Platform.name != 'android') {
+			var authorization = Titanium.Geolocation.locationServicesAuthorization
+			Ti.API.info('Authorization: '+authorization);
+			if (authorization == Titanium.Geolocation.AUTHORIZATION_DENIED) {
+				Ti.UI.createAlertDialog({
+					title:'Webcapsule',
+					message:'You have disallowed Webcapsule from running geolocation services.'
+				}).show();
+			}
+			else if (authorization == Titanium.Geolocation.AUTHORIZATION_RESTRICTED) {
+				Ti.UI.createAlertDialog({
+					title:'Webcapsule',
+					message:'Your system has disallowed Webcapsule from running geolocation services.'
+				}).show();
+			}
+		}
+	
+		// SET ACCURACY - THE FOLLOWING VALUES ARE SUPPORTED
+		// Titanium.Geolocation.ACCURACY_BEST
+		// Titanium.Geolocation.ACCURACY_NEAREST_TEN_METERS
+		// Titanium.Geolocation.ACCURACY_HUNDRED_METERS
+		// Titanium.Geolocation.ACCURACY_KILOMETER
+		// Titanium.Geolocation.ACCURACY_THREE_KILOMETERS
+		Titanium.Geolocation.accuracy = Titanium.Geolocation.ACCURACY_NEAREST_TEN_METERS;
+		Titanium.Geolocation.distanceFilter = 100;
+	
+		//
+		// GET CURRENT POSITION - THIS FIRES ONCE
+		//
+		Titanium.Geolocation.getCurrentPosition(function(e)
+		{
+			if (!e.success || e.error)
+			{
+				Ti.API.info("Code translation: "+translateErrorCode(e.code));
+				alert('error ' + JSON.stringify(e.error));
+				return;
+			}
+	
+			var longitude = e.coords.longitude;
+			var latitude = e.coords.latitude;
+			var altitude = e.coords.altitude;
+			var heading = e.coords.heading;
+			var accuracy = e.coords.accuracy;
+			var speed = e.coords.speed;
+			var timestamp = e.coords.timestamp;
+			var altitudeAccuracy = e.coords.altitudeAccuracy;
+	
+			Titanium.API.info('geo - current location: ' + new Date(timestamp) + ' long ' + longitude + ' lat ' + latitude + ' accuracy ' + accuracy);
+		});
+	
+		//
+		// EVENT LISTENER FOR GEO EVENTS - THIS WILL FIRE REPEATEDLY (BASED ON DISTANCE FILTER)
+		//
+		var locationCallback = function(e)
+		{
+			if (!e.success || e.error)
+			{
+				Ti.API.info("Code translation: "+translateErrorCode(e.code));
+				return;
+			}
+	
+			var longitude = e.coords.longitude;
+			var latitude = e.coords.latitude;
+			var altitude = e.coords.altitude;
+			var heading = e.coords.heading;
+			var accuracy = e.coords.accuracy;
+			var speed = e.coords.speed;
+			var timestamp = e.coords.timestamp;
+			var altitudeAccuracy = e.coords.altitudeAccuracy;
+	
+			Titanium.Geolocation.distanceFilter = 200; //changed after first location event
+	
+			setTimeout(function()
+			{},100);
+		
+			// reverse geo
+			Titanium.Geolocation.reverseGeocoder(latitude,longitude,function(evt)
+			{
+				if (evt.success) {
+					var places = evt.places;
+					if (places && places.length) {
+						story.where = places[0].address;
+						Titanium.Geolocation.removeEventListener('location', locationCallback);
+						Views.stories._form.template.toggle_geolocation(true);
+						Ti.API.debug("ADDRESS FOUND AND SET");
+					} else {
+						story.where = "";
+					}
+					Ti.API.debug("reverse geolocation result = "+JSON.stringify(evt));
+				}
+				else {
+					Ti.UI.createAlertDialog({
+						title:'Reverse geo error',
+						message:evt.error
+					}).show();
+					Ti.API.info("Code translation: "+translateErrorCode(e.code));
+				}
+			});
+	
+	
+			Titanium.API.info('geo - location updated: ' + new Date(timestamp) + ' long ' + longitude + ' lat ' + latitude + ' accuracy ' + accuracy);
+		};
+		
+		Titanium.Geolocation.addEventListener('location', locationCallback);
+		
+		locationAdded = true;
+	}
+};
