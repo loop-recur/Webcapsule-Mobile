@@ -13,8 +13,26 @@ Views.stories.init.template = function() {
 	
 	Titanium.Media.showCamera({
 		success: function(event){
-			story.upload = event.media;
-			App.action(self.win, "stories#edit", {story: story});
+			var progress_bar = makeProgressBar();
+			video = {upload : event.media};
+			
+			App.action(self.win, "videos#create", {
+				video: video,
+				success: function (uploaded_video) {
+					var story = Views.stories._form.source;
+					story.video_id = uploaded_video.id;
+					self.win.remove(progress_bar);
+				},
+				error : function() {
+					alert("There was an error uploading, please try again");
+					win.remove(progress_bar);
+				},
+				http_options : {progress_bar : progress_bar}
+			});
+			
+			Views.stories.edit.win = self.win;
+			Views.stories.edit.render(story, {upload : video.upload});
+			self.win.add(progress_bar);
 		},
 		cancel:function(){},
 		error:function(error)
@@ -26,5 +44,10 @@ Views.stories.init.template = function() {
 		videoQuality:Ti.Media.QUALITY_MEDIUM,
 		autohide:true
 	});	
-
+	
+	function makeProgressBar() {
+		var progress_bar = Helpers.ui.progressBar();
+		progress_bar.show();
+		return progress_bar;
+	};
 };

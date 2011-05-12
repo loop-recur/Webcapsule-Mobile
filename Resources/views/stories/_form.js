@@ -104,7 +104,8 @@ Views.stories._form.template = function() {
 	    top:10,  
 	    width:300,  
 	    height:30,
-	    hintText:'Title',  
+	    hintText:'Title',
+			value: story.name,
 	    keyboardType:Titanium.UI.KEYBOARD_DEFAULT,  
 	    returnKeyType:Titanium.UI.RETURNKEY_DONE
 	});
@@ -129,8 +130,6 @@ Views.stories._form.template = function() {
 		backgroundSelectedImage:'images/postrecord/tag_pressed.png'
 	});
 	
-	Views.tags.init.win = camera_overlay;
-	Views.tags.init.render([]);
 	
 	tag_friends_button.addEventListener('click', function() {
 		App.action(camera_overlay, "tags#init");
@@ -199,28 +198,28 @@ Views.stories._form.template = function() {
 		
 	});
 	
+	story_title_field.addEventListener("blur", function() {
+		if(story_title_field.value == "") { story_title_field.value = "Untitled Story"; };
+		story.name = story_title_field.value;
+	});
+	
 	accept_button.addEventListener('click', function() {
 		accept_button.visible = false;
 		saving_label.visible = true;
 		saving_label.animate({right:10, duration:700});
-		if(story_title_field.value == "") { story_title_field.value = "Untitled Story"; };
-		story.name = story_title_field.value;
-		var http_options = getHttpOptions();
 		
 		App.action(form_view, 'stories#update', {
 			story : story,
 			success : function(updated) {
 				accept_button.visible = true;
 				saving_label.visible = false;
-				if(http_options.progress_bar) http_options.progress_bar.hide();
-				story = updated; // TODO: don't know why this is necessary, but it is.
+				story = updated; // don't know why this is necessary here and not the controller, but it is.
 			},
 			error : function(errors) {
 				alert(errors);
 				accept_button.visible = true;
 				saving_label.visible = false;
-			},
-			http_options : http_options
+			}
 		});
 	});
 
@@ -255,15 +254,4 @@ Views.stories._form.template = function() {
 	form_view.add(functionality_view);
 	camera_overlay.add(form_view);
 	
-	
-	function getHttpOptions() {
-		return (TempId.isTemp(story.id) && story.upload) ? makeProgressBar() : {};
-	};
-	
-	function makeProgressBar() {
-		var progress_bar = Helpers.ui.progressBar();
-		progress_bar.show();
-		camera_overlay.add(progress_bar);
-		return {progress_bar : progress_bar};
-	}
 };

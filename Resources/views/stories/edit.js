@@ -4,7 +4,7 @@ Views.stories.edit.template = function() {
 	var self = this;
 	
 	var activeMovie = Titanium.Media.createVideoPlayer({
-		media:self.source.upload,
+		media:self.params.upload,
 		backgroundColor:'#111',
 		movieControlStyle:Titanium.Media.VIDEO_CONTROL_NONE,
 		scalingMode:Titanium.Media.VIDEO_SCALING_MODE_FILL,

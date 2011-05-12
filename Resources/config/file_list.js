@@ -3,7 +3,7 @@ FileList = [
 	"controllers/comments_controller.js",
 	"controllers/tags_controller.js",
 	"controllers/photos_controller.js",
-	"controllers/replies_controller.js",
+	"controllers/videos_controller.js",
 	"controllers/sharings_controller.js",
 	"controllers/user_sessions_controller.js",
 	"controllers/followings_controller.js",
@@ -36,5 +36,5 @@ FileList = [
 	"views/photos/init.js",
 	"views/photos/create.js",
 	"views/photos/_photo.js",
-	"views/replies/init.js"
+	"views/videos/init.js"
 ];

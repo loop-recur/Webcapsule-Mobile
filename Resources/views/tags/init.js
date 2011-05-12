@@ -4,25 +4,24 @@ Views.tags.init.template = function() {
 	var self = this;
 	self.view = makeView();
 	
-	var camera_overlay = self.win;
+	var win = Titanium.UI.createWindow({
+		opacity:0.9,
+		backgroundColor:'black'
+	});
 
 	var tag_tray = Titanium.UI.createView({
 		height:317,
 		top:0,
 		backgroundImage:'images/add_tag/tag_friends_tray.png',
 		zIndex:100,
-		visible:false
+		visible:true
 	});
-	
-	Views.tags.init.template.toggle_tag_tray = function(state) {
-		tag_tray.visible = state;
-	};
 	
 	var available_tags_view = Titanium.UI.createScrollView({
 		top:75,
 		height:70,
 		width:300,
-		contentWidth:300,
+		contentWidth:"auto",
 		contentHeight:90,
 		showHorizontalScrollIndicator:true
 	});
@@ -31,7 +30,7 @@ Views.tags.init.template = function() {
 		top:155,
 		height:80,
 		width:300,
-		contentWidth:300,
+		contentWidth:"auto",
 		contentHeight:70,
 		showHorizontalScrollIndicator:true
 	});
@@ -63,7 +62,7 @@ Views.tags.init.template = function() {
 	    height:49
 	});
 
-	done_button.addEventListener('click', function() { Views.tags.init.template.toggle_tag_tray(false); });
+	done_button.addEventListener('click', function() { win.close(); });
 	
 	available_tags_view.add(self.view);
 	
@@ -74,7 +73,8 @@ Views.tags.init.template = function() {
 	tag_tray.add(available_tags_view);
 	tag_tray.add(added_tags_view);
 	tag_tray.add(done_button);
-	camera_overlay.add(tag_tray);
+	win.add(tag_tray);
+	win.open();
 	
 	
 	function makeView() {

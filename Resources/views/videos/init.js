@@ -1,8 +1,8 @@
-Views.replies.init = Views.extend();
+Views.videos.init = Views.extend();
 
-Views.replies.init.template = function() {
+Views.videos.init.template = function() {
 	var self = this;
-	var reply = self.source;
+	var video = self.source;
 	var win = Titanium.UI.createWindow({backgroundColor: "#ccc"});
 	var progress_bar = Helpers.ui.progressBar();
 	
@@ -10,21 +10,19 @@ Views.replies.init.template = function() {
 	Titanium.Media.showCamera({
 		success:function(event)
 		{
-			reply.upload = event.media;
+			video.upload = event.media;
 			progress_bar.show();
 			win.add(progress_bar);
 			
-			App.action(win, "replies#create", {
-				reply : reply,
-				success : function(updated_reply) {
+			App.action(win, "videos#create", {
+				video : video,
+				success : function(updated_video) {
 					alert("it was uploaded!");
 					win.remove(progress_bar);
 				},
 				error : function(errors) {
+					alert("There was an error uploading, please try again");
 					win.remove(progress_bar);
-					alert(errors);
-					save_button.visible = true;
-					saving_label.visible = false;
 				},
 				http_options : {progress_bar : progress_bar}
 			});
