@@ -104,7 +104,8 @@ Views.stories._form.template = function() {
 	    top:10,  
 	    width:300,  
 	    height:30,
-	    hintText:'Title',  
+	    hintText:'Title',
+			value: story.name,
 	    keyboardType:Titanium.UI.KEYBOARD_DEFAULT,  
 	    returnKeyType:Titanium.UI.RETURNKEY_DONE
 	});
@@ -129,8 +130,6 @@ Views.stories._form.template = function() {
 		backgroundSelectedImage:'images/postrecord/tag_pressed.png'
 	});
 	
-	Views.tags.init.win = camera_overlay;
-	Views.tags.init.render([]);
 	
 	tag_friends_button.addEventListener('click', function() {
 		App.action(camera_overlay, "tags#init");
@@ -199,12 +198,15 @@ Views.stories._form.template = function() {
 		
 	});
 	
+	story_title_field.addEventListener("blur", function() {
+		if(story_title_field.value == "") { story_title_field.value = "Untitled Story"; };
+		story.name = story_title_field.value;
+	});
+	
 	accept_button.addEventListener('click', function() {
 		accept_button.visible = false;
 		saving_label.visible = true;
 		saving_label.animate({right:10, duration:700});
-		if(story_title_field.value == "") { story_title_field.value = "Untitled Story"; };
-		story.name = story_title_field.value;
 		var http_options = getHttpOptions();
 		
 		App.action(form_view, 'stories#update', {

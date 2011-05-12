@@ -1,5 +1,4 @@
 Layouts.pick_date = function(win) {	
-	
 	var story = Views.stories._form.source;
 	
 	var view = Titanium.UI.createView({
@@ -37,6 +36,7 @@ Layouts.pick_date = function(win) {
 	});
 
 	done_button.addEventListener('click', function() {
+		var story = Views.stories._form.source;
 		story.when = picker.value;
 		App.action(win, "stories#update", {story : story});
 		view.hide();

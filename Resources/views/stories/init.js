@@ -13,6 +13,7 @@ Views.stories.init.template = function() {
 	
 	Titanium.Media.showCamera({
 		success: function(event){
+			var story = Views.stories._form.source;
 			story.upload = event.media;
 			App.action(self.win, "stories#edit", {story: story});
 		},
