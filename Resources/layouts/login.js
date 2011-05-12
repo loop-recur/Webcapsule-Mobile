@@ -50,14 +50,20 @@ Layouts.login = function () {
 		text:'Create an Account',
 		top: 330,
 		width:150,
-		height:'auto',
-		color:'#616161',
+		height:40,
+		color:'white',
 		textAlign:'center'
+	});
+
+	new_account_label.addEventListener('click', function() {
+		Layouts.create_account();
 	});
 
 	win.add(username);
 	win.add(password);
 	win.add(login_button);
+	win.add(new_account_label);
+	
 	
 	win.open();
 };

@@ -11,6 +11,7 @@ FileList = [
 	"helpers/player.js",
 	"layouts/site.js",
 	"layouts/login.js",
+	"layouts/create_account.js",	
 	"layouts/bottom_nav.js",
 	"layouts/users.js",
 	"layouts/story.js",
