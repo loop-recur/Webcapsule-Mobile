@@ -1,7 +1,7 @@
 Layouts.record = function() {	
 	var win = Titanium.UI.createWindow({backgroundColor: "#ccc"});
 	
-	var overlay = Titanium.UI.createView({opacity:.7});
+	var overlay = Titanium.UI.createView();
 	
 	var close_btn = Titanium.UI.createButton({
 		backgroundImage:"images/postrecord/return.png",
