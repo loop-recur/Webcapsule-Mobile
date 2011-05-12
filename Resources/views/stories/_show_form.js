@@ -69,8 +69,7 @@ Views.stories._show_form.template = function() {
 	});
 
 	comment_button.addEventListener('click', function() {
-		alert("add comments");
-		// App.action(overlay, "comments#init", {story : story});
+		App.action(win, "comments#init", {story : story});
 	});
 
 	var photo_button = Titanium.UI.createButton({
@@ -84,8 +83,7 @@ Views.stories._show_form.template = function() {
 	});
 
 	photo_button.addEventListener('click', function() {
-		alert("add photos");
-		// App.action(overlay, "photos#init", {photos : story.photos});		
+		App.action(win, "photos#init", {photos : story.photos});		
 	});
 
 	var video_button = Titanium.UI.createButton({
@@ -99,8 +97,7 @@ Views.stories._show_form.template = function() {
 	});
 
 	video_button.addEventListener('click', function() {
-		alert("add reply");
-		// App.action(overlay, "replies#init", {story : story});
+		App.action(win, "videos#init", {story : story});
 	});	
 
 	var share_button = Titanium.UI.createButton({

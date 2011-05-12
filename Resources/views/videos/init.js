@@ -19,10 +19,12 @@ Views.videos.init.template = function() {
 				success : function(updated_video) {
 					alert("it was uploaded!");
 					win.remove(progress_bar);
+					win.close();
 				},
 				error : function(errors) {
 					alert("There was an error uploading, please try again");
 					win.remove(progress_bar);
+					win.close();
 				},
 				http_options : {progress_bar : progress_bar}
 			});
