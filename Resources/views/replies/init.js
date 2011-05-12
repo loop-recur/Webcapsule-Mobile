@@ -33,6 +33,7 @@ Views.replies.init.template = function() {
 		error:function(error)
 		{
 			alert("can't show");
+			win.close();
 		},
 		mediaTypes: Titanium.Media.MEDIA_TYPE_VIDEO,
 		videoQuality:Ti.Media.QUALITY_MEDIUM

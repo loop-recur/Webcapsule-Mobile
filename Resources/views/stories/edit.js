@@ -52,7 +52,7 @@ Views.stories.edit.template = function() {
 	self.win.add(close_btn);
 	self.win.add(play_pause_button);
 	
-	Views.stories._form.render(self.source, {win: self.win});
+	Views.stories._form.render(self.source, {win: self.win, enable:true});
 	Views.stories._form.accept_button_toggle(true);
 	Views.stories._form.play_pause_toggle(true);
 };

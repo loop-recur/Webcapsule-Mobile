@@ -6,6 +6,7 @@ Views.stories._form.template = function() {
 	var story = self.source;
 	
 	var camera_overlay = self.params.win;
+	var enable = self.params.enable;
 	var form_view = Titanium.UI.createView({bottom: 0, height: 245, zIndex:10});
 
 	Layouts.pick_date(camera_overlay);
@@ -127,11 +128,12 @@ Views.stories._form.template = function() {
 		height:56,
 		width:55,
 		backgroundImage:'images/postrecord/tag_normal.png',
-		backgroundSelectedImage:'images/postrecord/tag_pressed.png'
+		backgroundSelectedImage:'images/postrecord/tag_pressed.png',
+		enabled:enable
 	});
 	
 	
-	tag_friends_button.addEventListener('click', function() {
+	if(enable) tag_friends_button.addEventListener('click', function() {
 		App.action(camera_overlay, "tags#init");
 	});
 	
@@ -162,8 +164,6 @@ Views.stories._form.template = function() {
 		}
 	};
 	
-
-
 	var add_photos_button = Titanium.UI.createButton({
 		value:false,
 		top:64,
@@ -171,12 +171,11 @@ Views.stories._form.template = function() {
 		height:56,
 		width:55,
 		backgroundImage:'images/postrecord/addphotos_normal.png',
-		backgroundSelectedImage:'images/postrecord/addphotos_pressed.png'
+		backgroundSelectedImage:'images/postrecord/addphotos_pressed.png',
+		enabled:enable
 	});
 
-		
-	
-	add_photos_button.addEventListener('click', function() {
+	if(enable) add_photos_button.addEventListener('click', function() {
 		App.action(camera_overlay, "photos#init");
 	});	
 
@@ -201,11 +200,12 @@ Views.stories._form.template = function() {
 		height:54,
 		width:53,
 		backgroundImage:'images/postrecord/share_normal.png',
-		backgroundSelectedImage:'images/postrecord/share_pressed.png'
+		backgroundSelectedImage:'images/postrecord/share_pressed.png',
+		enabled:enable
 	});
 	
-	share_button.addEventListener('click', function() {
-		
+	if(enable) share_button.addEventListener('click', function() {
+		alert("share");
 	});
 	
 	story_title_field.addEventListener("blur", function() {
