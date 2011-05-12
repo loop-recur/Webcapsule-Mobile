@@ -7,6 +7,10 @@ Views.stories._show_form.template = function() {
 	var win = self.params.win;
 	var form_view = Titanium.UI.createView({bottom: 0, height: 245, zIndex:10});
 	
+	var buttons_from_top_length = 72;
+	var button_width = 64;
+	var button_height = 60;
+	
 	var functionality_view = Titanium.UI.createView({
 		height:193,
 		width:320,
@@ -20,9 +24,17 @@ Views.stories._show_form.template = function() {
 		top:0,
 		left:0
 	});
+	
+	var comment_bar = Titanium.UI.createView({
+		backgroundImage:'images/storyshow/comment_bar.png',
+		height:58,
+		width:275,
+		right:0,
+		top:0
+	});
 
 	var tray = Titanium.UI.createView({
-		backgroundImage:'images/postrecord/edit_details_drawer.png',
+		backgroundImage:'images/storyshow/story_drawer.png',
 		height:137,
 		width:320,
 		bottom:0
@@ -60,12 +72,12 @@ Views.stories._show_form.template = function() {
 	
 	var comment_button = Titanium.UI.createButton({
 		value:false,
-		top:64,
+		top:buttons_from_top_length,
 		left: 8,
-		height:56,
-		width:55,
-		backgroundImage:'images/postrecord/tag_normal.png',
-		backgroundSelectedImage:'images/postrecord/tag_pressed.png'
+		height:button_height,
+		width:button_width,
+		backgroundImage:'images/storyshow/comment_normal.png',
+		backgroundSelectedImage:'images/storyshow/comment_pressed.png'
 	});
 
 	comment_button.addEventListener('click', function() {
@@ -74,12 +86,12 @@ Views.stories._show_form.template = function() {
 
 	var photo_button = Titanium.UI.createButton({
 		value:false,
-		top:64,
-		left: 71,
-		height:56,
-		width:55,
-		backgroundImage:'images/postrecord/addphotos_normal.png',
-		backgroundSelectedImage:'images/postrecord/addphotos_pressed.png'
+		top:buttons_from_top_length,
+		left: 68,
+		height:button_height,
+		width:button_width,
+		backgroundImage:'images/storyshow/photos_normal.png',
+		backgroundSelectedImage:'images/storyshow/photos_pressed.png'
 	});
 
 	photo_button.addEventListener('click', function() {
@@ -88,44 +100,44 @@ Views.stories._show_form.template = function() {
 
 	var video_button = Titanium.UI.createButton({
 		value:false,
-		top:64,
-		right: 133,
-		height:56,
-		width:55,
-		backgroundImage:'images/postrecord/location_normal.png',
-		backgroundSelectedImage:'images/postrecord/location_pressed.png'
+		top:buttons_from_top_length,
+		height:button_height,
+		width:button_width,
+		backgroundImage:'images/storyshow/video_normal.png',
+		backgroundSelectedImage:'images/storyshow/video_pressed.png'
 	});
 
 	video_button.addEventListener('click', function() {
 		App.action(win, "videos#init", {story : story});
 	});	
 
-	var share_button = Titanium.UI.createButton({
+	var settings_button = Titanium.UI.createButton({	
 		value:false,
-		top:64,
+		top:buttons_from_top_length,
 		right: 8,
-		height:54,
-		width:53,
-		backgroundImage:'images/postrecord/share_normal.png',
-		backgroundSelectedImage:'images/postrecord/share_pressed.png'
-	});
-
-	share_button.addEventListener('click', function() {
-		alert("share");
-	});
-
-	var settings_button = Titanium.UI.createButton({
-		value:false,
-		top:64,
-		right: 71,
-		height:56,
-		width:55,
-		backgroundImage:'images/postrecord/date_normal.png',
-		backgroundSelectedImage:'images/postrecord/date_pressed.png'
+		height:button_height,
+		width:button_width,
+		backgroundImage:'images/storyshow/edit_normal.png',
+		backgroundSelectedImage:'images/storyshow/edit_pressed.png'
 	});
 
 	settings_button.addEventListener('click', function() {
 		alert("settings");
+	});
+	
+	var share_button = Titanium.UI.createButton({
+		value:false,
+		top:buttons_from_top_length,
+		right: 68,
+		height:button_height,
+		width:button_width,
+		backgroundImage:'images/storyshow/share_normal.png',
+		backgroundSelectedImage:'images/storyshow/share_pressed.png'
+	});
+
+	
+	share_button.addEventListener('click', function() {
+		alert("share");
 	});
 
 	edit_details_btn.addEventListener('click', function() {
@@ -138,9 +150,10 @@ Views.stories._show_form.template = function() {
 			};
 	});
 
+	functionality_view.add(comment_bar);
 	functionality_view.add(edit_details_btn);
 	functionality_view.add(tray);
-
+	
 	tray.add(story_title);
 	tray.add(story_duration);
 	tray.add(story_user);

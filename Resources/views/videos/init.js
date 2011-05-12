@@ -29,10 +29,13 @@ Views.videos.init.template = function() {
 				http_options : {progress_bar : progress_bar}
 			});
 		},
-		cancel:function() {},
+		cancel:function() {
+			win.close();
+		},
 		error:function(error)
 		{
 			alert("can't show");
+			win.close();
 		},
 		mediaTypes: Titanium.Media.MEDIA_TYPE_VIDEO,
 		videoQuality:Ti.Media.QUALITY_MEDIUM

@@ -16,6 +16,7 @@ FileList = [
 	"layouts/users.js",
 	"layouts/story.js",
 	"layouts/stories.js",
+	"layouts/geolocation.js",
 	"layouts/record.js",
 	"layouts/pick_date.js",
 	"layouts/choose_photo.js",

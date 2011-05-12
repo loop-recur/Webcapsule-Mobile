@@ -15,9 +15,8 @@ Views.photos.create.template = function() {
 	
 	function makeView() {
 		 return Titanium.UI.createView({
-			top : 140,
-			height:140,
-			width: 300
+			top:10,
+			height:140
 		});
 	}
 	
