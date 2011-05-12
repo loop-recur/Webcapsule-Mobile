@@ -15,6 +15,10 @@ Layouts.login = function () {
 	    returnKeyType:Titanium.UI.RETURNKEY_NEXT,  
 	    borderStyle:Titanium.UI.INPUT_BORDERSTYLE_ROUNDED  
 	});  
+	
+	username.addEventListener('return', function() {
+		password.focus();
+	});
 
 	var password = Titanium.UI.createTextField({  
 	    color:'#336699',
@@ -24,10 +28,10 @@ Layouts.login = function () {
 	    hintText:'Password',  
 	    passwordMask:true,  
 	    keyboardType:Titanium.UI.KEYBOARD_DEFAULT,  
-	    returnKeyType:Titanium.UI.RETURNKEY_DONE,  
+	    returnKeyType:Titanium.UI.RETURNKEY_GO,  
 	    borderStyle:Titanium.UI.INPUT_BORDERSTYLE_ROUNDED  
 	});
-
+	
 	var login_button = Titanium.UI.createButton({  
 	    value:false,
 			backgroundImage:'images/login/login-normal.png',
