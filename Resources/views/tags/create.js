@@ -3,6 +3,7 @@ Views.tags.create = Views.extend();
 Views.tags.create.template = function() {
 	var self = this;
 	var scrollview = self.scrollview;
+	var tags = self.source || [];
 	
 	update();
 	
@@ -22,8 +23,8 @@ Views.tags.create.template = function() {
 	};
 	
 	function makeFriends(position, friend) {
-		Functional.reduce(makeFriend, 10, (self.source || []));
-	}
+		Functional.reduce(makeFriend, 10, tags);
+	};
 	
 	function makeFriend(position, friend) {
 		

@@ -24,8 +24,8 @@ Controllers.tags = {
 			fixed_users = Functional.map(function(u){ if(u.image.match("/files")) u.image = App.file_url + u.image; return u; }, users);
 			view.source = fixed_users;
 		});
-		
-		view.template.toggle_tag_tray(true);	
+		view.render([]);
+		// view.template.toggle_tag_tray(true);
 	},
 	
 	destroy: function(view, params) {
