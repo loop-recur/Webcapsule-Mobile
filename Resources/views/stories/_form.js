@@ -5,6 +5,7 @@ Views.stories._form.template = function() {
 	var self = this;
 	var story = self.source;
 	
+	var win = self.win;
 	var camera_overlay = self.params.win;
 	var enable = self.params.enable;
 	var form_view = Titanium.UI.createView({bottom: 0, height: 245, zIndex:10});
@@ -57,7 +58,7 @@ Views.stories._form.template = function() {
 	});
 	
 	uploadvid_button.addEventListener('click',function() {
-		alert("upload video");
+		Views.stories.init.chooseVideo();
 	});
 	
 	Views.stories._form.toggle_upload = function(state) {

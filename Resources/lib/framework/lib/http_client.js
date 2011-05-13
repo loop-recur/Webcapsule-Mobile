@@ -19,6 +19,14 @@ LoopRecur.HttpClient = function() {
 		prepare("GET", url, call_backs).send();
 	}
 	
+	function destroy(url, params_or_call_backs, call_backs) {
+		var fixed_args = fixArgs(params_or_call_backs, call_backs);
+		call_backs = fixed_args[0];
+		params = fixed_args[1];
+		url = url+queryString(params);
+		prepare("DELETE", url, call_backs).send();
+	}
+	
 // private
 
 	function fixArgs(params_or_call_backs, call_backs) {
@@ -54,6 +62,6 @@ LoopRecur.HttpClient = function() {
 		client.setRequestHeader("content-type", "application/json");
 	}
 	
-	var priv_obj = {post: post, get: get};
+	var priv_obj = {post: post, get: get, destroy : destroy};
 	return priv_obj;
 };

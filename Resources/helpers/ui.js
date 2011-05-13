@@ -1,7 +1,7 @@
 Helpers.ui = {};
 
 Helpers.ui.progressBar = function() {
-	return Titanium.UI.createProgressBar({
+	var pb = Titanium.UI.createProgressBar({
 		width:200,
 		height:40,
 		min:0,
@@ -13,5 +13,7 @@ Helpers.ui.progressBar = function() {
 		font:{fontSize:12, fontWeight:'bold'},
 		color:'black'
 	});	
+	pb.show();
+	return pb;
 };
 

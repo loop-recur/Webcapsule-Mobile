@@ -15,33 +15,35 @@ Views.followings.show.template = function() {
 	
 	close.addEventListener('click', function() { win.close(); });
 	
-	var friend_button = Titanium.UI.createButton({
-		title:"Unfollow",
-		left:10,
-		top: 40, 
-		height:30,
-		width:70,
-		zIndex:60
-	});
-	
-	friend_button.addEventListener('click', function() {	
-		alert(friend);
-		if(friend_button.title === "Unfollow") {
-			App.action(self.win, "followings#destroy", {
-				friend : friend,
-				success: function(new_following) {
-					friend_button.title = "Follow";
-				}
-			});
-		} else {
-			App.action(self.win, "followings#create", {
-				friend : friend,
-				success: function(new_following) {
-					friend_button.title = "Unfollow";
-				}
-			});
-		};
-	});
+	if(self.params.followees) {
+		var friend_button = Titanium.UI.createButton({
+			title:"Unfollow",
+			left:10,
+			top: 40, 
+			height:30,
+			width:70,
+			zIndex:60
+		});
+
+		friend_button.addEventListener('click', function() {	
+			if(friend_button.title === "Unfollow") {
+				App.action(self.win, "followings#destroy", {
+					friend : friend,
+					success: function(new_following) {
+						friend_button.title = "Follow";
+					}
+				});
+			} else {
+				App.action(self.win, "followings#create", {
+					friend : friend,
+					success: function(new_following) {
+						friend_button.title = "Unfollow";
+					}
+				});
+			};
+		});
+		win.add(friend_button);
+	};
 
 	var following_label = Titanium.UI.createLabel({
 		text: friend.full_name,
@@ -71,6 +73,5 @@ Views.followings.show.template = function() {
 	win.add(following_label);
 	win.add(email);
 	win.add(close);
-	win.add(friend_button);
 	win.open();
 };

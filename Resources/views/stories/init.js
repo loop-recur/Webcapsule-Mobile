@@ -11,43 +11,62 @@ Views.stories.init.template = function() {
 	Views.stories._form.toggle_upload(true);
 	Views.stories._form.toggle_start_stop(true);
 	
-	Titanium.Media.showCamera({
-		success: function(event){
-			var progress_bar = makeProgressBar();
-			video = {upload : event.media};
-			
-			App.action(self.win, "videos#create", {
-				video: video,
-				success: function (uploaded_video) {
-					var story = Views.stories._form.source;
-					story.video_id = uploaded_video.id;
-					self.win.remove(progress_bar);
-				},
-				error : function() {
-					alert("There was an error uploading, please try again");
-					win.remove(progress_bar);
-				},
-				http_options : {progress_bar : progress_bar}
-			});
-			
-			Views.stories.edit.win = self.win;
-			Views.stories.edit.render(story, {upload : video.upload});
-			self.win.add(progress_bar);
-		},
-		cancel:function(){},
-		error:function(error)
-		{
-		},
-		overlay:self.params.overlay,
-		showControls:false,	// don't show system controls
-		mediaTypes:Ti.Media.MEDIA_TYPE_VIDEO,
-		videoQuality:Ti.Media.QUALITY_MEDIUM,
-		autohide:true
-	});	
-	
-	function makeProgressBar() {
-		var progress_bar = Helpers.ui.progressBar();
-		progress_bar.show();
-		return progress_bar;
+	// called below
+	self.takeVideo = function() {
+		Titanium.Media.showCamera({
+			success: afterRecord,
+			cancel:function(){},
+			error:function(error){},
+			overlay:self.params.overlay,
+			showControls:false,	// don't show system controls
+			saveToPhotoGallery:true,
+			mediaTypes:Ti.Media.MEDIA_TYPE_VIDEO,
+			videoQuality:Ti.Media.QUALITY_MEDIUM,
+			autohide:true
+		});
 	};
+	
+	// called from form
+	self.chooseVideo = function() {
+		Ti.Media.hideCamera();
+		var popoverView;
+		var arrowDirection;
+
+		Titanium.Media.openPhotoGallery({
+			success: afterRecord,
+			cancel:function(){ self.takeVideo(); },
+			error:function(error){},
+			allowEditing:false,
+			popoverView:popoverView,
+			arrowDirection:arrowDirection,
+			mediaTypes:[Ti.Media.MEDIA_TYPE_VIDEO]
+		});
+	};
+	
+	function afterRecord(event) {
+		var story = Views.stories._form.source;
+		var progress_bar = Helpers.ui.progressBar();
+		var video = {upload : event.media};
+
+		App.action(self.win, "videos#create", {
+			video: video,
+			success: function (uploaded_video) {
+				var story = Views.stories._form.source;
+				story.video_id = uploaded_video.id;
+				self.win.remove(progress_bar);
+			},
+			error : function() {
+				alert("There was an error uploading, please try again");
+				self.win.remove(progress_bar);
+			},
+			http_options : {progress_bar : progress_bar}
+		});
+
+		Views.stories.edit.win = self.win;
+		Views.stories.edit.render(story, {upload : video.upload});
+		self.win.add(progress_bar);
+	};
+	
+	self.takeVideo();
+	
 };

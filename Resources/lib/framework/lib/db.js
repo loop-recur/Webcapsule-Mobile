@@ -77,7 +77,7 @@ Db = function(name) {
 			} else {
 				if(Cache[name]) {
 					var old_record = Functional.select("id == x.id".lambda().partial(id), Cache[name])[0];
-					if(old_record){ replace(Cache[name], old_record, undefined); };
+					if(old_record){ remove(Cache[name], old_record); };
 				}
 				oldSuccess(old_record);
 			}
@@ -87,12 +87,12 @@ Db = function(name) {
 			var json = JSON.parse(r.responseText);
 			if(Cache[name]) {
 				var old_record = Functional.select("id == x.id".lambda().partial(id), Cache[name])[0];
-				if(old_record){ replace(Cache[name], old_record, undefined); };
+				if(old_record){ remove(Cache[name], old_record); };
 			}
 			oldSuccess(json);
 		};
 		
-		callApi("post", getPath(obj.id), callbacks, obj, options);
+		callApi("destroy", getPath(obj.id), callbacks, obj, options);
 	};
 
 	
@@ -101,6 +101,10 @@ Db = function(name) {
 	function replace(arrayName, replaceTo, replaceWith) {
 	  for(var i=0; i<arrayName.length;i++ ) { if(arrayName[i]==replaceTo) arrayName.splice(i,1,replaceWith); };
 	};
+	
+	function remove(arrayName, item) {
+		arrayName.splice(arrayName.indexOf(item), 1);
+	}
 
 	function getPath(id) {
 		var base_path = "/"+name;

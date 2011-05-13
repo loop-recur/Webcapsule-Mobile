@@ -44,7 +44,7 @@ Views.followings.index.template = function() {
 	 });
 
 	tableview.addEventListener('click', function(e) {
-		App.action(self.win, "followings#show", { id : e.rowData.id});	
+		App.action(self.win, "followings#show", { id : e.rowData.id, followees : self.params.followees });
 	});
 
 
