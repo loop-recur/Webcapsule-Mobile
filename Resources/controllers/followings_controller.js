@@ -9,12 +9,14 @@ Controllers.followings = {
 		this.db.find(params.id, function(user) { view.render(user); });
 	},
 	
-	create: function(view, id) {
-		
+	create: function(view, params) {
+		var friend = params.friend;
+		this.db.save(friend, params.success);
 	},
 	
-	destroy: function(view, id) {
-		
+	destroy: function(view, params) {
+		var friend = params.friend;
+		this.db.destroy(friend, params.success);
 	}
 	
 };

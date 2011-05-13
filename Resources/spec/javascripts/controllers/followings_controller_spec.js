@@ -52,19 +52,33 @@ describe("FollowingsController", function() {
 		});
 	});
 
-	// describe("create", function() {
-	// 	describe("valid", function() {
-	// 	  beforeEach(function() {
-	// 			Controllers.followings.create(view, {following: {} });
-	// 	  });
-	// 
-	// 		it("calls save", function() {
-	// 		  expect(Controllers.followings.db.save).toHaveBeenCalled();
-	// 		});
-	// 		
-	// 		it("renders the view", function() {
-	// 		  expect(view).toHaveBeenCalled();
-	// 		});
-	// 	});
-	// });
+	describe("create", function() {
+		describe("valid", function() {
+		  beforeEach(function() {
+				Controllers.followings.create(view, {following: {id : 1} });
+		  });
+	
+			it("calls save", function() {
+			  expect(Controllers.followings.db.save).toHaveBeenCalled();
+			});
+			
+			it("renders the view", function() {
+			  expect(view).toHaveBeenCalled();
+			});
+		});
+	});
+	
+	describe("destroy", function() {
+	  beforeEach(function() {
+			Controllers.followings.destroy(view, {following: {id : 1} });
+	  });
+
+		it("calls destroy", function() {
+		  expect(Controllers.followings.db.destroy).toHaveBeenCalled();
+		});
+		
+		it("renders the view", function() {
+		  expect(view).toHaveBeenCalled();
+		});
+	});
 });

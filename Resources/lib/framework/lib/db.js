@@ -65,6 +65,35 @@ Db = function(name) {
 		
 		callApi("post", getPath(obj.id), callbacks, obj, options);
 	};
+	
+	function destroy(obj, callbacks, options) {
+		var id = obj.id;
+		var oldSuccess = callbacks.success || callbacks;
+		var oldError = callbacks.error || function(){};
+				
+		callbacks.error = function(r) {
+			if(r) {
+				oldError(r.responseText);
+			} else {
+				if(Cache[name]) {
+					var old_record = Functional.select("id == x.id".lambda().partial(id), Cache[name])[0];
+					if(old_record){ replace(Cache[name], old_record, undefined); };
+				}
+				oldSuccess(old_record);
+			}
+		};
+		
+		callbacks.success = function(r) {
+			var json = JSON.parse(r.responseText);
+			if(Cache[name]) {
+				var old_record = Functional.select("id == x.id".lambda().partial(id), Cache[name])[0];
+				if(old_record){ replace(Cache[name], old_record, undefined); };
+			}
+			oldSuccess(json);
+		};
+		
+		callApi("post", getPath(obj.id), callbacks, obj, options);
+	};
 
 	
 // private
@@ -91,7 +120,8 @@ Db = function(name) {
 	pub_obj = {
 		all: all,
 		find: find,
-		save: save
+		save: save,
+		destroy: destroy
 	};
 	
 	return pub_obj;

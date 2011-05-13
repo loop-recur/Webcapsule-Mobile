@@ -2,6 +2,7 @@ Views.followings.show = Views.extend();
 
 Views.followings.show.template = function() {
 	var self = this;
+	var friend = self.source;
 	
 	var win = Titanium.UI.createWindow({ title:'User', backgroundColor:'white' });
 	var close = Titanium.UI.createButton({
@@ -23,19 +24,27 @@ Views.followings.show.template = function() {
 		zIndex:60
 	});
 	
-	friend_button.addEventListener('click', function()
-	{	
+	friend_button.addEventListener('click', function() {	
+		alert(friend);
 		if(friend_button.title === "Unfollow") {
-			App.action(self.win, "followings#destroy", following_id);
-			friend_button.title = "Follow";
+			App.action(self.win, "followings#destroy", {
+				friend : friend,
+				success: function(new_following) {
+					friend_button.title = "Follow";
+				}
+			});
 		} else {
-			App.action(self.win, "followings#create", following_id);
-			friend_button.title = "Unfollow";
+			App.action(self.win, "followings#create", {
+				friend : friend,
+				success: function(new_following) {
+					friend_button.title = "Unfollow";
+				}
+			});
 		};
 	});
 
 	var following_label = Titanium.UI.createLabel({
-		text: this.source.full_name,
+		text: friend.full_name,
 		height:'auto',
 		top:200,
 		color:'#616161',
@@ -43,7 +52,7 @@ Views.followings.show.template = function() {
 	});
 
 	var email = Titanium.UI.createLabel({
-		text: this.source.email,
+		text: friend.email,
 		height:'auto',
 		bottom:100,
 		color:'#616161',
@@ -51,7 +60,7 @@ Views.followings.show.template = function() {
 	});
 	
 	var avatar = Titanium.UI.createImageView({
-		image:this.source.avatar_link,
+		image:friend.avatar_link,
 		defaultImage:'images/avatar_medium.jpg',
 		top:50,
 		width:100,
