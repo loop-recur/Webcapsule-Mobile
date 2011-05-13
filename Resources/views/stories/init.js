@@ -22,13 +22,12 @@ Views.stories.init.template = function() {
 			saveToPhotoGallery:true,
 			mediaTypes:Ti.Media.MEDIA_TYPE_VIDEO,
 			videoQuality:Ti.Media.QUALITY_MEDIUM,
-			autohide:true
+			autohide:false
 		});
 	};
 	
 	// called from form
 	self.chooseVideo = function() {
-		Ti.Media.hideCamera();
 		var popoverView;
 		var arrowDirection;
 
@@ -44,6 +43,7 @@ Views.stories.init.template = function() {
 	};
 	
 	function afterRecord(event) {
+		Ti.Media.hideCamera();
 		var story = Views.stories._form.source;
 		var progress_bar = Helpers.ui.progressBar();
 		var video = {upload : event.media};
@@ -61,7 +61,7 @@ Views.stories.init.template = function() {
 			},
 			http_options : {progress_bar : progress_bar}
 		});
-
+		
 		Views.stories.edit.win = self.win;
 		Views.stories.edit.render(story, {upload : video.upload});
 		self.win.add(progress_bar);
