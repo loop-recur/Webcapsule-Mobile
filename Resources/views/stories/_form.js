@@ -155,12 +155,11 @@ Views.stories._form.template = function() {
 		Ti.API.info(story.where);
 	});	
 
-	Views.stories._form.template.toggle_geolocation = function(state) {
+	Views.stories._form.toggle_geolocation = function(state) {
 		if(state) {
-			Ti.API.info("location saved");
-			backgroundImage:'images/postrecord/location_activated.png'
+			location_button.backgroundImage = 'images/postrecord/location_activated.png';
 		} else {
-			backgroundImage:'images/postrecord/location_normal.png';
+			location_button.backgroundImage = 'images/postrecord/location_normal.png';
 		}
 	};
 	
@@ -217,7 +216,6 @@ Views.stories._form.template = function() {
 		accept_button.visible = false;
 		saving_label.visible = true;
 		saving_label.animate({right:10, duration:700});
-		var http_options = getHttpOptions();
 		
 		App.action(form_view, 'stories#update', {
 			story : story,

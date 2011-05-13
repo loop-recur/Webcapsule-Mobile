@@ -19,7 +19,7 @@ Controllers.photos = {
 	},
 
 	init: function(view, params) {
-		var photo = {id: TempId.generate()};
+		var photo = {story_id: params.story_id, id: TempId.generate()};
 		view.render(photo, params);
 	},
 	

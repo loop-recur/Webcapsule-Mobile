@@ -40,7 +40,6 @@ Layouts.pick_date = function(win) {
 	});
 
 	done_button.addEventListener('click', function() {
-		App.action(win, "stories#update", {story : story});
 		view.hide();
 	});
 

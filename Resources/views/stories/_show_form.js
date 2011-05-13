@@ -95,7 +95,7 @@ Views.stories._show_form.template = function() {
 	});
 
 	photo_button.addEventListener('click', function() {
-		App.action(win, "photos#init", {photos : story.photos});		
+		App.action(win, "photos#init", {story_id : story.id, photos : story.photos});		
 	});
 
 	var video_button = Titanium.UI.createButton({

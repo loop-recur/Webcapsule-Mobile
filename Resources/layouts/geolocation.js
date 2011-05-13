@@ -113,12 +113,14 @@ Layouts.geolocation = function(story) {
 			// reverse geo
 			Titanium.Geolocation.reverseGeocoder(latitude,longitude,function(evt)
 			{
+				var story = Views.stories._form.source;
+				
 				if (evt.success) {
 					var places = evt.places;
 					if (places && places.length) {
 						story.where = places[0].address;
 						Titanium.Geolocation.removeEventListener('location', locationCallback);
-						Views.stories._form.template.toggle_geolocation(true);
+						Views.stories._form.toggle_geolocation(true);
 						Ti.API.debug("ADDRESS FOUND AND SET");
 					} else {
 						story.where = "";

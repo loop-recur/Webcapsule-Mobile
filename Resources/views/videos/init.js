@@ -43,4 +43,4 @@ Views.videos.init.template = function() {
 	
 	
 	win.open();
-}
+};
