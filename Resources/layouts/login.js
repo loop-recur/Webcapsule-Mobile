@@ -49,6 +49,12 @@ Layouts.login = function () {
 		username.blur();
 		Controllers.user_sessions.create(username.value, password.value);
 	});
+	
+	password.addEventListener('return', function(){
+		password.blur();
+		username.blur();
+		Controllers.user_sessions.create(username.value, password.value);
+	});
 
 	var new_account_label = Titanium.UI.createLabel({
 		text:'Create an Account',
@@ -60,16 +66,13 @@ Layouts.login = function () {
 	});
 
 	new_account_label.addEventListener('click', function() {
-		Layouts.create_account();
+		App.action(win, "accounts#init");
 	});
 
 	win.add(username);
 	win.add(password);
 	win.add(login_button);
 	win.add(new_account_label);
-		
-		
-		
 	
 	win.open();
 };

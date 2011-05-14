@@ -1,4 +1,5 @@
 FileList = [
+	"controllers/accounts_controller.js",
 	"controllers/stories_controller.js",
 	"controllers/comments_controller.js",
 	"controllers/tags_controller.js",
@@ -12,7 +13,6 @@ FileList = [
 	"helpers/player.js",
 	"layouts/site.js",
 	"layouts/login.js",
-	"layouts/create_account.js",	
 	"layouts/bottom_nav.js",
 	"layouts/users.js",
 	"layouts/story.js",
@@ -23,6 +23,7 @@ FileList = [
 	"layouts/choose_photo.js",
 	"layouts/take_photo.js",
 	"views/sharings/init.js",
+	"views/accounts/init.js",
 	"views/stories/index.js",
 	"views/stories/show.js",
 	"views/stories/_show_form.js",

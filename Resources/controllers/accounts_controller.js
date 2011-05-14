@@ -4,7 +4,7 @@ Controllers.accounts = {
 	create: function(view, params) {
 		var account = params.account;
 		
-		this.db.save(account, function(new_account) {
+		this.db.save(account, function(user) {
 			params.success();
 		});
 	},
