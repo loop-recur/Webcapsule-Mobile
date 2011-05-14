@@ -3,6 +3,7 @@ Views.stories.init = Views.extend();
 Views.stories.init.template = function() {
 	var self = this;
 	var story = self.source;
+	var video, progress_bar, bar_area;
 	
 	Views.stories._form.render(story, {win: self.params.overlay});
 
@@ -44,27 +45,94 @@ Views.stories.init.template = function() {
 	
 	function afterRecord(event) {
 		Ti.Media.hideCamera();
+		progress_bar = Helpers.ui.progressBar();
+		bar_area = makeProgressArea();
+		video = {upload : event.media};
+		
+		saveVideo();
+		Views.stories.edit.win = self.win;
+		Views.stories.edit.render(story, {upload : video.upload});
+		self.win.add(bar_area);
+	};
+	
+	function saveVideo() {
 		var story = Views.stories._form.source;
-		var progress_bar = Helpers.ui.progressBar();
-		var video = {upload : event.media};
-
+		
 		App.action(self.win, "videos#create", {
 			video: video,
 			success: function (uploaded_video) {
-				var story = Views.stories._form.source;
-				story.video_id = uploaded_video.id;
-				self.win.remove(progress_bar);
+				if(uploaded_video) {
+					var story = Views.stories._form.source;
+					story.video_id = uploaded_video.id;
+					self.win.remove(bar_area);
+				};
 			},
 			error : function() {
 				alert("There was an error uploading, please try again");
-				self.win.remove(progress_bar);
+				self.win.remove(bar_area);
 			},
 			http_options : {progress_bar : progress_bar}
 		});
+	};
+	
+	function makeProgressArea() {
+		var view = Titanium.UI.createView({});
 		
-		Views.stories.edit.win = self.win;
-		Views.stories.edit.render(story, {upload : video.upload});
-		self.win.add(progress_bar);
+		var cancel_button = Titanium.UI.createButton({  
+	    title:'X',
+			backgroundColor:'white',
+	    top:0,
+	  	right:0,
+	    width:20,
+	    height:20
+		});
+		
+		var activity = Titanium.UI.createActivityIndicator({
+			top:0, 
+			left: 0,
+			height:50,
+			width:10,
+			style:Titanium.UI.iPhone.ActivityIndicatorStyle.PLAIN
+		});
+		
+		var retry_button = Titanium.UI.createButton({  
+	    title:'->',
+			backgroundColor:'white',
+	    top:0,
+	  	left:0,
+	    width:20,
+	    height:20,
+			visible: false
+		});
+		
+		retry_button.addEventListener("click", function() {
+			trySaving();
+		});
+
+		cancel_button.addEventListener('click', function() {
+			Ti.App.current_xhr.abort();
+			activity.hide();
+			retry_button.visible = true;
+			cancel_button.visible = false;
+		});
+		
+		var trySaving = function() {
+			cancel_button.visible = true;
+			retry_button.visible = false;
+			activity.show();
+			if(!story.video_id){ saveVideo(); };
+		};
+		
+		view.add(cancel_button);
+		view.add(activity);
+		view.add(retry_button);
+		view.add(progress_bar);
+		
+		cancel_button.visible = true;
+		retry_button.visible = false;
+		activity.show();
+		
+		return view;
 	};
 	
 	self.takeVideo();

@@ -124,6 +124,7 @@
         this._reset_xhr();
         this.xhr.setTimeout(this.options.timeout);
         Ti.App.fireEvent(this.options.showActivityEvent);
+				Ti.App.current_xhr = this.xhr;
 				this.xhr.onsendstream = this.options.onsendstream;
         this.xhr.open(this.options.method, this.options.baseUrl + this.options.url);
         this._setRequestHeaders();
@@ -154,13 +155,7 @@
       }
     };
     HTTPClientWithCache.prototype.onerror_hook = function(self, response) {
-      if ((this.currentRetryCount++) <= this.options.retryCount) {
-        Ti.API.info("HTTPClientWithCache: Retry Count " + this.currentRetryCount + " of " + this.options.retryCount + " " + this.options.url);
-        this.xhr.abort();
-        this.xhr.open(this.options.method, this.options.baseUrl + this.options.url);
-        this.xhr.send(this.options.data != null ? this.options.data : void 0);
-        return;
-      }
+	 		Ti.API.info("HTTPClientWithCache: Failed on "+ this.options.url);
       Ti.App.fireEvent(this.options.hideActivityEvent);
       if (this.options.onerror != null) {
         if(this.options.method !== "POST") response = this._get_cached_response(9999999);

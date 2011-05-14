@@ -6,13 +6,8 @@ Views.stories.show.template = function() {
 	var win = self.win;
 	var player = self.params.player;
 	
-	// TODO: test this on phone.
-	
-	if(story.upload) {
-		player.media = story.upload;
-	} else {
-		player.url = App.file_url+story.video_url;
-	};
+	// TODO: offline
+	player.url = App.file_url+story.video_url;
 	
 	player.comments = story.comments;
 	player.photos = story.photos;
