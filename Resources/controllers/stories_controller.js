@@ -6,7 +6,7 @@ Controllers.stories = {
 	},
 	
 	edit: function(view, params) {
-		view.render(params.story);
+		view.render(params.story, params);
 	},
 	
 	init: function(view, params) {

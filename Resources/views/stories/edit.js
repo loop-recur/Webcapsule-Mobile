@@ -2,15 +2,21 @@ Views.stories.edit = Views.extend();
 
 Views.stories.edit.template = function() {
 	var self = this;
+	var story = self.source;
 	
 	var activeMovie = Titanium.Media.createVideoPlayer({
-		media:self.params.upload,
 		backgroundColor:'#111',
 		movieControlStyle:Titanium.Media.VIDEO_CONTROL_NONE,
 		scalingMode:Titanium.Media.VIDEO_SCALING_MODE_FILL,
 		autoplay:false
 	});
 	
+	if(self.params.upload) {
+		activeMovie.media = self.params.upload;
+	} else {
+		activeMovie.url = App.file_url+story.video_url;
+	};
+		
 	var play_pause_button = Titanium.UI.createButton({
 		backgroundImage:"images/playercontrols/play_btn.png",
 		backgroundColor:'black',
@@ -52,7 +58,7 @@ Views.stories.edit.template = function() {
 	self.win.add(close_btn);
 	self.win.add(play_pause_button);
 	
-	Views.stories._form.render(self.source, {win: self.win, enable:true});
+	Views.stories._form.render(story, {win: self.win, enable:true});
 	Views.stories._form.accept_button_toggle(true);
 	Views.stories._form.play_pause_toggle(true);
 };

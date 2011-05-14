@@ -111,7 +111,7 @@ Views.stories._show_form.template = function() {
 		App.action(win, "videos#init", {story : story});
 	});	
 
-	var settings_button = Titanium.UI.createButton({	
+	var edit_button = Titanium.UI.createButton({	
 		value:false,
 		top:buttons_from_top_length,
 		right: 8,
@@ -121,8 +121,9 @@ Views.stories._show_form.template = function() {
 		backgroundSelectedImage:'images/storyshow/edit_pressed.png'
 	});
 
-	settings_button.addEventListener('click', function() {
-		alert("settings");
+	edit_button.addEventListener('click', function() {
+		win.remove(form_view);
+		App.action(win, "stories#edit", {win: win, story : story});
 	});
 	
 	var share_button = Titanium.UI.createButton({
@@ -137,7 +138,7 @@ Views.stories._show_form.template = function() {
 
 	
 	share_button.addEventListener('click', function() {
-		alert("share");
+		App.action(camera_overlay, "sharings#init", {story : story});
 	});
 
 	edit_details_btn.addEventListener('click', function() {
@@ -161,20 +162,8 @@ Views.stories._show_form.template = function() {
 	tray.add(photo_button);
 	tray.add(video_button);
 	tray.add(share_button);
-	tray.add(settings_button);
+	tray.add(edit_button);
 
 	form_view.add(functionality_view);
 	win.add(form_view);
-
-	
-	function getHttpOptions() {
-		return (TempId.isTemp(story.id) && story.upload) ? makeProgressBar() : {};
-	};
-	
-	function makeProgressBar() {
-		var progress_bar = Helpers.ui.progressBar();
-		progress_bar.show();
-		win.add(progress_bar);
-		return {progress_bar : progress_bar};
-	}
 };

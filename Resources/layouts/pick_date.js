@@ -13,7 +13,8 @@ Layouts.pick_date = function(win) {
 		view.visible = state;
 	};
 	
-	var value = story.when || new Date();
+	
+	var value = new Date();
 
 	var picker = Ti.UI.createPicker({
 		type:Ti.UI.PICKER_TYPE_DATE,

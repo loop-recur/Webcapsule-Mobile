@@ -50,8 +50,7 @@ Views.stories.init.template = function() {
 		video = {upload : event.media};
 		
 		saveVideo();
-		Views.stories.edit.win = self.win;
-		Views.stories.edit.render(story, {upload : video.upload});
+		App.action(self.win, "stories#edit", {story : story, upload : video.upload});
 		self.win.add(bar_area);
 	};
 	
