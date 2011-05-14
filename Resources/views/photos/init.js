@@ -9,7 +9,7 @@ Views.photos.init.template = function() {
 		top:0,
 		height:240,
 		backgroundImage:'images/add_photo/add_photos_tray.png',
-		zIndex:100,
+		zIndex:100
 	});
 	
 	var added_photo_view = Titanium.UI.createScrollView({

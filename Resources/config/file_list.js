@@ -5,6 +5,7 @@ FileList = [
 	"controllers/photos_controller.js",
 	"controllers/videos_controller.js",
 	"controllers/sharings_controller.js",
+	"controllers/omniauth_callbacks_controller.js",
 	"controllers/user_sessions_controller.js",
 	"controllers/followings_controller.js",
 	"helpers/ui.js",
