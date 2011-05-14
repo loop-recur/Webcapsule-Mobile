@@ -4,6 +4,7 @@ Bootstrap.run = function() {
 	includeAllFiles();
 	runEnvironment();
 	App.http_client = LoopRecur.HttpClient();
+	App.setCurrentUser();
 	
 	function includeAllFiles() {
 		Functional.map(includeFile, FileList);

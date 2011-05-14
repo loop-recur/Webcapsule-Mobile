@@ -10,10 +10,10 @@ Layouts.site = function () {
 		height:25,
 	});
 	
-		logout_button.addEventListener('click', function(){
-			Controllers.user_sessions.destroy();
-		});
-		
+	logout_button.addEventListener('click', function(){
+		Controllers.user_sessions.destroy();
+	});
+	
 	var site_toolbar = Titanium.UI.createToolbar({
 		items:[logout_button],
 		top:0,

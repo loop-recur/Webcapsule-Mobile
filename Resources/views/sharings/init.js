@@ -6,11 +6,85 @@ Views.sharings.init.template = function() {
 	var sharing = self.source;
 	var win = self.win;
 	var view = Titanium.UI.createView({zIndex:30, backgroundColor: '#ffffff'});
+	var twitter = getAuth('twitter');
+	var facebook = getAuth('facebook');
 	
-	Titanium.Facebook.appid = "147009708687795";
-	Titanium.Facebook.permissions = ['publish_stream', 'read_stream', "offline_access", "email"];
+	var field = Titanium.UI.createTextField({  
+	    color:'#303030',
+			backgroundColor:'#d6d6d6',
+			borderRadius:4,
+			paddingLeft:5,
+	    top:10,  
+	    width:300,  
+	    height:60,  
+	    hintText:'Message',  
+	    keyboardType:Titanium.UI.KEYBOARD_DEFAULT,  
+	    returnKeyType:Titanium.UI.RETURNKEY_DONE
+	});
 	
-	if(!hasFacebook()) {
+	field.addEventListener('return', function() {
+		sharing.message = field.value;
+		App.action(win, "sharings#create", {
+			sharing : sharing,
+			success : function() {
+				alert("shared!");
+				win.remove(view);
+			}
+		});
+	});
+	
+	view.add(field);
+	win.add(view);
+	
+	
+	if(twitter) {
+		var twitterLabel = Titanium.UI.createLabel({
+			text:'Twitter',
+			left: 130
+		});
+		
+		var twitterSwitch = Titanium.UI.createSwitch({
+			value:false,
+			top:240
+		});
+		
+		twitterSwitch.addEventListener('change',function(e) {
+			sharing.twitter = (e.value == 1) ? twitter.id : "";
+		});	
+		
+		view.add(twitterLabel);
+		view.add(twitterSwitch);
+	};
+	
+	
+	if(facebook) {
+		var facebookLabel = Titanium.UI.createLabel({
+			text:'Facebook',
+			top: 150,
+			left: 130
+		});
+
+		var facebookSwitch = Titanium.UI.createSwitch({
+			value:false,
+			top:340
+		});
+
+		facebookSwitch.addEventListener('change',function(e) {
+			sharing.facebook = (e.value == 1) ? facebook.id : "";
+		});	
+		
+		view.add(facebookLabel);
+		view.add(facebookSwitch);
+	} else {
+		connectFacebook();
+	};
+	
+	function getAuth(name) {
+		var auth = Functional.select(".authentication.provider == '"+name+"'", App.currentUser().authentications)[0];
+		return auth ? auth.authentication : false;
+	};
+	
+	function connectFacebook() {
 		var fbconnect = Titanium.UI.createButton({
 			title: "login",
 			left:30,
@@ -38,34 +112,4 @@ Views.sharings.init.template = function() {
 			}
 		});
 	};
-
-	var field = Titanium.UI.createTextField({  
-	    color:'#303030',
-			backgroundColor:'#d6d6d6',
-			borderRadius:4,
-			paddingLeft:5,
-	    top:10,  
-	    width:300,  
-	    height:30,  
-	    hintText:'Comment',  
-	    keyboardType:Titanium.UI.KEYBOARD_DEFAULT,  
-	    returnKeyType:Titanium.UI.RETURNKEY_DONE
-	});
-	
-	field.addEventListener('return', function() {
-		sharing.message = field.value;
-		App.action(win, "sharings#create", {
-			sharing : sharing,
-			success : function() {
-				win.remove(view);
-			}
-		});
-	});
-	
-	view.add(field);
-	win.add(view);
-	
-	function hasFacebook() {
-		return Functional.some(".provider == 'facebook'", App.current_user.authentications);
-	}
 };

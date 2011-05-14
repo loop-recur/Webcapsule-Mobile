@@ -204,7 +204,7 @@ Views.stories._form.template = function() {
 		enabled:enable
 	});
 	
-	if(!enable) share_button.addEventListener('click', function() {
+	if(enable) share_button.addEventListener('click', function() {
 		App.action(camera_overlay, "sharings#init", {story : story});
 	});
 	

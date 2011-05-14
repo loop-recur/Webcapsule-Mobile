@@ -3,14 +3,14 @@ Titanium.include('initializers/init.js');
 try { App.run(); } catch(E) { alert("Failed with "+E); }
 
 Titanium.UI.setBackgroundColor('#000');
+Titanium.Facebook.appid = "147009708687795";
+Titanium.Facebook.permissions = ['publish_stream', 'read_stream', "offline_access", "email"];
 
 var dir = Titanium.Filesystem.applicationDataDirectory;
 var credentials = Titanium.Filesystem.getFile(dir,'credentials');
-var user_file = Titanium.Filesystem.getFile(dir,'current_user');
 
 if(credentials.exists()) {
 	App.http_client.credentials = credentials.read();
-	App.current_user = JSON.parse(user_file.read());
 	Layouts.site();
 } else {
 	Layouts.login();
