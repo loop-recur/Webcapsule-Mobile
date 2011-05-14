@@ -3,7 +3,6 @@ Views.stories._show_form = Views.extend();
 Views.stories._show_form.template = function() {
 	var self = this;
 	var story = self.source;
-	var video = self.params.player;
 	var win = self.params.win;
 	var form_view = Titanium.UI.createView({bottom: 0, height: 245, zIndex:10});
 	

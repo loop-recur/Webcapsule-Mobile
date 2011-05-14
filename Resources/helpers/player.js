@@ -11,19 +11,22 @@ Helpers.player.timeMonitor = function(win, player, comments, photos) {
 	});
 	
 	
-	// while (!done) { showOverlays(player.currentPlaybackTime); };
-	
+	showOverlays();
 	
 	function hideAllOverlays() {
 		Functional.map(".close", [Views.comments._comment, Views.photos._photo]);
 	};
 	
-	function showOverlays(position) {
+	function showOverlays() {
+		if(done){ clearInterval(showOverlays); };
+		var position = player.currentPlaybackTime;
 		Functional.map(showOverlay.partial(Views.comments._comment, position), comments);
 		Functional.map(showOverlay.partial(Views.photos._photo, position), photos);
+		setInterval(showOverlays, 1000);
 	};
 
 	function showOverlay(view, position, item) {
+		if(!item){ return };
 		var appear_at = item.appear_at;
 
 		shouldShow() ? show() : hide();

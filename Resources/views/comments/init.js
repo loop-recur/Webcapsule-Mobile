@@ -20,7 +20,7 @@ Views.comments.init.template = function() {
 		backgroundColor:'#d6d6d6',
 		textAlign:'left',
 		keyboardType:Titanium.UI.KEYBOARD_DEFAULT,
-		returnKeyType:Titanium.UI.RETURNKEY_DONE,
+		returnKeyType:Titanium.UI.RETURNKEY_DONE
 	});
 	
 	field.addEventListener('focus', function() {
