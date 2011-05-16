@@ -8,7 +8,7 @@ Layouts.story = function(id) {
 		autoplay:false,
 		id:"player"
 	});
-	
+
 	var asset_overlay = Titanium.UI.createView({
 		height:180,
 		top:20,

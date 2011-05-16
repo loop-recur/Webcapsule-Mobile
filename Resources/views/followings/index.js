@@ -3,7 +3,11 @@ Views.followings.index = Views.extend();
 Views.followings.index.template = function() {
 	var self = this;
 	
+	
 	function createTableViewRow(following) {
+		
+		// alert(following);
+		
 		var row = Ti.UI.createTableViewRow({
 			backgroundImage:'images/feed/item_bg.png',
 			height:80,
@@ -11,9 +15,11 @@ Views.followings.index.template = function() {
 			hasChild:true
 		});		
 		
+		var avatar_link = "";
+		following.avatar_link ? avatar_link = following.avatar_link : avatar_link = 'images/avatar_medium.jpg';
+		
 		var avatar = Titanium.UI.createImageView({
-			image:following.avatar_link,
-			defaultImage:'images/avatar_medium.jpg',
+			image:avatar_link,
 			left:10,
 			width:55,
 			height:55

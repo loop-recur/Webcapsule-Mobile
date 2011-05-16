@@ -28,28 +28,32 @@ Views.tags.create.template = function() {
 	
 	function makeFriend(position, friend) {
 		
-		var thumb = Ti.UI.createView({
-			top:0,
+		var added_tag = Titanium.UI.createView({
+			top:4,
 			left:position,
-			height:70,
-			width: 70
+			width:60,
+			height:60
+		});
+		
+		var added_tag_border = Titanium.UI.createView({
+			width:60,
+			height:60,
+			backgroundImage:'images/add_tag/tag_border.png'
 		});
 		
 		var image = Titanium.UI.createImageView({
 			image:friend.image,
 			defaultImage:'images/avatar_medium.jpg',
-			top:0,
-			left: 0,
-			width:50,
-			height:50
+			width:52,
+			height:54
 		});
 		
-		var delete_button = Titanium.UI.createButton({
-			title:"X",
-			right:3,
+		var delete_button = Titanium.UI.createView({
+			backgroundImage:'images/add_tag/remove_icon.png',
+			right:-5,
 			top: -5,
-			width: 20,
-			height: 20
+			width: 25,
+			height: 25
 		});
 				
 		delete_button.addEventListener('click', function() {
@@ -57,9 +61,10 @@ Views.tags.create.template = function() {
 			update();
 		});
 		
-		thumb.add(image);
-		thumb.add(delete_button);
-		self.view.add(thumb);
+		added_tag.add(image);
+		added_tag.add(added_tag_border);
+		added_tag.add(delete_button);
+		self.view.add(added_tag);
 		self.view.width += 70;
 		return position+70;
 	}

@@ -75,32 +75,36 @@ Views.stories.init.template = function() {
 	};
 	
 	function makeProgressArea() {
-		var view = Titanium.UI.createView({});
+		var view = Titanium.UI.createView({
+			top:0,
+			width:320,
+			height:26,
+			backgroundColor:'black',
+			zIndex:999
+		});
 		
 		var cancel_button = Titanium.UI.createButton({  
-	    title:'X',
-			backgroundColor:'white',
+			backgroundImage:"images/uploadbar/upload_cancel.png",
 	    top:0,
 	  	right:0,
-	    width:20,
-	    height:20
+	    width:26,
+	    height:26
 		});
 		
 		var activity = Titanium.UI.createActivityIndicator({
 			top:0, 
-			left: 0,
-			height:50,
-			width:10,
+			left:0,
+			height:26,
+			width:26,
 			style:Titanium.UI.iPhone.ActivityIndicatorStyle.PLAIN
 		});
 		
 		var retry_button = Titanium.UI.createButton({  
-	    title:'->',
-			backgroundColor:'white',
+			backgroundImage:"images/uploadbar/upload_retry.png",
 	    top:0,
-	  	left:0,
-	    width:20,
-	    height:20,
+	  	right:0,
+	    width:26,
+	    height:26,
 			visible: false
 		});
 		

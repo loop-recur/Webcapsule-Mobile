@@ -31,6 +31,8 @@ Views.stories._show_form.template = function() {
 		right:0,
 		top:0
 	});
+	
+	self.comment_bar = comment_bar;
 
 	var tray = Titanium.UI.createView({
 		backgroundImage:'images/storyshow/story_drawer.png',

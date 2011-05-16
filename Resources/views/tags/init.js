@@ -18,7 +18,7 @@ Views.tags.init.template = function() {
 	});
 	
 	var available_tags_view = Titanium.UI.createScrollView({
-		top:75,
+		top:70,
 		height:70,
 		width:300,
 		contentWidth:"auto",
@@ -105,21 +105,37 @@ Views.tags.init.template = function() {
 	};
 	
 	function makeFriend(position, friend) {
-		var image = Titanium.UI.createImageView({
-			image:friend.image,
-			defaultImage:'images/avatar_medium.jpg',
-			top:0,
-			left: position,
+		
+		var available_tag = Titanium.UI.createView({
+			top:4,
+			left:position,
 			width:60,
 			height:60
 		});
 		
-		image.addEventListener('click', function() {
+		var tag_border = Titanium.UI.createView({
+			width:60,
+			height:60,
+			backgroundImage:'images/add_tag/tag_border_dark.png'
+		});
+		
+		var image = Titanium.UI.createImageView({
+			image:friend.image,
+			defaultImage:'images/avatar_medium.jpg',
+			width:52,
+			height:54
+		});
+		
+		available_tag.addEventListener('click', function() {
 			App.action(tag_tray, "tags#create", {friend : friend});
 		});
 		
+		available_tag.add(image);
+		available_tag.add(tag_border);
+		
+		
 		self.view.width += 70;
-		self.view.add(image);
+		self.view.add(available_tag);
 		return position+70;
 	}
 };

@@ -25,29 +25,36 @@ Views.photos.create.template = function() {
 	}
 	
 	function makePhoto(position, photo) {
-		var thumb = Ti.UI.createView({
+		
+		var added_photo = Titanium.UI.createView({
 			top:0,
 			left:position,
-			height:70,
-			width: 70
+			width:86,
+			height:86
 		});
 		
+		var added_photo_border = Titanium.UI.createView({
+			width:86,
+			height:86,
+			backgroundImage:'images/add_photo/photo_box.png'
+		});
+
 		var image = Titanium.UI.createImageView({
 			defaultImage:'images/avatar_medium.jpg',
-			top:0,
-			left: 0,
-			width:50,
-			height:50
+			top:2,
+			// left:8,
+			width:65,
+			height:65
 		});
 		
 		image.image = photo.upload || App.file_url+photo.thumb;
-		
-		var delete_button = Titanium.UI.createButton({
-			title:"X",
-			right:3,
+
+		var delete_button = Titanium.UI.createView({
+			backgroundImage:'images/add_tag/remove_icon.png',
+			right:-5,
 			top: -5,
-			width: 20,
-			height: 20
+			width: 25,
+			height: 25
 		});
 				
 		delete_button.addEventListener('click', function() {
@@ -55,10 +62,11 @@ Views.photos.create.template = function() {
 			update();
 		});
 		
-		thumb.add(image);
-		thumb.add(delete_button);
-		self.view.add(thumb);
-		return position+70;
+		added_photo.add(image);
+		added_photo.add(added_photo_border);
+		added_photo.add(delete_button);
+		self.view.add(added_photo);
+		return position+96;
 	};
 	
 };

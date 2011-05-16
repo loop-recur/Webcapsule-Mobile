@@ -11,9 +11,9 @@ Views.photos._photo.template = function() {
 		image: (App.file_url+"/"+photo.url),
 		defaultImage:'images/avatar_medium.jpg',
 		top:0,
-		left: 0,
-		width:70,
-		height:70
+		left:0,
+		width:150,
+		height:150
 	});
 	
 	parent_win.add(view);
