@@ -56,11 +56,27 @@ Layouts.bottomNav = function() {
 	{
 		Layouts.record();
 	});
+	
+	var logout_button = Titanium.UI.createButton({
+		title:'X',
+		left:0,
+		bottom:10,
+		width:20,
+		height:20,
+		color:'white',
+		zIndex:999
+	});
+	
+	logout_button.addEventListener('click', function(){
+		Controllers.user_sessions.destroy();
+	});
 
 	win.add(bottom_view);
 	win.add(stories_button);
 	win.add(users_button);
 	win.add(record_button);
+	win.add(logout_button);
+	
 	
 	record_button.fireEvent('click');
 	return win;

@@ -43,8 +43,8 @@ Views.stories.edit.template = function() {
 
 	var close_btn = Titanium.UI.createButton({
 		backgroundImage:"images/postrecord/return.png",
-		height:36,
-		width:38,
+		height:39,
+		width:45,
 		top:0,
 		left:0
 	});

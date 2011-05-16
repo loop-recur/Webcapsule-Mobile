@@ -74,7 +74,7 @@ Views.stories._show_form.template = function() {
 	var comment_button = Titanium.UI.createButton({
 		value:false,
 		top:buttons_from_top_length,
-		left: 8,
+		left:8,
 		height:button_height,
 		width:button_width,
 		backgroundImage:'images/storyshow/comment_normal.png',

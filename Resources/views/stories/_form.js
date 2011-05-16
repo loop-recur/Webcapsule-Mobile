@@ -11,6 +11,10 @@ Views.stories._form.template = function() {
 
 	Layouts.pick_date(camera_overlay);
 	
+	var buttons_from_top_length = 60;
+	var button_height = 60;
+	var button_width = 64;
+	
 	var functionality_view = Titanium.UI.createView({
 		height:193,
 		width:320,
@@ -68,8 +72,8 @@ Views.stories._form.template = function() {
 		value:false,
 		top:0,
 		right:0,
-		height:40,
-		width:39,
+		height:39,
+		width:45,
 		backgroundImage:'images/postrecord/accept_btn.png',
 		backgroundSelectedImage:'images/postrecord/accept_btn_pressed.png',
 		visible:false
@@ -123,10 +127,10 @@ Views.stories._form.template = function() {
 
 	var tag_friends_button = Titanium.UI.createButton({
 		value:false,
-		top:64,
-		left: 8,
-		height:56,
-		width:55,
+		top:buttons_from_top_length,
+		left:8,
+		width:button_width,
+		height:button_height,
 		backgroundImage:'images/postrecord/tag_normal.png',
 		backgroundSelectedImage:'images/postrecord/tag_pressed.png',
 		enabled:enable
@@ -139,10 +143,10 @@ Views.stories._form.template = function() {
 	
 	var location_button = Titanium.UI.createButton({
 		value:false,
-		top:64,
-		left: 71,
-		height:56,
-		width:55,
+		top:buttons_from_top_length,
+		left:68,
+		width:button_width,
+		height:button_height,
 		backgroundImage:'images/postrecord/location_normal.png',
 		backgroundSelectedImage:'images/postrecord/location_pressed.png'
 	});
@@ -165,10 +169,9 @@ Views.stories._form.template = function() {
 	
 	var add_photos_button = Titanium.UI.createButton({
 		value:false,
-		top:64,
-		right: 133,
-		height:56,
-		width:55,
+		top:buttons_from_top_length,
+		width:button_width,
+		height:button_height,
 		backgroundImage:'images/postrecord/addphotos_normal.png',
 		backgroundSelectedImage:'images/postrecord/addphotos_pressed.png',
 		enabled:enable
@@ -180,10 +183,10 @@ Views.stories._form.template = function() {
 
 	var add_date_button = Titanium.UI.createButton({
 		value:false,
-		top:64,
-		right: 71,
-		height:56,
-		width:55,
+		top:buttons_from_top_length,
+		right:68,
+		width:button_width,
+		height:button_height,
 		backgroundImage:'images/postrecord/date_normal.png',
 		backgroundSelectedImage:'images/postrecord/date_pressed.png'
 	});
@@ -194,10 +197,10 @@ Views.stories._form.template = function() {
 	
 	var share_button = Titanium.UI.createButton({
 		value:false,
-		top:64,
-		right: 8,
-		height:54,
-		width:53,
+		top:buttons_from_top_length,
+		right:8,
+		width:button_width,
+		height:button_height,
 		backgroundImage:'images/postrecord/share_normal.png',
 		backgroundSelectedImage:'images/postrecord/share_pressed.png',
 		enabled:enable
