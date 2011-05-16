@@ -7,7 +7,7 @@ Views.stories.show.template = function() {
 	var player = self.params.player;
 	
 	// TODO: offline
-	player.url = 'images/gatorade.mov'; //App.file_url+story.video_url;
+	player.url = App.file_url+story.video_url;
 	
 	player.comments = story.comments;
 	player.photos = story.photos;
