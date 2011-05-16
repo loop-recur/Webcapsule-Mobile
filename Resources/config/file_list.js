@@ -22,6 +22,7 @@ FileList = [
 	"layouts/pick_date.js",
 	"layouts/choose_photo.js",
 	"layouts/take_photo.js",
+	"lib/birdhouse.js",
 	"views/sharings/init.js",
 	"views/accounts/init.js",
 	"views/stories/index.js",

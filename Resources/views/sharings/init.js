@@ -79,14 +79,46 @@ Views.sharings.init.template = function() {
 		connectFacebook();
 	};
 	
+	connectTwitter();
+	
 	function getAuth(name) {
 		var auth = Functional.select(".authentication.provider == '"+name+"'", App.currentUser().authentications)[0];
 		return auth ? auth.authentication : false;
 	};
 	
+	function connectTwitter() {
+		var twitter_connect = Titanium.UI.createButton({
+			title: "login to twitter",
+			left:30,
+			height:41,
+			width:49,
+			backgroundColor: "red"
+		});	
+
+		twitter_connect.addEventListener('click', function() {
+			b = new BirdHouse({consumer_key: "CgIDnN8kDKPu1uKhMK5Qg", consumer_secret: "AULwvohyIehfXfPUaKAaEifYRtzlDuOIo80qHQVRnyI"});
+			b.authorize(saveTwitterAuth);
+		});
+		
+		view.add(twitter_connect);
+		
+		function saveTwitterAuth(data) {
+			if(data) {
+				data.token = data.oauth_token;
+				data.secret = data.oauth_token_secret;
+				App.action(win, "omniauth_callbacks#create", {
+					data : data,
+					success : function(user) { twitter_connect.title = "Logout"; }
+				});
+			} else {
+				alert("Couldn't authorize Twitter");
+			};
+		};
+	};
+	
 	function connectFacebook() {
 		var fbconnect = Titanium.UI.createButton({
-			title: "login",
+			title: "login to facebook",
 			left:30,
 			height:41,
 			width:49,
