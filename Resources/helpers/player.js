@@ -26,7 +26,7 @@ Helpers.player.timeMonitor = function(win, player, comments, photos) {
 	};
 	
 	function showOverlays(interval) {
-		if(done){ return stop(); };
+		if(done){ alert("done"); return stop(); };
 		var position = player.currentPlaybackTime;
 		Functional.map(showOverlay.partial(Views.comments._comment, position), comments);
 		Functional.map(showOverlay.partial(Views.photos._photo, position), photos);

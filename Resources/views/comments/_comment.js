@@ -13,7 +13,7 @@ Views.comments._comment.template = function() {
 	});
 	
 	var avatar = Titanium.UI.createImageView({
-		image:comment.user.image,
+		image:App.file_url+comment.user.image,
 		defaultImage:'images/avatar_medium.jpg',
 		left:0,
 		width:50,
