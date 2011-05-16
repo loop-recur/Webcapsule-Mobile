@@ -104,8 +104,10 @@ Views.sharings.init.template = function() {
 		
 		function saveTwitterAuth(data) {
 			if(data) {
+				data.id = data.user_id;
 				data.token = data.oauth_token;
 				data.secret = data.oauth_token_secret;
+				data.provider = "twitter";
 				App.action(win, "omniauth_callbacks#create", {
 					data : data,
 					success : function(user) { twitter_connect.title = "Logout"; }
@@ -134,6 +136,7 @@ Views.sharings.init.template = function() {
 		Titanium.Facebook.addEventListener('login', function(e) {
 			alert("login");
 			if(e.data) {
+				e.data.provider = "facebook";
 				e.data.token = Titanium.Facebook.accessToken;
 				App.action(win, "omniauth_callbacks#create", {
 					data : e.data,
