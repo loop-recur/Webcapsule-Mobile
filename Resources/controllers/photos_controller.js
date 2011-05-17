@@ -34,7 +34,6 @@ Controllers.photos = {
 		old_val.splice(old_val.indexOf(id),1);
 		var new_val = old_val.join(',');
 		story.photo_ids = new_val;
-
 		photos.splice(photos.indexOf(photo),1);
 	}
 	

@@ -56,7 +56,6 @@ describe("StoriesController", function() {
 	
 	describe("init", function() {
 		beforeEach(function() {
-			TempId = { generate : function() { return "temp-123"; }};
 			Controllers.stories.init(view, {overlay : true});
 		});
 		
@@ -75,7 +74,7 @@ describe("StoriesController", function() {
 		  });
 			
 			it("renders the view", function() {
-			  expect(view.render).toHaveBeenCalledWith({upload: "fake upload"});
+			  expect(view.render).toHaveBeenCalledWith({upload: "fake upload"}, {story: {upload: "fake upload"}});
 			});
 		});
 	});

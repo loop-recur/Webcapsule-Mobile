@@ -10,7 +10,6 @@ describe("RepliesController", function() {
 
 	describe("init", function() {
 		beforeEach(function() {
-			TempId = { generate : function() { return "temp-123"; }};
 			Controllers.videos.init(view, {story : {id : 1}});
 		});
 		

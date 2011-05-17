@@ -33,6 +33,7 @@ function stubDb(response) {
 		} else {
 			callbacks.error ? callbacks.error(response) : callbacks.success(response);
 		};
-		
 	});
 };
+
+TempId.generate = function() { return "temp-123"; };

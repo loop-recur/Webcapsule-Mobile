@@ -15,4 +15,3 @@ Helpers.ui.progressBar = function() {
 	bar.show();
 	return bar;
 };
-

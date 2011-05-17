@@ -13,10 +13,12 @@
 src_files:
     - lib/framework/support/functional.js
     - lib/framework/lib/base.js
+    - lib/framework/support/temp_id.js
     - lib/framework/lib/**/*.js
     - spec/javascripts/helpers/timock.js
     - initializers/bootstrap.js
     - /controllers/**/*.js
+    - /helpers/**/*.js
     - main_windows/*
 
 # stylesheets
