@@ -43,9 +43,7 @@ Views.followings.index.template = function() {
 
 	var data = Functional.map(createTableViewRow, self.source);
 	var tableview = Titanium.UI.createTableView({ 
-		backgroundColor:'gray',
-		data:data,
-		top:40
+		data:data
 	 });
 
 	tableview.addEventListener('click', function(e) {
@@ -54,5 +52,7 @@ Views.followings.index.template = function() {
 
 
 	self.win.add(tableview);
-	Layouts.replaceContent(self.win);	
+	
+	// For some reason, this was in here, overwriting itself. Removed for now. 
+	// Layouts.replaceContent(self.win);	
 };

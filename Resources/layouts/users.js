@@ -1,9 +1,19 @@
 Layouts.users = function() {
 
 	var view = Ti.UI.createView({
-		backgroundColor:'gray'
+		backgroundImage:'images/app_wide/bg_full.png'
 	});
-			
+	
+	var nav = Ti.UI.createView({
+		top:0,
+		height:40
+	});
+	
+	var content = Ti.UI.createView({
+		top:40,
+		height:360
+	});
+	
 	var buttonObjects = [
 		{title:'Followers', width:110},
 		{title:'Following', width:110}
@@ -21,15 +31,17 @@ Layouts.users = function() {
 	tabbed_bar.addEventListener('click',function(e) {
 		switch(e.index) {
 			case 0: 
-				App.action(view, "followings#index");
+				App.action(content, "followings#index");
 				break;
 			case 1: 
-				App.action(view, "followings#index", {followees : true});
+				App.action(content, "followings#index", {followees : true});
 				break;	
 		}
 	});
 	
 	tabbed_bar.fireEvent('click', {index: 0});
-	view.add(tabbed_bar);
+	nav.add(tabbed_bar);
+	view.add(nav);
+	view.add(content);
 	Layouts.replaceContent(view);
 };
