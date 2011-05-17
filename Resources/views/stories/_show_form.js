@@ -125,6 +125,7 @@ Views.stories._show_form.template = function() {
 	edit_button.addEventListener('click', function() {
 		win.remove(form_view);
 		App.action(win, "stories#edit", {win: win, story : story});
+		Views.stories._form.edit_details_btn.fireEvent('click');
 	});
 	
 	var share_button = Titanium.UI.createButton({

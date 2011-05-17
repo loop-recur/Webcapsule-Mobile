@@ -6,7 +6,7 @@ Views.stories._form.template = function() {
 	var story = self.source;
 	
 	var camera_overlay = self.params.win;
-	var enable = self.params.enable;
+	var enable = true;
 	var form_view = Titanium.UI.createView({bottom: 0, height: 245, zIndex:10});
 
 	Layouts.pick_date(camera_overlay);
@@ -138,7 +138,7 @@ Views.stories._form.template = function() {
 	
 	
 	if(enable) tag_friends_button.addEventListener('click', function() {
-		App.action(camera_overlay, "tags#init");
+		App.action(camera_overlay, "tags#init", {story_tags : story.tags });
 	});
 	
 	var location_button = Titanium.UI.createButton({
@@ -152,20 +152,14 @@ Views.stories._form.template = function() {
 	});
 
 	location_button.addEventListener('click', function() {
-		Ti.API.info("story.where before geo");
-		Ti.API.info(story.where);
 		Layouts.geolocation(story);
-		Ti.API.info("story.where after geo");
-		Ti.API.info(story.where);
 	});	
 
 	Views.stories._form.toggle_geolocation = function(state) {
-		if(state) {
-			location_button.backgroundImage = 'images/postrecord/location_activated.png';
-		} else {
-			location_button.backgroundImage = 'images/postrecord/location_normal.png';
-		}
+		location_button.backgroundImage = state ? 'images/postrecord/location_activated.png' : 'images/postrecord/location_normal.png';
 	};
+	
+	if(story.where){ self.toggle_geolocation(true) };
 	
 	var add_photos_button = Titanium.UI.createButton({
 		value:false,
@@ -178,7 +172,7 @@ Views.stories._form.template = function() {
 	});
 
 	if(enable) add_photos_button.addEventListener('click', function() {
-		App.action(camera_overlay, "photos#init");
+		App.action(camera_overlay, "photos#init", {photos : story.photos });
 	});	
 
 	var add_date_button = Titanium.UI.createButton({
@@ -244,6 +238,8 @@ Views.stories._form.template = function() {
 				functionality_view.animate({bottom:0, duration:500});
 			};
 	});
+	
+	self.edit_details_btn = edit_details_btn;
 	
 	Views.stories._form.accept_button_toggle = function(state) {
 		accept_button.visible = state;

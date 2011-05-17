@@ -15,17 +15,17 @@ Controllers.tags = {
 		});
 		
 		if(!view.source) view.source = [];
+		if(!Views.stories._form.source.tags) Views.stories._form.source.tags = [];
 		view.source.unshift(friend);
+		Views.stories._form.source.tags = view.source;
 		view.render();
 	},
 
 	init: function(view, params) {
 		this.db.all(function(users) {
-			fixed_users = Functional.map(function(u){ if(u.image.match("/files")) u.image = App.file_url + u.image; return u; }, users);
-			view.source = fixed_users;
+			view.source = users;
 		});
-		view.render([]);
-		// view.template.toggle_tag_tray(true);
+		view.render([], params);
 	},
 	
 	destroy: function(view, params) {

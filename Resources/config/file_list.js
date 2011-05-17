@@ -10,6 +10,7 @@ FileList = [
 	"controllers/user_sessions_controller.js",
 	"controllers/followings_controller.js",
 	"helpers/ui.js",
+	"helpers/images.js",
 	"helpers/player.js",
 	"layouts/site.js",
 	"layouts/login.js",

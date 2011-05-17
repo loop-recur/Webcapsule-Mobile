@@ -27,7 +27,6 @@ Views.tags.create.template = function() {
 	};
 	
 	function makeFriend(position, friend) {
-		
 		var added_tag = Titanium.UI.createView({
 			top:4,
 			left:position,
@@ -42,7 +41,7 @@ Views.tags.create.template = function() {
 		});
 		
 		var image = Titanium.UI.createImageView({
-			image:friend.image,
+			image:Helpers.images.escape(friend.image),
 			defaultImage:'images/avatar_medium.jpg',
 			width:52,
 			height:54
@@ -67,6 +66,6 @@ Views.tags.create.template = function() {
 		self.view.add(added_tag);
 		self.view.width += 70;
 		return position+70;
-	}
+	};
 	
 };

@@ -3,6 +3,7 @@ Views.tags.init = Views.extend();
 Views.tags.init.template = function() {
 	var self = this;
 	self.view = makeView();
+	var story_tags = self.params.story_tags || [];
 	
 	var win = Titanium.UI.createWindow({
 		opacity:0.9,
@@ -62,12 +63,14 @@ Views.tags.init.template = function() {
 	    height:49
 	});
 
-	done_button.addEventListener('click', function() { win.close(); });
+	done_button.addEventListener('click', function() {
+		win.close();
+	});
 	
 	available_tags_view.add(self.view);
 	
 	Views.tags.create.scrollview = added_tags_view;
-	Views.tags.create.render();
+	Views.tags.create.render(story_tags);
 
 	tag_tray.add(name);
 	tag_tray.add(available_tags_view);
@@ -98,14 +101,14 @@ Views.tags.init.template = function() {
 	
 	function foundFriends() {
 		var matches = function(tag) {
-			var label = (tag.label || "");
-			return (label.toLowerCase().indexOf(name.value) != -1);
+			var label = (tag.label || "").toLowerCase();
+			var val = name.value.toLowerCase();
+			return (label.indexOf(val) != -1);
 		};
 		return Functional.select(matches, self.source);
 	};
 	
 	function makeFriend(position, friend) {
-		
 		var available_tag = Titanium.UI.createView({
 			top:4,
 			left:position,
@@ -120,7 +123,7 @@ Views.tags.init.template = function() {
 		});
 		
 		var image = Titanium.UI.createImageView({
-			image:friend.image,
+			image: Helpers.images.escape(friend.image),
 			defaultImage:'images/avatar_medium.jpg',
 			width:52,
 			height:54
