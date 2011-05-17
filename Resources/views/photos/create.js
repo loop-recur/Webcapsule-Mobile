@@ -47,7 +47,7 @@ Views.photos.create.template = function() {
 			height:65
 		});
 		
-		image.image = photo.upload || App.file_url+photo.thumb;
+		image.image = photo.upload || App.file_url+escape(photo.thumb.split("?")[0]);
 
 		var delete_button = Titanium.UI.createView({
 			backgroundImage:'images/add_tag/remove_icon.png',

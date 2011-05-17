@@ -60,6 +60,8 @@ Views.photos.init.template = function() {
 	});
 
 	done_button.addEventListener('click', function() {
+		self.source = [];
+		Views.photos.create.source = [];
 		win.close();
 	});
 
