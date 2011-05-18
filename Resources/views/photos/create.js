@@ -2,14 +2,15 @@ Views.photos.create = Views.extend();
 
 Views.photos.create.template = function() {
 	var self = this;
+	var added_photo_view = self.added_photo_view;
 	var photos = self.source || [];
 	
 	update();
 	
 	function update() {
-		if(self.view) Views.photos.create.added_photo_view.remove(self.view);
+		if(self.view) added_photo_view.remove(self.view);
 		self.view = makeView();
-		Views.photos.create.added_photo_view.add(self.view);
+		added_photo_view.add(self.view);
 		makePhotos();
 		Views.photos.init.lockDone(false);
 	};
@@ -17,19 +18,19 @@ Views.photos.create.template = function() {
 	function makeView() {
 		 return Titanium.UI.createView({
 			top:10,
-			height:140
+			height:96
 		});
 	};
 	
 	function makePhotos(position, photo) {
-		Functional.reduce(makePhoto, 10, photos);
-	};
+		Functional.reduce(makePhoto, {left:10, top:0}, photos);
+	}
 	
 	function makePhoto(position, photo) {
 		
 		var added_photo = Titanium.UI.createView({
-			top:0,
-			left:position,
+			top:position.top,
+			left:position.left,
 			width:86,
 			height:86
 		});
@@ -41,9 +42,7 @@ Views.photos.create.template = function() {
 		});
 
 		var image = Titanium.UI.createImageView({
-			defaultImage:'images/avatar_medium.jpg',
-			top:2,
-			// left:8,
+			top:8,
 			width:65,
 			height:65
 		});
@@ -67,7 +66,23 @@ Views.photos.create.template = function() {
 		added_photo.add(added_photo_border);
 		added_photo.add(delete_button);
 		self.view.add(added_photo);
-		return position+96;
+
+		function buildAndUpdatePosition (current_position) {
+			var horizontal_spacing = 96;
+			var vertical_spacing = 96;
+
+			current_position.left += horizontal_spacing;
+			
+			if(current_position.left > 297) {
+				current_position.top += vertical_spacing;
+				current_position.left = 10;
+				self.view.height += vertical_spacing;
+			};
+		};
+		
+		buildAndUpdatePosition(position);
+		
+		return position;
 	};
 	
 };

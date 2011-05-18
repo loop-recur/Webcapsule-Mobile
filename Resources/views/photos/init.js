@@ -16,9 +16,10 @@ Views.photos.init.template = function() {
 		top:15,
 		height:140,
 		width:300,
-		contentWidth:'auto',
-		contentHeight:140,
-		showHorizontalScrollIndicator:true
+		contentWidth:300,
+		contentHeight:'auto',
+		showHorizontalScrollIndicator:false,
+		showVerticalScrollIndicator:true
 	});
 
 	var take_picture = Titanium.UI.createButton({  

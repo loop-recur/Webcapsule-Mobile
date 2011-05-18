@@ -16,30 +16,6 @@ Views.stories.edit.template = function() {
 	} else {
 		activeMovie.url = App.file_url+story.video_url;
 	};
-		
-	var play_pause_button = Titanium.UI.createButton({
-		backgroundImage:"images/playercontrols/play_btn.png",
-		backgroundColor:'black',
-		height:36,
-		width:38,
-		top:180,
-		left:0,
-		visible:false
-	});
-	
-	Views.stories._form.play_pause_toggle = function (state) {
-		play_pause_button.visible = state;
-	};
-	
-	play_pause_button.addEventListener('click', function() {
-		if(activeMovie.playing) {
-			activeMovie.stop();
-			play_pause_button.backgroundImage = "images/playercontrols/play_btn.png";		
-		} else {
-			activeMovie.play();
-			play_pause_button.backgroundImage = "images/playercontrols/pause_btn.png";
-		}
-	});
 
 	var close_btn = Titanium.UI.createButton({
 		backgroundImage:"images/postrecord/return.png",
@@ -56,9 +32,8 @@ Views.stories.edit.template = function() {
 
 	self.win.add(activeMovie);
 	self.win.add(close_btn);
-	self.win.add(play_pause_button);
 	
-	Views.stories._form.render(story, {win: self.win, enable:true});
+	Views.stories._form.render(story, {win: self.win, enable:true, player:activeMovie});
 	Views.stories._form.accept_button_toggle(true);
-	Views.stories._form.play_pause_toggle(true);
+	Views.stories._form.player_controls_toggle(true);
 };

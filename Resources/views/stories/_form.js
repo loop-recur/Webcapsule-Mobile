@@ -5,6 +5,7 @@ Views.stories._form.template = function() {
 	
 	var camera_overlay = self.params.win;
 	var enable = self.params.enable;
+	var player = self.params.player;
 	var form_view = Titanium.UI.createView({bottom: 0, height: 245, zIndex:10});
 
 	Layouts.pick_date(camera_overlay);
@@ -37,7 +38,7 @@ Views.stories._form.template = function() {
 	});
 	
 	start_stop_button.addEventListener('click',function()
-	{
+	{	
 		Views.stories._form.toggle_upload(false);
 		Ti.Media.startVideoCapture();
 		start_stop_button.backgroundImage = "images/record/rec_stop_button.png";
@@ -89,8 +90,89 @@ Views.stories._form.template = function() {
 		height:'auto',
 		color:'black',
 		textAlign:'center',
-		visible: false
+		visible:false
 	});
+	
+	var edit_play_controls = Titanium.UI.createView({
+		backgroundImage:"images/playercontrols/player_bar-fullwidth.png",
+		height:56,
+		top:0,
+		width:320,
+		visible:false
+	});
+
+	var play_pause_button = Titanium.UI.createButton({
+		backgroundImage:"images/playercontrols/play_btn.png",
+		height:32,
+		width:32
+	});
+
+	var ff_button = Titanium.UI.createButton({
+		backgroundImage:"images/playercontrols/ffw_btn.png",
+		height:32,
+		width:32,
+		right:100
+	});
+
+	ff_button.addEventListener('click', function() {
+		player.stop();
+		player.initialPlaybackTime = player.currentPlaybackTime + 5;
+		player.play();
+	});
+
+	var rw_button = Titanium.UI.createButton({
+		backgroundImage:"images/playercontrols/rw_btn.png",
+		height:32,
+		width:32,
+		left:90
+	});
+
+	rw_button.addEventListener('click', function() {
+		player.stop();
+		player.initialPlaybackTime = player.currentPlaybackTime - 5;
+		player.play();
+	});
+	
+	var rerecord_button = Titanium.UI.createButton({
+		backgroundImage:"images/playercontrols/rec_btn.png",
+		height:32,
+		width:32,
+		right:60
+	});
+
+	rerecord_button.addEventListener('click', function() {
+		
+		Helpers.ui.confirm("Re-record entire video?", {
+			yes : function() {
+				camera_overlay.close();
+				Layouts.record();
+			},
+			cancel : function() {}
+		});
+	});
+
+	play_pause_button.addEventListener('click', function() {
+		if(player.playing) {
+			player.stop();
+			play_pause_button.backgroundImage = "images/playercontrols/play_btn.png";		
+		} else {
+			player.play();
+			play_pause_button.backgroundImage = "images/playercontrols/pause_btn.png";
+			Helpers.player.timeMonitor(asset_overlay, player, player.comments, player.photos);
+		}
+	});
+
+	Views.stories._form.player_controls_toggle = function (state) {
+		edit_play_controls.visible = state;
+	};
+
+	functionality_view.add(edit_play_controls);
+	edit_play_controls.add(play_pause_button);
+	edit_play_controls.add(ff_button);
+	edit_play_controls.add(rw_button);
+	edit_play_controls.add(rerecord_button);
+											
+	
 	
 	var tray = Titanium.UI.createView({
 		backgroundImage:'images/postrecord/edit_details_drawer.png',
@@ -241,6 +323,7 @@ Views.stories._form.template = function() {
 	Views.stories._form.accept_button_toggle = function(state) {
 		accept_button.visible = state;
 	};
+	
 	
 	functionality_view.add(edit_details_btn);
 	functionality_view.add(start_stop_button);

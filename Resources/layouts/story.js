@@ -30,13 +30,43 @@ Layouts.story = function(id) {
 		win.close();
 	});
 	
+	var compact_play_controls = Titanium.UI.createView({
+		backgroundImage:"images/playercontrols/player_overlay-compact.png",
+		height:61,
+		width:176,
+		zIndex:150
+	});
+	
 	var play_pause_button = Titanium.UI.createButton({
 		backgroundImage:"images/playercontrols/play_btn.png",
-		backgroundColor:'black',
-		height:36,
-		width:38,
-		top:200,
-		left:0
+		height:32,
+		width:32
+	});
+	
+	var ff_button = Titanium.UI.createButton({
+		backgroundImage:"images/playercontrols/ffw_btn.png",
+		height:32,
+		width:32,
+		right:20
+	});
+	
+	ff_button.addEventListener('click', function() {
+		player.stop();
+		player.initialPlaybackTime = player.currentPlaybackTime + 5;
+		player.play();
+	});
+	
+	var rw_button = Titanium.UI.createButton({
+		backgroundImage:"images/playercontrols/rw_btn.png",
+		height:32,
+		width:32,
+		left:20
+	});
+	
+	rw_button.addEventListener('click', function() {
+		player.stop();
+		player.initialPlaybackTime = player.currentPlaybackTime - 5;
+		player.play();
 	});
 	
 	play_pause_button.addEventListener('click', function() {
@@ -52,7 +82,10 @@ Layouts.story = function(id) {
 		
 	win.add(player);
 	win.add(asset_overlay);
-	win.add(play_pause_button);
+	compact_play_controls.add(play_pause_button);
+	compact_play_controls.add(ff_button);
+	compact_play_controls.add(rw_button);	
+	win.add(compact_play_controls);
 	win.add(close_button);
 	
 	App.action(win, "stories#show", {id: id, player: player});
