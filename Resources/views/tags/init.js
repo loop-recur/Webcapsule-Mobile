@@ -44,7 +44,7 @@ Views.tags.init.template = function() {
 	    top:15,  
 	    width:300,  
 	    height:30,  
-	    hintText:'Search for a friend...',  
+	    hintText:'Loading Friends',  
 	    keyboardType:Titanium.UI.KEYBOARD_DEFAULT,  
 	    returnKeyType:Titanium.UI.RETURNKEY_DONE
 	});
@@ -52,6 +52,22 @@ Views.tags.init.template = function() {
 	name.addEventListener('change', function() {
 		if(name.value.length >= 1) { update(); };
 	});
+	
+	var activity = Titanium.UI.createActivityIndicator({
+		top:20, 
+		left:145,
+		height:20,
+		width:20,
+		zIndex: 20,
+		style:Titanium.UI.iPhone.ActivityIndicatorStyle.DARK
+	});
+	
+	activity.show();
+	
+	self.finishLoading = function() {
+		activity.hide();
+		name.hintText = "Search for a friend...";
+	};
 
 	var done_button = Titanium.UI.createButton({  
 	    value:false,
@@ -73,6 +89,7 @@ Views.tags.init.template = function() {
 	Views.tags.create.render(story_tags);
 
 	tag_tray.add(name);
+	tag_tray.add(activity);
 	tag_tray.add(available_tags_view);
 	tag_tray.add(added_tags_view);
 	tag_tray.add(done_button);

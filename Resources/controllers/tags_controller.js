@@ -22,10 +22,12 @@ Controllers.tags = {
 	},
 
 	init: function(view, params) {
+		view.render([], params);
+		
 		this.db.all(function(users) {
 			view.source = users;
+			view.finishLoading();
 		});
-		view.render([], params);
 	},
 	
 	destroy: function(view, params) {
