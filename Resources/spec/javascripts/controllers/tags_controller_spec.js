@@ -4,6 +4,7 @@ describe("TagsController", function() {
 	beforeEach(function() {
 		response = [];
 		view = FakeView;
+		view.finishLoading = jasmine.createSpy("finishLoading");
 	});
 	
 	describe("init", function() {
@@ -14,6 +15,10 @@ describe("TagsController", function() {
 		
 		it("calls the view with a new tag", function() {
 			expect(view.render).toHaveBeenCalledWith(response, {});
+		});
+		
+		it("finishes loading", function() {
+		  expect(view.finishLoading).toHaveBeenCalled();
 		});
 	});
 	
