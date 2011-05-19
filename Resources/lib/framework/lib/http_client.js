@@ -1,7 +1,7 @@
 LoopRecur.HttpClient = function() {
 	
 	function getClient() {
-		return new HTTPClientWithCache({baseUrl: App.base_url, retryCount: 0, cacheSeconds: 0});
+		return new HTTPClientWithCache({baseUrl: App.base_url, retryCount: 0, cacheSeconds: 300});
 	}
 		
 	function post(url, params_or_call_backs, call_backs) {

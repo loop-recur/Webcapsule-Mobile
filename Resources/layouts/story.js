@@ -24,6 +24,8 @@ Layouts.story = function(id) {
 	});
 	
 	close_button.addEventListener('click', function() {
+		Views.photos.create.source = [];
+		Views.tags.create.source = [];
 		if (player.playing) { player.stop(); };
 		win.close();
 	});

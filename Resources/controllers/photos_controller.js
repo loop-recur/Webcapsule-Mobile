@@ -3,6 +3,7 @@ Controllers.photos = {
 
 	create: function(view, params) {
 		var photo = params.photo;
+		photo.story_id = Views.stories._form.source.id;
 		
 		this.db.save(photo, function(new_photo) {
 			var story = Views.stories._form.source;

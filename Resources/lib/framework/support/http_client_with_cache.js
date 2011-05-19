@@ -182,6 +182,7 @@
       return this.url_hash = Ti.Utils.md5HexDigest(this.options.method + this.options.baseUrl + this.options.url + this.options.data);
     };
     HTTPClientWithCache.prototype._save_to_cache = function(self, response) {
+			if(self.options.method === "POST"){ return };
       var urlHash;
       if (response.status >= 400 || response.cached) {
         return;

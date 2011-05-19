@@ -17,7 +17,6 @@ Views.videos.init.template = function() {
 			App.action(win, "videos#create", {
 				video : video,
 				success : function(updated_video) {
-					alert("it was uploaded!");
 					win.remove(progress_bar);
 					win.close();
 				},

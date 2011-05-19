@@ -1,12 +1,10 @@
 Views.stories._form = Views.extend();
 
 Views.stories._form.template = function() {
-
 	var self = this;
-	var story = self.source;
 	
 	var camera_overlay = self.params.win;
-	var enable = true;
+	var enable = self.params.enable;
 	var form_view = Titanium.UI.createView({bottom: 0, height: 245, zIndex:10});
 
 	Layouts.pick_date(camera_overlay);
@@ -110,7 +108,7 @@ Views.stories._form.template = function() {
 	    width:300,  
 	    height:30,
 	    hintText:'Title',
-			value: story.name,
+			value: self.source.name,
 	    keyboardType:Titanium.UI.KEYBOARD_DEFAULT,  
 	    returnKeyType:Titanium.UI.RETURNKEY_DONE
 	});
@@ -138,7 +136,7 @@ Views.stories._form.template = function() {
 	
 	
 	if(enable) tag_friends_button.addEventListener('click', function() {
-		App.action(camera_overlay, "tags#init", {story_tags : story.tags });
+		App.action(camera_overlay, "tags#init", {story_tags : self.source.tags });
 	});
 	
 	var location_button = Titanium.UI.createButton({
@@ -152,14 +150,14 @@ Views.stories._form.template = function() {
 	});
 
 	location_button.addEventListener('click', function() {
-		Layouts.geolocation(story);
+		Layouts.geolocation(self.source);
 	});	
 
 	Views.stories._form.toggle_geolocation = function(state) {
 		location_button.backgroundImage = state ? 'images/postrecord/location_activated.png' : 'images/postrecord/location_normal.png';
 	};
 	
-	if(story.where){ self.toggle_geolocation(true) };
+	if(self.source.where){ self.toggle_geolocation(true) };
 	
 	var add_photos_button = Titanium.UI.createButton({
 		value:false,
@@ -172,7 +170,7 @@ Views.stories._form.template = function() {
 	});
 
 	if(enable) add_photos_button.addEventListener('click', function() {
-		App.action(camera_overlay, "photos#init", {photos : story.photos });
+		App.action(camera_overlay, "photos#init", {photos : self.source.photos });
 	});	
 
 	var add_date_button = Titanium.UI.createButton({
@@ -201,12 +199,12 @@ Views.stories._form.template = function() {
 	});
 	
 	if(enable) share_button.addEventListener('click', function() {
-		App.action(camera_overlay, "sharings#init", {story : story});
+		App.action(camera_overlay, "sharings#init", {story : self.source});
 	});
 	
 	story_title_field.addEventListener("blur", function() {
 		if(story_title_field.value == "") { story_title_field.value = "Untitled Story"; };
-		story.name = story_title_field.value;
+		self.source.name = story_title_field.value;
 	});
 	
 	accept_button.addEventListener('click', function() {
@@ -215,11 +213,10 @@ Views.stories._form.template = function() {
 		saving_label.animate({right:10, duration:700});
 		
 		App.action(form_view, 'stories#update', {
-			story : story,
+			story : self.source,
 			success : function(updated) {
 				accept_button.visible = true;
 				saving_label.visible = false;
-				story = updated; // don't know why this is necessary here and not the controller, but it is.
 			},
 			error : function(errors) {
 				alert(errors);

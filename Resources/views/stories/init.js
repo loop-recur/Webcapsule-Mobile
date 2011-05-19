@@ -113,7 +113,7 @@ Views.stories.init.template = function() {
 		});
 
 		cancel_button.addEventListener('click', function() {
-			Ti.App.current_xhr.abort();
+			if(Ti.App.current_xhr) Ti.App.current_xhr.abort();
 			activity.hide();
 			retry_button.visible = true;
 			cancel_button.visible = false;

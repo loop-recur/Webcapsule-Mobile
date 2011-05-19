@@ -12,6 +12,8 @@ Layouts.record = function() {
 	});
 
 	close_btn.addEventListener('click', function() {
+		Views.photos.create.source = [];
+		Views.tags.create.source = [];
 		Ti.Media.hideCamera();
 		win.close();
 		Layouts.stories();

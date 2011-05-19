@@ -60,18 +60,34 @@ Views.photos.init.template = function() {
 	});
 
 	done_button.addEventListener('click', function() {
-		self.source = [];
-		Views.photos.create.source = [];
 		win.close();
 	});
+	
+	var lock_done_button = Titanium.UI.createButton({  
+	    value:false,
+			backgroundImage:'images/add_photo/add_photo_normal.png',
+			backgroundSelectedImage:'images/add_photo/add_photo_pressed.png',  
+	  	right:15,
+			bottom:20,
+	    width:83,  
+	    height:49,
+			enabled: false,
+			visible: false,
+			zIndex: 99
+	});
+	
+	self.lockDone = function(state) {
+		lock_done_button.visible = state;
+	};
 
 	photo_tray.add(added_photo_view);
 	photo_tray.add(done_button);
+	photo_tray.add(lock_done_button);
 	photo_tray.add(take_picture);
 	photo_tray.add(choose_existing);
 
 	win.add(photo_tray);
-
+	
 	Views.photos.create.added_photo_view = added_photo_view;
 	Views.photos.create.render(self.params.photos);
 

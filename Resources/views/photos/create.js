@@ -11,6 +11,7 @@ Views.photos.create.template = function() {
 		self.view = makeView();
 		Views.photos.create.added_photo_view.add(self.view);
 		makePhotos();
+		Views.photos.init.lockDone(false);
 	};
 	
 	function makeView() {
@@ -18,11 +19,11 @@ Views.photos.create.template = function() {
 			top:10,
 			height:140
 		});
-	}
+	};
 	
 	function makePhotos(position, photo) {
 		Functional.reduce(makePhoto, 10, photos);
-	}
+	};
 	
 	function makePhoto(position, photo) {
 		

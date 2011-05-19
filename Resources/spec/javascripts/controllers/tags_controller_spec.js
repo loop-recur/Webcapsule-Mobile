@@ -13,7 +13,7 @@ describe("TagsController", function() {
 		});
 		
 		it("calls the view with a new tag", function() {
-			expect(view.render).toHaveBeenCalledWith(response);
+			expect(view.render).toHaveBeenCalledWith(response, {});
 		});
 	});
 	
@@ -30,7 +30,7 @@ describe("TagsController", function() {
 		});
 		
 		it("updates the source of the form when complete", function() {
-		  expect(Views.stories._form.source).toEqual({tag_ids: "14,4"});
+		  expect(Views.stories._form.source.tag_ids).toEqual("14,4");
 		});
 		
 		it("update's the view's source", function() {

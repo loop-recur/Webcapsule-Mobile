@@ -5,6 +5,7 @@ Layouts.choose_photo = function(win, photo) {
 	Titanium.Media.openPhotoGallery({
 		success:function(event)
 		{
+			Views.photos.init.lockDone(true);
 			photo.upload = event.media;
 			App.action(win, "photos#create", {photo : photo});
 		},
