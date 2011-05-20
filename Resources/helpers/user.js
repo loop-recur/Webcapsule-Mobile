@@ -2,7 +2,7 @@ Helpers.user = {};
 
 Helpers.user.canEdit = function(item) {
 	var user = App.currentUser();
-	
+
 	function isItemCreator() {
 		return item.user_id && item.user_id == user.id
 	};

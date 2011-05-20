@@ -110,7 +110,7 @@ Views.stories._show_form.template = function() {
 
 	video_button.addEventListener('click', function() {
 		App.action(win, "videos#init", {story : story});
-	});	
+	});
 
 	var edit_button = Titanium.UI.createButton({	
 		value:false,
@@ -137,7 +137,6 @@ Views.stories._show_form.template = function() {
 		backgroundImage:'images/storyshow/share_normal.png',
 		backgroundSelectedImage:'images/storyshow/share_pressed.png'
 	});
-
 	
 	share_button.addEventListener('click', function() {
 		App.action(camera_overlay, "sharings#init", {story : story});
@@ -164,7 +163,7 @@ Views.stories._show_form.template = function() {
 	tray.add(photo_button);
 	tray.add(video_button);
 	tray.add(share_button);
-	tray.add(edit_button);
+	if(Helpers.user.canEdit(story)) tray.add(edit_button);
 
 	form_view.add(functionality_view);
 	win.add(form_view);
