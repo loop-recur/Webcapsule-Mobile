@@ -9,8 +9,8 @@ Controllers.user_sessions = {
 		App.http_client.get("/accounts.json", {
 			success: function(response) {
 				var user = JSON.parse(response.responseText);
-				App.current_user = user;
-				Controllers.user_sessions.cache(authstr, response.responseText);
+				App.setCurrentUser(user);
+				Controllers.user_sessions.cache(authstr);
 				Layouts.site();
 			},
 			error: function(response) {
@@ -36,11 +36,9 @@ Controllers.user_sessions = {
 		return 'Basic ' + Titanium.Utils.base64encode(username+":"+password);	
 	},
 	
-	cache: function(authstr, user) {
+	cache: function(authstr) {
 		var dir = Titanium.Filesystem.applicationDataDirectory;
 		var auth_file = Titanium.Filesystem.getFile(dir,'credentials');
-		var user_file = Titanium.Filesystem.getFile(dir,'current_user');
 		auth_file.write(authstr);
-		user_file.write(user);
 	}
 };

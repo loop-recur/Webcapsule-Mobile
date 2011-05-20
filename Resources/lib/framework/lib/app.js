@@ -1,15 +1,25 @@
 App = {};
 App.run = Bootstrap.run;
 
-App.setCurrentUser = function() {
-	var user = {};
+App.setCurrentUser = function(user) {
 	var dir = Titanium.Filesystem.applicationDataDirectory;
 	var user_file = Titanium.Filesystem.getFile(dir,'current_user');
+	
+	if(user) {
+		cache(user);
+	} else {
+		var user = {};
+	};
+	
 	if(user_file) user = JSON.parse(user_file.read());
 	
 	App.currentUser = function() {
-		if(!user){ Controllers.user_sessions.destroy(); };
+		if(!user) Controllers.user_sessions.destroy();
 		return user;
+	};
+	
+	function cache(user) {
+		user_file.write(JSON.stringify(user));
 	};
 };
 

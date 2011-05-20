@@ -5,10 +5,9 @@ Controllers.omniauth_callbacks = {
 		var authentication = params.data;
 		
 		this.db.save(authentication, function(user) {
-			App.current_user = user;
-			Ti.API.info(user);
+			App.setCurrentUser(user);
 			App.http_client.auth_token = user.authentication_token;
-			Controllers.omniauth_callbacks.cache(user.authentication_token, user);
+			Controllers.omniauth_callbacks.cache(user.authentication_token);
 			params.success();
 		});
 	},
@@ -21,9 +20,7 @@ Controllers.omniauth_callbacks = {
 	cache: function(auth_token, user) {
 		var dir = Titanium.Filesystem.applicationDataDirectory;
 		var auth_file = Titanium.Filesystem.getFile(dir,'auth_token');
-		var user_file = Titanium.Filesystem.getFile(dir,'current_user');
 		auth_file.write(auth_token);
-		user_file.write(JSON.stringify(user));
 	}
 	
 };

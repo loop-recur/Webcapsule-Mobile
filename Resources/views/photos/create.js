@@ -48,23 +48,28 @@ Views.photos.create.template = function() {
 		});
 		
 		image.image = photo.upload || Helpers.images.escape(photo.thumb);
-
-		var delete_button = Titanium.UI.createView({
-			backgroundImage:'images/add_tag/remove_icon.png',
-			right:-5,
-			top: -5,
-			width: 25,
-			height: 25
-		});
-				
-		delete_button.addEventListener('click', function() {
-			App.action(self.view, "photos#destroy", {photo : photo});
-			update();
-		});
 		
 		added_photo.add(image);
 		added_photo.add(added_photo_border);
-		added_photo.add(delete_button);
+
+		if(Helpers.user.canEdit(photo)) {
+			var delete_button = Titanium.UI.createView({
+				backgroundImage:'images/add_tag/remove_icon.png',
+				right:-5,
+				top: -5,
+				width: 25,
+				height: 25
+			});
+
+			delete_button.addEventListener('click', function() {
+				App.action(self.view, "photos#destroy", {photo : photo});
+				update();
+			});
+			
+			added_photo.add(delete_button);
+		};
+		
+		
 		self.view.add(added_photo);
 
 		function buildAndUpdatePosition (current_position) {
