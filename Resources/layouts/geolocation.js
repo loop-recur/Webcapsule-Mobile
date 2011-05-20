@@ -69,7 +69,7 @@ Layouts.geolocation = function(story) {
 			if (!e.success || e.error)
 			{
 				Ti.API.info("Code translation: "+translateErrorCode(e.code));
-				alert('error ' + JSON.stringify(e.error));
+				alert('Please double check you have location turned on.');
 				return;
 			}
 	
