@@ -4,7 +4,7 @@ Views.stories._form.template = function() {
 	var self = this;
 	
 	var camera_overlay = self.params.win;
-	var enable = self.params.enable;
+	var enable = true;
 	var player = self.params.player;
 	var form_view = Titanium.UI.createView({bottom: 0, height: 245, zIndex:10});
 
