@@ -4,6 +4,7 @@ Views.stories.init.template = function() {
 	var self = this;
 	var story = self.source;
 	var video, progress_bar, bar_area;
+	var quality = Ti.Network.NETWORK_WIFI ? Ti.Media.QUALITY_MEDIUM : Ti.Media.QUALITY_LOW;
 	
 	Views.stories._form.render(story, {win: self.params.overlay});
 
@@ -22,7 +23,7 @@ Views.stories.init.template = function() {
 			showControls:false,	// don't show system controls
 			saveToPhotoGallery:true,
 			mediaTypes:Ti.Media.MEDIA_TYPE_VIDEO,
-			videoQuality:Ti.Media.QUALITY_MEDIUM,
+			videoQuality:quality,
 			autohide:false
 		});
 	};
@@ -38,6 +39,7 @@ Views.stories.init.template = function() {
 			error:function(error){},
 			allowEditing:false,
 			popoverView:popoverView,
+			videoQuality: quality,
 			arrowDirection:arrowDirection,
 			mediaTypes:[Ti.Media.MEDIA_TYPE_VIDEO]
 		});

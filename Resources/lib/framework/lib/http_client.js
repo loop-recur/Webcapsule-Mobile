@@ -35,6 +35,7 @@ LoopRecur.HttpClient = function() {
 			call_backs = params_or_call_backs;
 			params = {};
 		}
+		// params.auth_token = "ZQxPQE8M98TQKjXZfoKHFy4ChGOuypDAVeqmXFED1TKeiZrow8XRglbldp0z";
 		return [call_backs, params];
 	}
 
