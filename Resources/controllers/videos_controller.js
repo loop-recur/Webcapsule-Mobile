@@ -3,7 +3,15 @@ Controllers.videos = {
 
 	create: function(view, params) {
 		var video = params.video;
-		this.db.save(video, {success : params.success, error : params.error}, params.http_options);
+		this.db.save(video, {
+			success : function(updated_vid) {
+				App.http_client.expireCache();
+				params.success(updated_vid);
+			},
+			error : params.error
+			},
+			params.http_options
+		);
 	},
 
 	init: function(view, params) {

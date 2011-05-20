@@ -36,8 +36,11 @@ Views.sharings.init.template = function() {
 	view.add(field);
 	win.add(view);
 	
+	twitter ? showTwitter() : connectTwitter();
+	facebook ? showFacebook() : connectFacebook();
 	
-	if(twitter) {
+	
+	function showTwitter() {
 		var twitterLabel = Titanium.UI.createLabel({
 			text:'Twitter',
 			left: 130
@@ -56,8 +59,7 @@ Views.sharings.init.template = function() {
 		view.add(twitterSwitch);
 	};
 	
-	
-	if(facebook) {
+	function showFacebook() {
 		var facebookLabel = Titanium.UI.createLabel({
 			text:'Facebook',
 			top: 150,
@@ -75,23 +77,51 @@ Views.sharings.init.template = function() {
 		
 		view.add(facebookLabel);
 		view.add(facebookSwitch);
-	} else {
-		connectFacebook();
-	};
-	
-	connectTwitter();
+	};	
 	
 	function getAuth(name) {
 		var auth = Functional.select(".authentication.provider == '"+name+"'", App.currentUser().authentications)[0];
-		return auth ? auth.authentication : false;
+		return auth ? auth.authentication : null;
+	};
+	
+	function connectFacebook() {
+		var fbconnect = Titanium.UI.createButton({
+			title: "login facebook",
+			left:160,
+			height:41,
+			width:79,
+			backgroundColor: "red"
+		});	
+
+		fbconnect.addEventListener('click', function() {
+			Titanium.Facebook.authorize();
+		});
+		
+		view.add(fbconnect);
+		
+		Titanium.Facebook.addEventListener('login', function(e) {
+			if(e.data) {
+				e.data.provider = "facebook";
+				e.data.token = Titanium.Facebook.accessToken;
+				App.action(win, "omniauth_callbacks#create", {
+					data : e.data,
+					success : function(user) {
+						view.remove(fbconnect);
+						showFacebook();
+					}
+				});
+			} else {
+				alert("Couldn't authorize Facebook");
+			}
+		});
 	};
 	
 	function connectTwitter() {
 		var twitter_connect = Titanium.UI.createButton({
-			title: "login to twitter",
+			title: "login twitter",
 			left:30,
 			height:41,
-			width:49,
+			width:79,
 			backgroundColor: "red"
 		});	
 
@@ -110,41 +140,14 @@ Views.sharings.init.template = function() {
 				data.provider = "twitter";
 				App.action(win, "omniauth_callbacks#create", {
 					data : data,
-					success : function(user) { twitter_connect.title = "Logout"; }
+					success : function(user) {
+						view.remove(twitter_connect);
+						showTwitter();
+					}
 				});
 			} else {
 				alert("Couldn't authorize Twitter");
 			};
 		};
-	};
-	
-	function connectFacebook() {
-		var fbconnect = Titanium.UI.createButton({
-			title: "login to facebook",
-			left:30,
-			height:41,
-			width:49,
-			backgroundColor: "red"
-		});	
-
-		fbconnect.addEventListener('click', function() {
-			Titanium.Facebook.authorize();
-		});
-		
-		view.add(fbconnect);
-		
-		Titanium.Facebook.addEventListener('login', function(e) {
-			alert("login");
-			if(e.data) {
-				e.data.provider = "facebook";
-				e.data.token = Titanium.Facebook.accessToken;
-				App.action(win, "omniauth_callbacks#create", {
-					data : e.data,
-					success : function(user) { fbconnect.title = "Logout"; }
-				});
-			} else {
-				alert("Couldn't authorize Facebook");
-			}
-		});
 	};
 };

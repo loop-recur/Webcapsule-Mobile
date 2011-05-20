@@ -4,7 +4,7 @@ Views.stories._form.template = function() {
 	var self = this;
 	
 	var camera_overlay = self.params.win;
-	var enable = self.params.enable;
+	var enable = true;
 	var player = self.params.player;
 	var form_view = Titanium.UI.createView({bottom: 0, height: 245, zIndex:10});
 
@@ -290,6 +290,8 @@ Views.stories._form.template = function() {
 	});
 	
 	accept_button.addEventListener('click', function() {
+		if(!self.source.video_id) return alert("Video has not uploaded yet");
+		
 		accept_button.visible = false;
 		saving_label.visible = true;
 		saving_label.animate({right:10, duration:700});

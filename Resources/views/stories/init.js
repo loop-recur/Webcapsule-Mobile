@@ -4,7 +4,7 @@ Views.stories.init.template = function() {
 	var self = this;
 	var story = self.source;
 	var video, progress_bar, bar_area;
-	var quality = Ti.Network.NETWORK_WIFI ? Ti.Media.QUALITY_MEDIUM : Ti.Media.QUALITY_LOW;
+	var quality = Ti.Network.NETWORK_WIFI ? Ti.Media.QUALITY_HIGH : Ti.Media.QUALITY_LOW;
 	
 	Views.stories._form.render(story, {win: self.params.overlay});
 

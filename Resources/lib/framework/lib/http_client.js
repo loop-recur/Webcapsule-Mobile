@@ -1,7 +1,9 @@
 LoopRecur.HttpClient = function() {
+	var current_client;
 	
 	function getClient() {
-		return new HTTPClientWithCache({baseUrl: App.base_url, retryCount: 0, cacheSeconds: 300});
+		current_client = new HTTPClientWithCache({baseUrl: App.base_url, retryCount: 0, cacheSeconds: 300});
+		return current_client;
 	}
 		
 	function post(url, params_or_call_backs, call_backs) {
@@ -27,6 +29,10 @@ LoopRecur.HttpClient = function() {
 		prepare("DELETE", url, call_backs).send();
 	}
 	
+	function expireCache() {
+		(current_client || getClient()).prune_cache(1);
+	}
+	
 // private
 
 	function fixArgs(params_or_call_backs, call_backs) {
@@ -35,7 +41,7 @@ LoopRecur.HttpClient = function() {
 			call_backs = params_or_call_backs;
 			params = {};
 		}
-		// params.auth_token = "ZQxPQE8M98TQKjXZfoKHFy4ChGOuypDAVeqmXFED1TKeiZrow8XRglbldp0z";
+		if(priv_obj.auth_token) params.auth_token = priv_obj.auth_token;
 		return [call_backs, params];
 	}
 
@@ -63,6 +69,6 @@ LoopRecur.HttpClient = function() {
 		client.setRequestHeader("content-type", "application/json");
 	}
 	
-	var priv_obj = {post: post, get: get, destroy : destroy};
+	var priv_obj = {post: post, get: get, destroy : destroy, expireCache : expireCache};
 	return priv_obj;
 };

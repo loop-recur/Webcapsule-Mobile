@@ -2,6 +2,7 @@ Controllers.user_sessions = {
 	alerter : alert,
 	
 	create: function(username, password) {
+		App.http_client.expireCache();
 		var authstr = this.makeAuthString(username, password);
 		App.http_client.credentials = authstr;
 		
@@ -20,9 +21,14 @@ Controllers.user_sessions = {
 	
 	destroy: function() {
 		var dir = Titanium.Filesystem.applicationDataDirectory;
-		var file = Titanium.Filesystem.getFile(dir,'credentials');
-		file.deleteFile();
-		App.http_client.credentials = "";
+		var files = ["credentials", "auth_token", "current_user"]
+		var getAndDelete = function(name) {
+			var file = Titanium.Filesystem.getFile(dir,name);
+			file.deleteFile();
+			App.http_client[name] = null;
+		}
+		Functional.map(getAndDelete, files);
+		App.current_user = null;
 		Layouts.login();
 	},
 	
