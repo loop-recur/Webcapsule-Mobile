@@ -16,10 +16,11 @@ Layouts.bottomNav = function() {
 	var stories_button = Titanium.UI.createButton({
 		value:false,
 		bottom:5,
-		left:30,
-		height:41,
-		width:49,
-		backgroundImage:'images/toolbar/books_ico.png',
+		left:45,
+		height:43,
+		width:51,
+		backgroundImage:'images/toolbar/navbtn_stories.png',
+		backgroundSelectedImage:'images/toolbar/navbtn_stories-pressed.png',
 		zIndex:51
 	});
 	
@@ -30,11 +31,12 @@ Layouts.bottomNav = function() {
 	
 	var users_button = Titanium.UI.createButton({
 		value:false,
-		bottom:7,
-		right:23,
-		height:37,
-		width:69,
-		backgroundImage:'images/toolbar/users_ico.png',
+		bottom:4,
+		right:45,
+		height:43,
+		width:51,
+		backgroundImage:'images/toolbar/navbtn_friends.png',
+		backgroundSelectedImage:'images/toolbar/navbtn_friends-pressed.png',
 		zIndex:51
 	});
 
@@ -46,9 +48,10 @@ Layouts.bottomNav = function() {
 	var record_button = Titanium.UI.createButton({
 		value:false,
 		bottom:0,
-		height:69,
-		width:122,
-		backgroundImage:'images/toolbar/newstory_btn.png',
+		height:62,
+		width:81,
+		backgroundImage:'images/toolbar/navbtn_record.png',
+		backgroundSelectedImage:'images/toolbar/navbtn_record-down.png',
 		zIndex:51
 	});
 	

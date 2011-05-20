@@ -19,10 +19,10 @@ Views.stories.edit.template = function() {
 
 	var close_btn = Titanium.UI.createButton({
 		backgroundImage:"images/postrecord/return.png",
-		height:39,
-		width:45,
-		top:0,
-		left:0
+		height:26,
+		width:26,
+		top:5,
+		left:5
 	});
 	
 	close_btn.addEventListener('click', function() {
@@ -35,5 +35,6 @@ Views.stories.edit.template = function() {
 	
 	Views.stories._form.render(story, {win: self.win, enable:true, player:activeMovie});
 	Views.stories._form.accept_button_toggle(true);
+	Layouts.story.toggle_compact_play_controls(false);
 	Views.stories._form.player_controls_toggle(true);
 };

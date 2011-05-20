@@ -134,8 +134,8 @@ Views.stories._show_form.template = function() {
 		right: 68,
 		height:button_height,
 		width:button_width,
-		backgroundImage:'images/storyshow/share_normal.png',
-		backgroundSelectedImage:'images/storyshow/share_pressed.png'
+		backgroundImage:'images/postrecord/share_normal.png',
+		backgroundSelectedImage:'images/postrecord/share_pressed.png',
 	});
 
 	
@@ -153,6 +153,9 @@ Views.stories._show_form.template = function() {
 			};
 	});
 
+	Layouts.story.toggle_compact_play_controls(true);
+	Views.stories._form.player_controls_toggle(false);
+	
 	functionality_view.add(comment_bar);
 	functionality_view.add(edit_details_btn);
 	functionality_view.add(tray);

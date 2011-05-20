@@ -129,15 +129,12 @@ Layouts.geolocation = function(story) {
 				}
 				else {
 					Ti.UI.createAlertDialog({
-						title:'Reverse geo error',
-						message:evt.error
+						title:'Location Problem',
+						message:"Could not determine your location."
 					}).show();
 					Ti.API.info("Code translation: "+translateErrorCode(e.code));
 				}
 			});
-	
-	
-			Titanium.API.info('geo - location updated: ' + new Date(timestamp) + ' long ' + longitude + ' lat ' + latitude + ' accuracy ' + accuracy);
 		};
 		
 		Titanium.Geolocation.addEventListener('location', locationCallback);

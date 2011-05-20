@@ -5,10 +5,10 @@ Layouts.record = function() {
 	
 	var close_btn = Titanium.UI.createButton({
 		backgroundImage:"images/postrecord/return.png",
-		height:39,
-		width:45,
-		top:0,
-		left:0
+		height:26,
+		width:26,
+		top:5,
+		left:5
 	});
 
 	close_btn.addEventListener('click', function() {
@@ -28,7 +28,8 @@ Layouts.record = function() {
 		height:40,
 		width:80,
 		backgroundImage:"images/record/BUTT_drk_on.png",
-		font:{fontSize:16,fontWeight:'bold',fontFamily:'Helvetica Neue'}
+		font:{fontSize:16,fontWeight:'bold',fontFamily:'Helvetica Neue'},
+		visible:false
 	});
 	
 	Layouts.record.toggle_flash = function(state) {
@@ -42,10 +43,10 @@ Layouts.record = function() {
 	var camera_type = Ti.UI.createButton({
 		color:'#fff',
 		value:false,
-		top:20,
-		right:20,
-		height:40,
-		width:68,
+		height:26,
+		width:26,
+		top:5,
+		right:5,
 		backgroundImage:"images/postrecord/rotate_cameras.png",
 		font:{fontSize:16,fontWeight:'bold',fontFamily:'Helvetica Neue'}
 	});

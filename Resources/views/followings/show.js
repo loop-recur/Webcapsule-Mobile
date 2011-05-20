@@ -5,12 +5,13 @@ Views.followings.show.template = function() {
 	var friend = self.source;
 	
 	var win = Titanium.UI.createWindow({ title:'User', backgroundColor:'white' });
+	
 	var close = Titanium.UI.createButton({
-		title:'Close',
-		height:30,
-		width:150,
-		top:0,
-		right:0
+		backgroundImage:"images/postrecord/return.png",
+		height:26,
+		width:26,
+		top:5,
+		left:5
 	});
 	
 	close.addEventListener('click', function() { win.close(); });

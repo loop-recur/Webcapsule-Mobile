@@ -76,10 +76,11 @@ Views.accounts.init.template = function() {
 	    width:133,  
 	    height:49
 	});
-
+	
 	var cancel_button = Titanium.UI.createButton({  
-	    title:'Cancel',
-			backgroundColor:'white',
+	    value:false,
+			backgroundImage:'images/newaccount/btn_cancel.png',
+			backgroundSelectedImage:'images/newaccount/btn_cancel_pressed.png',  
 	    bottom:150,
 	  	left:10,
 	    width:133,  

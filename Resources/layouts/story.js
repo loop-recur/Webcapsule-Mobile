@@ -16,11 +16,11 @@ Layouts.story = function(id) {
 	});
 	
 	var close_button = Titanium.UI.createButton({
-		title:'Close',
-		height:30,
-		width:150,
-		top:0,
-		right:0
+		backgroundImage:"images/postrecord/return.png",
+		height:26,
+		width:26,
+		top:5,
+		left:5
 	});
 	
 	close_button.addEventListener('click', function() {
@@ -34,8 +34,13 @@ Layouts.story = function(id) {
 		backgroundImage:"images/playercontrols/player_overlay-compact.png",
 		height:61,
 		width:176,
-		zIndex:150
+		zIndex:150,
+		visible:false
 	});
+	
+	Layouts.story.toggle_compact_play_controls = function(state) {
+		compact_play_controls.visible = state;
+	};
 	
 	var play_pause_button = Titanium.UI.createButton({
 		backgroundImage:"images/playercontrols/play_btn.png",
@@ -78,6 +83,12 @@ Layouts.story = function(id) {
 			play_pause_button.backgroundImage = "images/playercontrols/pause_btn.png";
 			Helpers.player.timeMonitor(asset_overlay, player, player.comments, player.photos);
 		}
+	});
+	
+	player.addEventListener('complete',function()
+	{
+		player.stop();
+		play_pause_button.backgroundImage = "images/playercontrols/play_btn.png";
 	});
 		
 	win.add(player);

@@ -3,9 +3,10 @@ Layouts.pick_date = function(win) {
 	
 	var view = Titanium.UI.createView({
 		backgroundColor:'black',
-		height:250,
+		height:290,
 		top:0,
 		zIndex:90,
+		opacity:.9,
 		visible:false
 	});
 	
@@ -13,14 +14,14 @@ Layouts.pick_date = function(win) {
 		view.visible = state;
 	};
 	
-	
 	var value = new Date();
 
 	var picker = Ti.UI.createPicker({
 		type:Ti.UI.PICKER_TYPE_DATE,
 		maxDate:value,
 		value:value,
-		selectionIndicator : true,
+		top:0,
+		selectionIndicator:true,
 		zIndex:500
 	});
 	
@@ -34,7 +35,7 @@ Layouts.pick_date = function(win) {
 			backgroundImage:'images/app_wide/ok_normal.png',
 			backgroundSelectedImage:'images/app_wide/ok_pressed.png',  
 	  	right:15,
-			bottom:20,
+			bottom:10,
 	    width:83,  
 	    height:49,
 			zIndex:500
