@@ -9,6 +9,21 @@ Views.sharings.init.template = function() {
 	var twitter = getAuth('twitter');
 	var facebook = getAuth('facebook');
 	
+	var close_btn = Titanium.UI.createButton({
+		backgroundImage:"images/postrecord/return.png",
+		height:26,
+		width:26,
+		bottom:5,
+		left:5
+	});
+
+	close_btn.addEventListener('click', function() {
+		win.remove(view);
+	});
+	
+	view.add(close_btn);
+	
+	
 	var field = Titanium.UI.createTextField({  
 	    color:'#303030',
 			backgroundColor:'#d6d6d6',
