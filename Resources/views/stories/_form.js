@@ -221,7 +221,6 @@ Views.stories._form.template = function() {
 		enabled:enable
 	});
 	
-	
 	if(enable) tag_friends_button.addEventListener('click', function() {
 		App.action(camera_overlay, "tags#init", {story_tags : self.source.tags });
 	});
