@@ -2,7 +2,7 @@ LoopRecur.HttpClient = function() {
 	var current_client;
 	
 	function getClient() {
-		current_client = new HTTPClientWithCache({baseUrl: App.base_url, retryCount: 0, cacheSeconds: 0});
+		current_client = new HTTPClientWithCache({baseUrl: App.base_url, retryCount: 0, cacheSeconds: 300});
 		return current_client;
 	}
 		
@@ -48,6 +48,7 @@ LoopRecur.HttpClient = function() {
 	function prepare(method, url, call_backs) {
 		client = getClient();
 		var progress_bar = call_backs.progress_bar;
+		client.options.skip_preload = call_backs.skip_preload;
 		if(progress_bar) client.options.onsendstream = function(e){ progress_bar.value = e.progress };
 		client.options.onload = call_backs.success;
 		client.options.onerror = call_backs.error;

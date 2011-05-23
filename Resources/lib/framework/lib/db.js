@@ -1,7 +1,7 @@
 Db = function(name) {
 	pub_obj = {};
 	
-	function all(callbacks, params) {
+	function all(callbacks, params, options) {
 		var oldSuccess = callbacks.success || callbacks;
 		var oldError = callbacks.error || function(){};
 				
@@ -15,11 +15,11 @@ Db = function(name) {
 			Cache[name] = json;
 			oldSuccess(json);
 		};
-				
-		callApi("get", getPath(), callbacks, params);
+		
+		callApi("get", getPath(), callbacks, params, options);
 	};
 	
-	function find(id, callbacks) {
+	function find(id, callbacks, options) {
 		var oldSuccess = callbacks.success || callbacks;
 				
 		callbacks.error = function(r) {
@@ -34,7 +34,7 @@ Db = function(name) {
 			oldSuccess(json);
 		};
 		
-		callApi("get", getPath(id), callbacks);
+		callApi("get", getPath(id), callbacks, {}, options);
 	};
 	
 	function save(obj, callbacks, options) {

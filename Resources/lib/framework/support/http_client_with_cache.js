@@ -83,7 +83,7 @@
         return self.onerror_hook(self);
       };
       this.set_options(opts);
-      this.prune_cache();
+      // this.prune_cache();
     }
     HTTPClientWithCache.prototype.set_options = function(opts) {
       var attrname;
@@ -116,6 +116,17 @@
       if (!this._validate()) {
         return false;
       }
+
+			if(!this.options.skip_preload) {
+				var previous_response = this._get_cached_response(10000000);
+
+				if(previous_response) {
+					this.onload_hook(this, previous_response);
+				} else {
+					Ti.API.info("no previous_response");
+				}
+			}
+			
       this.prune_cache();
       if (response = this._get_cached_response()) {
         Ti.API.info("HTTPClientWithCache: Using cached response");

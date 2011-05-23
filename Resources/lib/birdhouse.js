@@ -471,6 +471,7 @@ function BirdHouse(params) {
 
 
 			var XHR = Ti.Network.createHTTPClient();
+			XHR.validatesSecureCertificate = false;
 			
 			// on success, grab the request token
 			XHR.onload = function() {

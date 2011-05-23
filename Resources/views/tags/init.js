@@ -65,6 +65,7 @@ Views.tags.init.template = function() {
 	activity.show();
 	
 	self.finishLoading = function() {
+		makeFriends();
 		activity.hide();
 		name.hintText = "Search for a friend...";
 	};

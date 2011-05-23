@@ -100,4 +100,5 @@ Layouts.story = function(id) {
 	win.add(close_button);
 	
 	App.action(win, "stories#show", {id: id, player: player});
+	win.open();
 };

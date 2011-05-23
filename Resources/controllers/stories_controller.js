@@ -17,7 +17,11 @@ Controllers.stories = {
 	},
 	
 	show: function(view, params) {
-		this.db.find(params.id, function(story){ view.render(story, params); });
+		this.db.find(params.id, {
+			success: function(story){
+				view.render(story, params);
+			}
+		}, { skip_preload: true });
 	},
 	
 	update: function(view, params) {

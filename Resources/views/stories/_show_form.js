@@ -42,7 +42,7 @@ Views.stories._show_form.template = function() {
 	});
 
 	var story_title = Titanium.UI.createLabel({
-		text:story.name,
+		text:self.source.name,
 		font:{fontSize:12, fontWeight:'bold'},
 		color:'black',
 		top:10,
@@ -52,7 +52,7 @@ Views.stories._show_form.template = function() {
 	});
 	
 	var story_duration = Titanium.UI.createLabel({
-		text:story.duration,
+		text:self.source.duration,
 		font:{fontSize:11, fontWeight:'bold'},
 		color:'gray',
 		top:25,
@@ -62,7 +62,7 @@ Views.stories._show_form.template = function() {
 	});
 	
 	var story_user = Titanium.UI.createLabel({
-		text:story.user.full_name,
+		text:self.source.user.full_name,
 		font:{fontSize:11, fontWeight:'bold'},
 		color:'gray',
 		top:25,
@@ -82,7 +82,7 @@ Views.stories._show_form.template = function() {
 	});
 
 	comment_button.addEventListener('click', function() {
-		App.action(win, "comments#init", {story : story});
+		App.action(win, "comments#init", {story : self.source});
 	});
 
 	var photo_button = Titanium.UI.createButton({
@@ -96,7 +96,7 @@ Views.stories._show_form.template = function() {
 	});
 
 	photo_button.addEventListener('click', function() {
-		App.action(win, "photos#init", {story_id : story.id, photos : story.photos});		
+		App.action(win, "photos#init", {story_id : self.source.id, photos : self.source.photos});		
 	});
 
 	var video_button = Titanium.UI.createButton({
@@ -109,7 +109,7 @@ Views.stories._show_form.template = function() {
 	});
 
 	video_button.addEventListener('click', function() {
-		App.action(win, "videos#init", {story : story});
+		App.action(win, "videos#init", {story : self.source});
 	});
 
 	var edit_button = Titanium.UI.createButton({	
@@ -124,7 +124,7 @@ Views.stories._show_form.template = function() {
 
 	edit_button.addEventListener('click', function() {
 		win.remove(form_view);
-		App.action(win, "stories#edit", {win: win, story : story});
+		App.action(win, "stories#edit", {win: win, story : self.source});
 		Views.stories._form.edit_details_btn.fireEvent('click');
 	});
 	
@@ -139,7 +139,7 @@ Views.stories._show_form.template = function() {
 	});
 	
 	share_button.addEventListener('click', function() {
-		App.action(camera_overlay, "sharings#init", {story : story});
+		App.action(win, "sharings#init", {story : self.source});
 	});
 
 	edit_details_btn.addEventListener('click', function() {
@@ -166,8 +166,8 @@ Views.stories._show_form.template = function() {
 	tray.add(photo_button);
 	tray.add(video_button);
 	tray.add(share_button);
-	if(Helpers.user.canEdit(story)) tray.add(edit_button);
+	if(Helpers.user.canEdit(self.source)) tray.add(edit_button);
 
 	form_view.add(functionality_view);
-	win.add(form_view);
+	win.add(form_view);	
 };
