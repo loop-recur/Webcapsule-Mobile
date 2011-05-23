@@ -63,7 +63,7 @@
       this.options = {
         method: "GET",
         baseUrl: "",
-        timeout: 10000,
+        timeout: 60000,
         retryCount: 0,
         cacheSeconds: 30,
         pruneSeconds: 2520000,

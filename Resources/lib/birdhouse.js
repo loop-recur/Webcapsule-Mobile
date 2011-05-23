@@ -376,7 +376,8 @@ function BirdHouse(params) {
 		// write config
 		var config = {
 			access_token: cfg.access_token,
-			access_token_secret: cfg.access_token_secret
+			access_token_secret: cfg.access_token_secret,
+			user_id: cfg.user_id
 		};
 		file.write(JSON.stringify(config));
 
@@ -1080,9 +1081,11 @@ function BirdHouse(params) {
 			get_request_token(callback); // get_request_token or a function it calls will call callback
 
 		} else {
+			var file = Ti.Filesystem.getFile(Ti.Filesystem.applicationDataDirectory, 'twitter.config');
+			var data = JSON.parse(file.read());
 			// execute the callback function
 			if(typeof(callback)=='function'){
-				callback(authorized);
+				callback(data);
 			}
 		}
 

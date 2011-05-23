@@ -22,14 +22,15 @@ Controllers.user_sessions = {
 	destroy: function() {
 		var dir = Titanium.Filesystem.applicationDataDirectory;
 		var files = ["credentials", "auth_token", "current_user"]
-		var getAndDelete = function(name) {
+		Functional.map(getAndDelete, files);
+		App.setCurrentUser({});
+		Layouts.login();
+		
+		function getAndDelete(name) {
 			var file = Titanium.Filesystem.getFile(dir,name);
 			file.deleteFile();
 			App.http_client[name] = null;
-		}
-		Functional.map(getAndDelete, files);
-		App.current_user = null;
-		Layouts.login();
+		};
 	},
 	
 	makeAuthString: function(username, password) {

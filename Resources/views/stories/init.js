@@ -21,7 +21,7 @@ Views.stories.init.template = function() {
 			cancel:function(){},
 			error:function(error){},
 			overlay:self.params.overlay,
-			showControls:false,	// don't show system controls
+			showControls:false,
 			saveToPhotoGallery:true,
 			mediaTypes:Ti.Media.MEDIA_TYPE_VIDEO,
 			videoQuality:quality,

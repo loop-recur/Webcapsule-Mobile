@@ -109,26 +109,13 @@ Views.sharings.init.template = function() {
 		});	
 
 		fbconnect.addEventListener('click', function() {
-			Titanium.Facebook.authorize();
+			Helpers.user.connectFacebook(function(user) {
+					view.remove(fbconnect);
+					showFacebook();
+			});
 		});
 		
 		view.add(fbconnect);
-		
-		Titanium.Facebook.addEventListener('login', function(e) {
-			if(e.data) {
-				e.data.provider = "facebook";
-				e.data.token = Titanium.Facebook.accessToken;
-				App.action(win, "omniauth_callbacks#create", {
-					data : e.data,
-					success : function(user) {
-						view.remove(fbconnect);
-						showFacebook();
-					}
-				});
-			} else {
-				alert("Couldn't authorize Facebook");
-			}
-		});
 	};
 	
 	function connectTwitter() {
@@ -141,28 +128,12 @@ Views.sharings.init.template = function() {
 		});	
 
 		twitter_connect.addEventListener('click', function() {
-			b = new BirdHouse({consumer_key: "CgIDnN8kDKPu1uKhMK5Qg", consumer_secret: "AULwvohyIehfXfPUaKAaEifYRtzlDuOIo80qHQVRnyI"});
-			b.authorize(saveTwitterAuth);
+			Helpers.user.connectTwitter(function(user) {
+				view.remove(twitter_connect);
+				showTwitter();
+			});
 		});
 		
 		view.add(twitter_connect);
-		
-		function saveTwitterAuth(data) {
-			if(data) {
-				data.id = data.user_id;
-				data.token = data.oauth_token;
-				data.secret = data.oauth_token_secret;
-				data.provider = "twitter";
-				App.action(win, "omniauth_callbacks#create", {
-					data : data,
-					success : function(user) {
-						view.remove(twitter_connect);
-						showTwitter();
-					}
-				});
-			} else {
-				alert("Couldn't authorize Twitter");
-			};
-		};
 	};
 };

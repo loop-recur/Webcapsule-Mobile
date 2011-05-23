@@ -65,9 +65,10 @@ Layouts.login = function () {
 	});
 
 	facebook_login.addEventListener('click', function(){
-
+		Helpers.user.connectFacebook(function(user) {
+			Layouts.site();
+		});
 	});
-	
 	
 	var twitter_login = Titanium.UI.createButton({  
 	    value:false,
@@ -79,7 +80,9 @@ Layouts.login = function () {
 	});
 
 	twitter_login.addEventListener('click', function(){
-
+		Helpers.user.connectTwitter(function(user) {
+			Layouts.site();
+		});
 	});
 
 	var new_account_label = Titanium.UI.createLabel({

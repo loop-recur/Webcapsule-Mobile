@@ -10,7 +10,7 @@ var dir = Titanium.Filesystem.applicationDataDirectory;
 var credentials = Titanium.Filesystem.getFile(dir,'credentials');
 var auth_token = Titanium.Filesystem.getFile(dir,'auth_token');
 
-if(credentials.exists()) {
+if(credentials.exists() || auth_token.exists()) {
 	App.http_client.credentials = credentials.read();
 	App.http_client.auth_token = auth_token.read();
 	Layouts.site();

@@ -2,7 +2,7 @@ LoopRecur.HttpClient = function() {
 	var current_client;
 	
 	function getClient() {
-		current_client = new HTTPClientWithCache({baseUrl: App.base_url, retryCount: 0, cacheSeconds: 300});
+		current_client = new HTTPClientWithCache({baseUrl: App.base_url, retryCount: 0, cacheSeconds: 0});
 		return current_client;
 	}
 		
@@ -65,7 +65,11 @@ LoopRecur.HttpClient = function() {
 	}
 	
 	function setHeaders(client) {
-		if(priv_obj.credentials) client.setRequestHeader('Authorization', priv_obj.credentials);
+		if(priv_obj.credentials){
+			client.setRequestHeader('Authorization', priv_obj.credentials);
+		} else {
+			client.setRequestHeader('Authorization', "not logged in"); //hack to get it to send json correctly
+		}
 		client.setRequestHeader("content-type", "application/json");
 	}
 	
