@@ -83,15 +83,15 @@ Views.stories._show_form.template = function() {
 	comment_button.addEventListener('click', function() {
 		App.action(win, "comments#init", {story : self.source});
 	});
-
+	
 	var photo_button = Titanium.UI.createButton({
 		value:false,
 		top:buttons_from_top_length,
 		left: 68,
 		height:button_height,
 		width:button_width,
-		backgroundImage:'images/storyshow/photos_normal.png',
-		backgroundSelectedImage:'images/storyshow/photos_pressed.png'
+		backgroundImage:'images/postrecord/addphotos_normal.png',
+		backgroundSelectedImage:'images/postrecord/addphotos_pressed.png'
 	});
 
 	photo_button.addEventListener('click', function() {

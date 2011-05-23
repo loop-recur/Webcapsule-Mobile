@@ -32,12 +32,13 @@ Views.stories.init.template = function() {
 	
 	// called from form
 	self.chooseVideo = function() {
+		
 		var popoverView;
 		var arrowDirection;
 
 		Titanium.Media.openPhotoGallery({
 			success: afterRecord,
-			cancel:function(){ self.takeVideo(); },
+			cancel:function(){ win.close(); Layouts.stories();},//self.takeVideo(); },
 			error:function(error){},
 			allowEditing:false,
 			popoverView:popoverView,
@@ -54,6 +55,10 @@ Views.stories.init.template = function() {
 		video = {upload : event.media};
 		
 		saveVideo();
+		
+		Ti.API.info("window used in afterRecord()");
+		Ti.API.info(self.win.id);
+		
 		App.action(self.win, "stories#edit", {story : story, upload : video.upload});
 		self.win.add(bar_area);
 	};
