@@ -2,7 +2,6 @@ Views.tags.create = Views.extend();
 
 Views.tags.create.template = function() {
 	var self = this;
-	Ti.API.info(self.params.story);
 	var scrollview = self.scrollview;
 	var tags = self.source || [];
 	

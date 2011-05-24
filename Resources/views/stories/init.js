@@ -4,9 +4,7 @@ Views.stories.init.template = function() {
 	var self = this;
 	var story = self.source;
 	var video, progress_bar, bar_area;
-	var quality = Ti.Network.NETWORK_WIFI ? Ti.Media.QUALITY_HIGH : Ti.Media.QUALITY_LOW;
-	Ti.API.info("===========================QUALITY===================");
-	Ti.API.info(quality);
+	var quality = Ti.Network.NETWORK_MOBILE ? Ti.Media.QUALITY_LOW : Ti.Media.QUALITY_HIGH;
 	
 	Views.stories._form.render(story, {win: self.params.overlay});
 
@@ -25,6 +23,7 @@ Views.stories.init.template = function() {
 			overlay:self.params.overlay,
 			showControls:false,
 			saveToPhotoGallery:true,
+			scalingMode: Titanium.Media.VIDEO_SCALING_ASPECT_FIT,
 			mediaTypes:Ti.Media.MEDIA_TYPE_VIDEO,
 			videoQuality:quality,
 			autohide:false
