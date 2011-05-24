@@ -6,12 +6,12 @@ Views.accounts.init.template = function() {
 	
 	var view = Titanium.UI.createView({
 		title:'Account',
-		backgroundColor: 'black'	
+		backgroundImage:'images/newaccount/bg_create_account.png'
 	});
 	
 	var full_name = Titanium.UI.createTextField({  
 	    color:'#336699',
-	    top:65,   
+	    top:30,   
 	    width:290,  
 	    height:35,  
 	    hintText:'Full Name',  
@@ -26,7 +26,7 @@ Views.accounts.init.template = function() {
 
 	var email = Titanium.UI.createTextField({  
 	    color:'#336699',
-	    top:110,   
+	    top:80,   
 	    width:290,  
 	    height:35,  
 	    hintText:'Email',  
@@ -41,7 +41,7 @@ Views.accounts.init.template = function() {
 
 	var password = Titanium.UI.createTextField({  
 	    color:'#336699',
-	    top:155,  
+	    top:130,  
 	    width:290,  
 	    height:35,  
 	    hintText:'Password',  
@@ -57,7 +57,7 @@ Views.accounts.init.template = function() {
 
 	var password_confirm = Titanium.UI.createTextField({  
 	    color:'#336699',
-	    top:200,  
+	    top:180,  
 	    width:290,  
 	    height:35,  
 	    hintText:'Confirm Password',  
@@ -71,7 +71,7 @@ Views.accounts.init.template = function() {
 	    value:false,
 			backgroundImage:'images/newaccount/make_account_normal.png',
 			backgroundSelectedImage:'images/newaccount/make_account_pressed.png',  
-	    bottom:150,
+	    bottom:160,
 	  	right:10,
 	    width:133,  
 	    height:49
@@ -81,7 +81,7 @@ Views.accounts.init.template = function() {
 	    value:false,
 			backgroundImage:'images/newaccount/btn_cancel.png',
 			backgroundSelectedImage:'images/newaccount/btn_cancel_pressed.png',  
-	    bottom:150,
+	    bottom:160,
 	  	left:10,
 	    width:133,  
 	    height:49

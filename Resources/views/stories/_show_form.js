@@ -142,11 +142,11 @@ Views.stories._show_form.template = function() {
 	});
 
 	edit_details_btn.addEventListener('click', function() {
-		if(edit_details_btn.backgroundImage === 'images/postrecord/edit_details_normal.png') {
+		if(edit_details_btn.backgroundImage === 'images/postrecord/btn_retract_normal.png') {
 				edit_details_btn.backgroundImage = 'images/postrecord/edit_details_pressed.png';
 				functionality_view.animate({bottom:-137, duration:500});
 			} else {
-				edit_details_btn.backgroundImage = 'images/postrecord/edit_details_normal.png';
+				edit_details_btn.backgroundImage = 'images/postrecord/btn_retract_normal.png';
 				functionality_view.animate({bottom:0, duration:500});
 			};
 	});
