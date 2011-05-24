@@ -4,7 +4,7 @@ Views.stories.init.template = function() {
 	var self = this;
 	var story = self.source;
 	var video, progress_bar, bar_area;
-	var quality = Ti.Network.NETWORK_MOBILE ? Ti.Media.QUALITY_LOW : Ti.Media.QUALITY_HIGH;
+	var quality = Ti.Network.networkType == Ti.Network.NETWORK_WIFI ? Ti.Media.QUALITY_HIGH : Ti.Media.QUALITY_LOW;
 	
 	Views.stories._form.render(story, {win: self.params.overlay});
 
@@ -49,9 +49,12 @@ Views.stories.init.template = function() {
 	
 	function afterRecord(event) {
 		Ti.Media.hideCamera();
+		var media = event.media;
+		var landscape = media.width > media.height;
 		progress_bar = Helpers.ui.progressBar();
 		bar_area = makeProgressArea();
-		video = {upload : event.media};
+		
+		video = {upload : media, landscape : landscape};
 		
 		saveVideo();
 		
