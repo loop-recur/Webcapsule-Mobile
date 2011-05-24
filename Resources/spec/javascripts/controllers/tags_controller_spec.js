@@ -35,7 +35,7 @@ describe("TagsController", function() {
 		});
 		
 		it("updates the source of the form when complete", function() {
-		  expect(Views.stories._form.source.tag_ids).toEqual("14,4");
+		  expect(Views.stories._form.source.tag_ids).toEqual("4,14");
 		});
 		
 		it("update's the view's source", function() {
@@ -49,9 +49,9 @@ describe("TagsController", function() {
 	
 	describe("destroy", function() {
 	  beforeEach(function() {
-			Views.tags = { create : {source : [{id : '4', name : "Joe"}, {id : '14', name : "Bob"}]} };
-			Views.stories = {_form : { source : {tag_ids : "14,4,"}} };
-			Controllers.tags.destroy(view, {friend: {id : '14', name : "Bob"}});
+			Views.tags = { create : {source : [{id : '15', name : "Bob"}, {id : '4', name : "Joe"}]} };
+			Views.stories = {_form : { source : {tag_ids : "4,15,"}} };
+			Controllers.tags.destroy(view, {friend: {id : '15', name : "Bob"}});
 	  });
 	
 		it("update's the view's source", function() {

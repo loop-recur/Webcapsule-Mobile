@@ -1,4 +1,4 @@
-describe("RepliesController", function() {
+describe("VideosController", function() {
 	var view, response;
 	
 	beforeEach(function() {
@@ -36,7 +36,7 @@ describe("RepliesController", function() {
 		
 			it("calls save", function() {
 				Controllers.videos.create(view, {video: video, success : fakeSuccess, error : fakeError, http_options : {progress_bar:"bar"}});
-				expect(Controllers.videos.db.save).toHaveBeenCalledWith(video,{success : fakeSuccess, error : fakeError}, {progress_bar : "bar"});
+				expect(Controllers.videos.db.save).toHaveBeenCalledWith(video,{success : jasmine.any(Function), error : fakeError}, {progress_bar : "bar"});
 			});
 		});
 	});

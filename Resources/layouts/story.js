@@ -4,6 +4,7 @@ Layouts.story = function(id) {
 	var player = Titanium.Media.createVideoPlayer({
 		backgroundColor:'#111',
 		movieControlStyle:Titanium.Media.VIDEO_CONTROL_NONE,
+		movieControlMode:Titanium.Media.VIDEO_CONTROL_DEFAULT,
 		scalingMode:Titanium.Media.VIDEO_SCALING_MODE_FILL,
 		autoplay:false,
 		id:"player"

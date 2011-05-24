@@ -6,12 +6,8 @@ Controllers.photos = {
 		photo.story_id = Views.stories._form.source.id;
 		
 		this.db.save(photo, function(new_photo) {
-			var story = Views.stories._form.source;
-			if(!story.photo_ids) story.photo_ids = "";
-			var old_val = story.photo_ids.split(',');
-			old_val.unshift(new_photo.id);
-			var new_val = old_val.join(',');
-			story.photo_ids = new_val;
+			var story = Views.stories._form.source;			
+			story.photo_ids = Helpers.array_funs.addInString(new_photo.id, story.photo_ids);
 		});
 		
 		if(!view.source) view.source = [];
@@ -26,16 +22,11 @@ Controllers.photos = {
 	
 	destroy: function(view, params) {
 		var photos = Views.photos.create.source || [];
-		var photo = params.photo;
-		var id = photo.id.toString();
+		var id = params.photo.id;
 		var story = Views.stories._form.source;
 		
-		if(!story.photo_ids) story.photo_ids = "";
-		var old_val = story.photo_ids.split(',');
-		old_val.splice(old_val.indexOf(id),1);
-		var new_val = old_val.join(',');
-		story.photo_ids = new_val;
-		photos.splice(photos.indexOf(photo),1);
+		story.photo_ids = Helpers.array_funs.removeInString(id, story.photo_ids);
+		Helpers.array_funs.removeById(id, photos);
 	}
 	
 };

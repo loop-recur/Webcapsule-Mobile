@@ -6,12 +6,8 @@ Controllers.tags = {
 		friend.name = friend.label;
 		
 		this.db.save(friend, function(new_tag) {
-			var story = Views.stories._form.source;
-			if(!story.tag_ids) story.tag_ids = "";
-			var old_val = story.tag_ids.split(',');
-			old_val.unshift(new_tag.id);
-			var new_val = old_val.join(',');
-			story.tag_ids = new_val;
+			var story = Views.stories._form.source;			
+			story.tag_ids = Helpers.array_funs.addInString(new_tag.id, story.tag_ids);
 		});
 		
 		if(!view.source) view.source = [];
@@ -25,23 +21,24 @@ Controllers.tags = {
 		view.render([], params);
 		
 		this.db.all(function(users) {
-			view.source = users;
+			var normalized_users = Functional.map(Controllers.tags.normalizeFriends, users);
+			view.source = normalized_users;
 			view.finishLoading();
 		});
 	},
 	
 	destroy: function(view, params) {
 		var friends = Views.tags.create.source || [];
-		var friend = params.friend;
-		var id = friend.id.toString();
+		var id = params.friend.id;
 		var story = Views.stories._form.source;
 		
-		if(!story.tag_ids) story.tag_ids = "";
-		var old_val = story.tag_ids.split(',');
-		old_val.splice(old_val.indexOf(id),1);
-		var new_val = old_val.join(',');
-		story.tag_ids = new_val;
-		
-		friends.splice(friends.indexOf(friend),1);
+		story.tag_ids = Helpers.array_funs.removeInString(id, story.tag_ids);
+		Helpers.array_funs.removeById(id, friends);
+	},
+	
+	normalizeFriends: function(friend) {
+		friend.label = (friend.label || "").toLowerCase();
+		friend.image = Helpers.images.escape(friend.image);
+		return friend;
 	}
 };

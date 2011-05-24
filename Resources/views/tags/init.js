@@ -119,9 +119,8 @@ Views.tags.init.template = function() {
 	
 	function foundFriends() {
 		var matches = function(tag) {
-			var label = (tag.label || "").toLowerCase();
 			var val = name.value.toLowerCase();
-			return (label.indexOf(val) != -1);
+			return (tag.label.indexOf(val) != -1);
 		};
 		return Functional.select(matches, self.source);
 	};
@@ -141,7 +140,7 @@ Views.tags.init.template = function() {
 		});
 		
 		var image = Titanium.UI.createImageView({
-			image: Helpers.images.escape(friend.image),
+			image: friend.image,
 			defaultImage:'images/avatar_medium.jpg',
 			width:52,
 			height:54

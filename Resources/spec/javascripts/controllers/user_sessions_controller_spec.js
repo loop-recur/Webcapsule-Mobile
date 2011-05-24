@@ -1,7 +1,9 @@
 describe("Controllers.user_sessions", function() {
   beforeEach(function() {
 		App.http_client = LoopRecur.HttpClient(HttpClient);
+		spyOn(App.http_client, "expireCache");
 		spyOn(App.http_client, "get");
+		App.setCurrentUser = jasmine.createSpy();
 		spyOn(Titanium.Utils, "base64encode");
 		spyOn(FakeFile, "write");
 		spyOn(FakeFile, "deleteFile");
@@ -32,6 +34,7 @@ describe("Controllers.user_sessions", function() {
 		describe("Success", function() {
 			beforeEach(function() {
 				spyOn(Titanium.Filesystem, "getFile").andReturn(FakeFile);
+				App.setCurrentUser = jasmine.createSpy("current_user");
 				Titanium.Filesystem.applicationDataDirectory = "/somedir";
 				App.http_client.get = jasmine.createSpy().andCallFake(function(url, callback) {
 					if(App.http_client.credentials) {
@@ -42,7 +45,7 @@ describe("Controllers.user_sessions", function() {
 			});
 		
 			it("sets the user", function() {
-				expect(App.current_user.full_name).toEqual('brian');
+				expect(App.setCurrentUser).toHaveBeenCalled();
 			});
 		
 			it("calls the site", function() {

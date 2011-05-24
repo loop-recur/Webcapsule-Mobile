@@ -13,6 +13,7 @@ FileList = [
 	"helpers/images.js",
 	"helpers/player.js",
 	"helpers/user.js",
+	"helpers/array_funs.js",
 	"layouts/site.js",
 	"layouts/login.js",
 	"layouts/bottom_nav.js",

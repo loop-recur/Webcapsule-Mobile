@@ -40,12 +40,12 @@ describe("StoriesController", function() {
 	
 	describe("show", function() {
 		beforeEach(function() {
-			Controllers.stories.db.find = jasmine.createSpy().andCallFake(function(id, fun){ fun(response); });
+			Controllers.stories.db.find = jasmine.createSpy().andCallFake(function(id, obj){ obj.success(response); });
 			Controllers.stories.show(view, {id : 10});
 		});
 		
 		it("calls the db", function() {
-			expect(Controllers.stories.db.find).toHaveBeenCalledWith(10, jasmine.any(Function));
+			expect(Controllers.stories.db.find).toHaveBeenCalledWith(10, {success: jasmine.any(Function)}, { skip_preload : true });
 		});
 		
 		it("renders stories view with the stories", function() {
@@ -55,12 +55,20 @@ describe("StoriesController", function() {
 	
 	
 	describe("init", function() {
+		var date;
+		
 		beforeEach(function() {
+			date = new Date();
+			Layouts.geolocation = jasmine.createSpy("geo");
 			Controllers.stories.init(view, {overlay : true});
 		});
 		
 		it("calls the view with a new story that has a temp id", function() {
-			expect(view.render).toHaveBeenCalledWith({id:"temp-123"}, {overlay : true});
+			expect(view.render).toHaveBeenCalledWith({id:"temp-123", when: date}, {overlay : true});
+		});
+		
+		it("calls the geo locator", function() {
+			expect(Layouts.geolocation).toHaveBeenCalledWith({id:"temp-123", when: date});
 		});
 	});
 	

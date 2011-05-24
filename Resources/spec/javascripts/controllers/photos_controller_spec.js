@@ -19,7 +19,7 @@ describe("PhotosController", function() {
 		});
 		
 		it("updates the source of the form when complete", function() {
-		  expect(Views.stories._form.source).toEqual({photo_ids: "14,4"});
+		  expect(Views.stories._form.source).toEqual({photo_ids: "4,14"});
 		});
 		
 		it("update's the view's source", function() {
@@ -45,16 +45,16 @@ describe("PhotosController", function() {
 	  beforeEach(function() {
 			Views.photos = { create : {source : [{id : 2, upload: "Fake Upload Two"},{id : 1, upload: "Fake Upload One"}]} };
 			Views.stories = {_form : { source : {photo_ids : "1,2,"}} };
-			Controllers.photos.destroy(view, {photo: {id : 1, upload: "Fake Upload One"}});
+			Controllers.photos.destroy(view, {photo: {id : 2, upload: "Fake Upload Two"}});
 	  });
 	
 		it("update's the view's source", function() {
-		  expect(Views.photos.create.source).toEqual([{id : 2, upload: "Fake Upload Two"}]);
+		  expect(Views.photos.create.source).toEqual([{id : 1, upload: "Fake Upload One"}]);
 		});
 		
-		// it("updates the source of the form when complete", function() {
-		//   expect(Views.stories._form.source).toEqual({photo_ids: "2,"});
-		// });
+		it("updates the source of the form when complete", function() {
+		  expect(Views.stories._form.source).toEqual({photo_ids: "1,"});
+		});
 	});
 	
 });

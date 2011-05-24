@@ -30,7 +30,7 @@ Db = function(name) {
 		callbacks.success = function(r) {
 			var json = JSON.parse(r.responseText);
 			var old_record = Functional.select("id == x.id".lambda().partial(id), Cache[name])[0];
-			old_record ? replace(Cache[name], old_record, json) : Cache[name].unshift(json);
+			old_record ? Helpers.array_funs.replace(Cache[name], old_record, json) : Cache[name].unshift(json);
 			oldSuccess(json);
 		};
 		
@@ -48,7 +48,7 @@ Db = function(name) {
 			} else {
 				if(Cache[name]) {
 					var old_record = Functional.select("id == x.id".lambda().partial(id), Cache[name])[0];
-					old_record ? replace(Cache[name], old_record, obj) : Cache[name].unshift(obj);
+					old_record ? Helpers.array_funs.replace(Cache[name], old_record, obj) : Cache[name].unshift(obj);
 				}
 				oldSuccess(old_record);
 			}
@@ -58,7 +58,7 @@ Db = function(name) {
 			var json = JSON.parse(r.responseText);
 			if(Cache[name]) {
 				var old_record = Functional.select("id == x.id".lambda().partial(id), Cache[name])[0];
-				old_record ? replace(Cache[name], old_record, json) : Cache[name].unshift(json);
+				old_record ? Helpers.array_funs.replace(Cache[name], old_record, json) : Cache[name].unshift(json);
 			}
 			oldSuccess(json);
 		};
@@ -77,7 +77,7 @@ Db = function(name) {
 			} else {
 				if(Cache[name]) {
 					var old_record = Functional.select("id == x.id".lambda().partial(id), Cache[name])[0];
-					if(old_record){ remove(Cache[name], old_record); };
+					if(old_record){ Helpers.array_funs.remove(Cache[name], old_record); };
 				}
 				oldSuccess(old_record);
 			}
@@ -87,7 +87,7 @@ Db = function(name) {
 			var json = JSON.parse(r.responseText);
 			if(Cache[name]) {
 				var old_record = Functional.select("id == x.id".lambda().partial(id), Cache[name])[0];
-				if(old_record){ remove(Cache[name], old_record); };
+				if(old_record){ Helpers.array_funs.remove(Cache[name], old_record); };
 			}
 			oldSuccess(json);
 		};
@@ -97,14 +97,6 @@ Db = function(name) {
 
 	
 // private
-
-	function replace(arrayName, replaceTo, replaceWith) {
-	  for(var i=0; i<arrayName.length;i++ ) { if(arrayName[i]==replaceTo) arrayName.splice(i,1,replaceWith); };
-	};
-	
-	function remove(arrayName, item) {
-		arrayName.splice(arrayName.indexOf(item), 1);
-	}
 
 	function getPath(id) {
 		var base_path = "/"+name;
