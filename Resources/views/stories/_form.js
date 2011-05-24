@@ -222,7 +222,7 @@ Views.stories._form.template = function() {
 	});
 	
 	if(enable) tag_friends_button.addEventListener('click', function() {
-		App.action(camera_overlay, "tags#init", {story_tags : self.source.tags });
+		App.action(camera_overlay, "tags#init", {story_tags : self.source.tags, story: self.source });
 	});
 	
 	var location_button = Titanium.UI.createButton({
@@ -256,7 +256,7 @@ Views.stories._form.template = function() {
 	});
 
 	if(enable) add_photos_button.addEventListener('click', function() {
-		App.action(camera_overlay, "photos#init", {photos : self.source.photos });
+		App.action(camera_overlay, "photos#init", { photos : self.source.photos, story: self.source });
 	});	
 
 	var add_date_button = Titanium.UI.createButton({

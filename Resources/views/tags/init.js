@@ -3,6 +3,7 @@ Views.tags.init = Views.extend();
 Views.tags.init.template = function() {
 	var self = this;
 	self.view = makeView();
+	var story = self.params.story;
 	var story_tags = self.params.story_tags || [];
 	
 	var win = Titanium.UI.createWindow({
@@ -147,7 +148,7 @@ Views.tags.init.template = function() {
 		});
 		
 		available_tag.addEventListener('click', function() {
-			App.action(tag_tray, "tags#create", {friend : friend});
+			App.action(tag_tray, "tags#create", {friend : friend, story: story});
 		});
 		
 		available_tag.add(image);

@@ -2,6 +2,7 @@ Views.photos.create = Views.extend();
 
 Views.photos.create.template = function() {
 	var self = this;
+	var story = self.story;
 	var added_photo_view = self.added_photo_view;
 	var photos = self.source || [];
 	
@@ -52,7 +53,7 @@ Views.photos.create.template = function() {
 		added_photo.add(image);
 		added_photo.add(added_photo_border);
 
-		if(Helpers.user.canEdit(photo)) {
+		if(Helpers.user.canEdit(photo, story)) {
 			var delete_button = Titanium.UI.createView({
 				backgroundImage:'images/add_tag/remove_icon.png',
 				right:-5,
@@ -62,7 +63,7 @@ Views.photos.create.template = function() {
 			});
 
 			delete_button.addEventListener('click', function() {
-				App.action(self.view, "photos#destroy", {photo : photo});
+				App.action(self.view, "photos#destroy", {photo : photo, story: story});
 				update();
 			});
 			

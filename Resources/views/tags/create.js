@@ -2,6 +2,7 @@ Views.tags.create = Views.extend();
 
 Views.tags.create.template = function() {
 	var self = this;
+	var story = self.story;
 	var scrollview = self.scrollview;
 	var tags = self.source || [];
 	
@@ -56,7 +57,7 @@ Views.tags.create.template = function() {
 		});
 				
 		delete_button.addEventListener('click', function() {
-			App.action(self.view, "tags#destroy", {friend : friend});
+			App.action(self.view, "tags#destroy", {friend : friend, story: story});
 			update();
 		});
 		

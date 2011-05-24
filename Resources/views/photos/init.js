@@ -2,6 +2,7 @@ Views.photos.init = Views.extend();
 
 Views.photos.init.template = function() {
 	var self = this;
+	var story = self.params.story;
 	
 	var win = Titanium.UI.createWindow();
 	
@@ -33,7 +34,7 @@ Views.photos.init.template = function() {
 	});
 
 	take_picture.addEventListener('click', function() {
-		Layouts.take_photo(win, self.source);
+		Layouts.take_photo(win, self.source, story);
 	});
 
 	var choose_existing = Titanium.UI.createButton({  
@@ -47,7 +48,7 @@ Views.photos.init.template = function() {
 	});
 
 	choose_existing.addEventListener('click', function() {
-		Layouts.choose_photo(win, self.source);
+		Layouts.choose_photo(win, self.source, story);
 	});
 
 	var done_button = Titanium.UI.createButton({  
@@ -90,6 +91,7 @@ Views.photos.init.template = function() {
 	win.add(photo_tray);
 	
 	Views.photos.create.added_photo_view = added_photo_view;
+	Views.photos.create.story = story;
 	Views.photos.create.render(self.params.photos);
 
 	win.open();

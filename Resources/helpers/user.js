@@ -1,6 +1,6 @@
 Helpers.user = {};
 
-Helpers.user.canEdit = function(item) {
+Helpers.user.canEdit = function(item, story) {
 	var user = App.currentUser();
 
 	function isItemCreator() {
@@ -8,7 +8,7 @@ Helpers.user.canEdit = function(item) {
 	};
 	
 	function isStoryCreator() {
-		var story = Views.stories._form.source; //lame
+		if(!story) return false;
 		return item.story_id && item.story_id == story.id && story.user_id == user.id
 	};
 	

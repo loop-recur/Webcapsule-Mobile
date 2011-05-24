@@ -7,11 +7,13 @@ describe("PhotosController", function() {
 	});
 	
 	describe("create", function() {
+		var story;
+		
 	  beforeEach(function() {
-			Views.stories = {_form : { source : {photo_ids : "4"}} };
+			story = {photo_ids : "4"};
 			response = {id : 14};
 			Controllers.photos.db.save = jasmine.createSpy().andCallFake(function(obj, fun){ fun(response); });
-			Controllers.photos.create(view, {photo: {upload: "Fake Upload"}});
+			Controllers.photos.create(view, {photo: {upload: "Fake Upload"}, story : story});
 	  });
 
 		it("calls save with updated photo", function() {
@@ -19,7 +21,7 @@ describe("PhotosController", function() {
 		});
 		
 		it("updates the source of the form when complete", function() {
-		  expect(Views.stories._form.source).toEqual({photo_ids: "4,14"});
+		  expect(story).toEqual({photo_ids: "4,14"});
 		});
 		
 		it("update's the view's source", function() {
@@ -42,10 +44,12 @@ describe("PhotosController", function() {
 	});
 	
 	describe("destroy", function() {
+		var story; 
+		
 	  beforeEach(function() {
+			story = {photo_ids : "1,2,"};
 			Views.photos = { create : {source : [{id : 2, upload: "Fake Upload Two"},{id : 1, upload: "Fake Upload One"}]} };
-			Views.stories = {_form : { source : {photo_ids : "1,2,"}} };
-			Controllers.photos.destroy(view, {photo: {id : 2, upload: "Fake Upload Two"}});
+			Controllers.photos.destroy(view, {photo: {id : 2, upload: "Fake Upload Two"}, story: story});
 	  });
 	
 		it("update's the view's source", function() {
@@ -53,7 +57,7 @@ describe("PhotosController", function() {
 		});
 		
 		it("updates the source of the form when complete", function() {
-		  expect(Views.stories._form.source).toEqual({photo_ids: "1,"});
+		  expect(story).toEqual({photo_ids: "1,"});
 		});
 	});
 	

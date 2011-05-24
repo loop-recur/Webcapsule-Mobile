@@ -1,4 +1,4 @@
-Layouts.choose_photo = function(win, photo) {	
+Layouts.choose_photo = function(win, photo, story) {	
 	var popoverView;
 	var arrowDirection;
 	
@@ -7,7 +7,7 @@ Layouts.choose_photo = function(win, photo) {
 		{
 			Views.photos.init.lockDone(true);
 			photo.upload = event.media;
-			App.action(win, "photos#create", {photo : photo});
+			App.action(win, "photos#create", {photo : photo, story: story});
 		},
 		cancel:function()
 		{

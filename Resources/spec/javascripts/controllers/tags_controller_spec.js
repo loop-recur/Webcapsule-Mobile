@@ -23,11 +23,13 @@ describe("TagsController", function() {
 	});
 	
 	describe("create", function() {
+		var story;
+		
 	  beforeEach(function() {
-			Views.stories = {_form : { source : {tag_ids : "4"}} };
+			story = {tag_ids : "4"};
 			response = {id : 14};
 			Controllers.tags.db.save = jasmine.createSpy().andCallFake(function(obj, fun){ fun(response); });
-			Controllers.tags.create(view, {friend: {label: "Jimmy Dean"}});
+			Controllers.tags.create(view, {friend: {label: "Jimmy Dean"}, story: story});
 	  });
 
 		it("calls save with updated tag", function() {
@@ -35,7 +37,7 @@ describe("TagsController", function() {
 		});
 		
 		it("updates the source of the form when complete", function() {
-		  expect(Views.stories._form.source.tag_ids).toEqual("4,14");
+		  expect(story.tag_ids).toEqual("4,14");
 		});
 		
 		it("update's the view's source", function() {
@@ -48,10 +50,12 @@ describe("TagsController", function() {
 	});
 	
 	describe("destroy", function() {
+		var story;
+		
 	  beforeEach(function() {
 			Views.tags = { create : {source : [{id : '15', name : "Bob"}, {id : '4', name : "Joe"}]} };
-			Views.stories = {_form : { source : {tag_ids : "4,15,"}} };
-			Controllers.tags.destroy(view, {friend: {id : '15', name : "Bob"}});
+			story = {tag_ids : "4,15,"};
+			Controllers.tags.destroy(view, {friend: {id : '15', name : "Bob"}, story: story});
 	  });
 	
 		it("update's the view's source", function() {
@@ -59,7 +63,7 @@ describe("TagsController", function() {
 		});
 		
 		it("updates the source of the form when complete", function() {
-		  expect(Views.stories._form.source).toEqual({tag_ids: "4,"});
+		  expect(story).toEqual({tag_ids: "4,"});
 		});
 	});
 	

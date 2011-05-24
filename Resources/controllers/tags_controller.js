@@ -3,10 +3,10 @@ Controllers.tags = {
 	
 	create: function(view, params) {
 		var friend = params.friend;
+		var story = params.story;
 		friend.name = friend.label;
 		
 		this.db.save(friend, function(new_tag) {
-			var story = Views.stories._form.source;			
 			story.tag_ids = Helpers.array_funs.addInString(new_tag.id, story.tag_ids);
 		});
 		
@@ -30,7 +30,7 @@ Controllers.tags = {
 	destroy: function(view, params) {
 		var friends = Views.tags.create.source || [];
 		var id = params.friend.id;
-		var story = Views.stories._form.source;
+		var story = params.story;
 		
 		story.tag_ids = Helpers.array_funs.removeInString(id, story.tag_ids);
 		Helpers.array_funs.removeById(id, friends);

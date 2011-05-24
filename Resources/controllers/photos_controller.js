@@ -3,10 +3,10 @@ Controllers.photos = {
 
 	create: function(view, params) {
 		var photo = params.photo;
-		photo.story_id = Views.stories._form.source.id;
+		var story = params.story;
+		photo.story_id = story.id;
 		
 		this.db.save(photo, function(new_photo) {
-			var story = Views.stories._form.source;			
 			story.photo_ids = Helpers.array_funs.addInString(new_photo.id, story.photo_ids);
 		});
 		
@@ -23,7 +23,7 @@ Controllers.photos = {
 	destroy: function(view, params) {
 		var photos = Views.photos.create.source || [];
 		var id = params.photo.id;
-		var story = Views.stories._form.source;
+		var story = params.story;
 		
 		story.photo_ids = Helpers.array_funs.removeInString(id, story.photo_ids);
 		Helpers.array_funs.removeById(id, photos);

@@ -2,7 +2,6 @@ Views.stories._show_form = Views.extend();
 
 Views.stories._show_form.template = function() {
 	var self = this;
-	var story = self.source;
 	var win = self.params.win;
 	var form_view = Titanium.UI.createView({bottom: 0, height: 245, zIndex:10});
 	
@@ -96,7 +95,7 @@ Views.stories._show_form.template = function() {
 	});
 
 	photo_button.addEventListener('click', function() {
-		App.action(win, "photos#init", {story_id : self.source.id, photos : self.source.photos});		
+		App.action(win, "photos#init", {story_id : self.source.id, photos : self.source.photos, story: self.source});		
 	});
 
 	var video_button = Titanium.UI.createButton({
