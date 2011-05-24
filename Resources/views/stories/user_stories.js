@@ -1,6 +1,6 @@
-Views.stories.index = Views.extend();
+Views.stories.user_stories = Views.extend();
 
-Views.stories.index.template = function() {
+Views.stories.user_stories.template = function(view, stories) {
 	var self = this;
 
 	function createTableViewRow(story) {
@@ -125,14 +125,14 @@ Views.stories.index.template = function() {
 		return row;
 	}
 
-	var data = Functional.map(createTableViewRow, self.source);
+	var data = Functional.map(createTableViewRow, stories);
 	var tableview = Titanium.UI.createTableView({ 
 		data:data
 	 });
-
+	
 	tableview.addEventListener('click', function(e) {
 		Layouts.story(e.rowData.id);
 	});
 	
-	self.win.add(tableview);
+	view.add(tableview);
 };

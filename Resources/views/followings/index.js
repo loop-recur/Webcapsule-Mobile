@@ -3,7 +3,6 @@ Views.followings.index = Views.extend();
 Views.followings.index.template = function() {
 	var self = this;
 	
-	
 	function createTableViewRow(following) {
 		
 		var row = Ti.UI.createTableViewRow({
