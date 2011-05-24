@@ -2,11 +2,13 @@ Controllers.tags = {
 	db: Db("tags"),
 	
 	create: function(view, params) {
+		var friends = Views.tags.create.source || [];
 		var friend = params.friend;
 		var story = params.story;
 		friend.name = friend.label;
 		
 		this.db.save(friend, function(new_tag) {
+			if(!story.tag_ids) story.tag_ids = Functional.map(".id", friends).join(",");
 			story.tag_ids = Helpers.array_funs.addInString(new_tag.id, story.tag_ids);
 		});
 		
@@ -14,7 +16,7 @@ Controllers.tags = {
 		if(!Views.stories._form.source.tags) Views.stories._form.source.tags = [];
 		view.source.unshift(friend);
 		Views.stories._form.source.tags = view.source;
-		view.render();
+		view.render(view.source, {story: story});
 	},
 
 	init: function(view, params) {
@@ -32,6 +34,7 @@ Controllers.tags = {
 		var id = params.friend.id;
 		var story = params.story;
 		
+		if(!story.tag_ids) story.tag_ids = Functional.map(".id", friends).join(",");
 		story.tag_ids = Helpers.array_funs.removeInString(id, story.tag_ids);
 		Helpers.array_funs.removeById(id, friends);
 	},

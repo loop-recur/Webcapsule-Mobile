@@ -117,7 +117,7 @@
         return false;
       }
 
-			if(!this.options.skip_preload) {
+			if(!this.options.skip_preload && this.options.method == "GET") {
 				var previous_response = this._get_cached_response(10000000);
 
 				if(previous_response) {
