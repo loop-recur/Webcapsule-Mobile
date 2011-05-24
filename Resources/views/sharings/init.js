@@ -5,16 +5,25 @@ Views.sharings.init.template = function() {
 	var story = self.params.story;
 	var sharing = self.source;
 	var win = self.win;
-	var view = Titanium.UI.createView({zIndex:30, backgroundColor: '#ffffff'});
 	var twitter = getAuth('twitter');
 	var facebook = getAuth('facebook');
 	
+	
+	var view = Titanium.UI.createView({
+		zIndex:30,
+		height:114,
+		width:320,
+		top:80,
+		backgroundImage:'images/sharestory/share_bg.png',
+		
+	});
+	
 	var close_btn = Titanium.UI.createButton({
-		backgroundImage:"images/postrecord/return.png",
-		height:26,
-		width:26,
-		bottom:5,
-		left:5
+		backgroundImage:"images/sharestory/btn_close.png",
+		backgroundSelectedImage:"images/sharestory/btn_close-pressed.png",
+		height:49,
+		width:83,
+		right:5
 	});
 
 	close_btn.addEventListener('click', function() {
@@ -22,16 +31,15 @@ Views.sharings.init.template = function() {
 	});
 	
 	view.add(close_btn);
-	
-	
+
 	var field = Titanium.UI.createTextField({  
 	    color:'#303030',
 			backgroundColor:'#d6d6d6',
 			borderRadius:4,
 			paddingLeft:5,
-	    top:10,  
 	    width:300,  
-	    height:60,  
+			top:0,
+	    height:30,  
 	    hintText:'Message',  
 	    keyboardType:Titanium.UI.KEYBOARD_DEFAULT,  
 	    returnKeyType:Titanium.UI.RETURNKEY_DONE

@@ -6,8 +6,6 @@ Views.followings.index.template = function() {
 	
 	function createTableViewRow(following) {
 		
-		// alert(following);
-		
 		var row = Ti.UI.createTableViewRow({
 			backgroundImage:'images/feed/item_bg.png',
 			height:80,
@@ -20,15 +18,15 @@ Views.followings.index.template = function() {
 		var avatar = Titanium.UI.createImageView({
 			image:avatar_link,
 			left:10,
-			width:55,
-			height:55
+			width:65,
+			height:65,
+			borderRadius:8
 		});
 		
 		var title = Ti.UI.createLabel({
-			color:'#3D3D3D',
+			color:'#616161',
 			font:{fontSize:14,fontWeight:'bold', fontFamily:'Helvetica Neue'},
 			left:80,
-			top:12,
 			height:30,
 			width:200,
 			text:following.full_name
@@ -49,7 +47,6 @@ Views.followings.index.template = function() {
 	tableview.addEventListener('click', function(e) {
 		App.action(self.win, "followings#show", { id : e.rowData.id, followees : self.params.followees });
 	});
-
 
 	self.win.add(tableview);
 	
