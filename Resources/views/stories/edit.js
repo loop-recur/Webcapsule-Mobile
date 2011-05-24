@@ -2,6 +2,7 @@ Views.stories.edit = Views.extend();
 
 Views.stories.edit.template = function() {
 	var self = this;
+	Ti.Media.hideCamera();
 	
 	var activeMovie = Titanium.Media.createVideoPlayer({
 		backgroundColor:'#111',

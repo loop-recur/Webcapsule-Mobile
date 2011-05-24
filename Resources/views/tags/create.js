@@ -41,7 +41,7 @@ Views.tags.create.template = function() {
 		});
 		
 		var image = Titanium.UI.createImageView({
-			image:Helpers.images.escape(friend.image),
+			image:friend.image,
 			defaultImage:'images/avatar_medium.jpg',
 			width:52,
 			height:54

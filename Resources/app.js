@@ -9,10 +9,17 @@ Titanium.Facebook.permissions = ['publish_stream', 'read_stream', "offline_acces
 var dir = Titanium.Filesystem.applicationDataDirectory;
 var credentials = Titanium.Filesystem.getFile(dir,'credentials');
 var auth_token = Titanium.Filesystem.getFile(dir,'auth_token');
+var credentialsExists = credentials.exists();
+var authExists = auth_token.exists();
 
-if(credentials.exists() || auth_token.exists()) {
-	App.http_client.credentials = credentials.read();
-	App.http_client.auth_token = auth_token.read();
+if(credentialsExists || authExists) {
+	if(credentialsExists) App.http_client.credentials = credentials.read();
+	if(authExists) {
+		var token = auth_token.read();
+		Ti.API.info("=========================SETTING AUTH TO");
+		Ti.API.info(token);
+		App.http_client.auth_token = token;
+	}
 	Layouts.site();
 } else {
 	Layouts.login();

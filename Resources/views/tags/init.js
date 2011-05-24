@@ -111,12 +111,13 @@ Views.tags.init.template = function() {
 	function update() {
 		available_tags_view.remove(self.view);
 		self.view = makeView();
-		makeFriends();
+		makeFriends(self.source);
 		available_tags_view.add(self.view);
 	};
 	
-	function makeFriends() {
-		Functional.reduce(makeFriend, 10, foundFriends());
+	function makeFriends(friends) {
+		if(!friends) friends = foundFriends();
+		Functional.reduce(makeFriend, 10, friends);
 	};
 	
 	function foundFriends() {

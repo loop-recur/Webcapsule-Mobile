@@ -136,7 +136,7 @@ function BirdHouse(params) {
 	//	  be executed until get_access_token()
 	// --------------------------------------------------------
 	function get_request_verifier(callback) {
-		var url = "http://api.twitter.com/oauth/authorize?oauth_token="+cfg.request_token;
+		var url = "http://api.twitter.com/oauth/authenticate?oauth_token="+cfg.request_token;
 		var win = Ti.UI.createWindow({
 			top: 0,
 			modal: true,

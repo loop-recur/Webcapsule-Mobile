@@ -98,6 +98,7 @@ Layouts.login = function () {
 	new_account_label.addEventListener('click', function() {
 		App.action(win, "accounts#init");
 	});
+	
 
 	win.add(username);
 	win.add(password);

@@ -31,34 +31,28 @@ Views.stories.init.template = function() {
 	
 	// called from form
 	self.chooseVideo = function() {
+		self.win.close();
+		Layouts.stories();
 		
-		var popoverView;
-		var arrowDirection;
-
 		Titanium.Media.openPhotoGallery({
 			success: afterRecord,
-			cancel:function(){ win.close(); Layouts.stories();},//self.takeVideo(); },
+			cancel:function(){ self.win.close(); },
 			error:function(error){},
 			allowEditing:false,
-			popoverView:popoverView,
 			videoQuality: quality,
-			arrowDirection:arrowDirection,
 			mediaTypes:[Ti.Media.MEDIA_TYPE_VIDEO]
 		});
 	};
 	
 	function afterRecord(event) {
-		Ti.Media.hideCamera();
-		var media = event.media;
-		var landscape = media.width > media.height;
 		progress_bar = Helpers.ui.progressBar();
 		bar_area = makeProgressArea();
 		
-		video = {upload : media, landscape : landscape};
+		video = {upload : event.media};
 		
 		saveVideo();
 		
-		Ti.API.info("window used in afterRecord()");
+		Ti.API.info("window used in afterRecord");
 		Ti.API.info(self.win.id);
 		
 		App.action(self.win, "stories#edit", {story : story, upload : video.upload});
