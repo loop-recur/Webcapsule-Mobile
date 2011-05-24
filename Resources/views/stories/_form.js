@@ -250,6 +250,7 @@ Views.stories._form.template = function() {
 	});
 
 	location_button.addEventListener('click', function() {
+		
 		function setGeo() {
 			Layouts.geolocation(self.source);
 		}
