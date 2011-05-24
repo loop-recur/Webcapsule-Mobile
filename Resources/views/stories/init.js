@@ -23,7 +23,6 @@ Views.stories.init.template = function() {
 			overlay:self.params.overlay,
 			showControls:false,
 			saveToPhotoGallery:true,
-			scalingMode: Titanium.Media.VIDEO_SCALING_ASPECT_FIT,
 			mediaTypes:Ti.Media.MEDIA_TYPE_VIDEO,
 			videoQuality:quality,
 			autohide:false
