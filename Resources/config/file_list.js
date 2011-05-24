@@ -9,6 +9,7 @@ FileList = [
 	"controllers/omniauth_callbacks_controller.js",
 	"controllers/user_sessions_controller.js",
 	"controllers/followings_controller.js",
+	"helpers/application.js",
 	"helpers/ui.js",
 	"helpers/images.js",
 	"helpers/player.js",

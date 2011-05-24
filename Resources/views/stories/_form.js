@@ -6,9 +6,10 @@ Views.stories._form.template = function() {
 	var camera_overlay = self.params.win;
 	var enable = self.params.enable;
 	var player = self.params.player;
+	var story = self.source;
 	var form_view = Titanium.UI.createView({bottom: 0, height: 245, zIndex:10});
 
-	Layouts.pick_date(camera_overlay);
+	// Layouts.pick_date(camera_overlay);
 	
 	var buttons_from_top_length = 60;
 	var button_height = 60;
@@ -178,6 +179,13 @@ Views.stories._form.template = function() {
 			Helpers.player.timeMonitor(asset_overlay, player, player.comments, player.photos);
 		}
 	});
+	
+	if(player) {
+			player.addEventListener('complete',function() {
+				player.stop();
+				play_pause_button.backgroundImage = "images/playercontrols/play_btn.png";
+		});
+	};
 											
 	var tray = Titanium.UI.createView({
 		backgroundImage:'images/postrecord/edit_details_drawer.png',
@@ -225,6 +233,12 @@ Views.stories._form.template = function() {
 		App.action(camera_overlay, "tags#init", {story_tags : self.source.tags, story: self.source });
 	});
 	
+	Views.stories._form.toggle_tag_icon = function(state) {
+		tag_friends_button.backgroundImage = state ? 'images/postrecord/tag_activated.png' : 'images/postrecord/tag_normal.png';
+	};
+	
+	(Helpers.application.isBlank(self.source.tags)) ? self.toggle_tag_icon(false) : self.toggle_tag_icon(true);
+
 	var location_button = Titanium.UI.createButton({
 		value:false,
 		top:buttons_from_top_length,
@@ -236,7 +250,20 @@ Views.stories._form.template = function() {
 	});
 
 	location_button.addEventListener('click', function() {
-		Layouts.geolocation(self.source);
+		function setGeo() {
+			Layouts.geolocation(self.source);
+		}
+		
+		function clearGeo() {
+			story.where = "";
+		}
+			
+		if(Helpers.application.isBlank(story.where)) {
+			setGeo();
+		} else {
+			clearGeo();
+			Views.stories._form.toggle_geolocation(false);
+		}
 	});	
 
 	Views.stories._form.toggle_geolocation = function(state) {
@@ -245,12 +272,14 @@ Views.stories._form.template = function() {
 	
 	if(self.source.where){ self.toggle_geolocation(true) };
 	
+	photos_backgroundImage = (story.photos) ? 'images/postrecord/addphotos_activated.png' : 'images/postrecord/addphotos_normal.png';
+	
 	var add_photos_button = Titanium.UI.createButton({
 		value:false,
 		top:buttons_from_top_length,
 		width:button_width,
 		height:button_height,
-		backgroundImage:'images/postrecord/addphotos_normal.png',
+		backgroundImage:photos_backgroundImage,
 		backgroundSelectedImage:'images/postrecord/addphotos_pressed.png',
 		enabled:enable
 	});
@@ -258,19 +287,44 @@ Views.stories._form.template = function() {
 	if(enable) add_photos_button.addEventListener('click', function() {
 		App.action(camera_overlay, "photos#init", { photos : self.source.photos, story: self.source });
 	});	
+	
+	Views.stories._form.toggle_photo_icon = function(state) {
+		add_photos_button.backgroundImage = state ? 'images/postrecord/addphotos_activated.png' : 'images/postrecord/addphotos_normal.png';
+	};
 
+	(Helpers.application.isBlank(self.source.photos)) ? self.toggle_photo_icon(false) : self.toggle_photo_icon(true);
+	
 	var add_date_button = Titanium.UI.createButton({
 		value:false,
 		top:buttons_from_top_length,
 		right:68,
 		width:button_width,
 		height:button_height,
-		backgroundImage:'images/postrecord/date_normal.png',
+		backgroundImage:'images/postrecord/date_activated.png',
 		backgroundSelectedImage:'images/postrecord/date_pressed.png'
 	});
 	
+	Views.stories._form.toggle_date_icon = function(state) {
+		add_date_button.backgroundImage = state ? 'images/postrecord/date_activated.png' : 'images/postrecord/date_normal.png';
+	};
+	
 	add_date_button.addEventListener('click', function() {
-		Layouts.pick_date.toggle_pick_date(true);
+		function setDate() {
+			story.when = new Date();
+		}
+		
+		function clearDate() {
+			story.when = "";
+		}
+			
+		if(Helpers.application.isBlank(story.when)) {
+			setDate();
+			Views.stories._form.toggle_date_icon(true);
+		} else {
+			clearDate();
+			Views.stories._form.toggle_date_icon(false);
+		}
+		
 	});
 	
 	var share_button = Titanium.UI.createButton({

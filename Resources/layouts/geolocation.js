@@ -2,6 +2,7 @@ Layouts.geolocation = function(story) {
 	Ti.include("version.js");
 	
 	Ti.Geolocation.preferredProvider = "gps";
+	var tries = 0;
 
 	if (isIPhone3_2_Plus()) { Ti.Geolocation.purpose = "Find location to mark video";};
 
@@ -120,18 +121,26 @@ Layouts.geolocation = function(story) {
 					if (places && places.length) {
 						story.where = places[0].address;
 						Titanium.Geolocation.removeEventListener('location', locationCallback);
-						Views.stories._form.toggle_geolocation(true);
+						
+						try{ Views.stories._form.toggle_geolocation(true); } catch(e){};
 						Ti.API.debug("ADDRESS FOUND AND SET");
+						Ti.API.info(places[0].address);
 					} else {
 						story.where = "";
 					}
 					Ti.API.debug("reverse geolocation result = "+JSON.stringify(evt));
 				}
 				else {
-					Ti.UI.createAlertDialog({
-						title:'Location Problem',
-						message:"Could not determine your location."
-					}).show();
+					tries += 1;
+					if(tries == 10) {
+						Titanium.Geolocation.removeEventListener('location', locationCallback);
+						
+						Ti.UI.createAlertDialog({
+												title:'Location Problem',
+												message:"Could not determine your location."
+											}).show();
+					}
+
 					Ti.API.info("Code translation: "+translateErrorCode(e.code));
 				}
 			});

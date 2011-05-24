@@ -62,6 +62,7 @@ Views.photos.init.template = function() {
 	});
 
 	done_button.addEventListener('click', function() {
+		(Helpers.application.isBlank(Views.photos.create.source)) ? Views.stories._form.toggle_photo_icon(false) : Views.stories._form.toggle_photo_icon(true);
 		win.close();
 	});
 	

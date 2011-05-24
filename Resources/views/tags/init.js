@@ -82,6 +82,7 @@ Views.tags.init.template = function() {
 	});
 
 	done_button.addEventListener('click', function() {
+		(Helpers.application.isBlank(story_tags)) ? Views.stories._form.toggle_tag_icon(false) : Views.stories._form.toggle_tag_icon(true);
 		win.close();
 	});
 	

@@ -34,6 +34,6 @@ Views.stories.edit.template = function() {
 	
 	Views.stories._form.render(self.source, {win: self.win, enable:true, player:activeMovie});
 	Views.stories._form.accept_button_toggle(true);
-	Layouts.story.toggle_compact_play_controls(false);
+	if(Layouts.story.toggle_compact_play_controls) Layouts.story.toggle_compact_play_controls(false);
 	Views.stories._form.player_controls_toggle(true);
 };
