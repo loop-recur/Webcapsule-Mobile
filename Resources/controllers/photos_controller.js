@@ -19,7 +19,6 @@ Controllers.photos = {
 			old_val.unshift(new_photo.id);
 			var new_val = old_val.join(',');
 			story.photo_ids = new_val;
-			if(!story.photo_ids) story.photo_id
 		});
 		
 		if(!view.source) view.source = [];

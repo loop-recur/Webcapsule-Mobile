@@ -10,9 +10,13 @@ Controllers.stories = {
 	},
 	
 	init: function(view, params) {
-		var date = new Date();
-		var story = {id: TempId.generate(), when: date};
-		try{ Layouts.geolocation(story); } catch(e){};
+		if(params.story) {
+			var story = params.story;
+		} else {
+			var date = new Date();
+			var story = {id: TempId.generate(), when: date};
+			try{ Layouts.geolocation(story); } catch(e){};
+		};
 		view.render(story, params);
 	},
 	
