@@ -10,7 +10,8 @@ describe("PhotosController", function() {
 		var story;
 		
 	  beforeEach(function() {
-			story = {photo_ids : "4"};
+			App.currentUser = function(){ return {id: 1}};
+			story = {photo_ids : "2,1,temp-123"};
 			response = {id : 14};
 			Views.photos = { create : {source : [{id : 2, upload: "Fake Upload Two"},{id : 1, upload: "Fake Upload One"}]} };
 			Controllers.photos.db.save = jasmine.createSpy().andCallFake(function(obj, fun){ fun(response); });
@@ -18,15 +19,15 @@ describe("PhotosController", function() {
 	  });
 
 		it("calls save with updated photo", function() {
-		  expect(Controllers.photos.db.save).toHaveBeenCalledWith({upload: "Fake Upload"}, jasmine.any(Function));
+		  expect(Controllers.photos.db.save).toHaveBeenCalledWith({upload: "Fake Upload", story_id : undefined, user_id : 1}, jasmine.any(Function));
 		});
 		
 		it("updates the source of the form when complete", function() {
-		  expect(story).toEqual({photo_ids: "4,14"});
+		  expect(story).toEqual({photo_ids: "2,1,14"});
 		});
 		
 		it("update's the view's source", function() {
-		  expect(view.source[0]).toEqual({upload: "Fake Upload"});
+		  expect(view.source[0]).toEqual({upload: "Fake Upload", story_id : undefined, user_id : 1 });
 		});
 					
 		it("renders the view", function() {

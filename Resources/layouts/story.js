@@ -86,7 +86,7 @@ Layouts.story = function(id) {
 			if(!started) {
 				Helpers.player.timeMonitor(asset_overlay, player, player.comments, player.photos);
 				started = true;
-			}		
+			}
 		}
 	});
 	

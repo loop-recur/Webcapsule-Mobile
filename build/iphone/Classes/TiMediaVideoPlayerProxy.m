@@ -816,23 +816,6 @@ NSArray* moviePlayerKeys = nil;
 	}
 }
 
--(void)shout:(id)args
-{
-	ENSURE_UI_THREAD(stop, args);
-	
-	if (!playing) {
-		return;
-	}
-	
-	playing = NO;
-	if (movie!=nil)
-	{
-		[movie stop];
-	}
-	RELEASE_TO_NIL_AUTORELEASE(movie);
-}
-
-
 -(void)stop:(id)args
 {
 	ENSURE_UI_THREAD(stop, args);
@@ -884,7 +867,6 @@ NSArray* moviePlayerKeys = nil;
 	if ([[self player] respondsToSelector:@selector(pause)])
 	{
 		[[self player] performSelector:@selector(pause)];
-		playing = NO;
 	}
 }
 
