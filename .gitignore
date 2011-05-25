@@ -1,4 +1,12 @@
 tmp
-build/iphone/*
+build/iphone/build/*
+build/iphone/headers/*
+build/iphone/lib/*
+build/iphone/Resources/*
+build/iphone/main.m
+build/iphone/module.xcconfig
+build/iphone/project.xcconfig
+build/iphone/webcapsule-mobile_Prefix.pch
+build/iphone/webcapsule-mobile.xcodeproj
 build/android/*
 Resources/videotests/*
