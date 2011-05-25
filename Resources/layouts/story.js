@@ -74,20 +74,39 @@ Layouts.story = function(id) {
 		player.initialPlaybackTime = player.currentPlaybackTime - 5;
 		player.play();
 	});
+
+	
+	// function fadeOutControls() {
+	// 	compact_play_controls.animate({opacity:.1,duration:1000});
+	// 	compact_play_controls.addEventListener('click', restoreControls);
+	// }
+	// 
+	// function restoreControls() {
+	// 	compact_play_controls.animate({opacity:1,duration:0});
+	// 	removeEvent();
+	// }
+	// 
+	// function removeEvent () {
+	// 	compact_play_controls.removeEventListener('click', restoreControls);
+	// }
+	
 	
 	var started;
 	play_pause_button.addEventListener('click', function() {
 		if(player.playing) {
-			player.pause();
+			player.stop();
 			play_pause_button.backgroundImage = "images/playercontrols/play_btn.png";
+			
 		} else {
 			player.play();
 			play_pause_button.backgroundImage = "images/playercontrols/pause_btn.png";
+			
 			if(!started) {
 				Helpers.player.timeMonitor(asset_overlay, player, player.comments, player.photos);
 				started = true;
 			}
 		}
+
 	});
 	
 	player.addEventListener('complete',function()

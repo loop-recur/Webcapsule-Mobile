@@ -52,7 +52,6 @@ Views.followings.show.template = function() {
 			fontWeight:'bold'
 		},
 		left:80,
-		top:5,
 		height:20,
 		width:160,
 		text:friend.full_name
@@ -93,7 +92,7 @@ Views.followings.show.template = function() {
 	};
 
 	var friend_stories_view = Ti.UI.createView ({
-		height:400,
+		height:350,
 		top:57
 	});
 	

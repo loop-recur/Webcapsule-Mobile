@@ -8,7 +8,7 @@ Layouts.stories = function() {
 		top:0,
 		height:40
 	});
-	
+
 	var content = Ti.UI.createView({
 		top:40,
 		height:360
@@ -30,7 +30,7 @@ Layouts.stories = function() {
 	
 	tabbed_bar.addEventListener('click',function(e) {
 		switch(e.index) {
-			case 0: 
+			case 0: 				
 				App.action(content, "stories#index");
 				break;
 			case 1: 
@@ -44,4 +44,5 @@ Layouts.stories = function() {
 	view.add(nav);
 	view.add(content);
 	Layouts.replaceContent(view);
+
 };

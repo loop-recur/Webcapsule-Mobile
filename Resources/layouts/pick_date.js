@@ -43,6 +43,7 @@ Layouts.pick_date = function(win) {
 
 	done_button.addEventListener('click', function() {
 		view.hide();
+		Views.stories._form.toggle_date_icon(true);
 	});
 
 	view.add(done_button);

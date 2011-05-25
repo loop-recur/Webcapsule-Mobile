@@ -9,7 +9,7 @@ Views.stories._form.template = function() {
 	var story = self.source; // don't use this
 	var form_view = Titanium.UI.createView({bottom: 0, height: 245, zIndex:10});
 
-	// Layouts.pick_date(camera_overlay);
+	Layouts.pick_date(camera_overlay);
 	
 	var buttons_from_top_length = 60;
 	var button_height = 60;
@@ -54,9 +54,10 @@ Views.stories._form.template = function() {
 	
 	start_stop_button.addEventListener('click',function()
 	{	
+		start_stop_button.backgroundImage = "images/record/rec_stop_button.png";
+		start_stop_button.backgroundSelectedImage = "images/record/rec_stop_button_down.png";
 		Views.stories._form.toggle_upload(false);
 		Ti.Media.startVideoCapture();
-		start_stop_button.backgroundImage = "images/record/rec_stop_button.png";
 	});
 	
 	Views.stories._form.toggle_start_stop = function (state) {
@@ -95,17 +96,17 @@ Views.stories._form.template = function() {
 	Views.stories._form.accept_button_toggle = function(state) {
 		accept_button.visible = state;
 	};
-	
+
 	var saving_label = Titanium.UI.createLabel({
-		text:'Saving...',
+		text:'Saving..',
 		right:-100,
-		top:5,
-		width:100,
+		top:12,
+		width:'auto',
 		height:'auto',
-		color:'black',
+		color:'white',
 		textAlign:'center',
 		visible:false
-	});
+	});	
 	
 	var edit_play_controls = Titanium.UI.createView({
 		backgroundImage:"images/playercontrols/player_bar-fullwidth.png",
@@ -195,14 +196,14 @@ Views.stories._form.template = function() {
 	});
 	
 	var story_title_field = Titanium.UI.createTextField({  
-	    color:'#303030',
-			backgroundColor:'#d6d6d6',
+	    backgroundColor:text_field_background_color,
+			color:text_field_text_color,
 			borderRadius:4,
 			paddingLeft:5,
 	    top:10,  
 	    width:300,  
 	    height:30,
-	    hintText:'Title',
+	    hintText:'Add a title...',
 			value: self.source.name,
 	    keyboardType:Titanium.UI.KEYBOARD_DEFAULT,  
 	    returnKeyType:Titanium.UI.RETURNKEY_DONE
@@ -310,8 +311,9 @@ Views.stories._form.template = function() {
 	};
 	
 	add_date_button.addEventListener('click', function() {
+		
 		function setDate() {
-			self.source.when = new Date();
+			Layouts.pick_date.toggle_pick_date(true);
 		}
 		
 		function clearDate() {
@@ -320,12 +322,11 @@ Views.stories._form.template = function() {
 			
 		if(Helpers.application.isBlank(self.source.when)) {
 			setDate();
-			Views.stories._form.toggle_date_icon(true);
 		} else {
 			clearDate();
 			Views.stories._form.toggle_date_icon(false);
 		}
-		
+
 	});
 	
 	var share_button = Titanium.UI.createButton({
@@ -353,18 +354,22 @@ Views.stories._form.template = function() {
 		
 		accept_button.visible = false;
 		saving_label.visible = true;
-		saving_label.animate({right:10, duration:700});
+		saving_label.animate({right:0, duration:500});
 		
 		App.action(form_view, 'stories#update', {
 			story : self.source,
 			success : function(updated) {
 				accept_button.visible = true;
 				saving_label.visible = false;
+				saving_label.right = -100;
+				camera_overlay.close();
+				Layouts.stories();
 			},
 			error : function(errors) {
 				alert(errors);
 				accept_button.visible = true;
 				saving_label.visible = false;
+				saving_label.right = -100;
 			}
 		});
 	});
@@ -411,5 +416,8 @@ Views.stories._form.template = function() {
 
 	form_view.add(functionality_view);
 	camera_overlay.add(form_view);
+	
+	if(enable) edit_details_btn.fireEvent('click');
+	
 	
 };

@@ -38,8 +38,8 @@ Views.tags.init.template = function() {
 	});
 
 	var name = Titanium.UI.createTextField({  
-	    color:'#303030',
-			backgroundColor:'#d6d6d6',
+	    backgroundColor:text_field_background_color,
+			color:text_field_text_color,
 			borderRadius:4,
 			paddingLeft:5,
 	    top:15,  

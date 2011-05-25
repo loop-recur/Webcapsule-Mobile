@@ -31,6 +31,19 @@ Helpers.ui.confirm = function(title, callbacks) {
 	});
 		
 	alert.show();
-}
+};
+
+Helpers.ui.spinner = function(position_obj) {
+	var activity = Titanium.UI.createActivityIndicator({
+		top:position_obj.top, 
+		left:position_obj.left,
+		height:position_obj.height,
+		width:position_obj.width,
+		style:Titanium.UI.iPhone.ActivityIndicatorStyle.PLAIN
+	});
+	
+	activity.show();
+	return activity;
+};
 
 

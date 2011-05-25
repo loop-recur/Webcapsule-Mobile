@@ -33,8 +33,8 @@ Views.sharings.init.template = function() {
 	view.add(close_btn);
 
 	var field = Titanium.UI.createTextField({  
-	    color:'#303030',
-			backgroundColor:'#d6d6d6',
+	    backgroundColor:text_field_background_color,
+			color:text_field_text_color,
 			borderRadius:4,
 			paddingLeft:5,
 	    width:300,  

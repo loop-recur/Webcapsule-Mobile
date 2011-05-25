@@ -10,14 +10,16 @@ Views.accounts.init.template = function() {
 	});
 	
 	var full_name = Titanium.UI.createTextField({  
-	    color:'#336699',
-	    top:30,   
+  		backgroundColor:text_field_background_color,
+			color:text_field_text_color,
+	    paddingLeft:5,
+			top:30,   
 	    width:290,  
 	    height:35,  
 	    hintText:'Full Name',  
 	    keyboardType:Titanium.UI.KEYBOARD_DEFAULT,  
 	    returnKeyType:Titanium.UI.RETURNKEY_NEXT,  
-	    borderStyle:Titanium.UI.INPUT_BORDERSTYLE_ROUNDED  
+	    borderRadius:4
 	});  
 
 	full_name.addEventListener('return', function() {
@@ -25,14 +27,16 @@ Views.accounts.init.template = function() {
 	});
 
 	var email = Titanium.UI.createTextField({  
-	    color:'#336699',
-	    top:80,   
+	    backgroundColor:text_field_background_color,
+			color:text_field_text_color,
+	    paddingLeft:5,
+			top:80,   
 	    width:290,  
 	    height:35,  
 	    hintText:'Email',  
 	    keyboardType:Titanium.UI.KEYBOARD_EMAIL,  
 	    returnKeyType:Titanium.UI.RETURNKEY_NEXT,  
-	    borderStyle:Titanium.UI.INPUT_BORDERSTYLE_ROUNDED  
+	    borderRadius:4
 	});
 
 	email.addEventListener('return', function() {
@@ -40,15 +44,17 @@ Views.accounts.init.template = function() {
 	});
 
 	var password = Titanium.UI.createTextField({  
-	    color:'#336699',
-	    top:130,  
+	    backgroundColor:text_field_background_color,
+			color:text_field_text_color,
+	    top:130,
+			paddingLeft:5, 
 	    width:290,  
 	    height:35,  
 	    hintText:'Password',  
 	    passwordMask:true,  
 	    keyboardType:Titanium.UI.KEYBOARD_DEFAULT,  
 	    returnKeyType:Titanium.UI.RETURNKEY_NEXT,  
-	    borderStyle:Titanium.UI.INPUT_BORDERSTYLE_ROUNDED  
+	    borderRadius:4  
 	});
 
 	password.addEventListener('return', function() {
@@ -56,15 +62,17 @@ Views.accounts.init.template = function() {
 	});
 
 	var password_confirm = Titanium.UI.createTextField({  
-	    color:'#336699',
-	    top:180,  
+	    backgroundColor:text_field_background_color,
+			color:text_field_text_color,
+	    paddingLeft:5,
+			top:180,  
 	    width:290,  
 	    height:35,  
 	    hintText:'Confirm Password',  
 	    passwordMask:true,  
 	    keyboardType:Titanium.UI.KEYBOARD_DEFAULT,  
 	    returnKeyType:Titanium.UI.RETURNKEY_DONE,  
-	    borderStyle:Titanium.UI.INPUT_BORDERSTYLE_ROUNDED  
+	    borderRadius:4 
 	});
 
 	var create_account_button = Titanium.UI.createButton({  

@@ -45,16 +45,14 @@ Views.stories.init.template = function() {
 	};
 	
 	function afterRecord(event) {
+		Ti.Media.hideCamera();
+		Views.stories._form.toggle_start_stop(false);
 		progress_bar = Helpers.ui.progressBar();
 		bar_area = makeProgressArea();
 		
 		video = {upload : event.media};
 		
 		saveVideo();
-		
-		Ti.API.info("window used in afterRecord");
-		Ti.API.info(self.win.id);
-		
 		App.action(self.win, "stories#edit", {story : story, upload : video.upload});
 		self.win.add(bar_area);
 	};
@@ -96,13 +94,7 @@ Views.stories.init.template = function() {
 	    height:26
 		});
 		
-		var activity = Titanium.UI.createActivityIndicator({
-			top:0, 
-			left:0,
-			height:26,
-			width:26,
-			style:Titanium.UI.iPhone.ActivityIndicatorStyle.PLAIN
-		});
+		var activity = Helpers.ui.spinner({top:0, left:0, height:26, width:26});
 		
 		var retry_button = Titanium.UI.createButton({  
 			backgroundImage:"images/uploadbar/upload_retry.png",

@@ -6,14 +6,16 @@ Layouts.login = function () {
 	});
 
 	var username = Titanium.UI.createTextField({  
-	    color:'#336699',
-	    top:100,   
+	    backgroundColor:text_field_background_color,
+			color:text_field_text_color,
+	    top:100,
+			paddingLeft:5,
+			borderRadius:4,
 	    width:250,  
 	    height:35, 
 	    hintText:'Email',  
 	    keyboardType:Titanium.UI.KEYBOARD_EMAIL,  
 	    returnKeyType:Titanium.UI.RETURNKEY_NEXT,  
-	    borderStyle:Titanium.UI.INPUT_BORDERSTYLE_ROUNDED  
 	});  
 	
 	username.addEventListener('return', function() {
@@ -21,16 +23,18 @@ Layouts.login = function () {
 	});
 
 	var password = Titanium.UI.createTextField({  
-	    color:'#336699',
+    	backgroundColor:text_field_background_color,
+			color:text_field_text_color,		
 	    top:142,  
 	    width:250,  
-	    height:35,  
+	    height:35,
+			paddingLeft:5,  
 	    hintText:'Password',  
 	    passwordMask:true,  
 	    keyboardType:Titanium.UI.KEYBOARD_DEFAULT,  
 	    returnKeyType:Titanium.UI.RETURNKEY_GO,  
-	    borderStyle:Titanium.UI.INPUT_BORDERSTYLE_ROUNDED  
-	});
+			borderRadius:4,
+		});
 	
 	password.addEventListener('return', function(){
 		password.blur();
@@ -41,8 +45,8 @@ Layouts.login = function () {
 	var login_button = Titanium.UI.createButton({  
 	    value:false,
 			backgroundImage:'images/login/login-normal.png',
-			backgroundSelectedImage:'images/login/login-pressed.png',  
-	    top:197,
+			backgroundSelectedImage:'images/login/login-pressed.png',   
+			top:197,
 	  	right:10,
 	    width:133,  
 	    height:49  

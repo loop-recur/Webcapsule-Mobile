@@ -17,9 +17,6 @@ Layouts.record = function(story) {
 	close_btn.addEventListener('click', function() {
 		Views.photos.create.source = [];
 		Views.tags.create.source = [];
-		
-		Ti.API.info("window id in record.js");
-		Ti.API.info(win.id);
 
 		Ti.Media.hideCamera();
 		win.close();
