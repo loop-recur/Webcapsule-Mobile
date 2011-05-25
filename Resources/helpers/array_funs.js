@@ -31,7 +31,6 @@ Helpers.array_funs.replace = function(array, replaceTo, replaceWith) {
 	};
 }
 
-
 Helpers.array_funs.withIdString = function(str, fun) {
 	if(!str) return null;
 	var array, newArray, newStr;
@@ -39,4 +38,14 @@ Helpers.array_funs.withIdString = function(str, fun) {
 	newArray = fun(array);
 	newStr = newArray.join(",");
 	return newStr;
+}
+
+Helpers.array_funs.take = function(n, array) {
+	var newArray = [];
+	
+	for(var i=0;i<array.length;i++ ) {
+		if(array[i] != null) newArray.push(array[i]);
+		if(newArray.length>=n) break;
+	};
+	return newArray;
 }

@@ -89,6 +89,7 @@ describe("StoriesController", function() {
 	
 	describe("update", function() {
 		beforeEach(function() {
+			App.http_client = {expireCache: function(){}};
 		  story = {name: "some name"};
 			response = {name: "blah", id : 1};
 			Views.stories = {_form : { source : story} };

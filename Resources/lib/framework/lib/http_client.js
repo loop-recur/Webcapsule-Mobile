@@ -42,7 +42,7 @@ LoopRecur.HttpClient = function() {
 			params = {};
 		}
 		if(priv_obj.auth_token) {
-			params.auth_token = priv_obj.auth_token;
+			params.auth_token = priv_obj.auth_token.toString();
 		}
 		return [call_backs, params];
 	}

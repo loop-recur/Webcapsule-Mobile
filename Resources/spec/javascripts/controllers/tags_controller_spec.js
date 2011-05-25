@@ -28,6 +28,7 @@ describe("TagsController", function() {
 	  beforeEach(function() {
 			story = {tag_ids : "4"};
 			response = {id : 14};
+			Views.tags = { create : {source : [{id : '15', name : "Bob"}, {id : '4', name : "Joe"}]} };
 			Controllers.tags.db.save = jasmine.createSpy().andCallFake(function(obj, fun){ fun(response); });
 			Controllers.tags.create(view, {friend: {label: "Jimmy Dean"}, story: story});
 	  });

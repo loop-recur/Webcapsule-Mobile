@@ -5,6 +5,7 @@ Views.stories.init.template = function() {
 	var story = self.source;
 	var video, progress_bar, bar_area;
 	var quality = Ti.Network.networkType == Ti.Network.NETWORK_WIFI ? Ti.Media.QUALITY_HIGH : Ti.Media.QUALITY_LOW;
+	var camera;
 	
 	Views.stories._form.render(story, {win: self.params.overlay});
 
@@ -16,7 +17,7 @@ Views.stories.init.template = function() {
 	
 	// called below
 	self.takeVideo = function() {
-		Titanium.Media.showCamera({
+		camera = Titanium.Media.showCamera({
 			success: afterRecord,
 			cancel:function(){},
 			error:function(error){},
@@ -31,8 +32,7 @@ Views.stories.init.template = function() {
 	
 	// called from form
 	self.chooseVideo = function() {
-		self.win.close();
-		Layouts.stories();
+		camera.fireEvent('cancel');
 		
 		Titanium.Media.openPhotoGallery({
 			success: afterRecord,

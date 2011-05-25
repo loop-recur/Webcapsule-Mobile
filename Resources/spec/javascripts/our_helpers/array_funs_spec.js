@@ -23,4 +23,19 @@ describe("Helpers.array_funs", function() {
 		var str = "1,6";
 		expect(Helpers.array_funs.addInString(3, str)).toEqual("1,6,3");
 	});
+	
+	it("gets the first 5 elements", function() {
+		var array = [0,1,2,3,4,5,6];
+		expect(Helpers.array_funs.take(5, array)).toEqual([0,1,2,3,4]);
+	});
+	
+	it("doesn't take nulls", function() {
+		var array = [0,1,null,3,4,5,6];
+		expect(Helpers.array_funs.take(5, array)).toEqual([0,1,3,4,5]);
+	});
+	
+	it("stops before 5", function() {
+		var array = [0,1,3];
+		expect(Helpers.array_funs.take(5, array)).toEqual([0,1,3]);
+	});
 });

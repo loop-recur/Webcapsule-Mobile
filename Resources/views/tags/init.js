@@ -117,19 +117,21 @@ Views.tags.init.template = function() {
 	};
 	
 	function makeFriends() {
-		Functional.reduce(makeFriend, 10, foundFriends());
+		var found = foundFriends();
+		Functional.reduce(makeFriend, 10, found);
 	};
 	
 	function foundFriends() {
-		var matches = function(tag) {
-			var val = name.value.toLowerCase();
-			return (tag.label.indexOf(val) != -1);
-		};
-		return Functional.select(matches, self.source);
+		var val = name.value.toLowerCase();
+		var isMatch = function(tag) { return (tag.label.indexOf(val) != -1); };
+		
+		var friends = Functional.select(isMatch, self.source);
+		var taken = Helpers.array_funs.take(5, friends);
+		return taken;
 	};
 	
 	function makeFriend(position, friend) {
-		
+
 		var available_tag = Titanium.UI.createView({
 			top:4,
 			left:position,

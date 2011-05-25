@@ -12,6 +12,7 @@ describe("PhotosController", function() {
 	  beforeEach(function() {
 			story = {photo_ids : "4"};
 			response = {id : 14};
+			Views.photos = { create : {source : [{id : 2, upload: "Fake Upload Two"},{id : 1, upload: "Fake Upload One"}]} };
 			Controllers.photos.db.save = jasmine.createSpy().andCallFake(function(obj, fun){ fun(response); });
 			Controllers.photos.create(view, {photo: {upload: "Fake Upload"}, story : story});
 	  });

@@ -57,10 +57,9 @@ Layouts.story = function(id) {
 	});
 	
 	ff_button.addEventListener('click', function() {
-		player.shout();
-		// player.stop();
-		// player.initialPlaybackTime = player.currentPlaybackTime + 5;
-		// player.play();
+		player.stop();
+		player.initialPlaybackTime = player.currentPlaybackTime + 5;
+		player.play();
 	});
 	
 	var rw_button = Titanium.UI.createButton({
@@ -78,9 +77,9 @@ Layouts.story = function(id) {
 	
 	var started;
 	play_pause_button.addEventListener('click', function() {
-		if(play.playing) {
+		if(player.playing) {
 			player.pause();
-			play_pause_button.backgroundImage = "images/playercontrols/play_btn.png";		
+			play_pause_button.backgroundImage = "images/playercontrols/play_btn.png";
 		} else {
 			player.play();
 			play_pause_button.backgroundImage = "images/playercontrols/pause_btn.png";
