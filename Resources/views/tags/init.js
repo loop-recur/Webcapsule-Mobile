@@ -82,9 +82,7 @@ Views.tags.init.template = function() {
 	});
 
 	done_button.addEventListener('click', function() {
-		var isBlank = Helpers.application.isBlank(story_tags);
-		Views.stories._form.toggle_tag_icon(isBlank);
-		if(self.params.story.video_id) Views.stories._form.accept_button.fireEvent("click");
+		(Helpers.application.isBlank(story_tags)) ? Views.stories._form.toggle_tag_icon(false) : Views.stories._form.toggle_tag_icon(true);
 		win.close();
 	});
 	
@@ -108,46 +106,25 @@ Views.tags.init.template = function() {
 			height:100,
 			left:0
 		});
+	};	
+	
+	function update() {
+		available_tags_view.remove(self.view);
+		self.view = makeView();
+		makeFriends();
+		available_tags_view.add(self.view);
 	};
 	
 	function makeFriends() {
-		var friends = self.source;
-		var position = 10;
-		
-		for(i=0;i<friends.length;i++) {
-			makeFriend(position, friends[i]);
-			position += 70;
-		}
+		Functional.reduce(makeFriend, 10, foundFriends());
 	};
 	
-	function update() {
-		self.view.visible = false;
-		var friends = self.source;
-		var position = 10;
-		var val = name.value.toLowerCase();
-		var isMatch = function(label) { return (label.indexOf(val) != -1); };
-		
-		for(i=0;i<friends.length;i++) {
-			var f = friends[i];
-			if(isMatch(f.label)) {
-				updateFriend(position, friends[i]);
-				position += 70;
-			} else {
-				hideFriend(f);
-			}
-		}
-
-		self.view.visible = true;
-		
-		function hideFriend(friend) {
-			friend.view.visible = false;
-		}
-		
-		function updateFriend(position, friend) {
-			friend.view.visible = true;
-			friend.view.left = position;
-			return position+70;
+	function foundFriends() {
+		var matches = function(tag) {
+			var val = name.value.toLowerCase();
+			return (tag.label.indexOf(val) != -1);
 		};
+		return Functional.select(matches, self.source);
 	};
 	
 	function makeFriend(position, friend) {
@@ -155,8 +132,7 @@ Views.tags.init.template = function() {
 			top:4,
 			left:position,
 			width:60,
-			height:60,
-			visible: false
+			height:60
 		});
 		
 		var tag_border = Titanium.UI.createView({
@@ -172,8 +148,6 @@ Views.tags.init.template = function() {
 			height:54
 		});
 		
-		friend.view = available_tag;
-				
 		available_tag.addEventListener('click', function() {
 			App.action(tag_tray, "tags#create", {friend : friend, story: self.params.story});
 		});
@@ -181,7 +155,9 @@ Views.tags.init.template = function() {
 		available_tag.add(image);
 		available_tag.add(tag_border);
 		
+		
 		self.view.width += 70;
 		self.view.add(available_tag);
+		return position+70;
 	}
 };
