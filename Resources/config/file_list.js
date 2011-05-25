@@ -30,6 +30,7 @@ FileList = [
 	"views/sharings/init.js",
 	"views/accounts/init.js",
 	"views/stories/index.js",
+	"views/stories/user_stories.js",
 	"views/stories/show.js",
 	"views/stories/_show_form.js",
 	"views/stories/_form.js",

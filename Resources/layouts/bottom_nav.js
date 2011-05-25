@@ -71,15 +71,12 @@ Layouts.bottomNav = function() {
 	});
 	
 	logout_button.addEventListener('click', function(){
-		
 		Helpers.ui.confirm("Temporary Logout Button: Logout?", {
 			yes : function() {
 				Controllers.user_sessions.destroy();
 			},
 			cancel : function() {}
 		});
-		
-		
 	});
 
 	win.add(bottom_view);

@@ -4,8 +4,7 @@ Views.followings.show.template = function() {
 	var self = this;
 	var friend = self.source;
 	
-	var win = Titanium.UI.createWindow({ 
-	});
+	var win = Titanium.UI.createView();
 	
 	var top_bar = Ti.UI.createView ({
 		height:59,
@@ -23,7 +22,7 @@ Views.followings.show.template = function() {
 	});
 	
 	close.addEventListener('click', function() { 
-		win.close(); 
+		Layouts.users(); 
 	});
 	
 	var avatar_link = friend.avatar_link ? friend.avatar_link : 'images/avatar_medium.jpg';
@@ -85,21 +84,21 @@ Views.followings.show.template = function() {
 		top_bar.add(friend_button);
 	};
 
-	var friend_stories = Ti.UI.createView ({
+	var friend_stories_view = Ti.UI.createView ({
 		height:400,
-		bottom:0
+		top:60
 	});
 	
-
 	top_bar.add(close);
 	top_bar.add(avatar);
 	top_bar.add(avatar_frame);
 	top_bar.add(friend_name);
+	
+	Views.stories.user_stories.template(friend_stories_view, friend.stories);
 
-	App.action(friend_stories, "stories#index", {feed : true});
-
-	win.add(friend_stories);
+	win.add(friend_stories_view);
 	win.add(top_bar);
-	win.open();
+	
+	Layouts.replaceContent(win);
 	
 };
