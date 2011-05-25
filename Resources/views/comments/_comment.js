@@ -2,7 +2,6 @@ Views.comments._comment = Views.extend();
 
 Views.comments._comment.template = function() {
 	var self = this;
-	// var parent_win = self.params.win;
 	var parent_win = Views.stories._show_form.comment_bar;
 	var comment = self.source;
 
@@ -49,3 +48,5 @@ Views.comments._comment.template = function() {
 		parent_win.remove(view);
 	};
 };
+
+Views.comments._comment.close = function(){};

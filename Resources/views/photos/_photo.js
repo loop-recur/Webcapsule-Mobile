@@ -23,3 +23,5 @@ Views.photos._photo.template = function() {
 	};
 	
 };
+
+Views.photos._photo.close = function(){};

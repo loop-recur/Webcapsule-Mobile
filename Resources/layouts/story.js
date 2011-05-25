@@ -57,9 +57,10 @@ Layouts.story = function(id) {
 	});
 	
 	ff_button.addEventListener('click', function() {
-		player.stop();
-		player.initialPlaybackTime = player.currentPlaybackTime + 5;
-		player.play();
+		player.shout();
+		// player.stop();
+		// player.initialPlaybackTime = player.currentPlaybackTime + 5;
+		// player.play();
 	});
 	
 	var rw_button = Titanium.UI.createButton({
@@ -75,14 +76,18 @@ Layouts.story = function(id) {
 		player.play();
 	});
 	
+	var started;
 	play_pause_button.addEventListener('click', function() {
-		if(player.playing) {
-			player.stop();
+		if(play.playing) {
+			player.pause();
 			play_pause_button.backgroundImage = "images/playercontrols/play_btn.png";		
 		} else {
 			player.play();
 			play_pause_button.backgroundImage = "images/playercontrols/pause_btn.png";
-			Helpers.player.timeMonitor(asset_overlay, player, player.comments, player.photos);
+			if(!started) {
+				Helpers.player.timeMonitor(asset_overlay, player, player.comments, player.photos);
+				started = true;
+			}		
 		}
 	});
 	
@@ -91,6 +96,7 @@ Layouts.story = function(id) {
 		player.stop();
 		play_pause_button.backgroundImage = "images/playercontrols/play_btn.png";
 	});
+
 		
 	win.add(player);
 	win.add(asset_overlay);

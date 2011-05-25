@@ -6,10 +6,7 @@ Helpers.player.timeMonitor = function(win, player, comments, photos) {
 	var done = false;
 	var stop;
 	
-	player.addEventListener('complete',function(e){
-		done = true;
-		hideAllOverlays();
-	});
+	player.addEventListener('complete',finish);
 		
 	start();
 	
@@ -18,10 +15,6 @@ Helpers.player.timeMonitor = function(win, player, comments, photos) {
 		stop = function() {
 			clearInterval(intervalId);
 		};
-	};
-	
-	function hideAllOverlays() {
-		Functional.map(".close", [Views.comments._comment, Views.photos._photo]);
 	};
 	
 	function showOverlays(interval) {
@@ -52,5 +45,14 @@ Helpers.player.timeMonitor = function(win, player, comments, photos) {
 			view.close();
 			item.showing = false;
 		}
+	};
+	
+	function finish() {
+		done = true;
+		hideAllOverlays();
+	}
+	
+	function hideAllOverlays() {
+		Functional.map("x.close()", [Views.comments._comment, Views.photos._photo]);
 	};
 };
