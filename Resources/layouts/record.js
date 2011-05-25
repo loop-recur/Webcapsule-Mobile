@@ -1,4 +1,4 @@
-Layouts.record = function() {	
+Layouts.record = function(story) {	
 	var win = Titanium.UI.createWindow({
 		backgroundColor: "#ccc",
 		id:"record.js window"
@@ -109,6 +109,6 @@ Layouts.record = function() {
 	// TODO: Remove need for branching due to dev.  Mocks are better.
 	if(App.isDevelopment) win.add(overlay);
 	
-	App.action(win, "stories#init", {overlay: overlay});
+	App.action(win, "stories#init", {overlay: overlay, story: story});
 	win.open();
 };

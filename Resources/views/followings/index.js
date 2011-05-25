@@ -12,10 +12,10 @@ Views.followings.index.template = function() {
 			hasChild:true
 		});		
 		
-		var avatar_link = following.avatar_link ? following.avatar_link : 'images/avatar_medium.jpg';
+		var avatar_link = following.image ? following.image : 'images/avatar_medium.jpg';
 		
 		var avatar = Titanium.UI.createImageView({
-			image:avatar_link,
+			image:Helpers.images.escape(avatar_link),
 			left:10,
 			width:65,
 			height:65,

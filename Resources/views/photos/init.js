@@ -2,7 +2,6 @@ Views.photos.init = Views.extend();
 
 Views.photos.init.template = function() {
 	var self = this;
-	var story = self.params.story;
 	
 	var win = Titanium.UI.createWindow();
 	
@@ -34,7 +33,7 @@ Views.photos.init.template = function() {
 	});
 
 	take_picture.addEventListener('click', function() {
-		Layouts.take_photo(win, self.source, story);
+		Layouts.take_photo(win, self.source, self.params.story);
 	});
 
 	var choose_existing = Titanium.UI.createButton({  
@@ -48,7 +47,7 @@ Views.photos.init.template = function() {
 	});
 
 	choose_existing.addEventListener('click', function() {
-		Layouts.choose_photo(win, self.source, story);
+		Layouts.choose_photo(win, self.source, self.params.story);
 	});
 
 	var done_button = Titanium.UI.createButton({  
@@ -68,11 +67,11 @@ Views.photos.init.template = function() {
 	
 	var lock_done_button = Titanium.UI.createButton({  
 	    value:false,
-			backgroundImage:'images/add_photo/add_photo_normal.png',
-			backgroundSelectedImage:'images/add_photo/add_photo_pressed.png',  
+			backgroundImage:'images/app_wide/ok_normal.png',
+			backgroundSelectedImage:'images/app_wide/ok_pressed.png',
 	  	right:15,
 			bottom:20,
-	    width:83,  
+	    width:83,
 	    height:49,
 			enabled: false,
 			visible: false,
@@ -92,7 +91,8 @@ Views.photos.init.template = function() {
 	win.add(photo_tray);
 	
 	Views.photos.create.added_photo_view = added_photo_view;
-	Views.photos.create.story = story;
+	Views.photos.create.story = self.params.story;
+	Views.photos.create.hide_delete = self.params.hide_delete;
 	Views.photos.create.render(self.params.photos);
 
 	win.open();

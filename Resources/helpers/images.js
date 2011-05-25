@@ -3,6 +3,7 @@ Helpers.images = {};
 Helpers.images.escape = function(url) {
 	if(!url) return;
 	if(url.match(/^http/)){ return url; };
+	if(!url.match(/^\//)){ url = "/"+url; };
 	return App.file_url+escape(url.split("?")[0]);
 };
 

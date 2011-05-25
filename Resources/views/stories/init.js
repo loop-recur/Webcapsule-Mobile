@@ -32,7 +32,7 @@ Views.stories.init.template = function() {
 	
 	// called from form
 	self.chooseVideo = function() {
-		camera.fireEvent('cancel');
+		camera.cancel();
 		
 		Titanium.Media.openPhotoGallery({
 			success: afterRecord,

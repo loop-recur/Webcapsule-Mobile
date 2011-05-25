@@ -16,17 +16,29 @@
 
 -(id)version
 {
+<<<<<<< HEAD
 	return @"1.6.2";
+=======
+	return @"1.6.1";
+>>>>>>> 55fdbf490da727be6e7e0fc21a5edab2f316e81b
 }
 
 -(id)buildDate
 {
+<<<<<<< HEAD
 	return @"04/18/11 17:16";
+=======
+	return @"03/15/11 11:45";
+>>>>>>> 55fdbf490da727be6e7e0fc21a5edab2f316e81b
 }
 
 -(id)buildHash
 {
+<<<<<<< HEAD
 	return @"878906d";
+=======
+	return @"2fdc0c5";
+>>>>>>> 55fdbf490da727be6e7e0fc21a5edab2f316e81b
 }
 
 -(id)userAgent

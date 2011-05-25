@@ -6,7 +6,7 @@ Views.stories._form.template = function() {
 	var camera_overlay = self.params.win;
 	var enable = self.params.enable;
 	var player = self.params.player;
-	var story = self.source;
+	var story = self.source; // don't use this
 	var form_view = Titanium.UI.createView({bottom: 0, height: 245, zIndex:10});
 
 	// Layouts.pick_date(camera_overlay);
@@ -163,7 +163,7 @@ Views.stories._form.template = function() {
 		Helpers.ui.confirm("Re-record entire video", {
 			yes : function() {
 				camera_overlay.close();
-				Layouts.record();
+				Layouts.record(self.source);
 			},
 			cancel : function() {}
 		});
@@ -256,10 +256,10 @@ Views.stories._form.template = function() {
 		}
 		
 		function clearGeo() {
-			story.where = "";
+			self.source.where = "";
 		}
 			
-		if(Helpers.application.isBlank(story.where)) {
+		if(Helpers.application.isBlank(self.source.where)) {
 			setGeo();
 		} else {
 			clearGeo();
@@ -273,7 +273,7 @@ Views.stories._form.template = function() {
 	
 	if(self.source.where){ self.toggle_geolocation(true) };
 	
-	photos_backgroundImage = (story.photos) ? 'images/postrecord/addphotos_activated.png' : 'images/postrecord/addphotos_normal.png';
+	photos_backgroundImage = (self.source.photos) ? 'images/postrecord/addphotos_activated.png' : 'images/postrecord/addphotos_normal.png';
 	
 	var add_photos_button = Titanium.UI.createButton({
 		value:false,
@@ -311,14 +311,14 @@ Views.stories._form.template = function() {
 	
 	add_date_button.addEventListener('click', function() {
 		function setDate() {
-			story.when = new Date();
+			self.source.when = new Date();
 		}
 		
 		function clearDate() {
-			story.when = "";
+			self.source.when = "";
 		}
 			
-		if(Helpers.application.isBlank(story.when)) {
+		if(Helpers.application.isBlank(self.source.when)) {
 			setDate();
 			Views.stories._form.toggle_date_icon(true);
 		} else {

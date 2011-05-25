@@ -8,8 +8,12 @@ Controllers.tags = {
 		friend.name = friend.label;
 		
 		this.db.save(friend, function(new_tag) {
-			if(!story.tag_ids) story.tag_ids = Functional.map(".id", friends).join(",");
-			story.tag_ids = Helpers.array_funs.addInString(new_tag.id, story.tag_ids);
+			var story = Views.stories._form.source;
+			if(!story.tag_ids) story.tag_ids = "";
+			var old_val = story.tag_ids.split(',');
+			old_val.unshift(new_tag.id);
+			var new_val = old_val.join(',');
+			story.tag_ids = new_val;
 		});
 		
 		if(!view.source) view.source = [];
