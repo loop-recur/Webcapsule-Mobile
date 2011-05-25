@@ -44,13 +44,21 @@ Views.followings.show.template = function() {
 		zIndex:20
 	});
 	
-	var friend_name = Titanium.UI.createLabel({
-		text: friend.full_name,
-		height:'auto',
-		top:200,
-		color:'#616161',
-		textAlign:'center'
-	});	
+	var friend_name = Ti.UI.createLabel({
+		color:'#6b6b6b',
+		font:{
+			fontFamily:'Helvetica Neue',
+			fontSize:14,
+			fontWeight:'bold'
+		},
+		left:80,
+		top:5,
+		height:20,
+		width:160,
+		text:friend.full_name
+	});
+	
+	
 	
 	if(self.params.followees) {
 		var friend_button = Titanium.UI.createButton({
@@ -86,7 +94,7 @@ Views.followings.show.template = function() {
 
 	var friend_stories_view = Ti.UI.createView ({
 		height:400,
-		top:60
+		top:57
 	});
 	
 	top_bar.add(close);

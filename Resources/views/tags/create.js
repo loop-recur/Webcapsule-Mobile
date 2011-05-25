@@ -28,10 +28,10 @@ Views.tags.create.template = function() {
 	
 	function makeFriend(position, friend) {
 		var added_tag = Titanium.UI.createView({
-			top:4,
+			top:1,
 			left:position,
 			width:60,
-			height:60
+			height:60,
 		});
 		
 		var added_tag_border = Titanium.UI.createView({
@@ -45,6 +45,17 @@ Views.tags.create.template = function() {
 			defaultImage:'images/avatar_medium.jpg',
 			width:52,
 			height:54
+		});
+		
+		var tag_name = Titanium.UI.createLabel({
+			text:friend.label,
+			bottom:4,
+			width:52,
+			height:10,
+			backgroundColor:'black',
+			color:'white',
+			textAlign:'center',
+			font:{fontFamily:'Arial',fontWeight:'regular',fontSize:8}
 		});
 		
 		var delete_button = Titanium.UI.createView({
@@ -61,6 +72,7 @@ Views.tags.create.template = function() {
 		});
 		
 		added_tag.add(image);
+		added_tag.add(tag_name);
 		added_tag.add(added_tag_border);
 		added_tag.add(delete_button);
 		self.view.add(added_tag);

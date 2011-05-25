@@ -44,8 +44,8 @@ Views.stories.index.template = function() {
 				fontWeight:'bold'
 			},
 			left:100,
-			top:12,
-			height:30,
+			top:17,
+			height:20,
 			width:190,
 			text:story.name
 		});
@@ -88,7 +88,7 @@ Views.stories.index.template = function() {
 			left:111,
 			bottom:24,
 			height:10,
-			width:140,
+			width:160,
 			text:story.user.full_name
 		});
 		

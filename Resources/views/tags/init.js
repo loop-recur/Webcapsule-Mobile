@@ -20,11 +20,11 @@ Views.tags.init.template = function() {
 	});
 	
 	var available_tags_view = Titanium.UI.createScrollView({
-		top:70,
-		height:70,
+		top:60,
+		height:85,
 		width:300,
 		contentWidth:"auto",
-		contentHeight:90,
+		contentHeight:85,
 		showHorizontalScrollIndicator:true
 	});
 	
@@ -102,9 +102,10 @@ Views.tags.init.template = function() {
 	
 	function makeView() {
 		return Titanium.UI.createView({
-			width:70,
+			width:10,
 			height:100,
-			left:0
+			left:0,
+			top:5
 		});
 	};	
 	
@@ -128,6 +129,7 @@ Views.tags.init.template = function() {
 	};
 	
 	function makeFriend(position, friend) {
+		
 		var available_tag = Titanium.UI.createView({
 			top:4,
 			left:position,
@@ -148,11 +150,23 @@ Views.tags.init.template = function() {
 			height:54
 		});
 		
+		var tag_name = Titanium.UI.createLabel({
+			text:friend.label,
+			bottom:4,
+			width:52,
+			height:10,
+			backgroundColor:'black',
+			color:'white',
+			textAlign:'center',
+			font:{fontFamily:'Arial',fontWeight:'regular',fontSize:8}
+		});
+
 		available_tag.addEventListener('click', function() {
 			App.action(tag_tray, "tags#create", {friend : friend, story: self.params.story});
 		});
 		
 		available_tag.add(image);
+		available_tag.add(tag_name);
 		available_tag.add(tag_border);
 		
 		
