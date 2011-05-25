@@ -367,6 +367,8 @@ Views.stories._form.template = function() {
 			}
 		});
 	});
+	
+	self.accept_button = accept_button;
 
 	edit_details_btn.addEventListener('click', function() {
 		if(edit_details_btn.backgroundImage === 'images/postrecord/btn_retract_normal.png') {

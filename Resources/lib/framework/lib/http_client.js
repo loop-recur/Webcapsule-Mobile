@@ -42,8 +42,6 @@ LoopRecur.HttpClient = function() {
 			params = {};
 		}
 		if(priv_obj.auth_token) {
-			Ti.API.info("=========================USING TOKEN");
-			Ti.API.info(priv_obj.auth_token);
 			params.auth_token = priv_obj.auth_token;
 		}
 		return [call_backs, params];

@@ -62,7 +62,9 @@ Views.photos.init.template = function() {
 	});
 
 	done_button.addEventListener('click', function() {
-		(Helpers.application.isBlank(Views.photos.create.source)) ? Views.stories._form.toggle_photo_icon(false) : Views.stories._form.toggle_photo_icon(true);
+		var isBlank = Helpers.application.isBlank(Views.photos.create.source);
+		Views.stories._form.toggle_photo_icon(isBlank);
+		if(self.params.story.video_id) Views.stories._form.accept_button.fireEvent("click");
 		win.close();
 	});
 	

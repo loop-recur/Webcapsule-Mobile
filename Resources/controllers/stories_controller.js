@@ -29,6 +29,7 @@ Controllers.stories = {
 		
 		this.db.save(story, {
 			success: function(updated_story){
+				App.http_client.expireCache();
 				Views.stories._form.source = updated_story;
 				if(params.success) params.success(updated_story);
 			},
