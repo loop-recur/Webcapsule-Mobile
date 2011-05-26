@@ -1,6 +1,6 @@
 Layouts.record = function(story) {	
 	var win = Titanium.UI.createWindow({
-		backgroundColor: "#fff",
+		backgroundColor: "white",
 		id:"record.js window"
 	});
 	

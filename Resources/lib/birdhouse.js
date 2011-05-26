@@ -111,6 +111,7 @@ function BirdHouse(params) {
 		var params = (cfg.callback_url!="")?'oauth_callback='+escape(cfg.callback_url):'';
 
 		api(url,'POST',params,function(resp){
+			
 			if (resp!=false) {
 				var responseParams = OAuth.getParameterMap(resp);
 				cfg.request_token = responseParams['oauth_token'];
@@ -1084,6 +1085,7 @@ function BirdHouse(params) {
 		} else {
 			var file = Ti.Filesystem.getFile(Ti.Filesystem.applicationDataDirectory, 'twitter.config');
 			var data = JSON.parse(file.read());
+			
 			// execute the callback function
 			if(typeof(callback)=='function'){
 				callback(data);
