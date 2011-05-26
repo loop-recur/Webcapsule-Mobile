@@ -172,12 +172,11 @@ Views.stories._form.template = function() {
 
 	play_pause_button.addEventListener('click', function() {
 		if(player.playing) {
-			player.stop();
+			player.pause();
 			play_pause_button.backgroundImage = "images/playercontrols/play_btn.png";		
 		} else {
 			player.play();
 			play_pause_button.backgroundImage = "images/playercontrols/pause_btn.png";
-			Helpers.player.timeMonitor(asset_overlay, player, player.comments, player.photos);
 		}
 	});
 	
@@ -418,6 +417,5 @@ Views.stories._form.template = function() {
 	camera_overlay.add(form_view);
 	
 	if(enable) edit_details_btn.fireEvent('click');
-	
 	
 };

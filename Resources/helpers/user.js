@@ -43,7 +43,7 @@ Helpers.user.connectFacebook = function(success) {
 };
 
 Helpers.user.connectTwitter = function(success) {
-	b = new BirdHouse({consumer_key: "CgIDnN8kDKPu1uKhMK5Qg", consumer_secret: "AULwvohyIehfXfPUaKAaEifYRtzlDuOIo80qHQVRnyI", callback_url: App.base_url+"/omniauth_callbacks/auth"});
+	b = new BirdHouse({consumer_key: "CgIDnN8kDKPu1uKhMK5Qg", consumer_secret: "AULwvohyIehfXfPUaKAaEifYRtzlDuOIo80qHQVRnyI", callback_url: "/webcapsule-mobile://" });
 	b.authorize(saveTwitterAuth);
 	
 	function saveTwitterAuth(data) {
@@ -58,7 +58,6 @@ Helpers.user.connectTwitter = function(success) {
 			});
 		}	else {
 			b.deauthorize();
-			alert("Couldn't authorize Twitter");
 		}
 	};
 };

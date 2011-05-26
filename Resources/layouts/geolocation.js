@@ -132,7 +132,7 @@ Layouts.geolocation = function(story) {
 				}
 				else {
 					tries += 1;
-					if(tries == 10) {
+					if(tries >= 4) {
 						Titanium.Geolocation.removeEventListener('location', locationCallback);
 						
 						Ti.UI.createAlertDialog({

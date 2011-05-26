@@ -1,10 +1,11 @@
 Layouts.story = function(id) {
 	var win = Titanium.UI.createWindow({backgroundColor: "#ccc"});
+	var view = Titanium.UI.createView({});
 	
 	var player = Titanium.Media.createVideoPlayer({
 		backgroundColor:'#111',
 		movieControlStyle:Titanium.Media.VIDEO_CONTROL_NONE,
-		movieControlMode:Titanium.Media.VIDEO_CONTROL_DEFAULT,
+		// movieControlMode:Titanium.Media.VIDEO_CONTROL_FULLSCREEN,
 		scalingMode:Titanium.Media.VIDEO_SCALING_MODE_FILL,
 		autoplay:false,
 		id:"player"
@@ -74,27 +75,18 @@ Layouts.story = function(id) {
 		player.initialPlaybackTime = player.currentPlaybackTime - 5;
 		player.play();
 	});
-
 	
-	// function fadeOutControls() {
-	// 	compact_play_controls.animate({opacity:.1,duration:1000});
-	// 	compact_play_controls.addEventListener('click', restoreControls);
-	// }
-	// 
-	// function restoreControls() {
-	// 	compact_play_controls.animate({opacity:1,duration:0});
-	// 	removeEvent();
-	// }
-	// 
-	// function removeEvent () {
-	// 	compact_play_controls.removeEventListener('click', restoreControls);
-	// }
+	var showing = true;
+	view.addEventListener('click', function() {
+		showing ? compact_play_controls.animate({opacity:0,duration:1000}) : compact_play_controls.animate({opacity:1,duration:0});
+		showing = !showing;
+	});
 	
 	
 	var started;
 	play_pause_button.addEventListener('click', function() {
 		if(player.playing) {
-			player.stop();
+			player.pause();
 			play_pause_button.backgroundImage = "images/playercontrols/play_btn.png";
 			
 		} else {
@@ -115,8 +107,8 @@ Layouts.story = function(id) {
 		play_pause_button.backgroundImage = "images/playercontrols/play_btn.png";
 	});
 
-		
-	win.add(player);
+	view.add(player);
+	win.add(view);
 	win.add(asset_overlay);
 	compact_play_controls.add(play_pause_button);
 	compact_play_controls.add(ff_button);

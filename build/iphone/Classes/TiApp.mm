@@ -259,7 +259,11 @@ void MyUncaughtExceptionHandler(NSException *exception)
 
 - (void)boot
 {
+<<<<<<< HEAD
 	NSLog(@"[INFO] %@/%@ (%s.878906d)",TI_APPLICATION_NAME,TI_APPLICATION_VERSION,TI_VERSION_STR);
+=======
+	NSLog(@"[INFO] %@/%@ (%s.2fdc0c5)",TI_APPLICATION_NAME,TI_APPLICATION_VERSION,TI_VERSION_STR);
+>>>>>>> 804b4270c760f323b068c72912140eb9148d1ac8
 	
 	sessionId = [[TiUtils createUUID] retain];
 
@@ -496,8 +500,11 @@ void MyUncaughtExceptionHandler(NSException *exception)
 
 #pragma mark Push Notification Delegates
 
+<<<<<<< HEAD
 #ifdef USE_TI_NETWORKREGISTERFORPUSHNOTIFICATIONS
 
+=======
+>>>>>>> 804b4270c760f323b068c72912140eb9148d1ac8
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
 {
 	// NOTE: this is called when the app is *running* after receiving a push notification
@@ -546,8 +553,11 @@ void MyUncaughtExceptionHandler(NSException *exception)
 	}
 }
 
+<<<<<<< HEAD
 #endif
 
+=======
+>>>>>>> 804b4270c760f323b068c72912140eb9148d1ac8
 //TODO: this should be compiled out in production mode
 -(void)showModalError:(NSString*)message
 {

@@ -1,6 +1,6 @@
 Layouts.record = function(story) {	
 	var win = Titanium.UI.createWindow({
-		backgroundColor: "#ccc",
+		backgroundColor: "white",
 		id:"record.js window"
 	});
 	
@@ -14,16 +14,16 @@ Layouts.record = function(story) {
 		left:5
 	});
 
-	close_btn.addEventListener('click', function() {
+	close_btn.addEventListener('click', function(e) {
 		Views.photos.create.source = [];
 		Views.tags.create.source = [];
-
-		Ti.Media.hideCamera();
+		Ti.Media.hideCamera();		
 		win.close();
 		Layouts.stories();
 	});
 
 	overlay.add(close_btn);
+	Layouts.close_btn = close_btn;
 	
 	var camera_flash = Ti.UI.createButton({
 		color:'#fff',
