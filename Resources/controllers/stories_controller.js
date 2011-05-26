@@ -15,7 +15,6 @@ Controllers.stories = {
 		} else {
 			var date = new Date();
 			var story = {id: TempId.generate(), when: date};
-			try{ Layouts.geolocation(story); } catch(e){};
 		};
 		view.render(story, params);
 	},

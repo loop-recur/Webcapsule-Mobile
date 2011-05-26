@@ -114,7 +114,7 @@ Layouts.login = function () {
 	});
 
 	deauth_label.addEventListener('click', function() {
-		b = new BirdHouse({consumer_key: "CgIDnN8kDKPu1uKhMK5Qg", consumer_secret: "AULwvohyIehfXfPUaKAaEifYRtzlDuOIo80qHQVRnyI", callback_url: "http://webcapsule.com"});
+		b = new BirdHouse({consumer_key: "CgIDnN8kDKPu1uKhMK5Qg", consumer_secret: "AULwvohyIehfXfPUaKAaEifYRtzlDuOIo80qHQVRnyI", callback_url: "app:///"});
 		alert("deauthing");
 		b.deauthorize();
 	});

@@ -5,7 +5,6 @@ Views.stories.init.template = function() {
 	var story = self.source;
 	var video, progress_bar, bar_area;
 	var quality = Ti.Network.networkType == Ti.Network.NETWORK_WIFI ? Ti.Media.QUALITY_HIGH : Ti.Media.QUALITY_LOW;
-	var camera;
 	
 	Views.stories._form.render(story, {win: self.params.overlay});
 
@@ -17,7 +16,7 @@ Views.stories.init.template = function() {
 	
 	// called below
 	self.takeVideo = function() {
-		camera = Titanium.Media.showCamera({
+		Titanium.Media.showCamera({
 			success: afterRecord,
 			cancel:function(){},
 			error:function(error){},
@@ -26,34 +25,35 @@ Views.stories.init.template = function() {
 			saveToPhotoGallery:true,
 			mediaTypes:Ti.Media.MEDIA_TYPE_VIDEO,
 			videoQuality:quality,
-			autohide:false
+			autohide:true
 		});
 	};
 	
 	// called from form
 	self.chooseVideo = function() {
-		camera.cancel();
-		
+		Ti.Media.hideCamera();
+		setTimeout(openGallery,1500);
+	};
+	
+	function openGallery() {
 		Titanium.Media.openPhotoGallery({
-			success: afterRecord,
-			cancel:function(){ self.win.close(); },
+			success: function(e){ alert("done"); afterRecord(e); },
+			cancel:function(){ win.close(); },
 			error:function(error){},
 			allowEditing:false,
 			videoQuality: quality,
 			mediaTypes:[Ti.Media.MEDIA_TYPE_VIDEO]
-		});
-	};
+		});	
+	}
 	
 	function afterRecord(event) {
-		Ti.Media.hideCamera();
 		Views.stories._form.toggle_start_stop(false);
 		progress_bar = Helpers.ui.progressBar();
 		bar_area = makeProgressArea();
 		
 		video = {upload : event.media};
-		
 		saveVideo();
-		App.action(self.win, "stories#edit", {story : story, upload : video.upload});
+		App.action(self.win, "stories#edit", {story : self.source, upload : video.upload});
 		self.win.add(bar_area);
 	};
 	
@@ -136,5 +136,5 @@ Views.stories.init.template = function() {
 	};
 	
 	self.takeVideo();
-	
+	try{ Layouts.geolocation(story); } catch(e){};	
 };
