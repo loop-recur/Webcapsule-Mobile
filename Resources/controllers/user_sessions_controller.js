@@ -10,6 +10,7 @@ Controllers.user_sessions = {
 			success: function(response) {
 				var user = JSON.parse(response.responseText);
 				App.setCurrentUser(user);
+				App.http_client.auth_token = user.authentication_token;
 				Controllers.user_sessions.cache(authstr);
 				Layouts.site();
 			},

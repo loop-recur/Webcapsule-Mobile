@@ -76,27 +76,34 @@ Layouts.story = function(id) {
 		player.play();
 	});
 	
-	var showing = true;
-	view.addEventListener('click', function() {
-		showing ? compact_play_controls.animate({opacity:0,duration:1000}) : compact_play_controls.animate({opacity:1,duration:0});
-		showing = !showing;
+	win.addEventListener('click', function() {
+		compact_play_controls.opacity = 1;
+	});
+	
+	player.addEventListener('playbackState', function() {
+		if(player.playbackState == 1) {
+			play_pause_button.backgroundImage = "images/playercontrols/pause_btn.png";
+		} else {
+			play_pause_button.backgroundImage = "images/playercontrols/play_btn.png";
+		}
 	});
 	
 	
 	var started;
 	play_pause_button.addEventListener('click', function() {
-		if(player.playing) {
-			player.pause();
-			play_pause_button.backgroundImage = "images/playercontrols/play_btn.png";
-			
-		} else {
+		if(player.playbackState != 1) {
 			player.play();
-			play_pause_button.backgroundImage = "images/playercontrols/pause_btn.png";
+			
+			setTimeout(function(){
+				compact_play_controls.animate({opacity:0,duration:1000});
+			}, 200);
 			
 			if(!started) {
 				Helpers.player.timeMonitor(asset_overlay, player, player.comments, player.photos);
 				started = true;
 			}
+		} else {
+			player.stop();
 		}
 
 	});

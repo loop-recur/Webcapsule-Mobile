@@ -122,8 +122,6 @@
 
 				if(previous_response) {
 					this.onload_hook(this, previous_response);
-				} else {
-					Ti.API.info("no previous_response");
 				}
 			}
 			
