@@ -19,11 +19,7 @@
 	<array>
 		<dict>
 			<key>CFBundleURLName</key>
-<<<<<<< HEAD
 			<string>com.looprecur.webcapsulemobile</string>
-=======
-			<string>com.webcapsule.webcapsule</string>
->>>>>>> 804b4270c760f323b068c72912140eb9148d1ac8
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>webcapsule-mobile</string>
@@ -32,11 +28,7 @@
 		</dict>
 	</array>
 	<key>CFBundleIdentifier</key>
-<<<<<<< HEAD
 	<string>com.looprecur.webcapsulemobile</string>
-=======
-	<string>com.webcapsule.webcapsule</string>
->>>>>>> 804b4270c760f323b068c72912140eb9148d1ac8
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
@@ -46,11 +38,7 @@
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-<<<<<<< HEAD
-	<string>0.75.1306374672</string>
-=======
-	<string>0.75.1306387812</string>
->>>>>>> 804b4270c760f323b068c72912140eb9148d1ac8
+	<string>0.75</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
         <key>UISupportedInterfaceOrientations~ipad</key>

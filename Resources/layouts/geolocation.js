@@ -38,7 +38,6 @@ Layouts.geolocation = function(story) {
 	{
 		if (Titanium.Platform.name != 'android') {
 			var authorization = Titanium.Geolocation.locationServicesAuthorization
-			Ti.API.info('Authorization: '+authorization);
 			if (authorization == Titanium.Geolocation.AUTHORIZATION_DENIED) {
 				Ti.UI.createAlertDialog({
 					title:'Webcapsule',

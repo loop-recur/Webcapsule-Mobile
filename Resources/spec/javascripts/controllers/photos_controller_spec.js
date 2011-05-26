@@ -11,7 +11,7 @@ describe("PhotosController", function() {
 		
 	  beforeEach(function() {
 			App.currentUser = function(){ return {id: 1}};
-			story = {photo_ids : "2,1,temp-123"};
+			story = {photo_ids : "2,1,14"};
 			response = {id : 14};
 			Views.photos = { create : {source : [{id : 2, upload: "Fake Upload Two"},{id : 1, upload: "Fake Upload One"}]} };
 			Controllers.photos.db.save = jasmine.createSpy().andCallFake(function(obj, fun){ fun(response); });

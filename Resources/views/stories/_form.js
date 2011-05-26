@@ -172,7 +172,7 @@ Views.stories._form.template = function() {
 
 	play_pause_button.addEventListener('click', function() {
 		if(player.playing) {
-			player.pause();
+			player.stop();
 			play_pause_button.backgroundImage = "images/playercontrols/play_btn.png";		
 		} else {
 			player.play();
