@@ -4,6 +4,9 @@ Layouts.stories = function() {
 		backgroundImage:'images/app_wide/bg_full.png'
 	});
 	
+	var activity = Helpers.ui.spinner();
+	view.add(activity);
+	
 	var nav = Ti.UI.createView({
 		top:0,
 		height:40

@@ -100,7 +100,7 @@ Views.stories.init.template = function() {
 	    height:26
 		});
 		
-		var activity = Helpers.ui.spinner({top:0, left:0, height:26, width:26});
+		var activity = Helpers.ui.spinner({top:0, left:0});
 		
 		var retry_button = Titanium.UI.createButton({  
 			backgroundImage:"images/uploadbar/upload_retry.png",
