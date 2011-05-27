@@ -40,35 +40,107 @@ Views.stories._show_form.template = function() {
 		bottom:0
 	});
 
-	var story_title = Titanium.UI.createLabel({
-		text:self.source.name,
-		font:{fontSize:12, fontWeight:'bold'},
-		color:'black',
+
+	var date = Ti.UI.createLabel({
+		color:'#6b6b6b',
+		font:{
+			fontFamily:'Helvetica Neue',
+			fontSize:10,
+			fontWeight:'regular'
+		},
+		right:10,
+		top:50,
+		height:15,
+		width:"auto",
+		text: "Posted on " + self.source.when
+	});
+	
+	var title = Ti.UI.createLabel({
+		color:'#6b6b6b',
+		font:{
+			fontFamily:'Helvetica Neue',
+			fontSize:18,
+			fontWeight:'bold'
+		},
+		left:10,
+		top:5,
+		height:25,
+		width:240,
+		shadowColor:"#999",
+		shadowOffset:{x:0,y:1},
+		text:self.source.name
+	});
+	
+	var duration = Ti.UI.createLabel({
+		color:'#6b6b6b',
+		font:{
+			fontFamily:'Helvetica Neue',
+			fontSize:10,
+			fontWeight:'bold'
+		},			
+		right:10,
 		top:10,
-		left:10,
-		height:15,
-		width:300
-	});
-	
-	var story_duration = Titanium.UI.createLabel({
+		height:10,
+		width:30,
 		text:self.source.duration,
-		font:{fontSize:11, fontWeight:'bold'},
-		color:'gray',
-		top:25,
-		left:115,
-		height:15,
-		width:40
+		zIndex:40
 	});
 	
-	var story_user = Titanium.UI.createLabel({
-		text:self.source.user.full_name,
-		font:{fontSize:11, fontWeight:'bold'},
-		color:'gray',
-		top:25,
+	var user_icon = Titanium.UI.createImageView({
+		backgroundImage:'images/feed/user_ico.png',
 		left:10,
-		height:15,
-		width:100
+		top:50,
+		width:10,
+		height:10
 	});
+	
+	var user = Ti.UI.createLabel({
+		color:'#525252',
+		font:{fontSize:11,fontWeight:'regular', fontFamily:'Helvetica Neue'},
+		left:21,
+		top:51,
+		height:10,
+		width:160,
+		text:self.source.user.full_name
+	});
+
+	tray.add(date);
+	tray.add(title);
+	tray.add(duration);
+	tray.add(user_icon);
+	tray.add(user);
+
+
+
+	// var story_title = Titanium.UI.createLabel({
+	// 	text:self.source.name,
+	// 	font:{fontSize:18,fontWeight:'regular',fontFamily:'Helvetica Neue'},
+	// 	color:'#616161',
+	// 	top:8,
+	// 	left:10,
+	// 	height:20,
+	// 	width:300
+	// });
+	// 
+	// var story_duration = Titanium.UI.createLabel({
+	// 	text:self.source.duration,
+	// 	font:{fontSize:11, fontWeight:'bold'},
+	// 	color:'#616161',
+	// 	top:35,
+	// 	left:10,
+	// 	height:15,
+	// 	width:40
+	// });
+	// 
+	// var story_user = Titanium.UI.createLabel({
+	// 	text:self.source.user.full_name,
+	// 	font:{fontSize:13,fontWeight:'regular',fontFamily:'Helvetica Neue'},
+	// 	color:'#616161',
+	// 	top:,
+	// 	left:10,
+	// 	height:15,
+	// 	width:100
+	// });
 	
 	var comment_button = Titanium.UI.createButton({
 		value:false,
@@ -158,9 +230,9 @@ Views.stories._show_form.template = function() {
 	functionality_view.add(edit_details_btn);
 	functionality_view.add(tray);
 	
-	tray.add(story_title);
-	tray.add(story_duration);
-	tray.add(story_user);
+	// tray.add(story_title);
+	// tray.add(story_duration);
+	// tray.add(story_user);
 	tray.add(comment_button);
 	tray.add(photo_button);
 	tray.add(video_button);
