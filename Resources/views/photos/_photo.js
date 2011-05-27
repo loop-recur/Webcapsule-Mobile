@@ -5,10 +5,8 @@ Views.photos._photo.template = function() {
 	var parent_win = self.params.win;
 	var photo = self.source;
 	
-	Titanium.API.info(App.file_url+photo.url);
-	
 	var view = Titanium.UI.createImageView({
-		image: (App.file_url+"/"+photo.url),
+		image: Helpers.images.escape(photo.url),
 		defaultImage:'images/avatar_medium.jpg',
 		top:0,
 		left:0,
