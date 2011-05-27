@@ -28,7 +28,7 @@ Views.stories._form.template = function() {
 		top:0,
 		left:0
 	});
-	
+
 	var record_tray = Titanium.UI.createView({
 		backgroundImage:'images/record/bar-recordupload.png',
 		height:56,
