@@ -18,7 +18,7 @@ if(credentialsExists || authExists) {
 	if(credentialsExists) App.http_client.credentials = credentials.read();
 	if(authExists) {
 		var token = auth_token.read();
-		App.http_client.auth_token = token.toString();
+		if(token) App.http_client.auth_token = token.toString();
 	}
 	Layouts.site();
 } else {

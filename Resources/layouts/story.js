@@ -124,15 +124,20 @@ Layouts.story = function(id) {
 		play_pause_button.backgroundImage = "images/playercontrols/play_btn.png";
 	});
 	
-	var activity = Helpers.ui.spinner({});
+	var vid_activity = Helpers.ui.spinner({top: 0, left:295});
+	vid_activity.hide();
 	
-	player.addEventListener('preload', function() {
-		Ti.API.info("preloaded!");
-		activity.hide();
+	player.addEventListener('loadstate', function(e) {
+		var state = e.loadState;
+		if(state) {
+			state = parseInt(state);
+			if(state == 0) return vid_activity.hide();
+			(state >= 3) ? vid_activity.hide() : vid_activity.show();
+		}
 	});
 
 	view.add(player);
-	view.add(activity);
+	view.add(vid_activity);
 	win.add(view);
 	win.add(asset_overlay);
 	compact_play_controls.add(play_pause_button);
