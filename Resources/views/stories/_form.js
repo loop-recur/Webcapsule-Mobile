@@ -75,6 +75,7 @@ Views.stories._form.template = function() {
 	});
 	
 	uploadvid_button.addEventListener('click',function() {
+		Views.stories._form.toggle_upload(false);
 		Views.stories.init.chooseVideo();
 	});
 	

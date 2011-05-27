@@ -210,7 +210,7 @@ Views.stories._show_form.template = function() {
 	});
 	
 	share_button.addEventListener('click', function() {
-		App.action(win, "sharings#init", {story : self.source});
+		App.action(win, "sharings#init", {story : self.source, automatic_share: true});
 	});
 
 	edit_details_btn.addEventListener('click', function() {

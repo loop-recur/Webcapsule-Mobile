@@ -7,6 +7,7 @@ Views.sharings.init.template = function() {
 	var win = self.win;
 	var twitter = getAuth('twitter');
 	var facebook = getAuth('facebook');
+	var automatic_share = self.params.automatic_share || false;
 	
 	var container = Titanium.UI.createView({
 		zIndex:30,
@@ -36,7 +37,18 @@ Views.sharings.init.template = function() {
 		story.twitter = sharing.twitter;
 		story.facebook = sharing.facebook;
 		(story.twitter || story.facebook) ? Views.stories._form.toggle_sharing_icon(true) : Views.stories._form.toggle_sharing_icon(false);
-		win.remove(container);
+		
+		if(automatic_share) {
+			sharing.message = "Check out this story";
+			App.action(win, "sharings#create", {
+				sharing : sharing,
+				success : function() {
+					win.remove(container);
+				}
+			});
+		} else {
+			win.remove(container);
+		}
 	});
 
 	var facebook_button = Titanium.UI.createButton({

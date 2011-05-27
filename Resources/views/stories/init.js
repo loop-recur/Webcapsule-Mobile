@@ -31,16 +31,26 @@ Views.stories.init.template = function() {
 		});
 	};
 	
+	var activity = Titanium.UI.createActivityIndicator({
+		bottom:14,
+		right:14,
+		height:26,
+		width:26,
+		style:Titanium.UI.iPhone.ActivityIndicatorStyle.PLAIN
+	});
+	self.win.add(activity);
+	
 	// called from form
 	self.chooseVideo = function() {
 		Ti.Media.hideCamera();
-		setTimeout(openGallery,1500);
+		activity.show();
+		setTimeout(openGallery,1800);
 	};
 	
 	function openGallery() {
 		Titanium.Media.openPhotoGallery({
 			success: afterRecord,
-			cancel:function(){ self.takeVideo(); },
+			cancel:function(){ self.takeVideo(); activity.hide(); Views.stories._form.toggle_upload(true); },
 			error:function(error){},
 			allowEditing:false,
 			videoQuality: quality,
