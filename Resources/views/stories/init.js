@@ -6,11 +6,11 @@ Views.stories.init.template = function() {
 	var video, progress_bar, bar_area;
 	var quality = Ti.Network.networkType == Ti.Network.NETWORK_WIFI ? Ti.Media.QUALITY_HIGH : Ti.Media.QUALITY_LOW;
 	
-	if(Ti.Network.networkType == Ti.Network.NETWORK_WIFI) {
-		alert("it thinks it's on wifi");
-	} else {
-		alert("it thinks it's on edge");
-	}
+	// if(Ti.Network.networkType == Ti.Network.NETWORK_WIFI) {
+	// 	alert("it thinks it's on wifi");
+	// } else {
+	// 	alert("it thinks it's on edge");
+	// }
 	
 	Views.stories._form.render(story, {win: self.params.overlay});
 
