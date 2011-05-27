@@ -36,9 +36,11 @@ Helpers.ui.confirm = function(title, callbacks) {
 Helpers.ui.spinner = function(position_obj) {
 	
 	var activity = Titanium.UI.createActivityIndicator({
-		top:position_obj.top, 
+		top:position_obj.top,
 		left:position_obj.left,
-		style:style
+		height:26,
+		width:26,
+		style:Titanium.UI.iPhone.ActivityIndicatorStyle.PLAIN
 	});
 	
 	activity.show();

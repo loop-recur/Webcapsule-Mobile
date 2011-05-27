@@ -20,6 +20,12 @@ Views.stories.init.template = function() {
 	Views.stories._form.toggle_start_stop(true);
 	Views.stories._form.toggle_record_tray(true);
 	
+	progress_bar = Helpers.ui.progressBar();
+	bar_area = makeProgressArea();
+
+	self.win.add(bar_area);
+	
+	
 	// called below
 	self.takeVideo = function() {
 		Titanium.Media.showCamera({
@@ -44,7 +50,7 @@ Views.stories.init.template = function() {
 	function openGallery() {
 		Titanium.Media.openPhotoGallery({
 			success: afterRecord,
-			cancel:function(){ win.close(); },
+			cancel:function(){ self.takeVideo(); },
 			error:function(error){},
 			allowEditing:false,
 			videoQuality: quality,
@@ -100,7 +106,7 @@ Views.stories.init.template = function() {
 	    height:26
 		});
 		
-		var activity = Helpers.ui.spinner({top:0, left:0});
+		var activity = Helpers.ui.spinner({top:0, left:1});
 		
 		var retry_button = Titanium.UI.createButton({  
 			backgroundImage:"images/uploadbar/upload_retry.png",

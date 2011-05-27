@@ -2,7 +2,7 @@ Layouts.story = function(id) {
 	var win = Titanium.UI.createWindow({backgroundImage:'images/app_wide/bg_full.png'});
 	var view = Titanium.UI.createView({});
 	
-	var activity = Helpers.ui.spinner();
+	var activity = Helpers.ui.spinner({});
 	view.add(activity);
 	
 	var player = Titanium.Media.createVideoPlayer({
