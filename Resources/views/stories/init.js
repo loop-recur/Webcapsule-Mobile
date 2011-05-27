@@ -20,12 +20,6 @@ Views.stories.init.template = function() {
 	Views.stories._form.toggle_start_stop(true);
 	Views.stories._form.toggle_record_tray(true);
 	
-	progress_bar = Helpers.ui.progressBar();
-	bar_area = makeProgressArea();
-
-	self.win.add(bar_area);
-	
-	
 	// called below
 	self.takeVideo = function() {
 		Titanium.Media.showCamera({
