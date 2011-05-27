@@ -55,35 +55,14 @@ Layouts.bottomNav = function() {
 		zIndex:51
 	});
 	
-	record_button.addEventListener('click', function()
-	{
+	record_button.addEventListener('click', function() {
 		Layouts.record();
-	});
-	
-	var logout_button = Titanium.UI.createButton({
-		title:'X',
-		left:0,
-		bottom:10,
-		width:20,
-		height:20,
-		color:'white',
-		zIndex:999
-	});
-	
-	logout_button.addEventListener('click', function(){
-		Helpers.ui.confirm("Temporary Logout Button: Logout?", {
-			yes : function() {
-				Controllers.user_sessions.destroy();
-			},
-			cancel : function() {}
-		});
 	});
 
 	win.add(bottom_view);
 	win.add(stories_button);
 	win.add(users_button);
 	win.add(record_button);
-	win.add(logout_button);
 	
 	
 	record_button.fireEvent('click');

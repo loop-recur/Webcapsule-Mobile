@@ -4,7 +4,7 @@ Views.stories._form.template = function() {
 	var self = this;
 	
 	var camera_overlay = self.params.win;
-	var enable = self.params.enable;
+	var enable = true;
 	var player = self.params.player;
 	var story = self.source; // don't use this
 	var form_view = Titanium.UI.createView({bottom: 0, height: 245, zIndex:10});
@@ -160,7 +160,6 @@ Views.stories._form.template = function() {
 	});
 
 	rerecord_button.addEventListener('click', function() {
-		
 		Helpers.ui.confirm("Re-record entire video", {
 			yes : function() {
 				camera_overlay.close();
@@ -338,6 +337,10 @@ Views.stories._form.template = function() {
 		backgroundSelectedImage:'images/postrecord/share_pressed.png',
 		enabled:enable
 	});
+	
+	Views.stories._form.toggle_sharing_icon = function(state) {
+		share_button.backgroundImage = state ? 'images/postrecord/share_activated.png' : 'images/postrecord/share_normal.png';
+	};
 	
 	if(enable) share_button.addEventListener('click', function() {
 		App.action(camera_overlay, "sharings#init", {story : self.source});

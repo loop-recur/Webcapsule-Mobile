@@ -4,7 +4,7 @@ Views.stories.init.template = function() {
 	var self = this;
 	var story = self.source;
 	var video, progress_bar, bar_area;
-	var quality = Ti.Network.networkType == Ti.Network.NETWORK_WIFI ? Ti.Media.QUALITY_HIGH : Ti.Media.QUALITY_LOW;
+	var quality = Ti.Network.networkType == Ti.Network.NETWORK_WIFI ? Ti.Media.QUALITY_MED : Ti.Media.QUALITY_LOW;
 	
 	Views.stories._form.render(story, {win: self.params.overlay});
 
@@ -17,12 +17,14 @@ Views.stories.init.template = function() {
 	// called below
 	self.takeVideo = function() {
 		Titanium.Media.showCamera({
-			success: afterRecord,
+			success: function(e) {
+				Titanium.Media.saveToPhotoGallery(e.media);
+				afterRecord(e),
+			},
 			cancel:function(){},
 			error:function(error){},
 			overlay:self.params.overlay,
 			showControls:false,
-			saveToPhotoGallery:true,
 			mediaTypes:Ti.Media.MEDIA_TYPE_VIDEO,
 			videoQuality:quality,
 			autohide:true
@@ -136,5 +138,5 @@ Views.stories.init.template = function() {
 	};
 	
 	self.takeVideo();
-	try{ Layouts.geolocation(story); } catch(e){};	
+	try{ Layouts.geolocation(story); } catch(e){};
 };

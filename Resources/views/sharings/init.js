@@ -27,12 +27,11 @@ Views.sharings.init.template = function() {
 	});
 
 	share_button.addEventListener('click', function() {
-		App.action(win, "sharings#create", {
-			sharing : sharing,
-			success : function() {
-				win.remove(view);
-			}
-		});		
+		var story = Views.stories._form.source;
+		story.twitter = sharing.twitter;
+		story.facebook = sharing.facebook;
+		(story.twitter || story.facebook) ? Views.stories._form.toggle_sharing_icon(true) : Views.stories._form.toggle_sharing_icon(false);
+		win.remove(view);
 	});
 
 	var facebook_button = Titanium.UI.createButton({
@@ -74,7 +73,7 @@ Views.sharings.init.template = function() {
 				});
 			} else {
 				facebook_button.backgroundImage = 'images/sharestory/fb_not_sharing.png';
-				sharing.facebook = "";
+				sharing.facebook = null;
 			};
 		});
 	};
@@ -90,7 +89,7 @@ Views.sharings.init.template = function() {
 				});
 			} else {
 				twitter_button.backgroundImage = 'images/sharestory/tw_not_sharing.png';
-				sharing.twitter = "";
+				sharing.twitter = null;
 			};
 		});
 	};

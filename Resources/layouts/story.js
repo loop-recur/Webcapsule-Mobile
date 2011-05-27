@@ -63,6 +63,7 @@ Layouts.story = function(id) {
 		player.stop();
 		player.initialPlaybackTime = player.currentPlaybackTime + 5;
 		player.play();
+		updateControls();
 	});
 	
 	var rw_button = Titanium.UI.createButton({
@@ -76,23 +77,33 @@ Layouts.story = function(id) {
 		player.stop();
 		player.initialPlaybackTime = player.currentPlaybackTime - 5;
 		player.play();
+		updateControls();
 	});
 	
 	win.addEventListener('click', function() {
 		compact_play_controls.opacity = 1;
+		updateControls(3400);
 	});
 	
-	player.addEventListener('playbackState', function(e) {
-		if(e.playbackState == 1) {
+	
+	var set = false;
+	function updateControls(time) {
+		if(!time) time = 1200;
+		
+		if(player.playing) {
 			play_pause_button.backgroundImage = "images/playercontrols/pause_btn.png";
-			setTimeout(function(){
-				compact_play_controls.animate({opacity:0,duration:1000});
-			}, 600);
+			
+			if(!set) {
+				set = true;
+				setTimeout(function(){
+					set = false;
+					compact_play_controls.animate({opacity:0,duration:1000});
+				}, time);
+			}
 		} else {
-			play_pause_button.backgroundImage = "images/playercontrols/play_btn.png";
+			play_pause_button.backgroundImage = "images/playercontrols/play_btn.png"
 		}
-	});
-	
+	}
 	
 	var started;
 	play_pause_button.addEventListener('click', function() {
@@ -100,16 +111,15 @@ Layouts.story = function(id) {
 			player.stop();
 		} else {
 			player.play();
-			
 			if(!started) {
 				Helpers.player.timeMonitor(asset_overlay, player, player.comments, player.photos);
 				started = true;
 			}
 		}
+		updateControls();
 	});
 	
 	player.addEventListener('complete',function() {
-		Ti.API.info("===============STOPPING ON COMPLETE");
 		player.stop();
 		play_pause_button.backgroundImage = "images/playercontrols/play_btn.png";
 	});

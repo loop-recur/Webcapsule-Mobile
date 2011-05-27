@@ -21,9 +21,13 @@ Helpers.user.connectFacebook = function(success) {
 	
 	Titanium.Facebook.loggedIn ? saveFacebookAuth() : Titanium.Facebook.authorize();	
 	
+	var run = false;
 	Titanium.Facebook.addEventListener('login', function(e) {
-		file.write(JSON.stringify(e.data));
-		saveFacebookAuth();
+		if(!run) {
+			run = true;
+			file.write(JSON.stringify(e.data));
+			saveFacebookAuth();
+		}
 	});
 	
 	function saveFacebookAuth() {
