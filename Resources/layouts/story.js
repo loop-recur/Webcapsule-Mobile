@@ -123,8 +123,16 @@ Layouts.story = function(id) {
 		player.stop();
 		play_pause_button.backgroundImage = "images/playercontrols/play_btn.png";
 	});
+	
+	var activity = Helpers.ui.spinner({});
+	
+	player.addEventListener('preload', function() {
+		Ti.API.info("preloaded!");
+		activity.hide();
+	});
 
 	view.add(player);
+	view.add(activity);
 	win.add(view);
 	win.add(asset_overlay);
 	compact_play_controls.add(play_pause_button);
