@@ -48,11 +48,13 @@ Helpers.player.timeMonitor = function(win, player, comments, photos) {
 	};
 	
 	function finish() {
+		Ti.API.info("===============FINISHING");
 		done = true;
 		hideAllOverlays();
 	}
 	
 	function hideAllOverlays() {
+		Ti.API.info("===============HIDING");
 		Functional.map("x.close()", [Views.comments._comment, Views.photos._photo]);
 	};
 };

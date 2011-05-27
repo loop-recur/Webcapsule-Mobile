@@ -38,7 +38,7 @@ Views.stories.init.template = function() {
 	function openGallery() {
 		Titanium.Media.openPhotoGallery({
 			success: afterRecord,
-			cancel:function(){ win.close(); },
+			cancel:function(){ self.takeVideo(); },
 			error:function(error){},
 			allowEditing:false,
 			videoQuality: quality,
@@ -94,7 +94,7 @@ Views.stories.init.template = function() {
 	    height:26
 		});
 		
-		var activity = Helpers.ui.spinner({top:0, left:0, height:26, width:26});
+		var activity = Helpers.ui.spinner({top:0, left:1});
 		
 		var retry_button = Titanium.UI.createButton({  
 			backgroundImage:"images/uploadbar/upload_retry.png",

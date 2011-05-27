@@ -1,9 +1,11 @@
 Layouts.story = function(id) {
-	var win = Titanium.UI.createWindow({backgroundColor: "#ccc"});
+	var win = Titanium.UI.createWindow({backgroundImage:'images/app_wide/bg_full.png'});
 	var view = Titanium.UI.createView({});
 	
+	var activity = Helpers.ui.spinner({});
+	view.add(activity);
+	
 	var player = Titanium.Media.createVideoPlayer({
-		backgroundColor:'#111',
 		movieControlStyle:Titanium.Media.VIDEO_CONTROL_NONE,
 		// movieControlMode:Titanium.Media.VIDEO_CONTROL_FULLSCREEN,
 		scalingMode:Titanium.Media.VIDEO_SCALING_MODE_FILL,
@@ -106,8 +108,8 @@ Layouts.story = function(id) {
 		}
 	});
 	
-	player.addEventListener('complete',function()
-	{
+	player.addEventListener('complete',function() {
+		Ti.API.info("===============STOPPING ON COMPLETE");
 		player.stop();
 		play_pause_button.backgroundImage = "images/playercontrols/play_btn.png";
 	});

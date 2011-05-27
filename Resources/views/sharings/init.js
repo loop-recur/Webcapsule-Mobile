@@ -18,15 +18,15 @@ Views.sharings.init.template = function() {
 		
 	});
 	
-	var close_btn = Titanium.UI.createButton({
-		backgroundImage:"images/sharestory/btn_close.png",
-		backgroundSelectedImage:"images/sharestory/btn_close-pressed.png",
-		height:49,
-		width:83,
-		right:5
+	var share_button = Titanium.UI.createButton({
+		backgroundImage:'images/app_wide/ok_normal.png',
+		backgroundSelectedImage:'images/app_wide/ok_pressed.png',
+  	right:5,
+    width:83,  
+    height:49
 	});
 
-	close_btn.addEventListener('click', function() {
+	share_button.addEventListener('click', function() {
 		App.action(win, "sharings#create", {
 			sharing : sharing,
 			success : function() {
@@ -49,7 +49,7 @@ Views.sharings.init.template = function() {
 		left:100
 	});
 	
-	view.add(close_btn);
+	view.add(share_button);
 	view.add(facebook_button);
 	view.add(twitter_button);
 	
