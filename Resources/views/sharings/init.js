@@ -8,7 +8,6 @@ Views.sharings.init.template = function() {
 	var twitter = getAuth('twitter');
 	var facebook = getAuth('facebook');
 	
-	
 	var view = Titanium.UI.createView({
 		zIndex:30,
 		height:114,
@@ -54,44 +53,55 @@ Views.sharings.init.template = function() {
 	
 	win.add(view);
 
-	if(facebook) {connectAndShareFacebook()};
-	if(twitter) {connectAndShareTwitter()};
+	if(facebook) toggleFacebook();
+	if(twitter) toggleTwitter();
 	
-	function getAuth(name) {
-		var auth = Functional.select(".authentication.provider == '"+name+"'", App.currentUser().authentications)[0];
+	facebook_button.addEventListener('click', function() {
+		facebook ? toggleFacebook() : connectFacebook();
+	});
+	
+	twitter_button.addEventListener('click', function() {
+		twitter ? toggleTwitter() : connectTwitter();
+	});
+		
+	function toggleFacebook() {
+		if(facebook_button.backgroundImage == 'images/sharestory/fb_not_sharing.png') {
+			sharing.facebook = facebook.id;
+			facebook_button.backgroundImage = 'images/sharestory/fb_sharing.png';
+		} else {
+			facebook_button.backgroundImage = 'images/sharestory/fb_not_sharing.png';
+			sharing.facebook = null;
+		}
+	}
+	
+	function toggleTwitter(state) {
+		if(twitter_button.backgroundImage == 'images/sharestory/tw_not_sharing.png') {
+			twitter_button.backgroundImage = "images/sharestory/tw_sharing.png";
+			sharing.twitter = twitter.id;
+		} else {
+			twitter_button.backgroundImage = 'images/sharestory/tw_not_sharing.png';
+			sharing.twitter = null;
+		}
+	}
+	
+	function getAuth(name, user) {
+		if(!user) user = App.currentUser();
+		var auth = Functional.select(".authentication.provider == '"+name+"'", user.authentications)[0];
 		return auth ? auth.authentication : null;
 	};
 	
-	function connectAndShareFacebook() {
-
-		facebook_button.addEventListener('click', function() {
-			
-			if(Helpers.application.isBlank(sharing.facebook)) {
-				Helpers.user.connectFacebook(function(user) {
-					facebook_button.backgroundImage = 'images/sharestory/fb_sharing.png';
-					sharing.facebook = facebook.id;
-				});
-			} else {
-				facebook_button.backgroundImage = 'images/sharestory/fb_not_sharing.png';
-				sharing.facebook = null;
-			};
+	function connectFacebook() {
+		Helpers.user.connectFacebook(function(user) {
+			facebook = getAuth('facebook', user);
+			toggleFacebook();
 		});
-	};
+	}
 	
-	function connectAndShareTwitter() {
-
-		twitter_button.addEventListener('click', function() {
-			
-			if(Helpers.application.isBlank(sharing.twitter)) {
-				Helpers.user.connectTwitter(function(user) {
-					twitter_button.backgroundImage = "images/sharestory/tw_sharing.png";
-					sharing.twitter = twitter.id;
-				});
-			} else {
-				twitter_button.backgroundImage = 'images/sharestory/tw_not_sharing.png';
-				sharing.twitter = null;
-			};
+	function connectTwitter() {
+		Helpers.user.connectTwitter(function(user) {
+			twitter = getAuth('twitter', user);
+			toggleTwitter();
 		});
-	};
+	}
 	
 };
