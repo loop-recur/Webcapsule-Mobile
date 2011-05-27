@@ -5,6 +5,7 @@ Controllers.omniauth_callbacks = {
 		var authentication = params.data;
 		
 		this.db.save(authentication, function(user) {
+			if(!user) {return params.error()};
 			App.setCurrentUser(user);
 			App.http_client.auth_token = user.authentication_token;
 			Controllers.omniauth_callbacks.cache(user.authentication_token);

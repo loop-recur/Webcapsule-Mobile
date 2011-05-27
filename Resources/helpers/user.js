@@ -34,7 +34,10 @@ Helpers.user.connectFacebook = function(success) {
 			data.token = Titanium.Facebook.accessToken;
 			App.action(undefined, "omniauth_callbacks#create", {
 				data : data,
-				success : success
+				success : success,
+				error : function() {
+					alert("Couldn't find you in our system.  Try signing up on the website.");
+				}
 			});
 		} else {
 			alert("Couldn't authorize Facebook");
@@ -54,7 +57,10 @@ Helpers.user.connectTwitter = function(success) {
 			data.provider = "twitter";
 			App.action(undefined, "omniauth_callbacks#create", {
 				data : data,
-				success : success
+				success : success,
+				error : function() {
+					alert("Couldn't find you in our system.  Try signing up on the website.");
+				}
 			});
 		}	else {
 			b.deauthorize();

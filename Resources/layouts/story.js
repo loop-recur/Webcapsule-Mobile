@@ -80,9 +80,12 @@ Layouts.story = function(id) {
 		compact_play_controls.opacity = 1;
 	});
 	
-	player.addEventListener('playbackState', function() {
-		if(player.playbackState == 1) {
+	player.addEventListener('playbackState', function(e) {
+		if(e.playbackState == 1) {
 			play_pause_button.backgroundImage = "images/playercontrols/pause_btn.png";
+			setTimeout(function(){
+				compact_play_controls.animate({opacity:0,duration:1000});
+			}, 600);
 		} else {
 			play_pause_button.backgroundImage = "images/playercontrols/play_btn.png";
 		}
@@ -91,21 +94,16 @@ Layouts.story = function(id) {
 	
 	var started;
 	play_pause_button.addEventListener('click', function() {
-		if(player.playbackState != 1) {
+		if(player.playing) {
+			player.stop();
+		} else {
 			player.play();
-			
-			setTimeout(function(){
-				compact_play_controls.animate({opacity:0,duration:1000});
-			}, 200);
 			
 			if(!started) {
 				Helpers.player.timeMonitor(asset_overlay, player, player.comments, player.photos);
 				started = true;
 			}
-		} else {
-			player.stop();
 		}
-
 	});
 	
 	player.addEventListener('complete',function()

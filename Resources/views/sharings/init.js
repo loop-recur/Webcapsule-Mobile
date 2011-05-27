@@ -50,7 +50,6 @@ Views.sharings.init.template = function() {
 		App.action(win, "sharings#create", {
 			sharing : sharing,
 			success : function() {
-				alert("shared!");
 				win.remove(view);
 			}
 		});

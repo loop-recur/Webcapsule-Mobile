@@ -116,7 +116,7 @@ function BirdHouse(params) {
 				var responseParams = OAuth.getParameterMap(resp);
 				cfg.request_token = responseParams['oauth_token'];
 				cfg.request_token_secret = responseParams['oauth_token_secret'];
-
+				authorized = true;
 
 				get_request_verifier(callback);
 			}
@@ -302,7 +302,7 @@ function BirdHouse(params) {
 				accessor.tokenSecret = cfg.access_token_secret;
 
 				save_access_token();
-
+			
 				authorized = load_access_token();
 
 

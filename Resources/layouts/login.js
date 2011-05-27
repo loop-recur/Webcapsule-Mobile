@@ -68,9 +68,13 @@ Layouts.login = function () {
 	    height:44
 	});
 
+	var run = false;
 	facebook_login.addEventListener('click', function(){
 		Helpers.user.connectFacebook(function(user) {
-			Layouts.site();
+			if(!run) {
+				run = true;
+				Layouts.site();
+			}
 		});
 	});
 	
