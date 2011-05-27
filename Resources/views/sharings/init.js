@@ -27,120 +27,72 @@ Views.sharings.init.template = function() {
 	});
 
 	close_btn.addEventListener('click', function() {
-		win.remove(view);
-	});
-	
-	view.add(close_btn);
-
-	var field = Titanium.UI.createTextField({  
-	    backgroundColor:text_field_background_color,
-			color:text_field_text_color,
-			borderRadius:4,
-			paddingLeft:5,
-	    width:300,  
-			top:0,
-	    height:30,  
-	    hintText:'Message',  
-	    keyboardType:Titanium.UI.KEYBOARD_DEFAULT,  
-	    returnKeyType:Titanium.UI.RETURNKEY_DONE
-	});
-	
-	field.addEventListener('return', function() {
-		sharing.message = field.value;
 		App.action(win, "sharings#create", {
 			sharing : sharing,
 			success : function() {
 				win.remove(view);
 			}
-		});
+		});		
+	});
+
+	var facebook_button = Titanium.UI.createButton({
+		backgroundImage:"images/sharestory/fb_not_sharing.png",
+		height:54,
+		width:47,
+		left:25
 	});
 	
-	view.add(field);
+	var twitter_button = Titanium.UI.createButton({
+		backgroundImage:"images/sharestory/tw_not_sharing.png",
+		height:54,
+		width:43,
+		left:100
+	});
+	
+	view.add(close_btn);
+	view.add(facebook_button);
+	view.add(twitter_button);
+	
 	win.add(view);
-	
-	twitter ? showTwitter() : connectTwitter();
-	facebook ? showFacebook() : connectFacebook();
-	
-	
-	function showTwitter() {
-		var twitterLabel = Titanium.UI.createLabel({
-			text:'Twitter',
-			left: 130
-		});
-		
-		var twitterSwitch = Titanium.UI.createSwitch({
-			value:false,
-			top:240
-		});
-		
-		twitterSwitch.addEventListener('change',function(e) {
-			sharing.twitter = (e.value == 1) ? twitter.id : "";
-		});	
-		
-		view.add(twitterLabel);
-		view.add(twitterSwitch);
-	};
-	
-	function showFacebook() {
-		var facebookLabel = Titanium.UI.createLabel({
-			text:'Facebook',
-			top: 150,
-			left: 130
-		});
 
-		var facebookSwitch = Titanium.UI.createSwitch({
-			value:false,
-			top:340
-		});
-
-		facebookSwitch.addEventListener('change',function(e) {
-			sharing.facebook = (e.value == 1) ? facebook.id : "";
-		});	
-		
-		view.add(facebookLabel);
-		view.add(facebookSwitch);
-	};	
+	if(facebook) {connectAndShareFacebook()};
+	if(twitter) {connectAndShareTwitter()};
 	
 	function getAuth(name) {
 		var auth = Functional.select(".authentication.provider == '"+name+"'", App.currentUser().authentications)[0];
 		return auth ? auth.authentication : null;
 	};
 	
-	function connectFacebook() {
-		var fbconnect = Titanium.UI.createButton({
-			title: "login facebook",
-			left:160,
-			height:41,
-			width:79,
-			backgroundColor: "red"
-		});	
+	function connectAndShareFacebook() {
 
-		fbconnect.addEventListener('click', function() {
-			Helpers.user.connectFacebook(function(user) {
-					view.remove(fbconnect);
-					showFacebook();
-			});
+		facebook_button.addEventListener('click', function() {
+			
+			if(Helpers.application.isBlank(sharing.facebook)) {
+				Helpers.user.connectFacebook(function(user) {
+					facebook_button.backgroundImage = 'images/sharestory/fb_sharing.png';
+					sharing.facebook = facebook.id;
+				});
+			} else {
+				facebook_button.backgroundImage = 'images/sharestory/fb_not_sharing.png';
+				sharing.facebook = "";
+			};
 		});
-		
-		view.add(fbconnect);
 	};
 	
-	function connectTwitter() {
-		var twitter_connect = Titanium.UI.createButton({
-			title: "login twitter",
-			left:30,
-			height:41,
-			width:79,
-			backgroundColor: "red"
-		});	
+	function connectAndShareTwitter() {
 
-		twitter_connect.addEventListener('click', function() {
-			Helpers.user.connectTwitter(function(user) {
-				view.remove(twitter_connect);
-				showTwitter();
-			});
+		twitter_button.addEventListener('click', function() {
+			
+			if(Helpers.application.isBlank(sharing.twitter)) {
+				Helpers.user.connectTwitter(function(user) {
+					twitter_button.backgroundImage = "images/sharestory/tw_sharing.png";
+					sharing.twitter = twitter.id;
+				});
+			} else {
+				twitter_button.backgroundImage = 'images/sharestory/tw_not_sharing.png';
+				sharing.twitter = "";
+			};
 		});
-		
-		view.add(twitter_connect);
 	};
+	
 };
