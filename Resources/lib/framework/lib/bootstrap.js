@@ -19,7 +19,8 @@ Bootstrap.run = function() {
 		var kinds = {"views": Views, "controllers": Controllers, "layouts": Layouts, "config": Config, "lib": Lib, "helpers": Helpers};
 		var paths = name.split('/');
 		var kind = paths[0];
-		var namespace = paths[1];
+		
+		var namespace = (["iphone", "android"].indexOf(paths[1]) == -1) ? paths[1] : paths[2];
 		if(!kinds[kind][namespace]) kinds[kind][namespace] = {};
 		return name;
 	};

@@ -8,7 +8,7 @@ Controllers.tags = {
 		friend.name = friend.label;
 		
 		this.db.save(friend, function(new_tag) {
-			var story = Views.stories._form.source;
+			var story = Views.stories.form.source;
 			if(!story.tag_ids) story.tag_ids = "";
 			var old_val = story.tag_ids.split(',');
 			old_val.unshift(new_tag.id);
@@ -17,9 +17,9 @@ Controllers.tags = {
 		});
 		
 		if(!view.source) view.source = [];
-		if(!Views.stories._form.source.tags) Views.stories._form.source.tags = [];
+		if(!Views.stories.form.source.tags) Views.stories.form.source.tags = [];
 		view.source.unshift(friend);
-		Views.stories._form.source.tags = view.source;
+		Views.stories.form.source.tags = view.source;
 		view.render(view.source, {story: story});
 	},
 

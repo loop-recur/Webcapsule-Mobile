@@ -20,8 +20,8 @@ Helpers.player.timeMonitor = function(win, player, comments, photos) {
 	function showOverlays(interval) {
 		if(done){ return stop(); };
 		var position = player.currentPlaybackTime;
-		Functional.map(showOverlay.partial(Views.comments._comment, position), comments);
-		Functional.map(showOverlay.partial(Views.photos._photo, position), photos);
+		Functional.map(showOverlay.partial(Views.comments.comment, position), comments);
+		Functional.map(showOverlay.partial(Views.photos.photo, position), photos);
 	};
 
 	function showOverlay(view, position, item) {
@@ -53,6 +53,6 @@ Helpers.player.timeMonitor = function(win, player, comments, photos) {
 	}
 	
 	function hideAllOverlays() {
-		Functional.map("x.close()", [Views.comments._comment, Views.photos._photo]);
+		Functional.map("x.close()", [Views.comments.comment, Views.photos.photo]);
 	};
 };

@@ -9,11 +9,11 @@ Controllers.photos = {
 		var photo = params.photo;
 		var story = params.story;
 		
-		photo.story_id = Views.stories._form.source.id;
+		photo.story_id = Views.stories.form.source.id;
 		photo.user_id = App.currentUser().id;
 		
 		this.db.save(photo, function(new_photo) {
-			var story = Views.stories._form.source;
+			var story = Views.stories.form.source;
 			if(!story.photo_ids) story.photo_ids = "";
 			var old_val = story.photo_ids.split(',');
 			old_val.unshift(new_photo.id);

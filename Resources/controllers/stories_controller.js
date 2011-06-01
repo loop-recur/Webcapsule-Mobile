@@ -20,6 +20,7 @@ Controllers.stories = {
 	},
 	
 	show: function(view, params) {
+		Ti.API.info("call api in controller");
 		this.db.find(params.id, {
 			success: function(story){
 				view.render(story, params);
@@ -33,7 +34,7 @@ Controllers.stories = {
 		this.db.save(story, {
 			success: function(updated_story){
 				App.http_client.expireCache();
-				Views.stories._form.source = updated_story;
+				Views.stories.form.source = updated_story;
 				if(params.success) params.success(updated_story);
 			},
 			error: params.error

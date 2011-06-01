@@ -11,7 +11,10 @@ App.setCurrentUser = function(user) {
 		var user = {};
 	};
 	
-	if(user_file) user = JSON.parse(user_file.read());
+	if(user_file) {
+		// var user_data = user_file.read();
+		// user = JSON.parse(user_data);
+	} 
 	
 	App.currentUser = function() {
 		if(!(user && user.id)) Controllers.user_sessions.destroy();

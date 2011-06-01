@@ -1,7 +1,19 @@
 Titanium.UI.iPhone.statusBarStyle = Titanium.UI.iPhone.StatusBar.OPAQUE_BLACK;
-Titanium.include('initializers/init.js');
-try { App.run(); } catch(E) { alert("Failed with "+E); }
+Titanium.include('lib/framework/support/functional.js');
+Titanium.include('lib/framework/support/temp_id.js');
+Titanium.include('lib/framework/lib/base.js');
+Titanium.include('lib/framework/lib/bootstrap.js');
+Titanium.include('lib/framework/lib/app.js');
+Titanium.include('lib/framework/lib/views.js');
+Titanium.include('lib/framework/lib/layouts.js');
+Titanium.include('lib/framework/lib/cache.js');
+Titanium.include('lib/framework/support/http_client_with_cache.js');
+Titanium.include('lib/framework/lib/http_client.js');
+Titanium.include('lib/framework/lib/db.js');
+Titanium.include('config/file_list.js');
+Titanium.include('config/environments.js');
 
+App.run();
 var text_field_background_color = "#d6d6d6";
 var text_field_text_color = "#4F4F4F";
 Titanium.UI.setBackgroundColor('#000');

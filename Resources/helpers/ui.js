@@ -46,4 +46,6 @@ Helpers.ui.spinner = function(position_obj) {
 	return activity;
 };
 
-
+Helpers.ui.hideCamera = function() {
+	try { Ti.Media.hideCamera(); } catch(E) { };
+}

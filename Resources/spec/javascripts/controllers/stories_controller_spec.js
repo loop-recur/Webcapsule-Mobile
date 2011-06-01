@@ -105,7 +105,7 @@ describe("StoriesController", function() {
 		
 			it("updates the form's source", function() {
 				Controllers.stories.update(view, {story: {name: "blah"}, success : fakeSuccess});
-			  expect(Views.stories._form.source).toEqual({name: "blah", id : 1});
+			  expect(Views.stories.form.source).toEqual({name: "blah", id : 1});
 			});
 
 			it("calls save", function() {

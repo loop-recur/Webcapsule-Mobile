@@ -69,7 +69,7 @@ LoopRecur.HttpClient = function() {
 	
 	function setHeaders(client) {
 		if(priv_obj.credentials){
-			client.setRequestHeader('Authorization', priv_obj.credentials);
+			client.setRequestHeader('Authorization', priv_obj.credentials.toString());
 		} else {
 			client.setRequestHeader('Authorization', "not logged in"); //hack to get it to send json correctly
 		}
