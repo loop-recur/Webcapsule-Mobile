@@ -12,8 +12,10 @@ App.setCurrentUser = function(user) {
 	};
 	
 	if(user_file) {
-		// var user_data = user_file.read();
-		// user = JSON.parse(user_data);
+		try{
+			var user_data = user_file.read();
+			user = JSON.parse(user_data.toString());
+		} catch(e) {}
 	} 
 	
 	App.currentUser = function() {

@@ -2,11 +2,11 @@
 <ti:app xmlns:ti="http://www.webcapsule.com">
 <id>com.webcapsule.webcapsule</id>
 <name>webcapsule-mobile</name>
-<version>0.8</version>
-<publisher>Webcapsule</publisher>
-<url>www.webcapsule.com</url>
+<version>1.0</version>
+<publisher>not specified</publisher>
+<url>not specified</url>
 <description>not specified</description>
-<copyright>2011</copyright>
+<copyright>not specified</copyright>
 <icon>default_app_logo.png</icon>
     <persistent-wifi>true</persistent-wifi>
     <prerendered-icon>false</prerendered-icon>
