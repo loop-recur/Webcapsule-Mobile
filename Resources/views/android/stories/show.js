@@ -4,7 +4,7 @@ Views.stories.show.template = function() {
 	var self = this;
 	var story = self.source;
 	var win = self.win;
-	var url = App.file_url+"/streams/000/000/737/f12e8c15f6dcfa51e6aebcfdfcc9318bb56fce56.mp4";
+	var url = "http://www.pocketjourney.com/downloads/pj/video/famous.3gp";
 	
 	var player = Titanium.Media.createVideoPlayer({
 		movieControlMode:Titanium.Media.VIDEO_CONTROL_DEFAULT,

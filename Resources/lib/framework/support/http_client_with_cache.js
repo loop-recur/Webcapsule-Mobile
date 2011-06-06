@@ -210,8 +210,12 @@
       db = Titanium.Database.open('http_client_cache');
       seconds != null ? seconds : seconds = this.options.cacheSeconds;
       row = db.execute("SELECT RESPONSE, UPDATED_AT FROM REQUESTS WHERE URL_HASH=? AND UPDATED_AT > DATETIME('now','-" + seconds + " seconds')", this.url_hash);
-      responseText = row.field(0);
-      cachedAt = row.field(1);
+			try{ 
+      	responseText = row.field(0);
+      	cachedAt = row.field(1);
+			} catch(e) {
+				
+			}
       row.close();
       db.close();
       if (responseText != null) {
