@@ -4,7 +4,7 @@ Views.stories.init.template = function() {
 	var win = this.win;
 
 	var recordButton = Titanium.UI.createButton({
-	    top: 10, left: 10, right: 10, height: 35, title: 'Record Video'
+	    top: 100, left: 10, right: 10, height: 35, title: 'Record Video'
 	});
 	win.add(recordButton);
 	var shareButton = Titanium.UI.createButton({
