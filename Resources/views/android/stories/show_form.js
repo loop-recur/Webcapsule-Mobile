@@ -2,8 +2,8 @@ Views.stories.show_form = Views.extend();
 
 Views.stories.show_form.template = function() {
 	var self = this;
-	var win = self.params.win;
-	var form_view = Titanium.UI.createView({bottom: 0, height: 245, zIndex:10});
+	var win = self.params.player;
+	var form_view = Titanium.UI.createView({top: 0, height: 245, zIndex:10});
 	
 	var buttons_from_top_length = 72;
 	var button_width = 64;
@@ -12,15 +12,7 @@ Views.stories.show_form.template = function() {
 	var functionality_view = Titanium.UI.createView({
 		height:193,
 		width:320,
-		bottom:-137
-	});
-
-	var edit_details_btn = Titanium.UI.createButton({
-		backgroundImage:'images/postrecord/edit_details_pressed.png',
-		height:56,
-		width:55,
-		top:0,
-		left:0
+		top:0
 	});
 	
 	var comment_bar = Titanium.UI.createView({
@@ -110,38 +102,6 @@ Views.stories.show_form.template = function() {
 	tray.add(user_icon);
 	tray.add(user);
 
-
-
-	// var story_title = Titanium.UI.createLabel({
-	// 	text:self.source.name,
-	// 	font:{fontSize:18,fontWeight:'regular',fontFamily:'Helvetica Neue'},
-	// 	color:'#616161',
-	// 	top:8,
-	// 	left:10,
-	// 	height:20,
-	// 	width:300
-	// });
-	// 
-	// var story_duration = Titanium.UI.createLabel({
-	// 	text:self.source.duration,
-	// 	font:{fontSize:11, fontWeight:'bold'},
-	// 	color:'#616161',
-	// 	top:35,
-	// 	left:10,
-	// 	height:15,
-	// 	width:40
-	// });
-	// 
-	// var story_user = Titanium.UI.createLabel({
-	// 	text:self.source.user.full_name,
-	// 	font:{fontSize:13,fontWeight:'regular',fontFamily:'Helvetica Neue'},
-	// 	color:'#616161',
-	// 	top:,
-	// 	left:10,
-	// 	height:15,
-	// 	width:100
-	// });
-	
 	var comment_button = Titanium.UI.createButton({
 		value:false,
 		top:buttons_from_top_length,
@@ -212,27 +172,10 @@ Views.stories.show_form.template = function() {
 	share_button.addEventListener('click', function() {
 		App.action(win, "sharings#init", {story : self.source, automatic_share: true});
 	});
-
-	edit_details_btn.addEventListener('click', function() {
-		if(edit_details_btn.backgroundImage === 'images/postrecord/btn_retract_normal.png') {
-				edit_details_btn.backgroundImage = 'images/postrecord/edit_details_pressed.png';
-				functionality_view.animate({bottom:-137, duration:500});
-			} else {
-				edit_details_btn.backgroundImage = 'images/postrecord/btn_retract_normal.png';
-				functionality_view.animate({bottom:0, duration:500});
-			};
-	});
-
-	Layouts.story.toggle_compact_play_controls(true);
-	Views.stories.form.player_controls_toggle(false);
 	
 	functionality_view.add(comment_bar);
-	functionality_view.add(edit_details_btn);
 	functionality_view.add(tray);
 	
-	// tray.add(story_title);
-	// tray.add(story_duration);
-	// tray.add(story_user);
 	tray.add(comment_button);
 	tray.add(photo_button);
 	tray.add(video_button);

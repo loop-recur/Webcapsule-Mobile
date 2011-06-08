@@ -11,15 +11,22 @@ Views.photos.photo.template = function() {
 		top:0,
 		left:0,
 		width:150,
-		height:150
+		height:150,
+		visible: false
 	});
 	
 	parent_win.add(view);
 	
 	self.close = function() {
-		parent_win.remove(view);
+		Ti.API.info("Closing");
+		view.visible = false;
+		Ti.API.info("Should be gone");
 	};
 	
+	self.show = function() {
+		Ti.API.info("Closing");
+		view.visible = true;
+		Ti.API.info("Should be visible");
+	}
+	
 };
-
-Views.photos.photo.close = function(){};
