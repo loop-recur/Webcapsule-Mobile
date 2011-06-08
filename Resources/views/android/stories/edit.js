@@ -29,7 +29,7 @@ Views.stories.edit.template = function() {
 		Layouts.stories();
 	});
 
-	self.win.add(activeMovie);
+	// self.win.add(activeMovie);
 	self.win.add(close_btn);
 	
 	Views.stories.form.render(self.source, {win: self.win, enable:true, player:activeMovie});
