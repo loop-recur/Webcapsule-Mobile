@@ -2,13 +2,14 @@ Views.comments.comment = Views.extend();
 
 Views.comments.comment.template = function() {
 	var self = this;
-	var parent_win = Views.stories.show_form.comment_bar;
+	var parent_win = self.params.win;
 	var comment = self.source;
 
 	view = Ti.UI.createView({
 		height:58,
 		width:265,
 		right:0,
+		visible: false
 	});
 	
 	var avatar = Titanium.UI.createImageView({
@@ -45,8 +46,14 @@ Views.comments.comment.template = function() {
 	parent_win.add(view);
 	
 	self.close = function() {
-		parent_win.remove(view);
+		Ti.API.info("Closing");
+		view.visible = false;
+		Ti.API.info("Should be gone");
 	};
+	
+	self.show = function() {
+		Ti.API.info("Closing");
+		view.visible = true;
+		Ti.API.info("Should be visible");
+	}
 };
-
-Views.comments.comment.close = function(){};

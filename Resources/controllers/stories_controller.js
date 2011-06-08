@@ -20,7 +20,6 @@ Controllers.stories = {
 	},
 	
 	show: function(view, params) {
-		Ti.API.info("call api in controller");
 		this.db.find(params.id, {
 			success: function(story){
 				view.render(story, params);

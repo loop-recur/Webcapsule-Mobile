@@ -224,7 +224,7 @@ Views.stories.show_form.template = function() {
 	});
 
 	Layouts.story.toggle_compact_play_controls(true);
-	// Views.stories.form.player_controls_toggle(false);
+	Views.stories.form.player_controls_toggle(false);
 	
 	functionality_view.add(comment_bar);
 	functionality_view.add(edit_details_btn);
