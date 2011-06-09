@@ -1,10 +1,10 @@
 Views.stories.form = Views.extend();
 
 Views.stories.form.template = function() {
+	Ti.API.info("edit form!");
 	var self = this;
 	
 	var camera_overlay = self.params.win;
-	var enable = self.params.enable;
 	var player = self.params.player;
 	var story = self.source; // don't use this
 	var form_view = Titanium.UI.createView({bottom: 0, height: 245, zIndex:10});
@@ -18,71 +18,18 @@ Views.stories.form.template = function() {
 	var functionality_view = Titanium.UI.createView({
 		height:193,
 		width:320,
-		bottom:-137
+		bottom:0
 	});
 	
-	var edit_details_btn = Titanium.UI.createButton({
-		backgroundImage:'images/postrecord/edit_details_pressed.png',
-		height:56,
-		width:55,
-		top:0,
-		left:0
-	});
-
 	var record_tray = Titanium.UI.createView({
 		backgroundImage:'images/record/bar-recordupload.png',
 		height:56,
 		width:115,
 		top:0,
 		right:0,
-		visible:false
+		visible:true
 	});
 	
-	Views.stories.form.toggle_record_tray = function (state) {
-		record_tray.visible = state;
-	};
-
-	var start_stop_button = Titanium.UI.createButton({
-		backgroundImage:'images/record/rec_button.png',
-		backgroundSelectedImage:'images/record/rec_button_pressed.png',
-		left:6,
-		width:49,
-		height:43,
-		value:false,
-		visible:false
-	});
-	
-	start_stop_button.addEventListener('click',function()
-	{	
-		start_stop_button.backgroundImage = "images/record/rec_stop_button.png";
-		start_stop_button.backgroundSelectedImage = "images/record/rec_stop_button_down.png";
-		Views.stories.form.toggle_upload(false);
-		Ti.Media.startVideoCapture();
-	});
-	
-	Views.stories.form.toggle_start_stop = function (state) {
-		start_stop_button.visible = state;
-	};
-	
-	var uploadvid_button = Titanium.UI.createButton({
-		backgroundImage:'images/record/uploadvid_normal.png',
-		backgroundSelectedImage:'images/record/uploadvid_pressed.png',
-		right:6,
-		width:49,
-		height:43,
-		value:false,
-		visible:false
-	});
-	
-	uploadvid_button.addEventListener('click',function() {
-		Views.stories.form.toggle_upload(false);
-		Views.stories.init.chooseVideo();
-	});
-	
-	Views.stories.form.toggle_upload = function(state) {
-		uploadvid_button.visible = state;
-	};
-		
 	var accept_button = Titanium.UI.createButton({
 		value:false,
 		top:0,
@@ -91,13 +38,9 @@ Views.stories.form.template = function() {
 		width:49,
 		backgroundImage:'images/postrecord/accept_btn.png',
 		backgroundSelectedImage:'images/postrecord/accept_btn_pressed.png',
-		visible:false
+		visible:true
 	});
 	
-	Views.stories.form.accept_button_toggle = function(state) {
-		accept_button.visible = state;
-	};
-
 	var saving_label = Titanium.UI.createLabel({
 		text:'Saving..',
 		right:-100,
@@ -108,50 +51,6 @@ Views.stories.form.template = function() {
 		textAlign:'center',
 		visible:false
 	});	
-	
-	var edit_play_controls = Titanium.UI.createView({
-		backgroundImage:"images/playercontrols/player_bar-fullwidth.png",
-		height:56,
-		top:0,
-		width:320,
-		visible:false
-	});
-	
-	Views.stories.form.player_controls_toggle = function (state) {
-		edit_play_controls.visible = state;
-	};
-
-	var play_pause_button = Titanium.UI.createButton({
-		backgroundImage:"images/playercontrols/play_btn.png",
-		height:32,
-		width:32
-	});
-
-	var ff_button = Titanium.UI.createButton({
-		backgroundImage:"images/playercontrols/ffw_btn.png",
-		height:32,
-		width:32,
-		right:100
-	});
-
-	ff_button.addEventListener('click', function() {
-		player.stop();
-		player.initialPlaybackTime = player.currentPlaybackTime + 5;
-		player.play();
-	});
-
-	var rw_button = Titanium.UI.createButton({
-		backgroundImage:"images/playercontrols/rw_btn.png",
-		height:32,
-		width:32,
-		left:90
-	});
-
-	rw_button.addEventListener('click', function() {
-		player.stop();
-		player.initialPlaybackTime = player.currentPlaybackTime - 5;
-		player.play();
-	});
 	
 	var rerecord_button = Titanium.UI.createButton({
 		backgroundImage:"images/playercontrols/rec_btn.png",
@@ -169,24 +68,7 @@ Views.stories.form.template = function() {
 			cancel : function() {}
 		});
 	});
-
-	play_pause_button.addEventListener('click', function() {
-		if(player.playing) {
-			player.stop();
-			play_pause_button.backgroundImage = "images/playercontrols/play_btn.png";		
-		} else {
-			player.play();
-			play_pause_button.backgroundImage = "images/playercontrols/pause_btn.png";
-		}
-	});
-	
-	if(player) {
-			player.addEventListener('complete',function() {
-				player.stop();
-				play_pause_button.backgroundImage = "images/playercontrols/play_btn.png";
-		});
-	};
-											
+												
 	var tray = Titanium.UI.createView({
 		backgroundImage:'images/postrecord/edit_details_drawer.png',
 		height:137,
@@ -225,11 +107,10 @@ Views.stories.form.template = function() {
 		width:button_width,
 		height:button_height,
 		backgroundImage:'images/postrecord/tag_normal.png',
-		backgroundSelectedImage:'images/postrecord/tag_pressed.png',
-		enabled:enable
+		backgroundSelectedImage:'images/postrecord/tag_pressed.png'
 	});
 	
-	if(enable) tag_friends_button.addEventListener('click', function() {
+	tag_friends_button.addEventListener('click', function() {
 		App.action(camera_overlay, "tags#init", {story_tags : self.source.tags, story: self.source });
 	});
 	
@@ -281,11 +162,10 @@ Views.stories.form.template = function() {
 		width:button_width,
 		height:button_height,
 		backgroundImage:photos_backgroundImage,
-		backgroundSelectedImage:'images/postrecord/addphotos_pressed.png',
-		enabled:enable
+		backgroundSelectedImage:'images/postrecord/addphotos_pressed.png'
 	});
 
-	if(enable) add_photos_button.addEventListener('click', function() {
+	add_photos_button.addEventListener('click', function() {
 		App.action(camera_overlay, "photos#init", { photos : self.source.photos, story: self.source });
 	});	
 	
@@ -335,15 +215,14 @@ Views.stories.form.template = function() {
 		width:button_width,
 		height:button_height,
 		backgroundImage:'images/postrecord/share_normal.png',
-		backgroundSelectedImage:'images/postrecord/share_pressed.png',
-		enabled:enable
+		backgroundSelectedImage:'images/postrecord/share_pressed.png'
 	});
 	
 	Views.stories.form.toggle_sharing_icon = function(state) {
 		share_button.backgroundImage = state ? 'images/postrecord/share_activated.png' : 'images/postrecord/share_normal.png';
 	};
 	
-	if(enable) share_button.addEventListener('click', function() {
+	share_button.addEventListener('click', function() {
 		App.action(camera_overlay, "sharings#init", {story : self.source});
 	});
 	
@@ -378,35 +257,15 @@ Views.stories.form.template = function() {
 	});
 	
 	self.accept_button = accept_button;
-
-	edit_details_btn.addEventListener('click', function() {
-		if(edit_details_btn.backgroundImage === 'images/postrecord/btn_retract_normal.png') {
-				edit_details_btn.backgroundImage = 'images/postrecord/edit_details_pressed.png';
-				functionality_view.animate({bottom:-137, duration:500});
-			} else {
-				edit_details_btn.backgroundImage = 'images/postrecord/btn_retract_normal.png';
-				functionality_view.animate({bottom:0, duration:500});
-			};
-	});
-	
-	self.edit_details_btn = edit_details_btn;
 	
 	Views.stories.form.accept_button_toggle = function(state) {
 		accept_button.visible = state;
 	};
 	
-	functionality_view.add(edit_play_controls);
-	edit_play_controls.add(play_pause_button);
-	edit_play_controls.add(ff_button);
-	edit_play_controls.add(rw_button);
-	edit_play_controls.add(rerecord_button);
-	
 	functionality_view.add(record_tray);
-	record_tray.add(start_stop_button);
-	record_tray.add(uploadvid_button);
 	
-	functionality_view.add(edit_details_btn);
 	functionality_view.add(accept_button);
+	functionality_view.add(rerecord_button);
 	functionality_view.add(saving_label);
 	functionality_view.add(tray);
 	
@@ -420,6 +279,5 @@ Views.stories.form.template = function() {
 	form_view.add(functionality_view);
 	camera_overlay.add(form_view);
 	
-	if(enable) edit_details_btn.fireEvent('click');
-	
+	Ti.API.info("done!");
 };
