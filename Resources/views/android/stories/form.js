@@ -62,7 +62,6 @@ Views.stories.form.template = function() {
 	rerecord_button.addEventListener('click', function() {
 		Helpers.ui.confirm("Re-record entire video", {
 			yes : function() {
-				camera_overlay.close();
 				Layouts.record(self.source);
 			},
 			cancel : function() {}
@@ -244,7 +243,6 @@ Views.stories.form.template = function() {
 				accept_button.visible = true;
 				saving_label.visible = false;
 				saving_label.right = -100;
-				camera_overlay.close();
 				Layouts.stories();
 			},
 			error : function(errors) {

@@ -17,16 +17,17 @@ Views.photos.photo.template = function() {
 	
 	parent_win.add(view);
 	
-	self.close = function() {
+	self.close = function(v) {
 		Ti.API.info("Closing");
-		view.visible = false;
+		v.visible = false;
 		Ti.API.info("Should be gone");
 	};
 	
-	self.show = function() {
+	self.show = function(v) {
 		Ti.API.info("Closing");
-		view.visible = true;
+		v.visible = true;
 		Ti.API.info("Should be visible");
-	}
+	};
 	
+	return view;
 };

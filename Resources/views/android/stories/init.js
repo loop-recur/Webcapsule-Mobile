@@ -45,12 +45,14 @@ Views.stories.init.template = function() {
 	                }).show();
 	                // note that this isn't a physical file! it's a URI in to the MediaStore.
 							    var source = Ti.Filesystem.getFile(videoUri);
+									var target = Ti.Filesystem.getFile('appdata://movie.3gp');
+									source.copy(target.nativePath);
 							
 							    // note: source.exists() will return false, because this is a URI into the MediaStore.
 							    // BUT we can still call "copy" to save the data to an actual file
 
 									story = {};
-									video = source;
+									video = target.read();
 									saveVideo();
 									App.action(win, "stories#edit", {story : story, upload : video});
 	            } else {
@@ -66,10 +68,8 @@ Views.stories.init.template = function() {
 	
 	
 	function saveVideo() {
-		Ti.API.info(video);
-		
 		App.action(win, "videos#create", {
-			video: {upload : video },
+			video: {name : "movie", upload : video },
 			success: function (uploaded_video) {
 				if(uploaded_video) {
 					story.video_id = uploaded_video.id;

@@ -26,8 +26,9 @@ Bootstrap.run = function() {
 	};
 
 	function runEnvironment() {
-		var isIphone = Titanium.Filesystem.resourcesDirectory.split("/")[1] === "var";
-		var environment = isIphone ? "production" : "development";
+		var filepath = Titanium.Filesystem.resourcesDirectory.split("/")[1];
+		var isDevice = (filepath === "var") || (filepath === "");
+		var environment = isDevice ? "production" : "development";
 		App.environments[environment]();
 	}
 };
