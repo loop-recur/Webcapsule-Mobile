@@ -1,10 +1,10 @@
 Views.stories.init = Views.extend();
 
 Views.stories.init.template = function() {
-	var self = this;
+	var video, progress_bar, bar_area, story;
+	var videoUri;
 	var win = this.win;
-
-
+	
 	var recordButton = Titanium.UI.createButton({
 	    top: 100, left: 10, right: 10, height: 35, title: 'Record Video'
 	});
@@ -22,9 +22,6 @@ Views.stories.init.template = function() {
 	var videoUri = null;
 	var videoIntent = null;
 
-	/**
-	 * When they click this, we'll start the video capture activity and wait to hear back from it.
-	 */
 	recordButton.addEventListener('click', function() {
 	    // http://developer.android.com/reference/android/provider/MediaStore.html
 	    var intent = Titanium.Android.createIntent({ 
@@ -56,55 +53,111 @@ Views.stories.init.template = function() {
 	        }
 	    });
 	});
-
-	/**
-	 * When they click this, we'll save the video to the SDCard and tell the user where to find it.
-	 */
-	saveButton.addEventListener('click', function() {
-	    var source = Ti.Filesystem.getFile(videoUri);
-	    var target = Ti.Filesystem.getFile('appdata://samplee.3gp');
-	    // note: source.exists() will return false, because this is a URI into the MediaStore.
-	    // BUT we can still call "copy" to save the data to an actual file
-			
-			Ti.API.info("------------------------------------------------------HERE------------------------------------------------------------------------------------------------------------------");
-	    Ti.API.info(source);
-	    Ti.API.info(target);
-			source.copy(target.nativePath);
-			
-			Ti.API.info("------------------------------------------------------HERE------------------------------------------------------------------------------------------------------------------");
-
-	    // Ti.UI.createNotification({
-	    //     duration: Ti.UI.NOTIFICATION_DURATION_LONG,
-	    //     message: 'Saved to: ' + target.nativePath
-	    // }).show();
-			
-			afterRecord(source);
-	});
-	
 	
 	function afterRecord(source) {
-		video = source; //{upload : event.media};
+		var target = Ti.Filesystem.getFile('appdata://movie.3gp');
+		source.copy(target.nativePath);
+		video = target.read();
+		story = {};
+		
+		progress_bar = Titanium.UI.createProgressBar({
+			width:240,
+			top:10,
+			height:0,
+			min:0,
+			max:1,
+			value:0,
+			color:'black'
+		});	
+
+		progress_bar.show();
+		bar_area = makeProgressArea();
+		
 		saveVideo();
-		App.action(win, "stories#edit", {story : self.source, upload : video});
+		win.add(bar_area);
+		App.action(win, "stories#edit", {story : story, upload : video});		
 	};
 	
 	function saveVideo() {
-		var story = Views.stories.form.source;
-		
 		App.action(win, "videos#create", {
-			video: video,
+			video: {name : "movie", upload : video },
 			success: function (uploaded_video) {
 				if(uploaded_video) {
 					var story = Views.stories.form.source;
 					story.video_id = uploaded_video.id;
-					alert("Video Uploaded");
+					// bar_area.visible = false;
 				};
 			},
 			error : function() {
 				alert("There was an error uploading, please try again");
+				bar_area.visible = false;
 			},
 			http_options : {}
 		});
 	};
+
+	function makeProgressArea() {
+		var view = Titanium.UI.createView({
+			top:0,
+			width:320,
+			height:26,
+			backgroundColor:'black',
+			zIndex:999
+		});
+		
+		var cancel_button = Titanium.UI.createButton({  
+			backgroundImage:"images/uploadbar/upload_cancel.png",
+	    top:0,
+	  	right:0,
+	    width:26,
+	    height:26
+		});
+		
+		var activity = Titanium.UI.createActivityIndicator({
+			top:0,
+			left:1,
+			height:26,
+			width:26
+		});
+
+		activity.show();
+		
+		var retry_button = Titanium.UI.createButton({  
+			backgroundImage:"images/uploadbar/upload_retry.png",
+	    top:0,
+	  	right:0,
+	    width:26,
+	    height:26,
+			visible: false
+		});
+		
+		retry_button.addEventListener("click", function() {
+			trySaving();
+		});
 	
+		cancel_button.addEventListener('click', function() {
+			if(Ti.App.current_xhr) Ti.App.current_xhr.abort();
+			activity.hide();
+			retry_button.visible = true;
+			cancel_button.visible = false;
+		});
+		
+		var trySaving = function() {
+			cancel_button.visible = true;
+			retry_button.visible = false;
+			activity.show();
+			if(!story.video_id){ saveVideo(); };
+		};
+		
+		view.add(cancel_button);
+		view.add(activity);
+		view.add(retry_button);
+		view.add(progress_bar);
+		
+		cancel_button.visible = true;
+		retry_button.visible = false;
+		activity.show();
+		
+		return view;
+	};
 };

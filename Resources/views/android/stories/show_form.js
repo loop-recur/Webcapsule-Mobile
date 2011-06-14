@@ -154,9 +154,8 @@ Views.stories.show_form.template = function() {
 	});
 
 	edit_button.addEventListener('click', function() {
-		win.remove(form_view);
+		form_view.visible = false;
 		App.action(win, "stories#edit", {win: win, story : self.source});
-		Views.stories.form.edit_details_btn.fireEvent('click');
 	});
 	
 	var share_button = Titanium.UI.createButton({

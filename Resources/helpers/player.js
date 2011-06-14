@@ -1,9 +1,7 @@
 Helpers.player = {};
 
 Helpers.player.timeMonitor = function(win, player, comments, photos) {
-	Ti.API.info("in timeMonitor");
 	var appear_time = 4;
-	var self = this;
 	var done = false;
 	var stop;
 	
@@ -11,9 +9,19 @@ Helpers.player.timeMonitor = function(win, player, comments, photos) {
 		
 	start();
 	
+	function buildViews(view, items) {
+		Functional.map(_build, items);
+
+		function _build(item) {
+			var v = view.render(item, {win:win});
+			item.view = v;
+		};
+	}
+	
 	function start() {
-		Functional.map(function(c){ Views.comments.comment.render(c, {win : win}) }, comments);
-		Functional.map(function(p){ Views.photos.photo.render(p, {win : win}) }, photos);
+		Ti.API.info("Starting");
+		buildViews(Views.comments.comment, comments);
+		buildViews(Views.photos.photo, photos);
 		var intervalId = setInterval(showOverlays, 1000);
 		stop = function() {
 			clearInterval(intervalId);
@@ -24,9 +32,10 @@ Helpers.player.timeMonitor = function(win, player, comments, photos) {
 	function showOverlays() {
 		Ti.API.info("Trying");
 		if(done){ Ti.API.info("stopping"); return stop(); };
-		var position = time += 1; //player.currentPlaybackTime;		
+		var position = time; //player.currentPlaybackTime;
 		Functional.map(showOverlay.partial(Views.comments.comment, position), comments);
 		Functional.map(showOverlay.partial(Views.photos.photo, position), photos);
+		time += 1;
 	};
 
 	function showOverlay(view, position, item) {
@@ -43,13 +52,13 @@ Helpers.player.timeMonitor = function(win, player, comments, photos) {
 			if(item.showing) return true;
 			Ti.API.info("Rendering!");
 			Ti.API.info(item);
-			view.show();
+			item.view.visible = true;
 			item.showing = true;
 		}
 
 		function hide() {
 			if(!item.showing) return true;
-			view.close();
+			item.view.visible = false;
 			item.showing = false;
 		}
 	};
@@ -62,6 +71,6 @@ Helpers.player.timeMonitor = function(win, player, comments, photos) {
 	}
 	
 	function hideAllOverlays() {
-		Functional.map("x.close()", [Views.comments.comment, Views.photos.photo]);
+		// Functional.map("x.close()", [Views.comments.comment, Views.photos.photo]);
 	};
 };

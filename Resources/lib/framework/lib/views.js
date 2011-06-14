@@ -5,7 +5,7 @@ Views.extend = function() {
 		render : function(source, params) {
 			if(source) this.source = source;
 			this.params = params || {};
-			this.template();
+			return this.template();
 		}
 	};
 };

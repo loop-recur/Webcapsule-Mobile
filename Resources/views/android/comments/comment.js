@@ -45,15 +45,5 @@ Views.comments.comment.template = function() {
 	view.add(title);
 	parent_win.add(view);
 	
-	self.close = function() {
-		Ti.API.info("Closing");
-		view.visible = false;
-		Ti.API.info("Should be gone");
-	};
-	
-	self.show = function() {
-		Ti.API.info("Closing");
-		view.visible = true;
-		Ti.API.info("Should be visible");
-	}
+	return view;
 };
