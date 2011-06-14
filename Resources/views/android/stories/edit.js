@@ -2,32 +2,25 @@ Views.stories.edit = Views.extend();
 
 Views.stories.edit.template = function() {
 	var self = this;
+	var win = self.win;
+	var bar_area = self.params.bar_area;
+	var url = self.params.upload ? self.params.upload.nativePath : App.file_url+self.source.video_url;
+	// alert(self.params.upload.nativePath);
 	
 	var player = Titanium.Media.createVideoPlayer({
-		movieControlMode:Titanium.Media.VIDEO_CONTROL_DEFAULT
+		movieControlMode:Titanium.Media.VIDEO_CONTROL_DEFAULT,
+		url: url
 	});
 	
-	if(self.params.upload) {
-		player.media = self.params.upload;
-	} else {
-		player.url = App.file_url+self.source.video_url;
-	};
-	
-	var close_btn = Titanium.UI.createButton({
-		backgroundImage:"images/postrecord/return.png",
-		height:26,
-		width:26,
-		top:5,
-		left:5
+	win.addEventListener('close', function() {
+		if(self.params.activity) self.params.activity.hide();
+		player.stop();
+		player.hide();
 	});
 	
-	close_btn.addEventListener('click', function() {
-		self.win.close();
-		Layouts.stories();
-	});
+	if(bar_area) player.add(bar_area);
+	
+	player.play();
+	Views.stories.form.render(self.source, {win: win, player:player});
 
-	// self.win.add(activeMovie);
-	self.win.add(close_btn);
-	
-	Views.stories.form.render(self.source, {win: player, enable:true, player:player});
 };

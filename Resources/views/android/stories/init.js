@@ -1,12 +1,14 @@
 Views.stories.init = Views.extend();
 
 Views.stories.init.template = function() {
-	var video, progress_bar, bar_area, story;
+	var self = this;
+	var video, activity, progress_bar, bar_area, story;
 	var videoUri;
-	var win = this.win;
+	var win = self.win;
+	var story = self.source;
 	
 	var recordButton = Titanium.UI.createButton({
-	    top: 100, left: 10, right: 10, height: 35, title: 'Record Video'
+		top: 10, left: 10, right: 10, height: 35, title: 'Record Video'
 	});
 	win.add(recordButton);
 	
@@ -58,7 +60,6 @@ Views.stories.init.template = function() {
 		var target = Ti.Filesystem.getFile('appdata://movie.3gp');
 		source.copy(target.nativePath);
 		video = target.read();
-		story = {};
 		
 		progress_bar = Titanium.UI.createProgressBar({
 			width:240,
@@ -73,9 +74,8 @@ Views.stories.init.template = function() {
 		progress_bar.show();
 		bar_area = makeProgressArea();
 		
+		App.action(win, "stories#edit", {story : story, upload : target, bar_area: bar_area, activity: activity});
 		saveVideo();
-		win.add(bar_area);
-		App.action(win, "stories#edit", {story : story, upload : video});		
 	};
 	
 	function saveVideo() {
@@ -92,7 +92,7 @@ Views.stories.init.template = function() {
 				alert("There was an error uploading, please try again");
 				bar_area.visible = false;
 			},
-			http_options : {}
+			http_options : {progress_bar : progress_bar}
 		});
 	};
 
@@ -113,7 +113,7 @@ Views.stories.init.template = function() {
 	    height:26
 		});
 		
-		var activity = Titanium.UI.createActivityIndicator({
+		activity = Titanium.UI.createActivityIndicator({
 			top:0,
 			left:1,
 			height:26,
