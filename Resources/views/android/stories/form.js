@@ -1,7 +1,6 @@
 Views.stories.form = Views.extend();
 
 Views.stories.form.template = function() {
-	Ti.API.info("edit form!");
 	var self = this;
 	
 	var camera_overlay = self.params.win;
@@ -89,16 +88,6 @@ Views.stories.form.template = function() {
 	    returnKeyType:Titanium.UI.RETURNKEY_DONE
 	});
 	
-	story_title_field.addEventListener('focus', function()
-	{			
-		functionality_view.animate({bottom:129, duration:250});
-	});
-
-	story_title_field.addEventListener('blur', function()
-	{			
-		functionality_view.animate({bottom:0, duration:250});
-	});
-
 	var tag_friends_button = Titanium.UI.createButton({
 		value:false,
 		top:buttons_from_top_length,
@@ -243,6 +232,7 @@ Views.stories.form.template = function() {
 				accept_button.visible = true;
 				saving_label.visible = false;
 				saving_label.right = -100;
+				win.close();
 				Layouts.stories();
 			},
 			error : function(errors) {
@@ -276,6 +266,4 @@ Views.stories.form.template = function() {
 
 	form_view.add(functionality_view);
 	camera_overlay.add(form_view);
-	
-	Ti.API.info("done!");
 };

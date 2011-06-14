@@ -43,11 +43,11 @@ Views.sharings.init.template = function() {
 			App.action(win, "sharings#create", {
 				sharing : sharing,
 				success : function() {
-					win.remove(container);
+					container.visible = false;
 				}
 			});
 		} else {
-			win.remove(container);
+			container.visible = false;
 		}
 	});
 
@@ -75,7 +75,7 @@ Views.sharings.init.template = function() {
 	});
 	
 	cancel_button.addEventListener('click', function() {
-		win.remove(container);
+		container.visible = false;
 	});
 	
 	view.add(share_button);

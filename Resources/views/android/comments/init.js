@@ -47,7 +47,7 @@ Views.comments.init.template = function() {
 			comment : comment,
 			story : story,
 			success : function() {
-				win.remove(view);
+				view.visible = false;
 			}
 		});
 	});
@@ -58,7 +58,7 @@ Views.comments.init.template = function() {
 			comment : comment,
 			story : story,
 			success : function() {
-				win.remove(view);
+				view.visible = false;
 			}
 		});
 	});
@@ -72,7 +72,7 @@ Views.comments.init.template = function() {
 	});
 	
 	cancel_button.addEventListener('click', function() {
-		win.remove(view);
+		view.visible = false;
 	});
 	
 	view.add(ok_button);
