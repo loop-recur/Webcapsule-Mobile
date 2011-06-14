@@ -18,7 +18,6 @@ Views.stories.show.template = function() {
 	
 	var started;
 	player.addEventListener('load', function() {
-		Ti.API.info("loaded!");
 		if(!started) {
 			Helpers.player.timeMonitor(player, player, story.comments, story.photos);
 			started = true;

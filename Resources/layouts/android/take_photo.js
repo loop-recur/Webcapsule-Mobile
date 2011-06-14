@@ -5,7 +5,7 @@ Layouts.take_photo = function(win, photo, story) {
 		{
 			Views.photos.init.lockDone(true);
 			var image = Helpers.images.resize(event.media,375,638);
-			photo.upload = image;
+			photo.upload = image.media;
 			
 			App.action(win, "photos#create", {photo : photo, story: story});
 		},

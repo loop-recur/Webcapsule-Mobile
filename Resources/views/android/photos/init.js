@@ -2,8 +2,9 @@ Views.photos.init = Views.extend();
 
 Views.photos.init.template = function() {
 	var self = this;
+	var parent_win = self.win;
 	
-	var win = Titanium.UI.createWindow();
+	var win = Titanium.UI.createView();
 	
 	var photo_tray = Titanium.UI.createView({
 		top:0,
@@ -36,20 +37,6 @@ Views.photos.init.template = function() {
 		Layouts.take_photo(win, self.source, self.params.story);
 	});
 
-	var choose_existing = Titanium.UI.createButton({  
-	    value:false,
-			backgroundImage:'images/add_photo/add_photo_normal.png',
-			backgroundSelectedImage:'images/add_photo/add_photo_pressed.png',  
-	  	left:73,
-			bottom:20,
-	    width:53,  
-	    height:55
-	});
-
-	choose_existing.addEventListener('click', function() {
-		Layouts.choose_photo(win, self.source, self.params.story);
-	});
-
 	var done_button = Titanium.UI.createButton({  
 	    value:false,
 			backgroundImage:'images/app_wide/ok_normal.png',
@@ -62,7 +49,7 @@ Views.photos.init.template = function() {
 
 	done_button.addEventListener('click', function() {
 		(Helpers.application.isBlank(Views.photos.create.source)) ? Views.stories.form.toggle_photo_icon(false) : Views.stories.form.toggle_photo_icon(true);
-		win.close();
+		win.visible = false;
 	});
 	
 	var lock_done_button = Titanium.UI.createButton({  
@@ -86,7 +73,6 @@ Views.photos.init.template = function() {
 	photo_tray.add(done_button);
 	photo_tray.add(lock_done_button);
 	photo_tray.add(take_picture);
-	photo_tray.add(choose_existing);
 
 	win.add(photo_tray);
 	
@@ -95,5 +81,5 @@ Views.photos.init.template = function() {
 	Views.photos.create.hide_delete = self.params.hide_delete;
 	Views.photos.create.render(self.params.photos);
 
-	win.open();
+	parent_win.add(win);
 };

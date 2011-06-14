@@ -2,12 +2,14 @@ Views.tags.init = Views.extend();
 
 Views.tags.init.template = function() {
 	var self = this;
+	var parent_win = self.win;
 	self.view = makeView();
 	
 	var story_tags = self.params.story_tags || [];
 	
-	var win = Titanium.UI.createWindow({
+	var win = Titanium.UI.createView({
 		opacity:0.9,
+		zIndex:30,
 		backgroundColor:'black'
 	});
 
@@ -83,7 +85,7 @@ Views.tags.init.template = function() {
 
 	done_button.addEventListener('click', function() {
 		(Helpers.application.isBlank(story_tags)) ? Views.stories.form.toggle_tag_icon(false) : Views.stories.form.toggle_tag_icon(true);
-		win.close();
+		win.visible = false;
 	});
 	
 	available_tags_view.add(self.view);
@@ -97,7 +99,7 @@ Views.tags.init.template = function() {
 	tag_tray.add(added_tags_view);
 	tag_tray.add(done_button);
 	win.add(tag_tray);
-	win.open();
+	parent_win.add(win);
 	
 	
 	function makeView() {
@@ -122,7 +124,8 @@ Views.tags.init.template = function() {
 	};
 	
 	function foundFriends() {
-		var val = name.value.toLowerCase();
+		var val = name.value || "";
+		val = val.toLowerCase();
 		var isMatch = function(tag) { return (tag.label.indexOf(val) != -1); };
 		
 		var friends = Functional.select(isMatch, self.source);

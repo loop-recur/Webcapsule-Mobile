@@ -3,12 +3,11 @@ Views.stories.form = Views.extend();
 Views.stories.form.template = function() {
 	var self = this;
 	
-	var camera_overlay = self.params.win;
+	var win = self.params.win;
 	var player = self.params.player;
-	var story = self.source; // don't use this
 	var form_view = Titanium.UI.createView({bottom: 0, height: 245, zIndex:10});
 
-	Layouts.pick_date(camera_overlay);
+	Layouts.pick_date(player);
 	
 	var buttons_from_top_length = 60;
 	var button_height = 60;
@@ -99,7 +98,7 @@ Views.stories.form.template = function() {
 	});
 	
 	tag_friends_button.addEventListener('click', function() {
-		App.action(camera_overlay, "tags#init", {story_tags : self.source.tags, story: self.source });
+		App.action(player, "tags#init", {story_tags : self.source.tags, story: self.source });
 	});
 	
 	Views.stories.form.toggle_tag_icon = function(state) {
@@ -154,7 +153,7 @@ Views.stories.form.template = function() {
 	});
 
 	add_photos_button.addEventListener('click', function() {
-		App.action(camera_overlay, "photos#init", { photos : self.source.photos, story: self.source });
+		App.action(player, "photos#init", { photos : self.source.photos, story: self.source });
 	});	
 	
 	Views.stories.form.toggle_photo_icon = function(state) {
@@ -211,11 +210,11 @@ Views.stories.form.template = function() {
 	};
 	
 	share_button.addEventListener('click', function() {
-		App.action(camera_overlay, "sharings#init", {story : self.source});
+		App.action(player, "sharings#init", {story : self.source});
 	});
 	
 	story_title_field.addEventListener("blur", function() {
-		if(story_title_field.value == "") { story_title_field.value = "Untitled Story"; };
+		if(Helpers.application.isBlank(story_title_field.value)) { story_title_field.value = "Untitled Story"; };
 		self.source.name = story_title_field.value;
 	});
 	
@@ -244,6 +243,8 @@ Views.stories.form.template = function() {
 		});
 	});
 	
+	story_title_field.fireEvent('blur');
+	
 	self.accept_button = accept_button;
 	
 	Views.stories.form.accept_button_toggle = function(state) {
@@ -265,5 +266,5 @@ Views.stories.form.template = function() {
 	tray.add(share_button);
 
 	form_view.add(functionality_view);
-	camera_overlay.add(form_view);
+	player.add(form_view);
 };
