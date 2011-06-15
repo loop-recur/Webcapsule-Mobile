@@ -2,7 +2,8 @@ Views.stories.show_form = Views.extend();
 
 Views.stories.show_form.template = function() {
 	var self = this;
-	var win = self.params.player;
+	var parent_win = self.params.win;
+	var player = self.params.player;
 	var form_view = Titanium.UI.createView({top: 0, height: 245, zIndex:10});
 	
 	var buttons_from_top_length = 72;
@@ -113,7 +114,7 @@ Views.stories.show_form.template = function() {
 	});
 
 	comment_button.addEventListener('click', function() {
-		App.action(win, "comments#init", {story : self.source});
+		App.action(player, "comments#init", {story : self.source});
 	});
 	
 	var photo_button = Titanium.UI.createButton({
@@ -127,7 +128,7 @@ Views.stories.show_form.template = function() {
 	});
 
 	photo_button.addEventListener('click', function() {
-		App.action(win, "photos#init", {story_id : self.source.id, photos : self.source.photos, story: self.source, hide_delete: true});
+		App.action(player, "photos#init", {story_id : self.source.id, photos : self.source.photos, story: self.source, hide_delete: true});
 	});
 
 	var video_button = Titanium.UI.createButton({
@@ -140,7 +141,7 @@ Views.stories.show_form.template = function() {
 	});
 
 	video_button.addEventListener('click', function() {
-		App.action(win, "videos#init", {story : self.source});
+		App.action(player, "videos#init", {story : self.source});
 	});
 
 	var edit_button = Titanium.UI.createButton({	
@@ -154,8 +155,9 @@ Views.stories.show_form.template = function() {
 	});
 
 	edit_button.addEventListener('click', function() {
-		form_view.visible = false;
-		App.action(win, "stories#edit", {win: win, story : self.source});
+		player.stop();
+		player.hide();
+		App.action(parent_win, "stories#edit", {story : self.source});
 	});
 	
 	var share_button = Titanium.UI.createButton({
@@ -169,7 +171,7 @@ Views.stories.show_form.template = function() {
 	});
 	
 	share_button.addEventListener('click', function() {
-		App.action(win, "sharings#init", {story : self.source, automatic_share: true});
+		App.action(player, "sharings#init", {story : self.source, automatic_share: true});
 	});
 	
 	functionality_view.add(comment_bar);
@@ -182,5 +184,5 @@ Views.stories.show_form.template = function() {
 	if(Helpers.user.canEdit(self.source)) tray.add(edit_button);
 
 	form_view.add(functionality_view);
-	win.add(form_view);	
+	player.add(form_view);	
 };

@@ -4,7 +4,7 @@ Views.photos.init.template = function() {
 	var self = this;
 	var parent_win = self.win;
 	
-	var win = Titanium.UI.createView();
+	var win = Titanium.UI.createView({zIndex:999});
 	
 	var photo_tray = Titanium.UI.createView({
 		top:0,

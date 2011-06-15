@@ -11,20 +11,7 @@ Views.followings.show.template = function() {
 		top:0,
 		backgroundImage:'images/friendshow/bar_topfriend.png'
 	});
-	
-	var close = Titanium.UI.createButton({
-		backgroundImage:"images/postrecord/return.png",
-		height:26,
-		width:26,
-		top:5,
-		left:5,
-		zIndex:100
-	});
-	
-	close.addEventListener('click', function() { 
-		Layouts.users(); 
-	});
-	
+		
 	var avatar_link = friend.avatar_link ? friend.avatar_link : 'images/avatar_medium.jpg';
 	
 	var avatar = Titanium.UI.createImageView({
