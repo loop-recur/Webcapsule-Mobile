@@ -40,6 +40,13 @@
       </intent-filter>
   </activity>
 	</application>
+	<supports-screens 
+    android:resizeable="true"
+		android:smallScreens="false"
+    android:normalScreens="true"
+    android:largeScreens="true"
+    android:anyDensity="false"
+  />
 	</manifest>
 	</android>
 	<modules>
