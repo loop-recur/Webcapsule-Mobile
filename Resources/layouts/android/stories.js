@@ -4,9 +4,6 @@ Layouts.stories = function() {
 		backgroundImage:'images/app_wide/bg_full.png'
 	});
 	
-	// var activity = Helpers.ui.spinner({});
-	// view.add(activity);
-	// 
 	var nav = Ti.UI.createView({
 		top:0,
 		height:40
@@ -16,34 +13,32 @@ Layouts.stories = function() {
 		top:40,
 		height:360
 	});
-
-	var buttonObjects = [
-		{title:'My Stories', width:110, enabled:true},
-		{title:'Friends\' Stories', width:140}
-	];
 	
-	// var tabbed_bar = Titanium.UI.createTabbedBar({
-	// 	labels:buttonObjects,
-	// 	top:0,
-	// 	style:Titanium.UI.iPhone.SystemButtonStyle.BAR,
-	// 	height:40,
-	// 	index:0,
-	// 	backgroundColor:'gray'
-	// });
-	// 
-	// tabbed_bar.addEventListener('click',function(e) {
-	// 	switch(e.index) {
-	// 		case 0: 				
-	// 			
-	// 			break;
-	// 		case 1: 
-	// 			App.action(content, "stories#index", {feed : true});
-	// 			break;	
-	// 	}
-	// });
-	// 
-	// // tabbed_bar.fireEvent('click', {index: 0});
-	// nav.add(tabbed_bar);
+	var my_stories_button = Titanium.UI.createButton({  
+			title:"My Stories",
+	    value:false,
+	    width:110,
+	    height:20,
+			left: 20
+	});
+
+	my_stories_button.addEventListener('click', function(){
+		App.action(content, "stories#index");
+	});
+	
+	var feed_button = Titanium.UI.createButton({  
+	    title:"Friends' Stories",
+	    width:140,
+	    height:20,
+			right: 20
+	});
+
+	feed_button.addEventListener('click', function(){
+		App.action(content, "stories#index", {feed : true});
+	});
+	
+	nav.add(my_stories_button);
+	nav.add(feed_button);
 	view.add(nav);
 	view.add(content);
 	App.action(content, "stories#index");

@@ -4,7 +4,7 @@ Views.stories.edit.template = function() {
 	var self = this;
 	var win = self.win;
 	var bar_area = self.params.bar_area;
-	var url = self.params.upload ? self.params.upload.nativePath : App.file_url+self.source.video_url;
+	var url = self.params.upload ? self.params.upload.nativePath : App.file_url+self.source.android_url;
 	// alert(self.params.upload.nativePath);
 	
 	var player = Titanium.Media.createVideoPlayer({
