@@ -8,15 +8,15 @@ Layouts.login = function () {
 	var username = Titanium.UI.createTextField({  
 	    backgroundColor:text_field_background_color,
 			color:text_field_text_color,
-	    top:150,
+	    top:100,
 			paddingLeft:5,
 			borderRadius:4,
-	    width:350,  
-	    height:75, 
+	    width:250,  
+	    height:35, 
 	    hintText:'Email',  
 	    keyboardType:Titanium.UI.KEYBOARD_EMAIL,  
 	    returnKeyType:Titanium.UI.RETURNKEY_NEXT,  
-	});  
+	});
 	
 	username.addEventListener('return', function() {
 		password.focus();
@@ -25,9 +25,9 @@ Layouts.login = function () {
 	var password = Titanium.UI.createTextField({  
     	backgroundColor:text_field_background_color,
 			color:text_field_text_color,		
-	    top:220,  
-	    width:350,  
-	    height:75,
+	    top:142,  
+	    width:250,  
+	    height:35,
 			paddingLeft:5,  
 	    hintText:'Password',  
 	    passwordMask:true,  
