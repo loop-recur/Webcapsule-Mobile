@@ -49,7 +49,8 @@ Layouts.login = function () {
 			top:247,
 	  	right:10,
 	    width:133,  
-	    height:49  
+	    height:49,
+			id:'login_button'
 	});
 
 	login_button.addEventListener('click', function(){
