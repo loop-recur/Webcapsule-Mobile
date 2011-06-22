@@ -46,7 +46,7 @@ Layouts.login = function () {
 	    value:false,
 			backgroundImage:'images/login/login-normal.png',
 			backgroundSelectedImage:'images/login/login-pressed.png',   
-			top:247,
+			top:207,
 	  	right:10,
 	    width:133,  
 	    height:49,
@@ -64,7 +64,7 @@ Layouts.login = function () {
 	    value:false,
 			backgroundImage:'images/login/login-facebook.png',
 			backgroundSelectedImage:'images/login/login-facebook-down.png',  
-	    bottom:135,
+	    top:280,
 	    width:182,  
 	    height:44
 	});
@@ -79,7 +79,7 @@ Layouts.login = function () {
 	    value:false,
 			backgroundImage:'images/login/twitter.png',
 			backgroundSelectedImage:'images/login/twitter-down.png',  
-	    bottom:75,
+	    top:335,
 	    width:182,  
 	    height:44
 	});
@@ -92,7 +92,7 @@ Layouts.login = function () {
 
 	var new_account_label = Titanium.UI.createLabel({
 		text:'Create a New Account',
-		bottom:30,
+		top:380,
 		width:150,
 		height:40,
 		color:'gray',
