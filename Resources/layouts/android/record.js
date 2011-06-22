@@ -1,7 +1,6 @@
 Layouts.record = function(story) {	
 	var win = Titanium.UI.createWindow({
-		backgroundColor: "white",
-		id:"record.js window"
+		id:"record"
 	});
 		
 	var close_btn = Titanium.UI.createButton({

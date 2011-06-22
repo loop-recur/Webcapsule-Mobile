@@ -4,7 +4,7 @@ Views.photos.init.template = function() {
 	var self = this;
 	var parent_win = self.win;
 	
-	var win = Titanium.UI.createView({zIndex:999});
+	var win = Titanium.UI.createView({zIndex:999, modal: true});
 	
 	var photo_tray = Titanium.UI.createView({
 		top:0,
@@ -48,7 +48,7 @@ Views.photos.init.template = function() {
 	});
 
 	done_button.addEventListener('click', function() {
-		(Helpers.application.isBlank(Views.photos.create.source)) ? Views.stories.form.toggle_photo_icon(false) : Views.stories.form.toggle_photo_icon(true);
+		// (Helpers.application.isBlank(Views.photos.create.source)) ? Views.stories.form.toggle_photo_icon(false) : Views.stories.form.toggle_photo_icon(true);
 		win.visible = false;
 	});
 	

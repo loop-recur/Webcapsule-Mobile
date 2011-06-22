@@ -29,6 +29,18 @@
 		</orientations>
 	</iphone>
 	<android xmlns:android="http://schemas.android.com/apk/res/android">
+	<manifest>
+	<application>	
+	<activity android:name=".StartOnUri" android:label="webcapsule_mobile">
+      <intent-filter>
+          <data android:scheme="startonuri" />
+          <action android:name="android.intent.action.VIEW" />
+          <category android:name="android.intent.category.DEFAULT"></category>
+          <category android:name="android.intent.category.BROWSABLE"></category>
+      </intent-filter>
+  </activity>
+	</application>
+	</manifest>
 	</android>
 	<modules>
 	</modules>
