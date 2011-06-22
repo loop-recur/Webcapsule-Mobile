@@ -13,14 +13,12 @@ Views.stories.edit.template = function() {
 	});
 	
 	win.addEventListener('close', function() {
-		if(self.params.activity) self.params.activity.hide();
 		player.stop();
 		player.hide();
 	});
 	
-	if(bar_area) player.add(bar_area);
-	
 	player.play();
+	
 	Views.stories.form.render(self.source, {win: win, player:player});
-
+	if(self.params.progress_bar) self.params.progress_bar.show();
 };
