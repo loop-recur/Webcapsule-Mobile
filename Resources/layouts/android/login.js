@@ -8,7 +8,7 @@ Layouts.login = function () {
 	var username = Titanium.UI.createTextField({  
 	    backgroundColor:text_field_background_color,
 			color:text_field_text_color,
-	    top:100,
+	    top:"20%",
 			paddingLeft:5,
 			borderRadius:4,
 	    width:250,  
@@ -25,7 +25,7 @@ Layouts.login = function () {
 	var password = Titanium.UI.createTextField({  
     	backgroundColor:text_field_background_color,
 			color:text_field_text_color,		
-	    top:142,  
+	    top:"30%",  
 	    width:250,  
 	    height:35,
 			paddingLeft:5,  
@@ -46,7 +46,7 @@ Layouts.login = function () {
 	    value:false,
 			backgroundImage:'images/login/login-normal.png',
 			backgroundSelectedImage:'images/login/login-pressed.png',   
-			top:207,
+			top:"43%",
 	  	right:10,
 	    width:133,  
 	    height:49,

@@ -61,15 +61,18 @@ Views.stories.init.template = function() {
 		source.copy(target.nativePath);
 		video = target.read();
 		
-		progress_bar = Titanium.UI.createProgressBar({
+		progress_bar = Titanium.UI.createActivityIndicator({
+			location:Titanium.UI.ActivityIndicator.DIALOG,
+			type:Titanium.UI.ActivityIndicator.DETERMINANT,
+			message:'Uploading',
+			min:0,
+			max:10,
+			value:0,
 			width:240,
 			top:10,
 			height:0,
-			min:0,
-			max:1,
-			value:0,
 			color:'black'
-		});	
+		});
 
 		progress_bar.show();
 		bar_area = makeProgressArea();
