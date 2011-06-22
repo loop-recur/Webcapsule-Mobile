@@ -334,7 +334,7 @@ function BirdHouse(params) {
 		}
 
 		// try to read file
-		var contents = file.read();
+		var contents = file.read().toString();
 		if (contents == null) {
 			return false;
 		}
@@ -1084,7 +1084,7 @@ function BirdHouse(params) {
 
 		} else {
 			var file = Ti.Filesystem.getFile(Ti.Filesystem.applicationDataDirectory, 'twitter.config');
-			var data = JSON.parse(file.read());
+			var data = JSON.parse(file.read().toString());
 			
 			// execute the callback function
 			if(typeof(callback)=='function'){

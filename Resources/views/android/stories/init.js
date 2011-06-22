@@ -22,21 +22,21 @@ Views.stories.init.template = function() {
 	                message: 'Error: ' + e.error
 	            }).show();
 	        } else {
-	            if (e.resultCode === Titanium.Android.RESULT_OK) {
-	                videoUri = e.intent.data;
-	                Ti.UI.createNotification({
-	                    duration: Ti.UI.NOTIFICATION_DURATION_LONG,
-	                    message: 'Finished!'
-	                }).show();
-	                // note that this isn't a physical file! it's a URI in to the MediaStore.
-							    var source = Ti.Filesystem.getFile(videoUri);
-									afterRecord(source);
-	            } else {
-	                Ti.UI.createNotification({
-	                    duration: Ti.UI.NOTIFICATION_DURATION_LONG,
-	                    message: 'Canceled/Error? Result code: ' + e.resultCode
-	                }).show();
-	            }
+            if (e.resultCode === Titanium.Android.RESULT_OK) {
+                videoUri = e.intent.data;
+                Ti.UI.createNotification({
+                    duration: Ti.UI.NOTIFICATION_DURATION_LONG,
+                    message: 'Finished!'
+                }).show();
+                // note that this isn't a physical file! it's a URI in to the MediaStore.
+						    var source = Ti.Filesystem.getFile(videoUri);
+								afterRecord(source);
+            } else {
+                Ti.UI.createNotification({
+                    duration: Ti.UI.NOTIFICATION_DURATION_LONG,
+                    message: 'Canceled/Error? Result code: ' + e.resultCode
+                }).show();
+            }
 	        }
 	    });
 	});

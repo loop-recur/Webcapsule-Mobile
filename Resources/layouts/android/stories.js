@@ -1,7 +1,8 @@
 Layouts.stories = function() {
 	
 	var view = Ti.UI.createView({
-		backgroundImage:'images/app_wide/bg_full.png'
+		backgroundImage:'images/app_wide/bg_full.png',
+		id:"stories"
 	});
 	
 	var nav = Ti.UI.createView({

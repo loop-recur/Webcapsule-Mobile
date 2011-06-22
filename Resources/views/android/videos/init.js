@@ -3,7 +3,10 @@ Views.videos.init = Views.extend();
 Views.videos.init.template = function() {
 	var self = this;
 	var video = self.source;
+	var player = self.win;
 	var win = Titanium.UI.createWindow({backgroundColor: "#ccc"});
+	player.stop();
+	Titanium.Android.currentActivity.finish();
 
 	 // http://developer.android.com/reference/android/provider/MediaStore.html
 	function record() {
@@ -12,9 +15,14 @@ Views.videos.init.template = function() {
 	  	if (e.error) {
 				alert("There was an error uploading");
 	    } else {
-	       if (e.resultCode === Titanium.Android.RESULT_OK) {
+				if (e.resultCode === Titanium.Android.RESULT_OK) {
+					// Layouts.story(Views.stories.show_form.source.id);
+					Ti.UI.createNotification({
+              duration: Ti.UI.NOTIFICATION_DURATION_LONG,
+              message: 'Finished!'
+          }).show();
 					 videoUri = e.intent.data;
-		  		 var source = Ti.Filesystem.getFile(videoUri);
+					 var source = Ti.Filesystem.getFile(videoUri);
 					 afterRecord(source);
 	       } else {
 					alert("Error replying");

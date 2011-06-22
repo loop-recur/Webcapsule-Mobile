@@ -25,13 +25,14 @@ Helpers.user.connectFacebook = function(success) {
 	Titanium.Facebook.addEventListener('login', function(e) {
 		if(!run) {
 			run = true;
-			file.write(JSON.stringify(e.data));
+			file.write(e.data);
 			saveFacebookAuth();
 		}
 	});
 	
 	function saveFacebookAuth() {
-		var data = JSON.parse(file.read());
+		var f = file.read();
+		var data = JSON.parse(f.toString());
 		
 		if(data) {
 			data.provider = "facebook";
@@ -50,10 +51,11 @@ Helpers.user.connectFacebook = function(success) {
 };
 
 Helpers.user.connectTwitter = function(success) {
-	b = new BirdHouse({consumer_key: "CgIDnN8kDKPu1uKhMK5Qg", consumer_secret: "AULwvohyIehfXfPUaKAaEifYRtzlDuOIo80qHQVRnyI", callback_url: "/webcapsule-mobile://" });
+	b = new BirdHouse({consumer_key: "CgIDnN8kDKPu1uKhMK5Qg", consumer_secret: "AULwvohyIehfXfPUaKAaEifYRtzlDuOIo80qHQVRnyI", callback_url: "startonuri://" });
 	b.authorize(saveTwitterAuth);
 	
 	function saveTwitterAuth(data) {
+		alert(data);
 		if(data) {
 			data.id = data.user_id;
 			data.token = data.oauth_token;
