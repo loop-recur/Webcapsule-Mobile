@@ -8,7 +8,7 @@ Layouts.login = function () {
 	var username = Titanium.UI.createTextField({  
 	    backgroundColor:text_field_background_color,
 			color:text_field_text_color,
-	    top:"20%",
+	    top:"22%",
 			paddingLeft:5,
 			borderRadius:4,
 	    width:250,  
@@ -25,7 +25,7 @@ Layouts.login = function () {
 	var password = Titanium.UI.createTextField({  
     	backgroundColor:text_field_background_color,
 			color:text_field_text_color,		
-	    top:"30%",  
+	    top:"31%",  
 	    width:250,  
 	    height:35,
 			paddingLeft:5,  
@@ -64,7 +64,7 @@ Layouts.login = function () {
 	    value:false,
 			backgroundImage:'images/login/login-facebook.png',
 			backgroundSelectedImage:'images/login/login-facebook-down.png',  
-	    top:280,
+	    top:"60%",
 	    width:182,  
 	    height:44
 	});
@@ -79,7 +79,7 @@ Layouts.login = function () {
 	    value:false,
 			backgroundImage:'images/login/twitter.png',
 			backgroundSelectedImage:'images/login/twitter-down.png',  
-	    top:335,
+	    top:"70%",
 	    width:182,  
 	    height:44
 	});
@@ -92,7 +92,7 @@ Layouts.login = function () {
 
 	var new_account_label = Titanium.UI.createLabel({
 		text:'Create a New Account',
-		top:380,
+		top:"75%",
 		width:150,
 		height:40,
 		color:'gray',
