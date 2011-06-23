@@ -41,7 +41,7 @@
   </activity>
 	</application>
 	<supports-screens 
-    android:resizeable="true"
+    android:resizeable="false"
 		android:smallScreens="false"
     android:normalScreens="true"
     android:largeScreens="true"
