@@ -7,8 +7,7 @@ Views.stories.index.template = function() {
 		
 		var row = Ti.UI.createTableViewRow({
 			backgroundImage:'images/feed/item_bg.png',
-			height:80,
-			width:320,
+			height:120,
 			hasChild:true
 		});
 		
@@ -17,8 +16,8 @@ Views.stories.index.template = function() {
 		var photo = Titanium.UI.createImageView({
 			image:image,
 			left:5,
-			width:90,
-			height:64,
+			width:"90dp",
+			height:"64dp",
 			borderRadius:10
 		});
 		
@@ -31,8 +30,8 @@ Views.stories.index.template = function() {
 			},
 			left:101,
 			top:5,
-			height:15,
-			width:70,
+			height:"15dp",
+			width:"70dp",
 			text: story.when
 		});
 		
@@ -45,8 +44,8 @@ Views.stories.index.template = function() {
 			},
 			left:100,
 			top:17,
-			height:20,
-			width:190,
+			height:"20dp",
+			width:"190dp",
 			text:story.name
 		});
 		
@@ -54,8 +53,8 @@ Views.stories.index.template = function() {
 			backgroundImage:'images/feed/time_ico.png',
 			left:10,
 			bottom:11,
-			width:10,
-			height:10,
+			width:"10dp",
+			height:"10dp",
 			zIndex:40
 		});
 		
@@ -68,8 +67,8 @@ Views.stories.index.template = function() {
 			},			
 			left:21,
 			bottom:10,
-			height:10,
-			width:30,
+			height:"10dp",
+			width:"30dp",
 			text:story.duration,
 			zIndex:40
 		});
@@ -78,8 +77,8 @@ Views.stories.index.template = function() {
 			backgroundImage:'images/feed/user_ico.png',
 			left:100,
 			bottom:24,
-			width:10,
-			height:10
+			width:"10dp",
+			height:"10dp"
 		});
 		
 		var user = Ti.UI.createLabel({
@@ -87,8 +86,8 @@ Views.stories.index.template = function() {
 			font:{fontSize:11,fontWeight:'regular', fontFamily:'Helvetica Neue'},
 			left:111,
 			bottom:24,
-			height:10,
-			width:160,
+			height:"10dp",
+			width:"160dp",
 			text:story.user.full_name
 		});
 		
@@ -96,8 +95,8 @@ Views.stories.index.template = function() {
 			backgroundImage:'images/feed/bubble_ico.png',
 			left:100,
 			bottom:10,
-			width:10,
-			height:10
+			width:"10dp",
+			height:"10dp"
 		});
 		
 		var videos = Ti.UI.createLabel({
@@ -105,8 +104,8 @@ Views.stories.index.template = function() {
 			font:{fontSize:11,fontWeight:'regular', fontFamily:'Helvetica Neue'},
 			left:112,
 			bottom:10,
-			height:10,
-			width:140,
+			height:"10dp",
+			width:"140dp",
 			text:story.views + " views"
 		});
 

@@ -12,10 +12,10 @@ Views.accounts.init.template = function() {
 	var full_name = Titanium.UI.createTextField({  
   		backgroundColor:text_field_background_color,
 			color:text_field_text_color,
-	    paddingLeft:5,
+	    paddingLeft:"5dp",
 			top:30,   
-	    width:290,  
-	    height:35,  
+	    width:"290dp",  
+	    height:"35dp",  
 	    hintText:'Full Name',  
 	    keyboardType:Titanium.UI.KEYBOARD_DEFAULT,  
 	    returnKeyType:Titanium.UI.RETURNKEY_NEXT,  
@@ -29,10 +29,10 @@ Views.accounts.init.template = function() {
 	var email = Titanium.UI.createTextField({  
 	    backgroundColor:text_field_background_color,
 			color:text_field_text_color,
-	    paddingLeft:5,
+	    paddingLeft:"5dp",
 			top:80,   
-	    width:290,  
-	    height:35,  
+	    width:"290dp",  
+	    height:"35dp",  
 	    hintText:'Email',  
 	    keyboardType:Titanium.UI.KEYBOARD_EMAIL,  
 	    returnKeyType:Titanium.UI.RETURNKEY_NEXT,  
@@ -47,14 +47,14 @@ Views.accounts.init.template = function() {
 	    backgroundColor:text_field_background_color,
 			color:text_field_text_color,
 	    top:130,
-			paddingLeft:5, 
-	    width:290,  
-	    height:35,  
+			paddingLeft:"5dp", 
+	    width:"290dp",  
+	    height:"35dp",  
 	    hintText:'Password',  
 	    passwordMask:true,  
 	    keyboardType:Titanium.UI.KEYBOARD_DEFAULT,  
 	    returnKeyType:Titanium.UI.RETURNKEY_NEXT,  
-	    borderRadius:4  
+	    borderRadius:4
 	});
 
 	password.addEventListener('return', function() {
@@ -64,15 +64,15 @@ Views.accounts.init.template = function() {
 	var password_confirm = Titanium.UI.createTextField({  
 	    backgroundColor:text_field_background_color,
 			color:text_field_text_color,
-	    paddingLeft:5,
+	    paddingLeft:"5dp",
 			top:180,  
-	    width:290,  
-	    height:35,  
+	    width:"290dp",  
+	    height:"35dp",  
 	    hintText:'Confirm Password',  
 	    passwordMask:true,  
 	    keyboardType:Titanium.UI.KEYBOARD_DEFAULT,  
 	    returnKeyType:Titanium.UI.RETURNKEY_DONE,  
-	    borderRadius:4 
+	    borderRadius:4
 	});
 
 	var create_account_button = Titanium.UI.createButton({  
@@ -81,8 +81,8 @@ Views.accounts.init.template = function() {
 			backgroundSelectedImage:'images/newaccount/make_account_pressed.png',  
 	    bottom:160,
 	  	right:10,
-	    width:133,  
-	    height:49
+	    width:"133dp",  
+	    height:"49dp"
 	});
 	
 	var cancel_button = Titanium.UI.createButton({  
@@ -91,8 +91,8 @@ Views.accounts.init.template = function() {
 			backgroundSelectedImage:'images/newaccount/btn_cancel_pressed.png',  
 	    bottom:160,
 	  	left:10,
-	    width:133,  
-	    height:49
+	    width:"133dp",  
+	    height:"49dp"
 	});
 
 	cancel_button.addEventListener('click', function() {

@@ -7,8 +7,8 @@ Views.stories.user_stories.template = function(view, stories) {
 		
 		var row = Ti.UI.createTableViewRow({
 			backgroundImage:'images/feed/item_bg.png',
-			height:80,
-			width:320,
+			height:"80dp",
+			width:"320dp",
 			hasChild:true
 		});
 		
@@ -17,8 +17,8 @@ Views.stories.user_stories.template = function(view, stories) {
 		var photo = Titanium.UI.createImageView({
 			image:image,
 			left:5,
-			width:90,
-			height:64,
+			width:"90dp",
+			height:"64dp",
 			borderRadius:10
 		});
 		
@@ -26,13 +26,13 @@ Views.stories.user_stories.template = function(view, stories) {
 			color:'#6b6b6b',
 			font:{
 				fontFamily:'Helvetica Neue',
-				fontSize:9,
+				fontSize:"9dp",
 				fontWeight:'regular'
 			},
 			left:101,
 			top:5,
-			height:15,
-			width:70,
+			height:"15dp",
+			width:"70dp",
 			text: story.when
 		});
 		
@@ -40,13 +40,13 @@ Views.stories.user_stories.template = function(view, stories) {
 			color:'#6b6b6b',
 			font:{
 				fontFamily:'Helvetica Neue',
-				fontSize:14,
+				fontSize:"14dp",
 				fontWeight:'bold'
 			},
 			left:100,
 			top:17,
-			height:20,
-			width:190,
+			height:"20dp",
+			width:"190dp",
 			text:story.name
 		});
 		
@@ -54,8 +54,8 @@ Views.stories.user_stories.template = function(view, stories) {
 			backgroundImage:'images/feed/time_ico.png',
 			left:10,
 			bottom:11,
-			width:10,
-			height:10,
+			width:"10dp",
+			height:"10dp",
 			zIndex:40
 		});
 		
@@ -63,13 +63,13 @@ Views.stories.user_stories.template = function(view, stories) {
 			color:'white',
 			font:{
 				fontFamily:'Helvetica Neue',
-				fontSize:10,
+				fontSize:"10dp",
 				fontWeight:'bold'
 			},			
 			left:21,
 			bottom:10,
-			height:10,
-			width:30,
+			height:"10dp",
+			width:"30dp",
 			text:story.duration,
 			zIndex:40
 		});
@@ -78,17 +78,17 @@ Views.stories.user_stories.template = function(view, stories) {
 			backgroundImage:'images/feed/user_ico.png',
 			left:100,
 			bottom:24,
-			width:10,
-			height:10
+			width:"10dp",
+			height:"10dp"
 		});
 		
 		var user = Ti.UI.createLabel({
 			color:'#525252',
-			font:{fontSize:11,fontWeight:'regular', fontFamily:'Helvetica Neue'},
+			font:{fontSize:"11dp",fontWeight:'regular', fontFamily:'Helvetica Neue'},
 			left:111,
 			bottom:24,
-			height:10,
-			width:160,
+			height:"10dp",
+			width:"160dp",
 			text:story.user.full_name
 		});
 		
@@ -96,17 +96,17 @@ Views.stories.user_stories.template = function(view, stories) {
 			backgroundImage:'images/feed/bubble_ico.png',
 			left:100,
 			bottom:10,
-			width:10,
-			height:10
+			width:"10dp",
+			height:"10dp"
 		});
 		
 		var videos = Ti.UI.createLabel({
 			color:'#525252',
-			font:{fontSize:11,fontWeight:'regular', fontFamily:'Helvetica Neue'},
+			font:{fontSize:"11dp",fontWeight:'regular', fontFamily:'Helvetica Neue'},
 			left:112,
 			bottom:10,
-			height:10,
-			width:140,
+			height:"10dp",
+			width:"140dp",
 			text:story.views + " views"
 		});
 

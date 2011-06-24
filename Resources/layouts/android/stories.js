@@ -7,19 +7,19 @@ Layouts.stories = function() {
 	
 	var nav = Ti.UI.createView({
 		top:0,
-		height:40
+		height:"40dp"
 	});
 
 	var content = Ti.UI.createView({
 		top:40,
-		height:360
+		height:"360dp"
 	});
 	
 	var my_stories_button = Titanium.UI.createButton({  
 			title:"My Stories",
 	    value:false,
-	    width:110,
-	    height:20,
+	    width:"110dp",
+	    height:"20dp",
 			left: 20
 	});
 
@@ -29,8 +29,8 @@ Layouts.stories = function() {
 	
 	var feed_button = Titanium.UI.createButton({  
 	    title:"Friends' Stories",
-	    width:140,
-	    height:20,
+	    width:"140dp",
+	    height:"20dp",
 			right: 20
 	});
 

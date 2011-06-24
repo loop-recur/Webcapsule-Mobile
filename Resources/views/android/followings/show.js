@@ -7,7 +7,7 @@ Views.followings.show.template = function() {
 	var win = Titanium.UI.createView();
 	
 	var top_bar = Ti.UI.createView ({
-		height:59,
+		height:"59dp",
 		top:0,
 		backgroundImage:'images/friendshow/bar_topfriend.png'
 	});
@@ -18,16 +18,16 @@ Views.followings.show.template = function() {
 		image:avatar_link,
 		top:7,
 		left:30,
-		width:45,
-		height:45
+		width:"45dp",
+		height:"45dp"
 	});
 	
 	var avatar_frame = Titanium.UI.createImageView({
 		image:'images/friendshow/ol_avatar.png',
 		top:7,
 		left:30,
-		width:45,
-		height:45,
+		width:"45dp",
+		height:"45dp",
 		zIndex:20
 	});
 	
@@ -35,12 +35,12 @@ Views.followings.show.template = function() {
 		color:'#6b6b6b',
 		font:{
 			fontFamily:'Helvetica Neue',
-			fontSize:14,
+			fontSize:"14dp",
 			fontWeight:'bold'
 		},
 		left:80,
-		height:20,
-		width:160,
+		height:"20dp",
+		width:"160dp",
 		text:friend.full_name
 	});
 	
@@ -51,8 +51,8 @@ Views.followings.show.template = function() {
 			backgroundImage:'images/friendshow/btn_unfollow.png',
 			backgroundSelectedImage:"images/friendshow/btn_unfollow-pressed.png",
 			right:20,
-			height:34,
-			width:58,
+			height:"34dp",
+			width:"58dp",
 			zIndex:60
 		});
 	
@@ -79,7 +79,7 @@ Views.followings.show.template = function() {
 	};
 
 	var friend_stories_view = Ti.UI.createView ({
-		height:350,
+		height:"350dp",
 		top:57
 	});
 	

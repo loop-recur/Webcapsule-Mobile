@@ -6,7 +6,7 @@ Layouts.site = function() {
 	
 	var content_window = Titanium.UI.createView({
 		top:0,
-		height:400,
+		height:"400dp",
 		zIndex:20,
 		id: "content_window"
 	});

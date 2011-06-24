@@ -6,8 +6,8 @@ Views.comments.comment.template = function() {
 	var comment = self.source;
 
 	view = Ti.UI.createView({
-		height:58,
-		width:265,
+		height:"58dp",
+		width:"265dp",
 		right:0,
 		visible: false
 	});
@@ -16,26 +16,26 @@ Views.comments.comment.template = function() {
 		image:App.file_url+comment.user.image,
 		defaultImage:'images/avatar_medium.jpg',
 		left:0,
-		width:50,
-		height:50
+		width:"50dp",
+		height:"50dp"
 	});
 	
 	var user = Titanium.UI.createLabel({
 		text: comment.user.full_name + " says:",
-		font:{fontFamily:'Arial',fontWeight:'bold',fontSize:10},
+		font:{fontFamily:'Arial',fontWeight:'bold',fontSize:"10dp"},
 		left:55,
 		top:0,
-		height:15,
+		height:"15dp",
 		width:'auto',
 		color:'white'
 	});
 	
 	var title = Titanium.UI.createLabel({
 		text: comment.content,
-		font:{fontFamily:'Arial',fontWeight:'bold',fontSize:10},
+		font:{fontFamily:'Arial',fontWeight:'bold',fontSize:"10dp"},
 		left:55,
 		bottom:0,
-		height:43,
+		height:"43dp",
 		width:'auto',
 		color:'white'
 	});

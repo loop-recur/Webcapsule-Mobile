@@ -8,7 +8,6 @@ Views.followings.index.template = function() {
 		var row = Ti.UI.createTableViewRow({
 			backgroundImage:'images/feed/item_bg.png',
 			height:80,
-			width:320,
 			hasChild:true
 		});		
 		
@@ -17,17 +16,17 @@ Views.followings.index.template = function() {
 		var avatar = Titanium.UI.createImageView({
 			image:Helpers.images.escape(avatar_link),
 			left:10,
-			width:65,
-			height:65,
+			width:"65dp",
+			height:"65dp",
 			borderRadius:8
 		});
 		
 		var title = Ti.UI.createLabel({
 			color:'#616161',
-			font:{fontSize:14,fontWeight:'bold', fontFamily:'Helvetica Neue'},
+			font:{fontSize:"14dp",fontWeight:'bold', fontFamily:'Helvetica Neue'},
 			left:80,
-			height:30,
-			width:200,
+			height:"30dp",
+			width:"200dp",
 			text:following.full_name
 		});
 		

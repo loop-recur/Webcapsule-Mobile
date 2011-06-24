@@ -4,22 +4,22 @@ Views.stories.show_form.template = function() {
 	var self = this;
 	var parent_win = self.params.win;
 	var player = self.params.player;
-	var form_view = Titanium.UI.createView({top: 0, height: 245, zIndex:10, modal:true});
+	var form_view = Titanium.UI.createView({top: 0, height:"245dp", zIndex:10});
 	
-	var buttons_from_top_length = 72;
-	var button_width = 64;
-	var button_height = 60;
+	var buttons_from_top_length = "72dp";
+	var button_width = "64dp";
+	var button_height = "60dp";
 	
 	var functionality_view = Titanium.UI.createView({
-		height:193,
-		width:320,
+		height:"193dp",
+		width:"320dp",
 		top:0
 	});
 	
 	var comment_bar = Titanium.UI.createView({
 		backgroundImage:'images/storyshow/comment_bar.png',
-		height:58,
-		width:275,
+		height:"58dp",
+		width:"275dp",
 		right:0,
 		top:0
 	});
@@ -28,8 +28,8 @@ Views.stories.show_form.template = function() {
 
 	var tray = Titanium.UI.createView({
 		backgroundImage:'images/storyshow/story_drawer.png',
-		height:137,
-		width:320,
+		height:"137dp",
+		width:"320dp",
 		bottom:0
 	});
 
@@ -38,12 +38,12 @@ Views.stories.show_form.template = function() {
 		color:'#6b6b6b',
 		font:{
 			fontFamily:'Helvetica Neue',
-			fontSize:10,
+			fontSize:"10dp",
 			fontWeight:'regular'
 		},
 		right:10,
 		top:50,
-		height:15,
+		height:"15dp",
 		width:"auto",
 		text: "Posted on " + self.source.when
 	});
@@ -52,13 +52,13 @@ Views.stories.show_form.template = function() {
 		color:'#6b6b6b',
 		font:{
 			fontFamily:'Helvetica Neue',
-			fontSize:18,
+			fontSize:"18dp",
 			fontWeight:'bold'
 		},
 		left:10,
 		top:5,
-		height:25,
-		width:240,
+		height:"25dp",
+		width:"240dp",
 		shadowColor:"#999",
 		shadowOffset:{x:0,y:1},
 		text:self.source.name
@@ -68,13 +68,13 @@ Views.stories.show_form.template = function() {
 		color:'#6b6b6b',
 		font:{
 			fontFamily:'Helvetica Neue',
-			fontSize:10,
+			fontSize:"10dp",
 			fontWeight:'bold'
 		},			
 		right:10,
 		top:10,
-		height:10,
-		width:30,
+		height:"10dp",
+		width:"30dp",
 		text:self.source.duration,
 		zIndex:40
 	});
@@ -83,17 +83,17 @@ Views.stories.show_form.template = function() {
 		backgroundImage:'images/feed/user_ico.png',
 		left:10,
 		top:50,
-		width:10,
-		height:10
+		width:"10dp",
+		height:"10dp"
 	});
 	
 	var user = Ti.UI.createLabel({
 		color:'#525252',
-		font:{fontSize:11,fontWeight:'regular', fontFamily:'Helvetica Neue'},
+		font:{fontSize:"11dp",fontWeight:'regular', fontFamily:'Helvetica Neue'},
 		left:21,
 		top:51,
-		height:10,
-		width:160,
+		height:"10dp",
+		width:"160dp",
 		text:self.source.user.full_name
 	});
 
@@ -150,7 +150,7 @@ Views.stories.show_form.template = function() {
 	var edit_button = Titanium.UI.createButton({	
 		value:false,
 		top:buttons_from_top_length,
-		right: 8,
+		right:8,
 		height:button_height,
 		width:button_width,
 		backgroundImage:'images/storyshow/edit_normal.png',
@@ -166,7 +166,7 @@ Views.stories.show_form.template = function() {
 	var share_button = Titanium.UI.createButton({
 		value:false,
 		top:buttons_from_top_length,
-		right: 68,
+		right:68,
 		height:button_height,
 		width:button_width,
 		backgroundImage:'images/postrecord/share_normal.png',

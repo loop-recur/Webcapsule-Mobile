@@ -8,17 +8,17 @@ Views.photos.init.template = function() {
 	
 	var photo_tray = Titanium.UI.createView({
 		top:0,
-		height:240,
+		height:"240dp",
 		backgroundImage:'images/add_photo/add_photos_tray.png',
 		zIndex:100
 	});
 	
 	var added_photo_view = Titanium.UI.createScrollView({
 		top:15,
-		height:140,
-		width:300,
-		contentWidth:300,
-		contentHeight:'auto',
+		height:"140dp",
+		width:"300dp",
+		contentwidth:"300dp",
+		contentheight:'auto',
 		showHorizontalScrollIndicator:false,
 		showVerticalScrollIndicator:true
 	});
@@ -29,8 +29,8 @@ Views.photos.init.template = function() {
 			backgroundSelectedImage:'images/add_photo/take_picture_pressed.png',  
 	  	left:15,
 			bottom:20,
-	    width:53,  
-	    height:55
+	    width:"53dp",  
+	    height:"55dp"
 	});
 
 	take_picture.addEventListener('click', function() {
@@ -44,8 +44,8 @@ Views.photos.init.template = function() {
 			backgroundSelectedImage:'images/app_wide/ok_pressed.png',  
 	  	right:15,
 			bottom:20,
-	    width:83,  
-	    height:49
+	    width:"83dp",  
+	    height:"49dp"
 	});
 
 	done_button.addEventListener('click', function() {
@@ -59,8 +59,8 @@ Views.photos.init.template = function() {
 			backgroundSelectedImage:'images/app_wide/ok_pressed.png',
 	  	right:15,
 			bottom:20,
-	    width:83,
-	    height:49,
+	    width:"83dp",
+	    height:"49dp",
 			enabled: false,
 			visible: false,
 			zIndex: 99

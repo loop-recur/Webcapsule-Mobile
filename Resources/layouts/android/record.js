@@ -5,9 +5,9 @@ Layouts.record = function(story) {
 		
 	var close_btn = Titanium.UI.createButton({
 		backgroundImage:"images/postrecord/return.png",
-		height:26,
-		width:26,
-		top:45,
+		height:"26dp",
+		width:"26dp",
+		top:5,
 		left:5
 	});
 

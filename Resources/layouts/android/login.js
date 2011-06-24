@@ -8,8 +8,8 @@ Layouts.login = function () {
 	var username = Titanium.UI.createTextField({  
 	    backgroundColor:text_field_background_color,
 			color:text_field_text_color,
-	    top:"22%",
-			paddingLeft:5,
+	    top:"19%",
+			paddingLeft:"5dp",
 			borderRadius:4,
 	    width:"250dp",  
 	    height:"35dp", 
@@ -25,10 +25,10 @@ Layouts.login = function () {
 	var password = Titanium.UI.createTextField({  
     	backgroundColor:text_field_background_color,
 			color:text_field_text_color,		
-	    top:"31%",  
+	    top:"28%",  
 	    width:"250dp",  
 	    height:"35dp",
-			paddingLeft:5,  
+			paddingLeft:"5dp",  
 	    hintText:'Password',  
 	    passwordMask:true,  
 	    keyboardType:Titanium.UI.KEYBOARD_DEFAULT,  
@@ -93,11 +93,11 @@ Layouts.login = function () {
 	var new_account_label = Titanium.UI.createLabel({
 		text:'Create a New Account',
 		top:"75%",
-		width:150,
-		height:40,
+		width:"150dp",
+		height:"40dp",
 		color:'gray',
 		textAlign:'center',
-		font:{fontFamily:'Arial',fontWeight:'bold',fontSize:10}
+		font:{fontFamily:'Arial',fontWeight:'bold',fontSize:"10dp"}
 	});
 
 	new_account_label.addEventListener('click', function() {
@@ -107,11 +107,11 @@ Layouts.login = function () {
 	var deauth = Titanium.UI.createLabel({
 		text:'Deauth',
 		bottom:4,
-		width:150,
-		height:40,
+		width:"150dp",
+		height:"40dp",
 		color:'gray',
 		textAlign:'center',
-		font:{fontFamily:'Arial',fontWeight:'bold',fontSize:10}
+		font:{fontFamily:'Arial',fontWeight:'bold',fontSize:"16dp"}
 	});
 
 	deauth.addEventListener('click', function() {

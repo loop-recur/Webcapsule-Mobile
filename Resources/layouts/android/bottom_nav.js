@@ -3,13 +3,13 @@ Layouts.bottomNav = function() {
 
 	var win = Titanium.UI.createView({
 		bottom:0,
-		height:58,
+		height:"58dp",
 		zIndex:50
 	});
 	
 	var bottom_view = Titanium.UI.createView({
 		bottom:0,
-		height:58,
+		height:"58dp",
 		backgroundImage:'images/toolbar/toolbar_bg.png'
 	}); 
 
@@ -17,8 +17,8 @@ Layouts.bottomNav = function() {
 		value:false,
 		bottom:5,
 		left:45,
-		height:43,
-		width:51,
+		height:"43dp",
+		width:"51dp",
 		backgroundImage:'images/toolbar/navbtn_stories.png',
 		backgroundSelectedImage:'images/toolbar/navbtn_stories-pressed.png',
 		zIndex:51
@@ -33,8 +33,8 @@ Layouts.bottomNav = function() {
 		value:false,
 		bottom:4,
 		right:45,
-		height:43,
-		width:51,
+		height:"43dp",
+		width:"51dp",
 		backgroundImage:'images/toolbar/navbtn_friends.png',
 		backgroundSelectedImage:'images/toolbar/navbtn_friends-pressed.png',
 		zIndex:51
@@ -48,8 +48,8 @@ Layouts.bottomNav = function() {
 	var record_button = Titanium.UI.createButton({
 		value:false,
 		bottom:0,
-		height:62,
-		width:81,
+		height:"62dp",
+		width:"81dp",
 		backgroundImage:'images/toolbar/navbtn_record.png',
 		backgroundSelectedImage:'images/toolbar/navbtn_record-down.png',
 		zIndex:51
@@ -62,8 +62,8 @@ Layouts.bottomNav = function() {
 	var logout_button = Titanium.UI.createButton({
 		title:"LOGOUT",
 		bottom:0,
-		height:62,
-		width:81,
+		height:"62dp",
+		width:"81dp",
 		right: 4,
 		zIndex: 64
 	});

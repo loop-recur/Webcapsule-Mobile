@@ -3,7 +3,7 @@ Layouts.pick_date = function(win) {
 	
 	var view = Titanium.UI.createView({
 		backgroundColor:'black',
-		height:290,
+		height:"290dp",
 		top:0,
 		zIndex:90,
 		opacity:.9,
@@ -36,8 +36,8 @@ Layouts.pick_date = function(win) {
 			backgroundSelectedImage:'images/app_wide/ok_pressed.png',  
 	  	right:15,
 			bottom:10,
-	    width:83,  
-	    height:49,
+	    width:"83dp",  
+	    height:"49dp",
 			zIndex:500
 	});
 

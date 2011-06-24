@@ -19,7 +19,7 @@ Views.photos.create.template = function() {
 	function makeView() {
 		 return Titanium.UI.createView({
 			top:10,
-			height:96
+			height:"96dp"
 		});
 	};
 	
@@ -32,20 +32,20 @@ Views.photos.create.template = function() {
 		var added_photo = Titanium.UI.createView({
 			top:position.top,
 			left:position.left,
-			width:86,
-			height:86
+			width:"86dp",
+			height:"86dp"
 		});
 		
 		var added_photo_border = Titanium.UI.createView({
-			width:86,
-			height:86,
+			width:"86dp",
+			height:"86dp",
 			backgroundImage:'images/add_photo/photo_box.png'
 		});
 
 		var image = Titanium.UI.createImageView({
 			top:8,
-			width:65,
-			height:65
+			width:"65dp",
+			height:"65dp"
 		});
 		
 		image.image = photo.upload || Helpers.images.escape(photo.thumb);
@@ -58,8 +58,8 @@ Views.photos.create.template = function() {
 				backgroundImage:'images/add_tag/remove_icon.png',
 				left:-5,
 				top: -5,
-				width: 25,
-				height: 25
+				width:"25dp",
+				height:"25dp"
 			});
 
 			delete_button.addEventListener('click', function() {
@@ -74,14 +74,14 @@ Views.photos.create.template = function() {
 		self.view.add(added_photo);
 
 		function buildAndUpdatePosition (current_position) {
-			var horizontal_spacing = 96;
-			var vertical_spacing = 96;
+			var horizontal_spacing = "96dp";
+			var vertical_spacing = "96dp";
 
 			current_position.left += horizontal_spacing;
 			
-			if(current_position.left > 297) {
+			if(current_position.left > "297dp") {
 				current_position.top += vertical_spacing;
-				current_position.left = 10;
+				current_position.left = "10dp";
 				self.view.height += vertical_spacing;
 			};
 		};

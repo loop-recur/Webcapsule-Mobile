@@ -5,24 +5,24 @@ Views.stories.form.template = function() {
 	
 	var win = self.params.win;
 	var player = self.params.player;
-	var form_view = Titanium.UI.createView({bottom: 0, height: 245, zIndex:10});
+	var form_view = Titanium.UI.createView({bottom: 0, height:"245dp", zIndex:10});
 
 	Layouts.pick_date(player);
 	
-	var buttons_from_top_length = 60;
-	var button_height = 60;
-	var button_width = 64;
+	var buttons_from_top_length = "60dp";
+	var button_height = "60dp";
+	var button_width = "64dp";
 	
 	var functionality_view = Titanium.UI.createView({
-		height:193,
-		width:320,
+		height:"193dp",
+		width:"320dp",
 		bottom:0
 	});
 	
 	var record_tray = Titanium.UI.createView({
 		backgroundImage:'images/record/bar-recordupload.png',
-		height:56,
-		width:115,
+		height:"56dp",
+		width:"115dp",
 		top:0,
 		right:0,
 		visible:true
@@ -32,8 +32,8 @@ Views.stories.form.template = function() {
 		value:false,
 		top:0,
 		right:0,
-		height:43,
-		width:49,
+		height:"43dp",
+		width:"49dp",
 		backgroundImage:'images/postrecord/accept_btn.png',
 		backgroundSelectedImage:'images/postrecord/accept_btn_pressed.png',
 		visible:true
@@ -52,8 +52,8 @@ Views.stories.form.template = function() {
 	
 	var rerecord_button = Titanium.UI.createButton({
 		backgroundImage:"images/playercontrols/rec_btn.png",
-		height:32,
-		width:32,
+		height:"32dp",
+		width:"32dp",
 		right:60
 	});
 
@@ -68,8 +68,8 @@ Views.stories.form.template = function() {
 												
 	var tray = Titanium.UI.createView({
 		backgroundImage:'images/postrecord/edit_details_drawer.png',
-		height:137,
-		width:320,
+		height:"137dp",
+		width:"320dp",
 		bottom:0
 	});
 	
@@ -77,10 +77,10 @@ Views.stories.form.template = function() {
 	    backgroundColor:text_field_background_color,
 			color:text_field_text_color,
 			borderRadius:4,
-			paddingLeft:5,
+			paddingLeft:"5dp",
 	    top:10,  
-	    width:300,  
-	    height:30,
+	    width:"300dp",  
+	    height:"30dp",
 	    hintText:'Add a title...',
 			value: self.source.name,
 	    keyboardType:Titanium.UI.KEYBOARD_DEFAULT,  

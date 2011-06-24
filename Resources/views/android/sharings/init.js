@@ -11,14 +11,14 @@ Views.sharings.init.template = function() {
 	
 	var container = Titanium.UI.createView({
 		zIndex:30,
-		height:114,
-		width:320,
+		height:"114dp",
+		width:"320dp",
 		top:80
 	});
 	
 	var view = Titanium.UI.createView({
-		height:110,
-		width:306,
+		height:"110dp",
+		width:"306dp",
 		backgroundImage:'images/sharestory/share_bg.png',
 	});
 	
@@ -28,8 +28,8 @@ Views.sharings.init.template = function() {
 		backgroundImage:'images/sharestory/btn_share.png',
 		backgroundSelectedImage:'images/sharestory/btn_share-down.png',
   	right:5,
-    width:83,  
-    height:49
+    width:"83dp",  
+    height:"49dp"
 	});
 
 	share_button.addEventListener('click', function() {
@@ -53,15 +53,15 @@ Views.sharings.init.template = function() {
 
 	var facebook_button = Titanium.UI.createButton({
 		backgroundImage:"images/sharestory/fb_not_sharing.png",
-		height:41,
-		width:43,
+		height:"41dp",
+		width:"43dp",
 		left:50
 	});
 	
 	var twitter_button = Titanium.UI.createButton({
 		backgroundImage:"images/sharestory/tw_not_sharing.png",
-		height:41,
-		width:43,
+		height:"41dp",
+		width:"43dp",
 		left:122
 	});
 	
@@ -69,8 +69,8 @@ Views.sharings.init.template = function() {
 		backgroundImage:'images/add_tag/remove_icon.png',
 		left:2,
 		top:2,
-		width: 25,
-		height: 25,
+		width:"25dp",
+		height:"25dp",
 		zIndex:30
 	});
 	

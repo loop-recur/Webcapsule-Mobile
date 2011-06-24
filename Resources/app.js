@@ -1,4 +1,7 @@
-Titanium.UI.iPhone.statusBarStyle = Titanium.UI.iPhone.StatusBar.OPAQUE_BLACK;
+if(Ti.Platform.osname == "iphone") {Titanium.UI.iPhone.statusBarStyle = Titanium.UI.iPhone.StatusBar.OPAQUE_BLACK};
+
+var density = Titanium.Platform.displayCaps.density;
+
 Titanium.include('lib/framework/support/functional.js');
 Titanium.include('lib/framework/support/temp_id.js');
 Titanium.include('lib/framework/lib/base.js');
@@ -36,3 +39,6 @@ if(credentialsExists || authExists) {
 } else {
 	Layouts.login();
 };
+
+
+

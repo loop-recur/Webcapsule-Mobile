@@ -2,9 +2,9 @@ Helpers.ui = {};
 
 Helpers.ui.progressBar = function() {
 	var bar = Titanium.UI.createProgressBar({
-		width:240,
+		width:"240dp",
 		top:10,
-		height:0,
+		height:"0dp",
 		min:0,
 		max:1,
 		value:0,
@@ -37,8 +37,8 @@ Helpers.ui.spinner = function(position_obj) {
 	var activity = Titanium.UI.createActivityIndicator({
 		top:position_obj.top,
 		left:position_obj.left,
-		height:26,
-		width:26,
+		height:"26dp",
+		width:"26dp",
 		style:Titanium.UI.iPhone.ActivityIndicatorStyle.PLAIN
 	});
 	

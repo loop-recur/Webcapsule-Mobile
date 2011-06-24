@@ -8,9 +8,21 @@ Views.stories.init.template = function() {
 	var story = self.source;
 	
 	var recordButton = Titanium.UI.createButton({
-		top: 10, left: 10, right: 10, height: 35, title: 'Record Video'
+		top: 70, left: 10, right: 10, height:"35dp", title: 'Record Video'
 	});
 	win.add(recordButton);
+	
+	var saveButton = Titanium.UI.createButton({
+	    top: 100, left: 10, right: 10, height:"35dp",
+	    title: 'Save Recorded Video', visible: false
+	});
+	win.add(saveButton);
+
+	/**
+	 * We'll use the following variable to keep track of the result of our recording action.
+	 */
+	var videoUri = null;
+	var videoIntent = null;
 
 	recordButton.addEventListener('click', function() {
 	    // http://developer.android.com/reference/android/provider/MediaStore.html
@@ -54,6 +66,10 @@ Views.stories.init.template = function() {
 			max:1,
 			zIndex:999,
 			value:0
+			width:"240dp",
+			top:10,
+			height:"0dp",
+			color:'black'
 		});
 		
 		App.action(win, "stories#edit", {story : story, upload : target, progress_bar: progress_bar});
@@ -76,5 +92,70 @@ Views.stories.init.template = function() {
 			},
 			http_options : {progress_bar : progress_bar}
 		});
+	};
+
+	function makeProgressArea() {
+		var view = Titanium.UI.createView({
+			top:0,
+			width:"320dp",
+			height:"26dp",
+			backgroundColor:'black',
+			zIndex:999
+		});
+		
+		var cancel_button = Titanium.UI.createButton({  
+			backgroundImage:"images/uploadbar/upload_cancel.png",
+	    top:0,
+	  	right:0,
+	    width:"26dp",
+	    height:"26dp"
+		});
+		
+		activity = Titanium.UI.createActivityIndicator({
+			top:0,
+			left:1,
+			height:"26dp",
+			width:"26dp"
+		});
+
+		activity.show();
+		
+		var retry_button = Titanium.UI.createButton({  
+			backgroundImage:"images/uploadbar/upload_retry.png",
+	    top:0,
+	  	right:0,
+	    width:"26dp",
+	    height:"26dp",
+			visible: false
+		});
+		
+		retry_button.addEventListener("click", function() {
+			trySaving();
+		});
+	
+		cancel_button.addEventListener('click', function() {
+			if(Ti.App.current_xhr) Ti.App.current_xhr.abort();
+			activity.hide();
+			retry_button.visible = true;
+			cancel_button.visible = false;
+		});
+		
+		var trySaving = function() {
+			cancel_button.visible = true;
+			retry_button.visible = false;
+			activity.show();
+			if(!story.video_id){ saveVideo(); };
+		};
+		
+		view.add(cancel_button);
+		view.add(activity);
+		view.add(retry_button);
+		view.add(progress_bar);
+		
+		cancel_button.visible = true;
+		retry_button.visible = false;
+		activity.show();
+		
+		return view;
 	};
 };

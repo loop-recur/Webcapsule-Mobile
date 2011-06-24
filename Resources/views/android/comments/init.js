@@ -8,8 +8,8 @@ Views.comments.init.template = function() {
 	
 	var view = Titanium.UI.createView({
 		backgroundImage:'images/add_comment/add_comment.png',
-		height:148,
-		width:313,
+		height:"148dp",
+		width:"313dp",
 		zIndex:30,
 		top:45
 	});
@@ -18,11 +18,11 @@ Views.comments.init.template = function() {
 		backgroundColor:false,
 		color:text_field_text_color,
 		value:'Add Comment...',
-		height:55,
-		width:275,
+		height:"55dp",
+		width:"275dp",
 		top:15,
 		textAlign:'left',
-		font:{fontSize:12,fontFamily:'Helvetica Neue', fontWeight:'regular'},
+		font:{fontSize:"12dp",fontFamily:'Helvetica Neue', fontWeight:'regular'},
 		keyboardType:Titanium.UI.KEYBOARD_DEFAULT,
 		returnKeyType:Titanium.UI.RETURNKEY_DONE
 	});
@@ -33,8 +33,8 @@ Views.comments.init.template = function() {
 			backgroundSelectedImage:'images/app_wide/ok_pressed.png',  
 	  	right:15,
 			bottom:18,
-	    width:83,  
-	    height:49
+	    width:"83dp",  
+	    height:"49dp"
 	});
 	
 	field.addEventListener('focus', function() {
@@ -67,8 +67,8 @@ Views.comments.init.template = function() {
 		backgroundImage:'images/add_tag/remove_icon.png',
 		left:0,
 		top: 0,
-		width: 25,
-		height: 25
+		width:"25dp",
+		height:"25dp"
 	});
 	
 	cancel_button.addEventListener('click', function() {
