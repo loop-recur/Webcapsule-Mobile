@@ -2,9 +2,9 @@ Views.photos.init = Views.extend();
 
 Views.photos.init.template = function() {
 	var self = this;
-	var parent_win = self.win;
+	var player = self.win;
 	
-	var win = Titanium.UI.createView({zIndex:999, modal: true});
+	var win = Titanium.UI.createWindow({zIndex:999, fullscreen: true});
 	
 	var photo_tray = Titanium.UI.createView({
 		top:0,
@@ -34,6 +34,7 @@ Views.photos.init.template = function() {
 	});
 
 	take_picture.addEventListener('click', function() {
+		player.hide();
 		Layouts.take_photo(win, self.source, self.params.story);
 	});
 
@@ -48,8 +49,8 @@ Views.photos.init.template = function() {
 	});
 
 	done_button.addEventListener('click', function() {
-		// (Helpers.application.isBlank(Views.photos.create.source)) ? Views.stories.form.toggle_photo_icon(false) : Views.stories.form.toggle_photo_icon(true);
-		win.visible = false;
+		win.close();
+		if(self.params.from_show) Views.stories.show.makePlayer();
 	});
 	
 	var lock_done_button = Titanium.UI.createButton({  
@@ -80,6 +81,6 @@ Views.photos.init.template = function() {
 	Views.photos.create.story = self.params.story;
 	Views.photos.create.hide_delete = self.params.hide_delete;
 	Views.photos.create.render(self.params.photos);
-
-	parent_win.add(win);
+	
+	win.open();
 };

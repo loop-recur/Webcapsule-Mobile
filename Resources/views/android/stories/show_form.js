@@ -4,7 +4,7 @@ Views.stories.show_form.template = function() {
 	var self = this;
 	var parent_win = self.params.win;
 	var player = self.params.player;
-	var form_view = Titanium.UI.createView({top: 0, height: 245, zIndex:10});
+	var form_view = Titanium.UI.createView({top: 0, height: 245, zIndex:10, modal:true});
 	
 	var buttons_from_top_length = 72;
 	var button_width = 64;
@@ -128,7 +128,8 @@ Views.stories.show_form.template = function() {
 	});
 
 	photo_button.addEventListener('click', function() {
-		App.action(player, "photos#init", {story_id : self.source.id, photos : self.source.photos, story: self.source, hide_delete: true});
+		player.stop();
+		App.action(player, "photos#init", {story_id : self.source.id, photos : self.source.photos, story: self.source, hide_delete: true, from_show:true});
 	});
 
 	var video_button = Titanium.UI.createButton({
@@ -141,6 +142,8 @@ Views.stories.show_form.template = function() {
 	});
 
 	video_button.addEventListener('click', function() {
+		player.stop();
+		player.hide();
 		App.action(player, "videos#init", {story : self.source});
 	});
 

@@ -4,9 +4,6 @@ Views.videos.init.template = function() {
 	var self = this;
 	var video = self.source;
 	var player = self.win;
-	var win = Titanium.UI.createWindow({backgroundColor: "#ccc"});
-	player.stop();
-	Titanium.Android.currentActivity.finish();
 
 	 // http://developer.android.com/reference/android/provider/MediaStore.html
 	function record() {
@@ -16,11 +13,7 @@ Views.videos.init.template = function() {
 				alert("There was an error uploading");
 	    } else {
 				if (e.resultCode === Titanium.Android.RESULT_OK) {
-					// Layouts.story(Views.stories.show_form.source.id);
-					Ti.UI.createNotification({
-              duration: Ti.UI.NOTIFICATION_DURATION_LONG,
-              message: 'Finished!'
-          }).show();
+					 Views.stories.show.makePlayer();
 					 videoUri = e.intent.data;
 					 var source = Ti.Filesystem.getFile(videoUri);
 					 afterRecord(source);
@@ -29,27 +22,37 @@ Views.videos.init.template = function() {
 	       }
 	    }
 	 	});
-	}
-
+	};
 
 	function afterRecord(source) {
 		var target = Ti.Filesystem.getFile('appdata://reply.3gp');
 		source.copy(target.nativePath);
 		video.upload = target.read();
-
 		
-		App.action(win, "videos#create", {
+		var progress_bar = Titanium.UI.createActivityIndicator({
+			
+			type:Titanium.UI.ActivityIndicator.DETERMINANT,
+			message:'Uploading',
+			min:0,
+			max:1,
+			zIndex:999,
+			value:0
+		});
+		
+		progress_bar.show();
+		
+		App.action(null, "videos#create", {
 			video : video,
 			success : function(updated_video) {
-				win.close();
+				progress_bar.hide();
 			},
 			error : function(errors) {
 				alert("There was an error uploading, please try again");
-				win.close();
-			}
+				progress_bar.hide();
+			},
+			http_options : {progress_bar : progress_bar}
 		});
 	};
 
-	win.open();
 	record();
 };
