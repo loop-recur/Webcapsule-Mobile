@@ -11,8 +11,8 @@ Layouts.login = function () {
 	    top:"22%",
 			paddingLeft:5,
 			borderRadius:4,
-	    width:250,  
-	    height:35, 
+	    width:"250dp",  
+	    height:"35dp", 
 	    hintText:'Email',  
 	    keyboardType:Titanium.UI.KEYBOARD_EMAIL,  
 	    returnKeyType:Titanium.UI.RETURNKEY_NEXT,  
@@ -26,8 +26,8 @@ Layouts.login = function () {
     	backgroundColor:text_field_background_color,
 			color:text_field_text_color,		
 	    top:"31%",  
-	    width:250,  
-	    height:35,
+	    width:"250dp",  
+	    height:"35dp",
 			paddingLeft:5,  
 	    hintText:'Password',  
 	    passwordMask:true,  
@@ -48,8 +48,8 @@ Layouts.login = function () {
 			backgroundSelectedImage:'images/login/login-pressed.png',   
 			top:"43%",
 	  	right:10,
-	    width:133,  
-	    height:49,
+	    width:"133dp",  
+	    height:"49dp",
 			id:'login_button'
 	});
 
@@ -65,8 +65,8 @@ Layouts.login = function () {
 			backgroundImage:'images/login/login-facebook.png',
 			backgroundSelectedImage:'images/login/login-facebook-down.png',  
 	    top:"60%",
-	    width:182,  
-	    height:44
+	    width:"182dp",  
+	    height:"44dp"
 	});
 
 	facebook_login.addEventListener('click', function(){
@@ -80,8 +80,8 @@ Layouts.login = function () {
 			backgroundImage:'images/login/twitter.png',
 			backgroundSelectedImage:'images/login/twitter-down.png',  
 	    top:"70%",
-	    width:182,  
-	    height:44
+	    width:"182dp",  
+	    height:"44dp"
 	});
 
 	twitter_login.addEventListener('click', function(){
