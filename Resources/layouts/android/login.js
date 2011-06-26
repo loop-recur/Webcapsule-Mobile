@@ -4,18 +4,39 @@ Layouts.login = function () {
 	    title:'Login',
 			backgroundImage:'images/login/bg_login.png'
 	});
-
+	
+		if (Helpers.application.densityIsMedium())
+		  {
+		  var username_top = 100;
+			var password_top = 142;
+			var login_button_top = 197;
+			var login_button_right = 10;
+			var facebook_login_bottom = 135;
+			var twitter_login_bottom = 75; 
+			var new_account_label_bottom = 30;
+		  }
+		else
+		  {
+		  	var username_top = 150;
+				var password_top = 210;
+				var login_button_top = 320;
+				var login_button_right = 30;
+				var facebook_login_bottom = 370;
+				var twitter_login_bottom = 280; 
+				var new_account_label_bottom = 230;
+		  }
+		
 	var username = Titanium.UI.createTextField({  
 	    backgroundColor:text_field_background_color,
-			color:text_field_text_color,
-	    top:"19%",
+			color:text_field_text_color,	
 			paddingLeft:"5dp",
 			borderRadius:4,
 	    width:"250dp",  
 	    height:"35dp", 
 	    hintText:'Email',  
 	    keyboardType:Titanium.UI.KEYBOARD_EMAIL,  
-	    returnKeyType:Titanium.UI.RETURNKEY_NEXT,  
+	    returnKeyType:Titanium.UI.RETURNKEY_NEXT,
+			top:username_top
 	});
 	
 	username.addEventListener('return', function() {
@@ -25,7 +46,7 @@ Layouts.login = function () {
 	var password = Titanium.UI.createTextField({  
     	backgroundColor:text_field_background_color,
 			color:text_field_text_color,		
-	    top:"28%",  
+	    top:password_top,  
 	    width:"250dp",  
 	    height:"35dp",
 			paddingLeft:"5dp",  
@@ -46,8 +67,8 @@ Layouts.login = function () {
 	    value:false,
 			backgroundImage:'images/login/login-normal.png',
 			backgroundSelectedImage:'images/login/login-pressed.png',   
-			top:"43%",
-	  	right:10,
+			top:login_button_top,
+	  	right:login_button_right,
 	    width:"133dp",  
 	    height:"49dp",
 			id:'login_button'
@@ -64,7 +85,7 @@ Layouts.login = function () {
 	    value:false,
 			backgroundImage:'images/login/login-facebook.png',
 			backgroundSelectedImage:'images/login/login-facebook-down.png',  
-	    top:"60%",
+	    bottom:facebook_login_bottom,
 	    width:"182dp",  
 	    height:"44dp"
 	});
@@ -79,7 +100,7 @@ Layouts.login = function () {
 	    value:false,
 			backgroundImage:'images/login/twitter.png',
 			backgroundSelectedImage:'images/login/twitter-down.png',  
-	    top:"70%",
+	    bottom:twitter_login_bottom,
 	    width:"182dp",  
 	    height:"44dp"
 	});
@@ -92,7 +113,7 @@ Layouts.login = function () {
 
 	var new_account_label = Titanium.UI.createLabel({
 		text:'Create a New Account',
-		top:"75%",
+		bottom:new_account_label_bottom,
 		width:"150dp",
 		height:"40dp",
 		color:'gray',

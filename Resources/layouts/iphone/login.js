@@ -67,7 +67,7 @@ Layouts.login = function () {
 	    width:182,  
 	    height:44
 	});
-
+	
 	facebook_login.addEventListener('click', function(){
 		Helpers.user.connectFacebook(function(user) {
 			Layouts.site();
@@ -82,7 +82,7 @@ Layouts.login = function () {
 	    width:182,  
 	    height:44
 	});
-
+	
 	twitter_login.addEventListener('click', function(){
 		Helpers.user.connectTwitter(function(user) {
 			Layouts.site();

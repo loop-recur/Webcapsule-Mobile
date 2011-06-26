@@ -3,7 +3,6 @@ Views.stories.init = Views.extend();
 Views.stories.init.template = function() {
 	var self = this;
 	var video, progress_bar, story;
-	var videoUri;
 	var win = self.win;
 	var story = self.source;
 	
@@ -65,7 +64,7 @@ Views.stories.init.template = function() {
 			min:0,
 			max:1,
 			zIndex:999,
-			value:0
+			value:0,
 			width:"240dp",
 			top:10,
 			height:"0dp",

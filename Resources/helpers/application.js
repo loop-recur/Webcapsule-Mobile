@@ -4,3 +4,7 @@ Helpers.application.isBlank = function(item) {
 	return !item || item == "" || item == [];
 }
 
+Helpers.application.densityIsMedium = function() {
+	if(density == "medium");
+}
+
