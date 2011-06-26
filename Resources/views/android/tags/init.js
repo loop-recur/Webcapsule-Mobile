@@ -12,17 +12,50 @@ Views.tags.init.template = function() {
 		zIndex:30,
 		backgroundColor:'black'
 	});
+	
+	if (Helpers.application.densityIsMedium())
+	  {
+		var tag_tray_top = 0;
+		var available_tags_view_top = 60;
+		var added_tags_view_top = 155;
+		var name_top = 15;
+		var activity_top = 20;
+		var activity_left = 145;
+		var done_button_right = 15;
+		var done_button_bottom = 20;
+		var makeView_left = 0;
+		var makeView_top = 5;
+		var available_tag_top = 4;
+		var tag_name_bottom = 4;
+		var added_width = 70;
+	  }
+	else
+	  {
+		var tag_tray_top = 0;
+		var available_tags_view_top = 60;
+		var added_tags_view_top = 155;
+		var name_top = 15;
+		var activity_top = 20;
+		var activity_left = 145;
+		var done_button_right = 15;
+		var done_button_bottom = 20;
+		var makeView_left = 0;
+		var makeView_top = 5;
+		var available_tag_top = 4;
+		var tag_name_bottom = 4;
+		var added_width = 70;
+	  }
 
 	var tag_tray = Titanium.UI.createView({
 		height:"317dp",
-		top:0,
+		top:tag_tray_top,
 		backgroundImage:'images/add_tag/tag_friends_tray.png',
 		zIndex:100,
 		visible:true
 	});
 	
 	var available_tags_view = Titanium.UI.createScrollView({
-		top:60,
+		top:available_tags_view_top,
 		height:"85dp",
 		width:"300dp",
 		contentwidth:"auto",
@@ -31,7 +64,7 @@ Views.tags.init.template = function() {
 	});
 	
 	var added_tags_view = Titanium.UI.createScrollView({
-		top:155,
+		top:added_tags_view_top,
 		height:"80dp",
 		width:"300dp",
 		contentwidth:"auto",
@@ -44,7 +77,7 @@ Views.tags.init.template = function() {
 			color:text_field_text_color,
 			borderRadius:4,
 			paddingLeft:"5dp",
-	    top:15,  
+	    top:name_top,  
 	    width:"300dp",  
 	    height:"30dp",
 	    hintText:'Loading Friends',  
@@ -57,8 +90,8 @@ Views.tags.init.template = function() {
 	});
 	
 	var activity = Titanium.UI.createActivityIndicator({
-		top:20, 
-		left:145,
+		top:activity_top, 
+		left:activity_left,
 		height:"20dp",
 		width:"20dp",
 		zIndex: 20,
@@ -77,8 +110,8 @@ Views.tags.init.template = function() {
 	    value:false,
 			backgroundImage:'images/app_wide/ok_normal.png',
 			backgroundSelectedImage:'images/app_wide/ok_pressed.png',  
-	  	right:15,
-			bottom:20,
+	  	right:done_button_right,
+			bottom:done_button_bottom,
 	    width:"83dp",  
 	    height:"49dp"
 	});
@@ -106,8 +139,8 @@ Views.tags.init.template = function() {
 		return Titanium.UI.createView({
 			width:"10dp",
 			height:"100dp",
-			left:0,
-			top:5
+			left:makeView_left,
+			top:makeView_top
 		});
 	};	
 	
@@ -136,7 +169,7 @@ Views.tags.init.template = function() {
 	function makeFriend(position, friend) {
 
 		var available_tag = Titanium.UI.createView({
-			top:4,
+			top:available_tag_top,
 			left:position,
 			width:"60dp",
 			height:"60dp"
@@ -157,7 +190,7 @@ Views.tags.init.template = function() {
 		
 		var tag_name = Titanium.UI.createLabel({
 			text:friend.label,
-			bottom:4,
+			bottom:tag_name_bottom,
 			width:"52dp",
 			height:"10dp",
 			backgroundColor:'black',
@@ -175,8 +208,8 @@ Views.tags.init.template = function() {
 		available_tag.add(tag_border);
 		
 		
-		self.view.width += 70;
+		self.view.width += added_width;
 		self.view.add(available_tag);
-		return position + 70;
+		return position + added_width;
 	}
 };

@@ -2,13 +2,24 @@ Layouts.record = function(story) {
 	var win = Titanium.UI.createWindow({
 		id:"record"
 	});
+	
+	if (Helpers.application.densityIsMedium())
+	  {
+	  var close_btn_top = 5;
+		var close_btn_left = 5;
+	  }
+	else
+	  {
+	  var close_btn_top = 5;
+		var close_btn_left = 5;
+	  }
 		
 	var close_btn = Titanium.UI.createButton({
 		backgroundImage:"images/postrecord/return.png",
 		height:"26dp",
 		width:"26dp",
-		top:5,
-		left:5
+		top:close_btn_top,
+		left:close_btn_left
 	});
 
 	close_btn.addEventListener('click', function(e) {

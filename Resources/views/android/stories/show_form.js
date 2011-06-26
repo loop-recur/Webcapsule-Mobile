@@ -10,18 +10,61 @@ Views.stories.show_form.template = function() {
 	var button_width = "64dp";
 	var button_height = "60dp";
 	
+	if (Helpers.application.densityIsMedium())
+	  {
+	  var functionality_view_top = 0;
+		var comment_bar_right = 0;
+		var comment_bar_top = 0;
+		var tray_bottom = 0;
+		var date_right = 10;
+		var date_top = 50;
+		var title_left = 10;
+		var title_top = 5;
+		var duration_right = 10;
+		var duration_top = 10;
+		var user_icon_left = 10;
+		var user_icon_top = 50;
+		var user_left = 21;
+		var user_top = 51;
+		var comment_button_left = 8;
+		var photo_button_left = 68;
+		var edit_button_right = 8;
+		var share_button_right = 68;
+	  }
+	else
+	  {
+	  var functionality_view_top = 0;
+		var comment_bar_right = 0;
+		var comment_bar_top = 0;
+		var tray_bottom = 0;
+		var date_right = 10;
+		var date_top = 50;
+		var title_left = 10;
+		var title_top = 5;
+		var duration_right = 10;
+		var duration_top = 10;
+		var user_icon_left = 10;
+		var user_icon_top = 50;
+		var user_left = 21;
+		var user_top = 51;
+		var comment_button_left = 8;
+		var photo_button_left = 68;
+		var edit_button_right = 8;
+		var share_button_right = 68;
+	  }
+	
 	var functionality_view = Titanium.UI.createView({
 		height:"193dp",
 		width:"320dp",
-		top:0
+		top:functionality_view_top
 	});
 	
 	var comment_bar = Titanium.UI.createView({
 		backgroundImage:'images/storyshow/comment_bar.png',
 		height:"58dp",
 		width:"275dp",
-		right:0,
-		top:0
+		right:comment_bar_right,
+		top:comment_bar_top
 	});
 	
 	self.comment_bar = comment_bar;
@@ -30,7 +73,7 @@ Views.stories.show_form.template = function() {
 		backgroundImage:'images/storyshow/story_drawer.png',
 		height:"137dp",
 		width:"320dp",
-		bottom:0
+		bottom:tray_bottom
 	});
 
 
@@ -41,8 +84,8 @@ Views.stories.show_form.template = function() {
 			fontSize:"10dp",
 			fontWeight:'regular'
 		},
-		right:10,
-		top:50,
+		right:date_right,
+		top:date_top,
 		height:"15dp",
 		width:"auto",
 		text: "Posted on " + self.source.when
@@ -55,8 +98,8 @@ Views.stories.show_form.template = function() {
 			fontSize:"18dp",
 			fontWeight:'bold'
 		},
-		left:10,
-		top:5,
+		left:title_left,
+		top:title_top,
 		height:"25dp",
 		width:"240dp",
 		shadowColor:"#999",
@@ -71,8 +114,8 @@ Views.stories.show_form.template = function() {
 			fontSize:"10dp",
 			fontWeight:'bold'
 		},			
-		right:10,
-		top:10,
+		right:duration_right,
+		top:duration_top,
 		height:"10dp",
 		width:"30dp",
 		text:self.source.duration,
@@ -81,8 +124,8 @@ Views.stories.show_form.template = function() {
 	
 	var user_icon = Titanium.UI.createImageView({
 		backgroundImage:'images/feed/user_ico.png',
-		left:10,
-		top:50,
+		left:user_icon_left,
+		top:user_icon_top,
 		width:"10dp",
 		height:"10dp"
 	});
@@ -90,8 +133,8 @@ Views.stories.show_form.template = function() {
 	var user = Ti.UI.createLabel({
 		color:'#525252',
 		font:{fontSize:"11dp",fontWeight:'regular', fontFamily:'Helvetica Neue'},
-		left:21,
-		top:51,
+		left:user_left,
+		top:user_top,
 		height:"10dp",
 		width:"160dp",
 		text:self.source.user.full_name
@@ -106,7 +149,7 @@ Views.stories.show_form.template = function() {
 	var comment_button = Titanium.UI.createButton({
 		value:false,
 		top:buttons_from_top_length,
-		left:8,
+		left:comment_button_left,
 		height:button_height,
 		width:button_width,
 		backgroundImage:'images/storyshow/comment_normal.png',
@@ -120,7 +163,7 @@ Views.stories.show_form.template = function() {
 	var photo_button = Titanium.UI.createButton({
 		value:false,
 		top:buttons_from_top_length,
-		left: 68,
+		left:photo_button_left,
 		height:button_height,
 		width:button_width,
 		backgroundImage:'images/postrecord/addphotos_normal.png',
@@ -150,7 +193,7 @@ Views.stories.show_form.template = function() {
 	var edit_button = Titanium.UI.createButton({	
 		value:false,
 		top:buttons_from_top_length,
-		right:8,
+		right:edit_button_right,
 		height:button_height,
 		width:button_width,
 		backgroundImage:'images/storyshow/edit_normal.png',
@@ -166,7 +209,7 @@ Views.stories.show_form.template = function() {
 	var share_button = Titanium.UI.createButton({
 		value:false,
 		top:buttons_from_top_length,
-		right:68,
+		right:share_button_right,
 		height:button_height,
 		width:button_width,
 		backgroundImage:'images/postrecord/share_normal.png',

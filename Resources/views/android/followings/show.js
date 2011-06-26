@@ -6,9 +6,32 @@ Views.followings.show.template = function() {
 	
 	var win = Titanium.UI.createView();
 	
+	if (Helpers.application.densityIsMedium())
+	  {
+	  var top_bar_top = 0;
+		var avatar_top = 7;
+		var avatar_left = 30;
+		var avatar_frame_top = 7;
+		var avatar_frame_left = 30;
+		var friend_name_left = 80;
+		var friend_button_right = 20;
+		var friend_stories_view_top = 57;
+	  }
+	else
+	  {
+	  var top_bar_top = 0;
+		var avatar_top = 7;
+		var avatar_left = 30;
+		var avatar_frame_top = 7;
+		var avatar_frame_left = 30;
+		var friend_name_left = 80;
+		var friend_button_right = 20;
+		var friend_stories_view_top = 57;
+	  }
+	
 	var top_bar = Ti.UI.createView ({
 		height:"59dp",
-		top:0,
+		top:top_bar_top,
 		backgroundImage:'images/friendshow/bar_topfriend.png'
 	});
 		
@@ -16,16 +39,16 @@ Views.followings.show.template = function() {
 	
 	var avatar = Titanium.UI.createImageView({
 		image:avatar_link,
-		top:7,
-		left:30,
+		top:avatar_top,
+		left:avatar_left,
 		width:"45dp",
 		height:"45dp"
 	});
 	
 	var avatar_frame = Titanium.UI.createImageView({
 		image:'images/friendshow/ol_avatar.png',
-		top:7,
-		left:30,
+		top:avatar_frame_top,
+		left:avatar_frame_left,
 		width:"45dp",
 		height:"45dp",
 		zIndex:20
@@ -38,7 +61,7 @@ Views.followings.show.template = function() {
 			fontSize:"14dp",
 			fontWeight:'bold'
 		},
-		left:80,
+		left:friend_name_left,
 		height:"20dp",
 		width:"160dp",
 		text:friend.full_name
@@ -50,7 +73,7 @@ Views.followings.show.template = function() {
 		var friend_button = Titanium.UI.createButton({
 			backgroundImage:'images/friendshow/btn_unfollow.png',
 			backgroundSelectedImage:"images/friendshow/btn_unfollow-pressed.png",
-			right:20,
+			right:friend_button_right,
 			height:"34dp",
 			width:"58dp",
 			zIndex:60
@@ -80,7 +103,7 @@ Views.followings.show.template = function() {
 
 	var friend_stories_view = Ti.UI.createView ({
 		height:"350dp",
-		top:57
+		top:friend_stories_view_top
 	});
 	
 	top_bar.add(close);

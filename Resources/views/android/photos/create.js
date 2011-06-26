@@ -6,6 +6,25 @@ Views.photos.create.template = function() {
 	var added_photo_view = self.added_photo_view;
 	var hide_delete = self.hide_delete || false;
 	
+	if (Helpers.application.densityIsMedium())
+	  {
+	  var makeView_top = 10;
+		var makePhotos_top = 10;
+		var makePhotos_left = 0;
+		var image_top = 8;
+		var delete_button_top = -5;
+		var delete_button_left = -5;
+	  }
+	else
+	  {
+	  var makeView_top = 10;
+		var makePhotos_top = 10;
+		var makePhotos_left = 0;
+		var image_top = 8;
+		var delete_button_top = -5;
+		var delete_button_left = -5;
+	  }
+	
 	update();
 	
 	function update() {
@@ -18,13 +37,13 @@ Views.photos.create.template = function() {
 	
 	function makeView() {
 		 return Titanium.UI.createView({
-			top:10,
+			top:makeView_top,
 			height:"96dp"
 		});
 	};
 	
 	function makePhotos(position, photo) {
-		Functional.reduce(makePhoto, {left:10, top:0}, (self.source || []));
+		Functional.reduce(makePhoto, {left:makePhotos_left, top:makePhotos_top}, (self.source || []));
 	}
 	
 	function makePhoto(position, photo) {
@@ -43,7 +62,7 @@ Views.photos.create.template = function() {
 		});
 
 		var image = Titanium.UI.createImageView({
-			top:8,
+			top:image_top,
 			width:"65dp",
 			height:"65dp"
 		});
@@ -56,8 +75,8 @@ Views.photos.create.template = function() {
 		if(!hide_delete && Helpers.user.canEdit(photo, story)) {
 			var delete_button = Titanium.UI.createView({
 				backgroundImage:'images/add_tag/remove_icon.png',
-				left:-5,
-				top: -5,
+				left:delete_button_left,
+				top:delete_button_top,
 				width:"25dp",
 				height:"25dp"
 			});

@@ -5,17 +5,36 @@ Views.comments.comment.template = function() {
 	var parent_win = self.params.win;
 	var comment = self.source;
 
+	if (Helpers.application.densityIsMedium())
+	  {
+	  var view_right = 0;
+		var avatar_left = 0;
+		var user_left = 55;
+		var user_top = 0;
+		var title_left = 55;
+		var title_bottom = 0;
+	  }
+	else
+	  {
+	  var view_right = 0;
+		var avatar_left = 0;
+		var user_left = 55;
+		var user_top = 0;
+		var title_left = 55;
+		var title_bottom = 0;
+	  }
+
 	view = Ti.UI.createView({
 		height:"58dp",
 		width:"265dp",
-		right:0,
+		right:view_right,
 		visible: false
 	});
 	
 	var avatar = Titanium.UI.createImageView({
 		image:App.file_url+comment.user.image,
 		defaultImage:'images/avatar_medium.jpg',
-		left:0,
+		left:avatar_left,
 		width:"50dp",
 		height:"50dp"
 	});
@@ -23,8 +42,8 @@ Views.comments.comment.template = function() {
 	var user = Titanium.UI.createLabel({
 		text: comment.user.full_name + " says:",
 		font:{fontFamily:'Arial',fontWeight:'bold',fontSize:"10dp"},
-		left:55,
-		top:0,
+		left:user_left,
+		top:user_top,
 		height:"15dp",
 		width:'auto',
 		color:'white'
@@ -33,8 +52,8 @@ Views.comments.comment.template = function() {
 	var title = Titanium.UI.createLabel({
 		text: comment.content,
 		font:{fontFamily:'Arial',fontWeight:'bold',fontSize:"10dp"},
-		left:55,
-		bottom:0,
+		left:title_left,
+		bottom:title_bottom,
 		height:"43dp",
 		width:'auto',
 		color:'white'

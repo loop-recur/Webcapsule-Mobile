@@ -6,12 +6,31 @@ Views.comments.init.template = function() {
 	var comment = self.source;
 	var win = self.win;
 	
+	if (Helpers.application.densityIsMedium())
+	  {
+	  var view_top = 45;
+		var field_top = 15;
+		var ok_button_right = 15;
+		var ok_button_bottom = 18;
+		var cancel_button_left = 0;
+		var cancel_button_top = 0;
+	  }
+	else
+	  {
+	  var view_top = 45;
+		var field_top = 15;
+		var ok_button_right = 15;
+		var ok_button_bottom = 18;
+		var cancel_button_left = 0;
+		var cancel_button_top = 0;
+	  }
+	
 	var view = Titanium.UI.createView({
 		backgroundImage:'images/add_comment/add_comment.png',
 		height:"148dp",
 		width:"313dp",
 		zIndex:30,
-		top:45
+		top:view_top
 	});
 	
 	var field = Titanium.UI.createTextArea({
@@ -20,7 +39,7 @@ Views.comments.init.template = function() {
 		value:'Add Comment...',
 		height:"55dp",
 		width:"275dp",
-		top:15,
+		top:field_top,
 		textAlign:'left',
 		font:{fontSize:"12dp",fontFamily:'Helvetica Neue', fontWeight:'regular'},
 		keyboardType:Titanium.UI.KEYBOARD_DEFAULT,
@@ -31,8 +50,8 @@ Views.comments.init.template = function() {
 	    value:false,
 			backgroundImage:'images/app_wide/ok_normal.png',
 			backgroundSelectedImage:'images/app_wide/ok_pressed.png',  
-	  	right:15,
-			bottom:18,
+	  	right:ok_button_right,
+			bottom:ok_button_bottom,
 	    width:"83dp",  
 	    height:"49dp"
 	});
@@ -65,8 +84,8 @@ Views.comments.init.template = function() {
 	
 	var cancel_button = Titanium.UI.createView({
 		backgroundImage:'images/add_tag/remove_icon.png',
-		left:0,
-		top: 0,
+		left:cancel_button_left,
+		top:cancel_button_top,
 		width:"25dp",
 		height:"25dp"
 	});

@@ -5,6 +5,20 @@ Views.tags.create.template = function() {
 	var scrollview = self.scrollview;
 	var tags = self.source || [];
 	
+	if (Helpers.application.densityIsMedium())
+	  {
+	  var makeView_left = 0;
+		var added_tag_top = 1;
+		var tag_name_bottom = 4;
+		var delete_button_left = -5;
+		var delete_button_top = -5;
+		var added_width = 70;
+	  }
+	else
+	  {
+
+	  }
+	
 	update();
 	
 	function update() {
@@ -18,7 +32,7 @@ Views.tags.create.template = function() {
 		return Titanium.UI.createView({
 			width:"60dp",
 			height:"70dp",
-			left:0
+			left:makeView_left
 		});
 	};
 	
@@ -28,7 +42,7 @@ Views.tags.create.template = function() {
 	
 	function makeFriend(position, friend) {
 		var added_tag = Titanium.UI.createView({
-			top:1,
+			top:added_tag_top,
 			left:position,
 			width:"60dp",
 			height:"60dp",
@@ -49,7 +63,7 @@ Views.tags.create.template = function() {
 		
 		var tag_name = Titanium.UI.createLabel({
 			text:friend.label,
-			bottom:4,
+			bottom:tag_name_bottom,
 			width:"52dp",
 			height:"10dp",
 			backgroundColor:'black',
@@ -60,8 +74,8 @@ Views.tags.create.template = function() {
 		
 		var delete_button = Titanium.UI.createView({
 			backgroundImage:'images/add_tag/remove_icon.png',
-			left:-5,
-			top: -5,
+			left:delete_button_left,
+			top:delete_button_top,
 			width:"25dp",
 			height:"25dp"
 		});
@@ -76,8 +90,8 @@ Views.tags.create.template = function() {
 		added_tag.add(added_tag_border);
 		added_tag.add(delete_button);
 		self.view.add(added_tag);
-		self.view.width += 70;
-		return position + 70;
+		self.view.width += added_width;
+		return position + added_width;
 	};
 	
 };

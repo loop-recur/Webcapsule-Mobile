@@ -6,15 +6,38 @@ Views.photos.init.template = function() {
 	
 	var win = Titanium.UI.createWindow({zIndex:999, fullscreen: true});
 	
+	if (Helpers.application.densityIsMedium())
+	  {
+	  var photo_tray_top = 0;
+		var added_photo_view_top = 15;
+		var take_picture_left = 15;
+		var take_picture_bottom = 20;
+		var done_button_right = 15;
+		var done_button_bottom = 20;
+		var lock_done_button_right = 15;
+		var lock_done_button_bottom = 20;
+	  }
+	else
+	  {
+	  var photo_tray_top = 0;
+		var added_photo_view_top = 15;
+		var take_picture_left = 15;
+		var take_picture_bottom = 20;
+		var done_button_right = 15;
+		var done_button_bottom = 20;
+		var lock_done_button_right = 15;
+		var lock_done_button_bottom = 20;
+	  }
+	
 	var photo_tray = Titanium.UI.createView({
-		top:0,
+		top:photo_tray_top,
 		height:"240dp",
 		backgroundImage:'images/add_photo/add_photos_tray.png',
 		zIndex:100
 	});
 	
 	var added_photo_view = Titanium.UI.createScrollView({
-		top:15,
+		top:added_photo_view_top,
 		height:"140dp",
 		width:"300dp",
 		contentwidth:"300dp",
@@ -27,8 +50,8 @@ Views.photos.init.template = function() {
 	    value:false,
 			backgroundImage:'images/add_photo/take_picture_normal.png',
 			backgroundSelectedImage:'images/add_photo/take_picture_pressed.png',  
-	  	left:15,
-			bottom:20,
+	  	left:take_picture_left,
+			bottom:take_picture_bottom,
 	    width:"53dp",  
 	    height:"55dp"
 	});
@@ -42,8 +65,8 @@ Views.photos.init.template = function() {
 	    value:false,
 			backgroundImage:'images/app_wide/ok_normal.png',
 			backgroundSelectedImage:'images/app_wide/ok_pressed.png',  
-	  	right:15,
-			bottom:20,
+	  	right:done_button_right,
+			bottom:done_button_bottom,
 	    width:"83dp",  
 	    height:"49dp"
 	});
@@ -57,8 +80,8 @@ Views.photos.init.template = function() {
 	    value:false,
 			backgroundImage:'images/app_wide/ok_normal.png',
 			backgroundSelectedImage:'images/app_wide/ok_pressed.png',
-	  	right:15,
-			bottom:20,
+	  	right:lock_done_button_right,
+			bottom:lock_done_button_bottom,
 	    width:"83dp",
 	    height:"49dp",
 			enabled: false,

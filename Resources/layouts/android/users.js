@@ -4,8 +4,29 @@ Layouts.users = function() {
 		backgroundImage:'images/app_wide/bg_full.png'
 	});
 	
+	if (Helpers.application.densityIsMedium())
+	  {
+	  var nav_top = 0;
+		var followers_button_left = 20;
+		var followees_button_right = 20;
+		var content_top = 40;
+		var property = 0;
+		var property = 0;
+		var property = 0;
+	  }
+	else
+	  {
+	  var nav_top = 0;
+		var followers_button_left = 20;
+		var followees_button_right = 20;
+		var content_top = 40;
+		var property = 0;
+		var property = 0;
+		var property = 0;
+	  }
+	
 	var nav = Ti.UI.createView({
-		top:0,
+		top:nav_top,
 		height:"40dp"
 	});
 	
@@ -14,7 +35,7 @@ Layouts.users = function() {
 	    value:false,
 	    width:"110dp",
 	    height:"20dp",
-			left: 20
+			left:followers_button_left
 	});
 
 	followers_button.addEventListener('click', function(){
@@ -25,7 +46,7 @@ Layouts.users = function() {
 	    title:"Following",
 	    width:"140dp",
 	    height:"20dp",
-			right: 20
+			right:followees_button_right
 	});
 
 	followees_button.addEventListener('click', function(){
@@ -33,7 +54,7 @@ Layouts.users = function() {
 	});
 	
 	var content = Ti.UI.createView({
-		top:40,
+		top:content_top,
 		height:"360dp"
 	});
 	

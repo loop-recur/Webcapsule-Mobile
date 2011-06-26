@@ -1,22 +1,43 @@
 // BOTTOM NAVIGATION
 Layouts.bottomNav = function() {
 
+	if (Helpers.application.densityIsMedium())
+	  {
+	  var win_bottom = 0;
+		var bottom_view_bottom = 0;
+		var stories_button_bottom = 5;
+		var stories_button_left = 45;
+		var users_button_bottom = 4;
+		var users_button_right = 45
+		var record_button_bottom = 0;
+	  }
+	else
+	  {
+		var win_bottom = 0;
+		var bottom_view_bottom = 0;
+		var stories_button_bottom = 5;
+		var stories_button_left = 45;
+		var users_button_bottom = 4;
+		var users_button_right = 45
+		var record_button_bottom = 0;
+	  }
+
 	var win = Titanium.UI.createView({
-		bottom:0,
+		bottom:win_bottom,
 		height:"58dp",
 		zIndex:50
 	});
 	
 	var bottom_view = Titanium.UI.createView({
-		bottom:0,
+		bottom:bottom_view_bottom,
 		height:"58dp",
 		backgroundImage:'images/toolbar/toolbar_bg.png'
 	}); 
 
 	var stories_button = Titanium.UI.createButton({
 		value:false,
-		bottom:5,
-		left:45,
+		bottom:stories_button_bottom,
+		left:stories_button_left,
 		height:"43dp",
 		width:"51dp",
 		backgroundImage:'images/toolbar/navbtn_stories.png',
@@ -31,8 +52,8 @@ Layouts.bottomNav = function() {
 	
 	var users_button = Titanium.UI.createButton({
 		value:false,
-		bottom:4,
-		right:45,
+		bottom:users_button_bottom,
+		right:users_button_right,
 		height:"43dp",
 		width:"51dp",
 		backgroundImage:'images/toolbar/navbtn_friends.png',
@@ -47,7 +68,7 @@ Layouts.bottomNav = function() {
 
 	var record_button = Titanium.UI.createButton({
 		value:false,
-		bottom:0,
+		bottom:record_button_bottom,
 		height:"62dp",
 		width:"81dp",
 		backgroundImage:'images/toolbar/navbtn_record.png',

@@ -5,13 +5,28 @@ Layouts.stories = function() {
 		id:"stories"
 	});
 	
+	if (Helpers.application.densityIsMedium())
+	  {
+	  var nav_top = 0;
+		var content_top = 0;
+		var my_stories_button_left = 20;
+		var feed_button_right = 20;
+	  }
+	else
+	  {
+		var nav_top = 0;
+		var content_top = 0;
+		var my_stories_button_left = 20;
+		var feed_button_right = 20;
+	  }
+	
 	var nav = Ti.UI.createView({
-		top:0,
+		top:nav_top,
 		height:"40dp"
 	});
 
 	var content = Ti.UI.createView({
-		top:40,
+		top:content_top,
 		height:"360dp"
 	});
 	
@@ -20,7 +35,7 @@ Layouts.stories = function() {
 	    value:false,
 	    width:"110dp",
 	    height:"20dp",
-			left: 20
+			left:my_stories_button_left
 	});
 
 	my_stories_button.addEventListener('click', function(){
@@ -31,7 +46,7 @@ Layouts.stories = function() {
 	    title:"Friends' Stories",
 	    width:"140dp",
 	    height:"20dp",
-			right: 20
+			right:feed_button_right
 	});
 
 	feed_button.addEventListener('click', function(){

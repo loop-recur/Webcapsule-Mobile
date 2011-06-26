@@ -9,11 +9,34 @@ Views.accounts.init.template = function() {
 		backgroundImage:'images/newaccount/bg_create_account.png'
 	});
 	
+	if (Helpers.application.densityIsMedium())
+	  {
+	  var full_name_top = 30;
+		var email_top = 80;
+		var password_top = 130;
+		var password_confirm_top = 180;
+		var create_account_button_bottom = 160;
+		var create_account_button_right = 10;
+		var cancel_button_bottom = 160;
+		var cancel_button_left = 10;
+	  }
+	else
+	  {
+		var full_name_top = 30;
+		var email_top = 80;
+		var password_top = 130;
+		var password_confirm_top = 180;
+		var create_account_button_bottom = 160;
+		var create_account_button_right = 10;
+		var cancel_button_bottom = 160;
+		var cancel_button_left = 10;
+	  }
+	
 	var full_name = Titanium.UI.createTextField({  
   		backgroundColor:text_field_background_color,
 			color:text_field_text_color,
 	    paddingLeft:"5dp",
-			top:30,   
+			top:full_name_top,   
 	    width:"290dp",  
 	    height:"35dp",  
 	    hintText:'Full Name',  
@@ -30,7 +53,7 @@ Views.accounts.init.template = function() {
 	    backgroundColor:text_field_background_color,
 			color:text_field_text_color,
 	    paddingLeft:"5dp",
-			top:80,   
+			top:email_top,   
 	    width:"290dp",  
 	    height:"35dp",  
 	    hintText:'Email',  
@@ -46,7 +69,7 @@ Views.accounts.init.template = function() {
 	var password = Titanium.UI.createTextField({  
 	    backgroundColor:text_field_background_color,
 			color:text_field_text_color,
-	    top:130,
+	    top:password_top,
 			paddingLeft:"5dp", 
 	    width:"290dp",  
 	    height:"35dp",  
@@ -65,7 +88,7 @@ Views.accounts.init.template = function() {
 	    backgroundColor:text_field_background_color,
 			color:text_field_text_color,
 	    paddingLeft:"5dp",
-			top:180,  
+			top:password_confirm_top,  
 	    width:"290dp",  
 	    height:"35dp",  
 	    hintText:'Confirm Password',  
@@ -79,8 +102,8 @@ Views.accounts.init.template = function() {
 	    value:false,
 			backgroundImage:'images/newaccount/make_account_normal.png',
 			backgroundSelectedImage:'images/newaccount/make_account_pressed.png',  
-	    bottom:160,
-	  	right:10,
+	    bottom:create_account_button_bottom,
+	  	right:create_account_button_right,
 	    width:"133dp",  
 	    height:"49dp"
 	});
@@ -89,8 +112,8 @@ Views.accounts.init.template = function() {
 	    value:false,
 			backgroundImage:'images/newaccount/btn_cancel.png',
 			backgroundSelectedImage:'images/newaccount/btn_cancel_pressed.png',  
-	    bottom:160,
-	  	left:10,
+	    bottom:cancel_button_bottom,
+	  	left:cancel_button_left,
 	    width:"133dp",  
 	    height:"49dp"
 	});

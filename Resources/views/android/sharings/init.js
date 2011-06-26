@@ -9,11 +9,30 @@ Views.sharings.init.template = function() {
 	var facebook = getAuth('facebook');
 	var automatic_share = self.params.automatic_share || false;
 	
+	if (Helpers.application.densityIsMedium())
+	  {
+	  var container_top = 80;
+		var share_button_right = 5;
+		var facebook_button_left = 50;
+		var twitter_button_left = 122;
+		var cancel_button_left = 2;
+		var cancel_button_top = 2;
+	  }
+	else
+	  {
+	  var container_top = 80;
+		var share_button_right = 5;
+		var facebook_button_left = 50;
+		var twitter_button_left = 122;
+		var cancel_button_left = 2;
+		var cancel_button_top = 2;
+	  }
+	
 	var container = Titanium.UI.createView({
 		zIndex:30,
 		height:"114dp",
 		width:"320dp",
-		top:80
+		top:container_top
 	});
 	
 	var view = Titanium.UI.createView({
@@ -27,7 +46,7 @@ Views.sharings.init.template = function() {
 	var share_button = Titanium.UI.createButton({
 		backgroundImage:'images/sharestory/btn_share.png',
 		backgroundSelectedImage:'images/sharestory/btn_share-down.png',
-  	right:5,
+  	right:share_button_right,
     width:"83dp",  
     height:"49dp"
 	});
@@ -55,20 +74,20 @@ Views.sharings.init.template = function() {
 		backgroundImage:"images/sharestory/fb_not_sharing.png",
 		height:"41dp",
 		width:"43dp",
-		left:50
+		left:facebook_button_left
 	});
 	
 	var twitter_button = Titanium.UI.createButton({
 		backgroundImage:"images/sharestory/tw_not_sharing.png",
 		height:"41dp",
 		width:"43dp",
-		left:122
+		left:twitter_button_left
 	});
 	
 	var cancel_button = Titanium.UI.createView({
 		backgroundImage:'images/add_tag/remove_icon.png',
-		left:2,
-		top:2,
+		left:cancel_button_left,
+		top:cancel_button_top,
 		width:"25dp",
 		height:"25dp",
 		zIndex:30

@@ -5,9 +5,22 @@ Views.followings.index.template = function() {
 	
 	function createTableViewRow(following) {
 		
+		if (Helpers.application.densityIsMedium())
+		  {
+		  var row_height = 80;
+			var avatar_left = 10;
+			var title_left = 80;
+		  }
+		else
+		  {
+		  var row_height = 80;
+			var avatar_left = 10;
+			var title_left = 80;
+		  }
+		
 		var row = Ti.UI.createTableViewRow({
 			backgroundImage:'images/feed/item_bg.png',
-			height:80,
+			height:row_height,
 			hasChild:true
 		});		
 		
@@ -15,7 +28,7 @@ Views.followings.index.template = function() {
 		
 		var avatar = Titanium.UI.createImageView({
 			image:Helpers.images.escape(avatar_link),
-			left:10,
+			left:avatar_left,
 			width:"65dp",
 			height:"65dp",
 			borderRadius:8
@@ -24,7 +37,7 @@ Views.followings.index.template = function() {
 		var title = Ti.UI.createLabel({
 			color:'#616161',
 			font:{fontSize:"14dp",fontWeight:'bold', fontFamily:'Helvetica Neue'},
-			left:80,
+			left:title_left,
 			height:"30dp",
 			width:"200dp",
 			text:following.full_name

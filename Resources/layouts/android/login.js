@@ -17,13 +17,13 @@ Layouts.login = function () {
 		  }
 		else
 		  {
-		  	var username_top = 150;
-				var password_top = 210;
-				var login_button_top = 320;
-				var login_button_right = 30;
-				var facebook_login_bottom = 370;
-				var twitter_login_bottom = 280; 
-				var new_account_label_bottom = 230;
+	  	var username_top = 150;
+			var password_top = 210;
+			var login_button_top = 320;
+			var login_button_right = 30;
+			var facebook_login_bottom = 370;
+			var twitter_login_bottom = 280; 
+			var new_account_label_bottom = 230;
 		  }
 		
 	var username = Titanium.UI.createTextField({  

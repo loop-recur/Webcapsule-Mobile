@@ -5,7 +5,45 @@ Views.stories.form.template = function() {
 	
 	var win = self.params.win;
 	var player = self.params.player;
-	var form_view = Titanium.UI.createView({bottom: 0, height:"245dp", zIndex:10});
+	
+	if (Helpers.application.densityIsMedium())
+	  {
+	  var form_view_bottom = 0;
+		var functionality_view_bottom = 0;
+		var record_tray_top = 0;
+		var record_tray_right = 0;
+		var accept_button_top = 0;
+		var accept_button_right = 0;
+		var saving_label_right = -100;
+		var saving_label_top = 12;
+		var rerecord_button_right = 60;
+		var tray_bottom = 0;
+		var story_title_field_top = 10;
+		var tag_friends_button_left = 8;
+		var location_button_left = 68;
+		var add_date_button_right = 68;
+		var share_button_right = 8;
+	  }
+	else
+	  {
+	  var form_view_bottom = 0;
+		var functionality_view_bottom = 0;
+		var record_tray_top = 0;
+		var record_tray_right = 0;
+		var accept_button_top = 0;
+		var accept_button_right = 0;
+		var saving_label_right = -100;
+		var saving_label_top = 12;
+		var rerecord_button_right = 60;
+		var tray_bottom = 0;
+		var story_title_field_top = 10;
+		var tag_friends_button_left = 8;
+		var location_button_left = 68;
+		var add_date_button_right = 68;
+		var share_button_right = 8;
+	  }
+	
+	var form_view = Titanium.UI.createView({bottom: form_view_bottom, height:"245dp", zIndex:10});
 
 	Layouts.pick_date(player);
 	
@@ -16,22 +54,22 @@ Views.stories.form.template = function() {
 	var functionality_view = Titanium.UI.createView({
 		height:"193dp",
 		width:"320dp",
-		bottom:0
+		bottom:functionality_view_bottom
 	});
 	
 	var record_tray = Titanium.UI.createView({
 		backgroundImage:'images/record/bar-recordupload.png',
 		height:"56dp",
 		width:"115dp",
-		top:0,
-		right:0,
+		top:record_tray_top,
+		right:record_tray_right,
 		visible:true
 	});
 	
 	var accept_button = Titanium.UI.createButton({
 		value:false,
-		top:0,
-		right:0,
+		top:accept_button_top,
+		right:accept_button_right,
 		height:"43dp",
 		width:"49dp",
 		backgroundImage:'images/postrecord/accept_btn.png',
@@ -41,8 +79,8 @@ Views.stories.form.template = function() {
 	
 	var saving_label = Titanium.UI.createLabel({
 		text:'Saving..',
-		right:-100,
-		top:12,
+		right:saving_label_right,
+		top:saving_label_top,
 		width:'auto',
 		height:'auto',
 		color:'white',
@@ -54,7 +92,7 @@ Views.stories.form.template = function() {
 		backgroundImage:"images/playercontrols/rec_btn.png",
 		height:"32dp",
 		width:"32dp",
-		right:60
+		right:rerecord_button_right
 	});
 
 	rerecord_button.addEventListener('click', function() {
@@ -70,7 +108,7 @@ Views.stories.form.template = function() {
 		backgroundImage:'images/postrecord/edit_details_drawer.png',
 		height:"137dp",
 		width:"320dp",
-		bottom:0
+		bottom:tray_bottom
 	});
 	
 	var story_title_field = Titanium.UI.createTextField({  
@@ -78,7 +116,7 @@ Views.stories.form.template = function() {
 			color:text_field_text_color,
 			borderRadius:4,
 			paddingLeft:"5dp",
-	    top:10,  
+	    top:story_title_field_top,  
 	    width:"300dp",  
 	    height:"30dp",
 	    hintText:'Add a title...',
@@ -90,7 +128,7 @@ Views.stories.form.template = function() {
 	var tag_friends_button = Titanium.UI.createButton({
 		value:false,
 		top:buttons_from_top_length,
-		left:8,
+		left:tag_friends_button_left,
 		width:button_width,
 		height:button_height,
 		backgroundImage:'images/postrecord/tag_normal.png',
@@ -110,7 +148,7 @@ Views.stories.form.template = function() {
 	var location_button = Titanium.UI.createButton({
 		value:false,
 		top:buttons_from_top_length,
-		left:68,
+		left:location_button_left,
 		width:button_width,
 		height:button_height,
 		backgroundImage:'images/postrecord/location_normal.png',
@@ -165,7 +203,7 @@ Views.stories.form.template = function() {
 	var add_date_button = Titanium.UI.createButton({
 		value:false,
 		top:buttons_from_top_length,
-		right:68,
+		right:add_date_button_right,
 		width:button_width,
 		height:button_height,
 		backgroundImage:'images/postrecord/date_activated.png',
@@ -198,7 +236,7 @@ Views.stories.form.template = function() {
 	var share_button = Titanium.UI.createButton({
 		value:false,
 		top:buttons_from_top_length,
-		right:8,
+		right:share_button_right,
 		width:button_width,
 		height:button_height,
 		backgroundImage:'images/postrecord/share_normal.png',
@@ -230,7 +268,7 @@ Views.stories.form.template = function() {
 			success : function(updated) {
 				accept_button.visible = true;
 				saving_label.visible = false;
-				saving_label.right = -100;
+				saving_label.right = saving_label_right;
 				win.close();
 				Layouts.stories();
 			},
@@ -238,7 +276,7 @@ Views.stories.form.template = function() {
 				alert(errors);
 				accept_button.visible = true;
 				saving_label.visible = false;
-				saving_label.right = -100;
+				saving_label.right = saving_label_right;
 			}
 		});
 	});
