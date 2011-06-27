@@ -18,7 +18,7 @@ Layouts.users = function() {
 		var followers_button_left = 20;
 		var followees_button_right = 20;
 		var content_top = 80;
-		var content_height = 740;
+		var content_height = 767;
 	  }
 	
 	var nav = Ti.UI.createView({

@@ -17,7 +17,7 @@ Layouts.stories = function() {
 	  {
 		var nav_top = 0;
 		var content_top = 80;
-		var content_height = 740;
+		var content_height = 767;
 		var my_stories_button_left = 20;
 		var feed_button_right = 20;
 	  }

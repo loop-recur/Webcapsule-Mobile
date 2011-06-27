@@ -24,8 +24,8 @@ Views.stories.show_form.template = function() {
 		var duration_top = 10;
 		var user_icon_left = 10;
 		var user_icon_top = 50;
-		var user_left = 21;
-		var user_top = 51;
+		var user_left = 23;
+		var user_top = 48;
 		var comment_button_left = 8;
 		var photo_button_left = 68;
 		var edit_button_right = 8;
@@ -47,10 +47,10 @@ Views.stories.show_form.template = function() {
 		var user_icon_top = 50;
 		var user_left = 21;
 		var user_top = 51;
-		var comment_button_left = 8;
-		var photo_button_left = 68;
-		var edit_button_right = 8;
-		var share_button_right = 68;
+		var comment_button_left = 10;
+		var photo_button_left = 100;
+		var edit_button_right = 10;
+		var share_button_right = 100;
 	  }
 	
 	var functionality_view = Titanium.UI.createView({

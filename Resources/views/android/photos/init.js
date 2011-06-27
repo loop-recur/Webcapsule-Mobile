@@ -23,8 +23,8 @@ Views.photos.init.template = function() {
 		var added_photo_view_top = 15;
 		var take_picture_left = 15;
 		var take_picture_bottom = 20;
-		var done_button_right = 15;
-		var done_button_bottom = 20;
+		var done_button_right = 14;
+		var done_button_bottom = 28;
 		var lock_done_button_right = 15;
 		var lock_done_button_bottom = 20;
 	  }
