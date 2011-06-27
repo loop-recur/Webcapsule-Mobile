@@ -47,6 +47,8 @@ Views.photos.create.template = function() {
 	}
 	
 	function makePhoto(position, photo) {
+		var horizontal_spacing = "96dp";
+		var vertical_spacing = "96dp";
 		
 		var added_photo = Titanium.UI.createView({
 			top:position.top,
@@ -92,16 +94,14 @@ Views.photos.create.template = function() {
 		
 		self.view.add(added_photo);
 
-		function buildAndUpdatePosition (current_position) {
-			var horizontal_spacing = "96dp";
-			var vertical_spacing = "96dp";
-
-			current_position.left += horizontal_spacing;
+		function buildAndUpdatePosition(current_position) {
 			
-			if(current_position.left > "297dp") {
-				current_position.top += vertical_spacing;
+			current_position.left = addDp(current_position.left, horizontal_spacing);
+			
+			if(extractInteger(current_position.left) >= extractInteger("277dp")) {
+				current_position.top = addDp(current_position.top, vertical_spacing);
 				current_position.left = "10dp";
-				self.view.height += vertical_spacing;
+				self.view.height = addDp(self.view.height, vertical_spacing);
 			};
 		};
 		
@@ -111,3 +111,15 @@ Views.photos.create.template = function() {
 	};
 	
 };
+
+
+function addDp(one, two) {
+	var ints = Functional.map(extractInteger, [one, two]);
+	var sum = Functional.reduce('x+y', 0, ints);
+	return sum + "dp";
+};
+
+function extractInteger(str) {
+	var str = new String(str);
+	return parseInt(str.replace("dp", ""));
+}

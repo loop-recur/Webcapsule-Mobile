@@ -19,7 +19,6 @@ Helpers.player.timeMonitor = function(win, player, comments, photos) {
 	}
 	
 	function start() {
-		Ti.API.info("Starting");
 		buildViews(Views.comments.comment, comments);
 		buildViews(Views.photos.photo, photos);
 		var intervalId = setInterval(showOverlays, 1000);
@@ -30,8 +29,7 @@ Helpers.player.timeMonitor = function(win, player, comments, photos) {
 	
 	var time = 0;
 	function showOverlays() {
-		Ti.API.info("Trying");
-		if(done){ Ti.API.info("stopping"); return stop(); };
+		if(done){ return stop(); };
 		var position = time; //player.currentPlaybackTime;
 		Functional.map(showOverlay.partial(Views.comments.comment, position), comments);
 		Functional.map(showOverlay.partial(Views.photos.photo, position), photos);
@@ -50,8 +48,6 @@ Helpers.player.timeMonitor = function(win, player, comments, photos) {
 
 		function show() {
 			if(item.showing) return true;
-			Ti.API.info("Rendering!");
-			Ti.API.info(item);
 			item.view.visible = true;
 			item.showing = true;
 		}
@@ -64,7 +60,6 @@ Helpers.player.timeMonitor = function(win, player, comments, photos) {
 	};
 	
 	function finish() {
-		Ti.API.info("finishing");
 		done = true;
 		stop();
 		hideAllOverlays();

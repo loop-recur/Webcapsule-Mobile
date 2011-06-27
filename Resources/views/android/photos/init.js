@@ -57,7 +57,6 @@ Views.photos.init.template = function() {
 	});
 
 	take_picture.addEventListener('click', function() {
-		player.hide();
 		Layouts.take_photo(win, self.source, self.params.story);
 	});
 
@@ -72,8 +71,8 @@ Views.photos.init.template = function() {
 	});
 
 	done_button.addEventListener('click', function() {
-		win.close();
-		if(self.params.from_show) Views.stories.show.makePlayer();
+		if(self.params.from_show){ Views.stories.show.makePlayer() };
+		win.hide();
 	});
 	
 	var lock_done_button = Titanium.UI.createButton({  

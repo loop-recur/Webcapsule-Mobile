@@ -172,6 +172,7 @@ Views.stories.show_form.template = function() {
 
 	photo_button.addEventListener('click', function() {
 		player.stop();
+		player.hide();
 		App.action(player, "photos#init", {story_id : self.source.id, photos : self.source.photos, story: self.source, hide_delete: true, from_show:true});
 	});
 

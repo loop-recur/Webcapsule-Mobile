@@ -35,10 +35,6 @@ Views.stories.init.template = function() {
 	        } else {
             if (e.resultCode === Titanium.Android.RESULT_OK) {
                 videoUri = e.intent.data;
-                Ti.UI.createNotification({
-                    duration: Ti.UI.NOTIFICATION_DURATION_LONG,
-                    message: 'Finished!'
-                }).show();
                 // note that this isn't a physical file! it's a URI in to the MediaStore.
 						    var source = Ti.Filesystem.getFile(videoUri);
 								afterRecord(source);
@@ -58,7 +54,6 @@ Views.stories.init.template = function() {
 		video = target.read();
 	
 		progress_bar = Titanium.UI.createActivityIndicator({
-			
 			type:Titanium.UI.ActivityIndicator.DETERMINANT,
 			message:'Uploading',
 			min:0,
@@ -91,70 +86,5 @@ Views.stories.init.template = function() {
 			},
 			http_options : {progress_bar : progress_bar}
 		});
-	};
-
-	function makeProgressArea() {
-		var view = Titanium.UI.createView({
-			top:0,
-			width:"320dp",
-			height:"26dp",
-			backgroundColor:'black',
-			zIndex:999
-		});
-		
-		var cancel_button = Titanium.UI.createButton({  
-			backgroundImage:"images/uploadbar/upload_cancel.png",
-	    top:0,
-	  	right:0,
-	    width:"26dp",
-	    height:"26dp"
-		});
-		
-		activity = Titanium.UI.createActivityIndicator({
-			top:0,
-			left:1,
-			height:"26dp",
-			width:"26dp"
-		});
-
-		activity.show();
-		
-		var retry_button = Titanium.UI.createButton({  
-			backgroundImage:"images/uploadbar/upload_retry.png",
-	    top:0,
-	  	right:0,
-	    width:"26dp",
-	    height:"26dp",
-			visible: false
-		});
-		
-		retry_button.addEventListener("click", function() {
-			trySaving();
-		});
-	
-		cancel_button.addEventListener('click', function() {
-			if(Ti.App.current_xhr) Ti.App.current_xhr.abort();
-			activity.hide();
-			retry_button.visible = true;
-			cancel_button.visible = false;
-		});
-		
-		var trySaving = function() {
-			cancel_button.visible = true;
-			retry_button.visible = false;
-			activity.show();
-			if(!story.video_id){ saveVideo(); };
-		};
-		
-		view.add(cancel_button);
-		view.add(activity);
-		view.add(retry_button);
-		view.add(progress_bar);
-		
-		cancel_button.visible = true;
-		retry_button.visible = false;
-		activity.show();
-		
-		return view;
 	};
 };

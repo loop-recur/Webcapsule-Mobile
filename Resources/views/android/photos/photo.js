@@ -12,7 +12,8 @@ Views.photos.photo.template = function() {
 	  }
 	else
 	  {
-
+		  var view_top = 0;
+			var view_left = 0;
 	  }
 	
 	var view = Titanium.UI.createImageView({
@@ -26,14 +27,6 @@ Views.photos.photo.template = function() {
 	});
 	
 	parent_win.add(view);
-	
-	self.close = function(v) {
-		v.visible = false;
-	};
-	
-	self.show = function(v) {
-		v.visible = true;
-	};
 	
 	return view;
 };

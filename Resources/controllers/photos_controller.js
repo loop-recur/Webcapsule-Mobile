@@ -35,7 +35,7 @@ Controllers.photos = {
 		var photos = Views.photos.create.source || [];
 		var photo = params.photo;
 		var id = photo.id.toString();
-		var story = Views.stories._form.source;
+		var story = Views.stories.form.source;
 		
 		if(!story.photo_ids) story.photo_ids = "";
 		var old_val = story.photo_ids.split(',');
