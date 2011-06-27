@@ -17,13 +17,13 @@ Layouts.login = function () {
 		  }
 		else
 		  {
-	  	var username_top = 150;
-			var password_top = 210;
-			var login_button_top = 320;
+	  	var username_top = 155;
+			var password_top = 225;
+			var login_button_top = 310;
 			var login_button_right = 30;
-			var facebook_login_bottom = 370;
-			var twitter_login_bottom = 280; 
-			var new_account_label_bottom = 230;
+			var facebook_login_bottom = 360;
+			var twitter_login_bottom = 270; 
+			var new_account_label_bottom = 210;
 		  }
 		
 	var username = Titanium.UI.createTextField({  
@@ -118,7 +118,7 @@ Layouts.login = function () {
 		height:"40dp",
 		color:'gray',
 		textAlign:'center',
-		font:{fontFamily:'Arial',fontWeight:'bold',fontSize:"10dp"}
+		font:{fontFamily:'Arial',fontWeight:'bold',fontSize:"11dp"}
 	});
 
 	new_account_label.addEventListener('click', function() {
@@ -149,7 +149,7 @@ Layouts.login = function () {
 	win.add(facebook_login);
 	win.add(facebook_logout);
 	win.add(twitter_login);
-	// win.add(new_account_label);
+	win.add(new_account_label);
 	win.add(deauth);
 
 	

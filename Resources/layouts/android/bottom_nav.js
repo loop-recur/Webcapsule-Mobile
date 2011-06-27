@@ -85,7 +85,7 @@ Layouts.bottomNav = function() {
 		bottom:0,
 		height:"62dp",
 		width:"81dp",
-		right: 4,
+		right: 80,
 		zIndex: 64
 	});
 	
