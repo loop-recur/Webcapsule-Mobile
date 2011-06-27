@@ -10,19 +10,15 @@ Layouts.users = function() {
 		var followers_button_left = 20;
 		var followees_button_right = 20;
 		var content_top = 40;
-		var property = 0;
-		var property = 0;
-		var property = 0;
+		var content_height = 360;
 	  }
 	else
 	  {
 	  var nav_top = 0;
 		var followers_button_left = 20;
 		var followees_button_right = 20;
-		var content_top = 40;
-		var property = 0;
-		var property = 0;
-		var property = 0;
+		var content_top = 80;
+		var content_height = 740;
 	  }
 	
 	var nav = Ti.UI.createView({
@@ -55,7 +51,7 @@ Layouts.users = function() {
 	
 	var content = Ti.UI.createView({
 		top:content_top,
-		height:"360dp"
+		height:content_height
 	});
 	
 	nav.add(followers_button);

@@ -13,9 +13,9 @@ Views.followings.index.template = function() {
 		  }
 		else
 		  {
-		  var row_height = 80;
+		  var row_height = 120;
 			var avatar_left = 10;
-			var title_left = 80;
+			var title_left = 130;
 		  }
 		
 		var row = Ti.UI.createTableViewRow({

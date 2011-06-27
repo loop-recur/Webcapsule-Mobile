@@ -8,14 +8,16 @@ Layouts.stories = function() {
 	if (Helpers.application.densityIsMedium())
 	  {
 	  var nav_top = 0;
-		var content_top = 0;
+		var content_top = 40;
+		var content_height = 360;
 		var my_stories_button_left = 20;
 		var feed_button_right = 20;
 	  }
 	else
 	  {
 		var nav_top = 0;
-		var content_top = 0;
+		var content_top = 80;
+		var content_height = 740;
 		var my_stories_button_left = 20;
 		var feed_button_right = 20;
 	  }
@@ -27,7 +29,7 @@ Layouts.stories = function() {
 
 	var content = Ti.UI.createView({
 		top:content_top,
-		height:"360dp"
+		height:content_height
 	});
 	
 	var my_stories_button = Titanium.UI.createButton({  
