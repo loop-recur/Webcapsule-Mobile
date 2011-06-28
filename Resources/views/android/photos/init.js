@@ -4,7 +4,11 @@ Views.photos.init.template = function() {
 	var self = this;
 	var player = self.win;
 	
-	var win = Titanium.UI.createWindow({zIndex:999, fullscreen: true});
+	var options = {zIndex:999, backgroundColor:"black"};
+	if(!self.params.from_show) options.fullscreen = true;
+	
+	var win = Titanium.UI.createWindow(options);
+	
 	
 	if (Helpers.application.densityIsMedium())
 	  {
@@ -72,7 +76,7 @@ Views.photos.init.template = function() {
 
 	done_button.addEventListener('click', function() {
 		if(self.params.from_show){ Views.stories.show.makePlayer() };
-		win.hide();
+		win.close();
 	});
 	
 	var lock_done_button = Titanium.UI.createButton({  
