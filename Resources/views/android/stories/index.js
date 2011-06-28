@@ -24,7 +24,7 @@ Views.stories.index.template = function() {
 			var videos_icon_left = 100;
 			var videos_icon_bottom = 10;
 			var videos_left = 112;
-			var videos_bottom = 10;
+			var videos_bottom = 12;
 		  }
 		else
 		  {
@@ -36,7 +36,7 @@ Views.stories.index.template = function() {
 			var title_top = 19;
 			var duration_icon_left = 10;
 			var duration_icon_bottom = 15;
-			var duration_left = 24;
+			var duration_left = 26;
 			var duration_bottom = 18;
 			var user_icon_left = 142; //SAME
 			var user_icon_bottom = 35;
@@ -44,8 +44,8 @@ Views.stories.index.template = function() {
 			var user_bottom = 37;
 			var videos_icon_left = 142; //SAME
 			var videos_icon_bottom = 14;
-			var videos_left = 156; //SAME + 12
-			var videos_bottom = 15;
+			var videos_left = 158; //SAME + 12
+			var videos_bottom = 16;
 		  }
 		
 		var row = Ti.UI.createTableViewRow({
@@ -129,7 +129,7 @@ Views.stories.index.template = function() {
 			font:{fontSize:"11dp",fontWeight:'regular', fontFamily:'Helvetica Neue'},
 			left:user_left,
 			bottom:user_bottom,
-			height:"13dp",
+			height:"14dp",
 			width:"160dp",
 			text:story.user.full_name
 		});

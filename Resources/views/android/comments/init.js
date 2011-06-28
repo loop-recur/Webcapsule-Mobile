@@ -18,7 +18,7 @@ Views.comments.init.template = function() {
 	else
 	  {
 	  var view_top = 45;
-		var field_top = 15;
+		var field_top = 18;
 		var ok_button_right = 25;
 		var ok_button_bottom = 25;
 		var cancel_button_left = 0;
@@ -34,7 +34,7 @@ Views.comments.init.template = function() {
 	});
 	
 	var field = Titanium.UI.createTextArea({
-		// backgroundColor:false,
+		backgroundColor:false,
 		color:text_field_text_color,
 		value:'Add Comment...',
 		height:"55dp",
@@ -66,6 +66,7 @@ Views.comments.init.template = function() {
 			comment : comment,
 			story : story,
 			success : function() {
+				field.blur();
 				view.visible = false;
 			}
 		});
@@ -77,6 +78,7 @@ Views.comments.init.template = function() {
 			comment : comment,
 			story : story,
 			success : function() {
+								field.blur();
 				view.visible = false;
 			}
 		});

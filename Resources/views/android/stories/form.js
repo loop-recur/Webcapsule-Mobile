@@ -1,4 +1,4 @@
-Views.stories.form = Views.extend();
+	Views.stories.form = Views.extend();
 
 Views.stories.form.template = function() {
 	var self = this;
@@ -31,13 +31,13 @@ Views.stories.form.template = function() {
 		var functionality_view_top = 0;
 		var record_tray_top = 0;
 		var record_tray_right = 0;
-		var accept_button_top = 0;
+		var accept_button_top = 15;
 		var accept_button_right = 0;
 		var saving_label_right = -100;
 		var saving_label_top = 12;
 		var rerecord_button_right = 60;
 		var tray_bottom = 0;
-		var story_title_field_top = 10;
+		var story_title_field_top = 15;
 		var story_title_field_left = 6;
 		var tag_friends_button_left = 10;
 		var location_button_left = 100;
@@ -302,9 +302,10 @@ Views.stories.form.template = function() {
 	// functionality_view.add(record_tray);
 
 	// functionality_view.add(rerecord_button);
-	functionality_view.add(saving_label);
+	
 	functionality_view.add(tray);
 
+	tray.add(saving_label); 
 	tray.add(accept_button);	
 	tray.add(story_title_field);
 	tray.add(tag_friends_button);
