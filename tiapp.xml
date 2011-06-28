@@ -32,12 +32,12 @@
 	<manifest>
 	<uses-permission android:name="android.permission.INTERNET" />
 	<application>	
-	<activity android:name=".StartOnUri" android:label="webcapsule_mobile">
+	<activity android:name="OAUTHActivity" android:label="webcapsule-mobile">
       <intent-filter>
-          <data android:scheme="startonuri" android:host="oauth" />
           <action android:name="android.intent.action.VIEW" />
           <category android:name="android.intent.category.DEFAULT"></category>
           <category android:name="android.intent.category.BROWSABLE"></category>
+					<data android:scheme="startonuri" android:host="oauth" />
       </intent-filter>
   </activity>
 	</application>

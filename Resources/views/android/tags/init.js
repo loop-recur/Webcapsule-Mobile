@@ -56,20 +56,8 @@ Views.tags.init.template = function() {
 		if(name.value.length >= 1) { update(); };
 	});
 	
-	var activity = Titanium.UI.createActivityIndicator({
-		top:20, 
-		left:145,
-		height:20,
-		width:20,
-		zIndex: 20,
-		style:Titanium.UI.iPhone.ActivityIndicatorStyle.DARK
-	});
-	
-	activity.show();
-	
 	self.finishLoading = function() {
 		makeFriends();
-		activity.hide();
 		name.hintText = "Search for a friend...";
 	};
 
@@ -85,7 +73,7 @@ Views.tags.init.template = function() {
 
 	done_button.addEventListener('click', function() {
 		(Helpers.application.isBlank(story_tags)) ? Views.stories.form.toggle_tag_icon(false) : Views.stories.form.toggle_tag_icon(true);
-		win.close();
+		win.visible = false;
 	});
 	
 	available_tags_view.add(self.view);
@@ -94,7 +82,6 @@ Views.tags.init.template = function() {
 	Views.tags.create.render(story_tags, {story: self.params.story});
 
 	tag_tray.add(name);
-	tag_tray.add(activity);
 	tag_tray.add(available_tags_view);
 	tag_tray.add(added_tags_view);
 	tag_tray.add(done_button);
@@ -120,6 +107,7 @@ Views.tags.init.template = function() {
 	
 	function makeFriends() {
 		var found = foundFriends();
+		Ti.API.info(Functional.map('.label', found).join(", "));
 		Functional.reduce(makeFriend, 10, found);
 	};
 	
