@@ -124,7 +124,7 @@ Views.tags.init.template = function() {
 	};
 	
 	function foundFriends() {
-		var val name.value || "";
+		var val = name.value || "";
 		val = val.toLowerCase();
 		var isMatch = function(tag) { return (tag.label.indexOf(val) != -1); };
 		
