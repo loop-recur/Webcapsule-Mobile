@@ -5,6 +5,6 @@ Helpers.application.isBlank = function(item) {
 }
 
 Helpers.application.densityIsMedium = function() {
-	if(density == "medium");
+	return density == "medium";
 }
 

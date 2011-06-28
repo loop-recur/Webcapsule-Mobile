@@ -9,7 +9,8 @@ Views.stories.show.template = function() {
 	Views.stories.show.makePlayer = function() {
 		var player = Titanium.Media.createVideoPlayer({
 			movieControlMode:Titanium.Media.VIDEO_CONTROL_DEFAULT,
-			url:url
+			url:url,
+			id: "show player"
 		});
 		
 		var started;

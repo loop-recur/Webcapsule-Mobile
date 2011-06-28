@@ -7,7 +7,7 @@ Db = function(name) {
 				
 		callbacks.error = function(r) {
 			oldSuccess(Cache[name]);
-			oldError(r.responseText);
+			if(r) oldError(r.responseText);
 		};
 		
 		callbacks.success = function(r) {

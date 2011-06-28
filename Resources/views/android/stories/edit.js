@@ -9,7 +9,8 @@ Views.stories.edit.template = function() {
 	
 	var player = Titanium.Media.createVideoPlayer({
 		movieControlMode:Titanium.Media.VIDEO_CONTROL_DEFAULT,
-		url: url
+		url: url,
+		id: "edit player"
 	});
 	
 	win.addEventListener('close', function() {
