@@ -28,10 +28,7 @@ Views.stories.init.template = function() {
 						    var source = Ti.Filesystem.getFile(videoUri);
 								afterRecord(source);
             } else {
-                Ti.UI.createNotification({
-                    duration: Ti.UI.NOTIFICATION_DURATION_LONG,
-                    message: 'Canceled/Error? Result code: ' + e.resultCode
-                }).show();
+								Layouts.stories();
             }
 	        }
 	    });

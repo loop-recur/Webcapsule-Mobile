@@ -214,7 +214,6 @@
       	responseText = row.field(0);
       	cachedAt = row.field(1);
 			} catch(e) {
-				
 			}
       row.close();
       db.close();

@@ -102,8 +102,7 @@ Views.tags.init.template = function() {
 		left:activity_left,
 		height:"20dp",
 		width:"20dp",
-		zIndex: 20,
-		style:Titanium.UI.iPhone.ActivityIndicatorStyle.DARK
+		zIndex: 20
 	});
 	
 	activity.show();
