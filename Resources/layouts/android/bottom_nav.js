@@ -1,6 +1,5 @@
 // BOTTOM NAVIGATION
-Layouts.bottomNav = function() {
-
+Layouts.bottomNav = function() {	
 	if (Helpers.application.densityIsMedium())
 	  {
 	  var win_bottom = 0;
@@ -99,6 +98,7 @@ Layouts.bottomNav = function() {
 	win.add(logout_button);
 	win.add(record_button);
 	
+
 	record_button.fireEvent('click');
 	return win;
 };

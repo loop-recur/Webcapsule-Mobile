@@ -6,6 +6,7 @@ Helpers.player.timeMonitor = function(win, player, comments, photos) {
 	var stop;
 	
 	player.addEventListener('complete',finish);
+	player.addEventListener('stop', finish);
 		
 	start();
 	
@@ -23,6 +24,7 @@ Helpers.player.timeMonitor = function(win, player, comments, photos) {
 		buildViews(Views.photos.photo, photos);
 		var intervalId = setInterval(showOverlays, 1000);
 		stop = function() {
+			Ti.API.info("stopping");
 			clearInterval(intervalId);
 		};
 	};

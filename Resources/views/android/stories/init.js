@@ -3,27 +3,16 @@ Views.stories.init = Views.extend();
 Views.stories.init.template = function() {
 	var self = this;
 	var video, progress_bar, story;
-	var win = self.win;
 	var story = self.source;
+	var win = null;
 	
-	var recordButton = Titanium.UI.createButton({
-		top: 70, left: 10, right: 10, height:"35dp", title: 'Record Video'
-	});
-	win.add(recordButton);
-	
-	var saveButton = Titanium.UI.createButton({
-	    top: 100, left: 10, right: 10, height:"35dp",
-	    title: 'Save Recorded Video', visible: false
-	});
-	win.add(saveButton);
-
 	/**
 	 * We'll use the following variable to keep track of the result of our recording action.
 	 */
 	var videoUri = null;
 	var videoIntent = null;
 
-	recordButton.addEventListener('click', function() {
+	(function() {
 	    // http://developer.android.com/reference/android/provider/MediaStore.html
 	    var intent = Titanium.Android.createIntent({ action: 'android.media.action.VIDEO_CAPTURE' });
 	    Titanium.Android.currentActivity.startActivityForResult(intent, function(e) {
@@ -46,9 +35,20 @@ Views.stories.init.template = function() {
             }
 	        }
 	    });
-	});
+	})();
 	
 	function afterRecord(source) {
+		win = Titanium.UI.createWindow({
+			id:"record"
+		});
+
+		win.addEventListener('close', function(e) {
+			Views.photos.create.source = [];
+			Views.tags.create.source = [];
+			Helpers.ui.hideCamera();
+			Layouts.stories();
+		});
+		
 		var target = Ti.Filesystem.getFile('appdata://movie.3gp');
 		source.copy(target.nativePath);
 		video = target.read();
