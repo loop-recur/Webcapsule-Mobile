@@ -11,10 +11,10 @@ Views.accounts.init.template = function() {
 	
 	if (Helpers.application.densityIsMedium())
 	  {
-	  var full_name_top = 30;
-		var email_top = 80;
-		var password_top = 130;
-		var password_confirm_top = 180;
+	  var full_name_top = 40;
+		var email_top = 90;
+		var password_top = 140;
+		var password_confirm_top = 190;
 		var create_account_button_bottom = 160;
 		var create_account_button_right = 10;
 		var cancel_button_bottom = 160;

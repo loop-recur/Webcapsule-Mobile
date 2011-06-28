@@ -7,31 +7,37 @@ Layouts.users = function() {
 	if (Helpers.application.densityIsMedium())
 	  {
 	  var nav_top = 0;
-		var followers_button_left = 20;
-		var followees_button_right = 20;
-		var content_top = 40;
-		var content_height = 360;
+		var followers_button_left = 72;
+		var followees_button_right = 72;
+		var content_top = 45;
+		var content_height = 355;
+		var followers_button_top = 2;
+		var followees_button_top = 2;
 	  }
 	else
 	  {
 	  var nav_top = 0;
-		var followers_button_left = 20;
-		var followees_button_right = 20;
-		var content_top = 80;
+		var followers_button_left = 91;
+		var followees_button_right = 91;
+		var content_top = 87;
 		var content_height = 767;
+	  var followers_button_top = 4;
+		var followees_button_top = 4;
 	  }
 	
 	var nav = Ti.UI.createView({
 		top:nav_top,
-		height:"40dp"
+		height:"45dp"
 	});
 	
 	var followers_button = Titanium.UI.createButton({  
-			title:"Followers",
+			backgroundImage:'images/feed/btn_followers-normal.png',
+			backgroundSelectedImage:'images/feed/btn_followers-pressed.png',
 	    value:false,
-	    width:"110dp",
-	    height:"20dp",
-			left:followers_button_left
+	    width:"99dp",
+	    height:"43dp",
+			left:followers_button_left,
+			top: followers_button_top
 	});
 
 	followers_button.addEventListener('click', function(){
@@ -39,10 +45,13 @@ Layouts.users = function() {
 	});
 	
 	var followees_button = Titanium.UI.createButton({  
-	    title:"Following",
-	    width:"140dp",
-	    height:"20dp",
-			right:followees_button_right
+	    backgroundImage:'images/feed/btn_following-normal.png',
+			backgroundSelectedImage:'images/feed/btn_following-pressed.png',
+			value:false,
+	    width:"99dp",
+	    height:"43dp",
+			right:followees_button_right,
+			top:followees_button_top
 	});
 
 	followees_button.addEventListener('click', function(){

@@ -7,7 +7,7 @@ Views.comments.comment.template = function() {
 
 	if (Helpers.application.densityIsMedium())
 	  {
-	  var view_right = 0;
+	  var view_left = 7;
 		var avatar_left = 0;
 		var user_left = 55;
 		var user_top = 0;
@@ -16,18 +16,20 @@ Views.comments.comment.template = function() {
 	  }
 	else
 	  {
-	  var view_right = 0;
+	  var view_left = 15;
 		var avatar_left = 0;
-		var user_left = 55;
+		var user_left = 85;
 		var user_top = 0;
-		var title_left = 55;
+		var title_left = 85;
 		var title_bottom = 0;
 	  }
 
 	view = Ti.UI.createView({
+		backgroundColor:'black',
 		height:"58dp",
 		width:"265dp",
-		right:view_right,
+		left:view_left,
+		bottom:"160dp",
 		visible: false
 	});
 	

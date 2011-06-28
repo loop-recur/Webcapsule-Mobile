@@ -8,23 +8,27 @@ Layouts.stories = function() {
 	if (Helpers.application.densityIsMedium())
 	  {
 	  var nav_top = 0;
-		var content_top = 40;
-		var content_height = 360;
-		var my_stories_button_left = 20;
-		var feed_button_right = 20;
+		var content_top = 45;
+		var content_height = 355;
+		var my_stories_button_right = 72;
+		var feed_button_left = 72;
+		var mystories_button_top = 2;
+		var feed_button_top = 2;
 	  }
 	else
 	  {
 		var nav_top = 0;
-		var content_top = 80;
+		var content_top = 85;
 		var content_height = 767;
-		var my_stories_button_left = 20;
-		var feed_button_right = 20;
+		var my_stories_button_right = 91;
+		var feed_button_left = 91;
+		var mystories_button_top = 4;
+		var feed_button_top = 4;
 	  }
 	
 	var nav = Ti.UI.createView({
 		top:nav_top,
-		height:"40dp"
+		height:"45dp"
 	});
 
 	var content = Ti.UI.createView({
@@ -33,11 +37,13 @@ Layouts.stories = function() {
 	});
 	
 	var my_stories_button = Titanium.UI.createButton({  
-			title:"My Stories",
+			backgroundImage:'images/feed/btn_myown.png',
+			backgroundSelectedImage:'images/feed/btn_myown-pressed.png',
 	    value:false,
-	    width:"110dp",
-	    height:"20dp",
-			left:my_stories_button_left
+	    width:"99dp",
+	    height:"43dp",
+			right:my_stories_button_right,
+			top:mystories_button_top
 	});
 
 	my_stories_button.addEventListener('click', function(){
@@ -45,10 +51,13 @@ Layouts.stories = function() {
 	});
 	
 	var feed_button = Titanium.UI.createButton({  
-	    title:"Friends' Stories",
-	    width:"140dp",
-	    height:"20dp",
-			right:feed_button_right
+			backgroundImage:'images/feed/btn_friends.png',
+			backgroundSelectedImage:'images/feed/btn_friends-pressed.png',
+			value:false,
+			width:"99dp",
+	    height:"43dp",
+			left:feed_button_left,
+			top:feed_button_top
 	});
 
 	feed_button.addEventListener('click', function(){

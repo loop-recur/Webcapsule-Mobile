@@ -2,6 +2,8 @@ if(Ti.Platform.osname == "iphone") {Titanium.UI.iPhone.statusBarStyle = Titanium
 
 var density = Titanium.Platform.displayCaps.density;
 
+Ti.API.info("----------------------------DENSITY:" + density + "----------------------------");
+
 Titanium.include('lib/framework/support/functional.js');
 Titanium.include('lib/framework/support/temp_id.js');
 Titanium.include('lib/framework/lib/base.js');

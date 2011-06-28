@@ -9,7 +9,7 @@ Layouts.login = function () {
 		  {
 		  var username_top = 100;
 			var password_top = 142;
-			var login_button_top = 197;
+			var login_button_top = 177;
 			var login_button_right = 10;
 			var facebook_login_bottom = 135;
 			var twitter_login_bottom = 75; 
