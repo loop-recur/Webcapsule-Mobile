@@ -14,8 +14,8 @@ Views.stories.show_form.template = function() {
 	  {
 	  var functionality_view_top = 0;
 		var comment_bar_right = 0;
-		var comment_bar_top = 0;
-		var tray_bottom = 0;
+		var comment_bar_bottom = 0;
+		var tray_top = 0;
 		var date_right = 10;
 		var date_top = 50;
 		var title_left = 10;
@@ -35,18 +35,18 @@ Views.stories.show_form.template = function() {
 	  {
 	  var functionality_view_top = 0;
 		var comment_bar_right = 0;
-		var comment_bar_top = 0;
-		var tray_bottom = 0;
+		var comment_bar_bottom = 0;
+		var tray_top = 0;
 		var date_right = 10;
-		var date_top = 50;
+		var date_top = 70;
 		var title_left = 10;
 		var title_top = 5;
 		var duration_right = 10;
 		var duration_top = 10;
 		var user_icon_left = 10;
-		var user_icon_top = 50;
-		var user_left = 21;
-		var user_top = 51;
+		var user_icon_top = 70;
+		var user_left = 25;
+		var user_top = 67;
 		var comment_button_left = 10;
 		var photo_button_left = 100;
 		var edit_button_right = 10;
@@ -59,21 +59,21 @@ Views.stories.show_form.template = function() {
 		top:functionality_view_top
 	});
 	
-	var comment_bar = Titanium.UI.createView({
-		backgroundImage:'images/storyshow/comment_bar.png',
-		height:"58dp",
-		width:"275dp",
-		right:comment_bar_right,
-		top:comment_bar_top
-	});
-	
-	self.comment_bar = comment_bar;
+	// var comment_bar = Titanium.UI.createView({
+	// 	backgroundImage:'images/storyshow/comment_bar.png',
+	// 	height:"58dp",
+	// 	width:"275dp",
+	// 	right:comment_bar_right,
+	// 	bottom:comment_bar_bottom
+	// });
+	// 
+	// self.comment_bar = comment_bar;
 
 	var tray = Titanium.UI.createView({
 		backgroundImage:'images/storyshow/story_drawer.png',
 		height:"137dp",
 		width:"320dp",
-		bottom:tray_bottom
+		top:tray_top
 	});
 
 
@@ -116,7 +116,7 @@ Views.stories.show_form.template = function() {
 		},			
 		right:duration_right,
 		top:duration_top,
-		height:"10dp",
+		height:"13dp",
 		width:"30dp",
 		text:self.source.duration,
 		zIndex:40
@@ -135,7 +135,7 @@ Views.stories.show_form.template = function() {
 		font:{fontSize:"11dp",fontWeight:'regular', fontFamily:'Helvetica Neue'},
 		left:user_left,
 		top:user_top,
-		height:"10dp",
+		height:"14dp",
 		width:"160dp",
 		text:self.source.user.full_name
 	});
@@ -221,7 +221,7 @@ Views.stories.show_form.template = function() {
 		App.action(player, "sharings#init", {story : self.source, automatic_share: true});
 	});
 	
-	functionality_view.add(comment_bar);
+	// functionality_view.add(comment_bar);
 	functionality_view.add(tray);
 	
 	tray.add(comment_button);

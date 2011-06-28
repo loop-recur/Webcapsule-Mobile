@@ -7,7 +7,8 @@ Views.stories.user_stories.template = function(view, stories) {
 		
 		if (Helpers.application.densityIsMedium())
 		  {
-		  var photo_left = 5;
+		  var row_height = 80;
+			var photo_left = 5;
 			var date_top = 5;
 			var date_left = 101;
 			var title_left = 100;
@@ -27,29 +28,29 @@ Views.stories.user_stories.template = function(view, stories) {
 		  }
 		else
 		  {
+			var row_height = 120;
 		  var photo_left = 5;
 			var date_top = 5;
-			var date_left = 101;
-			var title_left = 100;
-			var title_top = 17;
-			var duration_icon_left = 10;
-			var duration_icon_bottom = 11;
-			var duration_left = 21;
-			var duration_bottom = 10;
-			var user_icon_left = 100;
-			var user_icon_bottom = 24;
-			var user_left = 111;
-			var user_bottom = 24;
-			var videos_icon_left = 100;
-			var videos_icon_bottom = 10;
-			var videos_left = 112;
-			var videos_bottom = 10;
+			var date_left = 143; //SAME +1
+			var title_left = 142; //SAME
+			var title_top = 19;
+			var duration_icon_left = 13;
+			var duration_icon_bottom = 16;
+			var duration_left = 24;
+			var duration_bottom = 18;
+			var user_icon_left = 142; //SAME
+			var user_icon_bottom = 35;
+			var user_left = 157; //SAME + 11
+			var user_bottom = 37;
+			var videos_icon_left = 142; //SAME
+			var videos_icon_bottom = 14;
+			var videos_left = 156; //SAME + 12
+			var videos_bottom = 15;
 		  }
 		
 		var row = Ti.UI.createTableViewRow({
 			backgroundImage:'images/feed/item_bg.png',
-			height:"80dp",
-			width:"320dp",
+			height:row_height,
 			hasChild:true
 		});
 		
@@ -109,7 +110,7 @@ Views.stories.user_stories.template = function(view, stories) {
 			},			
 			left:duration_left,
 			bottom:duration_bottom,
-			height:"10dp",
+			height:"12dp",
 			width:"30dp",
 			text:story.duration,
 			zIndex:40
@@ -128,7 +129,7 @@ Views.stories.user_stories.template = function(view, stories) {
 			font:{fontSize:"11dp",fontWeight:'regular', fontFamily:'Helvetica Neue'},
 			left:user_left,
 			bottom:user_bottom,
-			height:"10dp",
+			height:"13dp",
 			width:"160dp",
 			text:story.user.full_name
 		});
@@ -146,7 +147,7 @@ Views.stories.user_stories.template = function(view, stories) {
 			font:{fontSize:"11dp",fontWeight:'regular', fontFamily:'Helvetica Neue'},
 			left:videos_left,
 			bottom:videos_bottom,
-			height:"10dp",
+			height:"12dp",
 			width:"140dp",
 			text:story.views + " views"
 		});
