@@ -12,7 +12,7 @@ Layouts.site = function() {
 	else
 	  {
 		var content_window_top = 0;
-		var content_window_height = 740;
+		var content_window_height = 767;
 	  }
 	
 	var content_window = Titanium.UI.createView({

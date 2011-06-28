@@ -21,11 +21,11 @@ Views.sharings.init.template = function() {
 	else
 	  {
 	  var container_top = 80;
-		var share_button_right = 5;
-		var facebook_button_left = 50;
-		var twitter_button_left = 122;
-		var cancel_button_left = 2;
-		var cancel_button_top = 2;
+		var share_button_right = 20;
+		var facebook_button_left = 60;
+		var twitter_button_left = 152;
+		var cancel_button_left = 1;
+		var cancel_button_top = 1;
 	  }
 	
 	var container = Titanium.UI.createView({

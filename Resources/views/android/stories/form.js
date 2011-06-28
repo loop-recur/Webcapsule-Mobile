@@ -8,8 +8,8 @@ Views.stories.form.template = function() {
 	
 	if (Helpers.application.densityIsMedium())
 	  {
-	  var form_view_bottom = 0;
-		var functionality_view_bottom = 0;
+	  var form_view_top = 0;
+		var functionality_view_top = 0;
 		var record_tray_top = 0;
 		var record_tray_right = 0;
 		var accept_button_top = 0;
@@ -19,6 +19,7 @@ Views.stories.form.template = function() {
 		var rerecord_button_right = 60;
 		var tray_bottom = 0;
 		var story_title_field_top = 10;
+		var story_title_field_left = 3;
 		var tag_friends_button_left = 8;
 		var location_button_left = 68;
 		var add_date_button_right = 68;
@@ -26,8 +27,8 @@ Views.stories.form.template = function() {
 	  }
 	else
 	  {
-	  var form_view_bottom = 0;
-		var functionality_view_bottom = 0;
+	  var form_view_top = 0;
+		var functionality_view_top = 0;
 		var record_tray_top = 0;
 		var record_tray_right = 0;
 		var accept_button_top = 0;
@@ -37,34 +38,35 @@ Views.stories.form.template = function() {
 		var rerecord_button_right = 60;
 		var tray_bottom = 0;
 		var story_title_field_top = 10;
-		var tag_friends_button_left = 8;
-		var location_button_left = 68;
-		var add_date_button_right = 68;
-		var share_button_right = 8;
+		var story_title_field_left = 6;
+		var tag_friends_button_left = 10;
+		var location_button_left = 100;
+		var add_date_button_right = 100;
+		var share_button_right = 10;
 	  }
 	
-	var form_view = Titanium.UI.createView({bottom: form_view_bottom, height:"245dp", zIndex:10});
+	var form_view = Titanium.UI.createView({top: form_view_top, height:"245dp", zIndex:10});
 
 	Layouts.pick_date(player);
 	
-	var buttons_from_top_length = "60dp";
+	var buttons_from_top_length = "71dp";
 	var button_height = "60dp";
 	var button_width = "64dp";
 	
 	var functionality_view = Titanium.UI.createView({
-		height:"193dp",
+		height:"137dp",
 		width:"320dp",
-		bottom:functionality_view_bottom
+		top:functionality_view_top
 	});
 	
-	var record_tray = Titanium.UI.createView({
-		backgroundImage:'images/record/bar-recordupload.png',
-		height:"56dp",
-		width:"115dp",
-		top:record_tray_top,
-		right:record_tray_right,
-		visible:true
-	});
+	// var record_tray = Titanium.UI.createView({
+	// 	backgroundImage:'images/record/bar-recordupload.png',
+	// 	height:"56dp",
+	// 	width:"115dp",
+	// 	top:record_tray_top,
+	// 	right:record_tray_right,
+	// 	visible:true
+	// });
 	
 	var accept_button = Titanium.UI.createButton({
 		value:false,
@@ -104,8 +106,15 @@ Views.stories.form.template = function() {
 		});
 	});
 												
+	// var tray = Titanium.UI.createView({
+	// 	backgroundImage:'images/postrecord/edit_details_drawer.png',
+	// 	height:"137dp",
+	// 	width:"320dp",
+	// 	bottom:tray_bottom
+	// });
+	
 	var tray = Titanium.UI.createView({
-		backgroundImage:'images/postrecord/edit_details_drawer.png',
+		backgroundImage:'images/storyshow/story_drawer.png',
 		height:"137dp",
 		width:"320dp",
 		bottom:tray_bottom
@@ -115,10 +124,11 @@ Views.stories.form.template = function() {
 	    backgroundColor:text_field_background_color,
 			color:text_field_text_color,
 			borderRadius:4,
-			paddingLeft:"5dp",
-	    top:story_title_field_top,  
-	    width:"300dp",  
-	    height:"30dp",
+			paddingLeft:"3dp",
+	    top:story_title_field_top,
+			left:story_title_field_left,
+	    width:"250dp",  
+	    height:"40dp",
 	    hintText:'Add a title...',
 			value: self.source.name,
 	    keyboardType:Titanium.UI.KEYBOARD_DEFAULT,  
@@ -289,13 +299,13 @@ Views.stories.form.template = function() {
 		accept_button.visible = state;
 	};
 	
-	functionality_view.add(record_tray);
-	
-	functionality_view.add(accept_button);
-	functionality_view.add(rerecord_button);
+	// functionality_view.add(record_tray);
+
+	// functionality_view.add(rerecord_button);
 	functionality_view.add(saving_label);
 	functionality_view.add(tray);
-	
+
+	tray.add(accept_button);	
 	tray.add(story_title_field);
 	tray.add(tag_friends_button);
 	tray.add(location_button);

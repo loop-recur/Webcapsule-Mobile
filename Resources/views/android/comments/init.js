@@ -19,8 +19,8 @@ Views.comments.init.template = function() {
 	  {
 	  var view_top = 45;
 		var field_top = 15;
-		var ok_button_right = 15;
-		var ok_button_bottom = 18;
+		var ok_button_right = 25;
+		var ok_button_bottom = 25;
 		var cancel_button_left = 0;
 		var cancel_button_top = 0;
 	  }
@@ -34,7 +34,7 @@ Views.comments.init.template = function() {
 	});
 	
 	var field = Titanium.UI.createTextArea({
-		backgroundColor:false,
+		// backgroundColor:false,
 		color:text_field_text_color,
 		value:'Add Comment...',
 		height:"55dp",

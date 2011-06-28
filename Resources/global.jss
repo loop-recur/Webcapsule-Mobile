@@ -3,7 +3,7 @@
 }
 
 #content_window {
-	backgroundColor: "red";
+	backgroundColor: "white";
 }
 
 #stories {

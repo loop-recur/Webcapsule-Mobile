@@ -16,6 +16,7 @@ Views.followings.show.template = function() {
 		var friend_name_left = 80;
 		var friend_button_right = 20;
 		var friend_stories_view_top = 57;
+		var friend_stories_view_height = 350;
 	  }
 	else
 	  {
@@ -24,9 +25,10 @@ Views.followings.show.template = function() {
 		var avatar_left = 30;
 		var avatar_frame_top = 7;
 		var avatar_frame_left = 30;
-		var friend_name_left = 80;
+		var friend_name_left = 110;
 		var friend_button_right = 20;
-		var friend_stories_view_top = 57;
+		var friend_stories_view_top = 85;
+		var friend_stories_view_height = 760;
 	  }
 	
 	var top_bar = Ti.UI.createView ({
@@ -102,11 +104,11 @@ Views.followings.show.template = function() {
 	};
 
 	var friend_stories_view = Ti.UI.createView ({
-		height:"350dp",
+		height:friend_stories_view_height,
 		top:friend_stories_view_top
 	});
 	
-	top_bar.add(close);
+	// top_bar.add(close);
 	top_bar.add(avatar);
 	top_bar.add(avatar_frame);
 	top_bar.add(friend_name);

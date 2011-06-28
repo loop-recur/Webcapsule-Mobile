@@ -28,6 +28,10 @@ Views.tags.init.template = function() {
 		var available_tag_top = 4;
 		var tag_name_bottom = 4;
 		var added_width = 70;
+		var added_tags_view_height = 80;
+		var available_tags_view_height = 85;
+		var available_tags_view_contentheight = 85;
+		var added_tags_view_contentheight = 70;
 	  }
 	else
 	  {
@@ -44,6 +48,10 @@ Views.tags.init.template = function() {
 		var available_tag_top = 4;
 		var tag_name_bottom = 4;
 		var added_width = 70;
+		var added_tags_view_height = 120;
+		var available_tags_view_height = 125;
+		var available_tags_view_contentheight = 125;
+		var added_tags_view_contentheight = 110;
 	  }
 
 	var tag_tray = Titanium.UI.createView({
@@ -56,19 +64,19 @@ Views.tags.init.template = function() {
 	
 	var available_tags_view = Titanium.UI.createScrollView({
 		top:available_tags_view_top,
-		height:"85dp",
+		height:available_tags_view_height,
 		width:"300dp",
 		contentwidth:"auto",
-		contentheight:"85dp",
+		contentheight:available_tags_view_contentheight,
 		showHorizontalScrollIndicator:true
 	});
 	
 	var added_tags_view = Titanium.UI.createScrollView({
 		top:added_tags_view_top,
-		height:"80dp",
+		height:added_tags_view_height,
 		width:"300dp",
 		contentwidth:"auto",
-		contentheight:"70dp",
+		contentheight:added_tags_view_contentheight,
 		showHorizontalScrollIndicator:true
 	});
 
