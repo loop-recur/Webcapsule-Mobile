@@ -16,7 +16,12 @@ Views.tags.create.template = function() {
 	  }
 	else
 	  {
-
+		  var makeView_left = 0;
+			var added_tag_top = 1;
+			var tag_name_bottom = 4;
+			var delete_button_left = -5;
+			var delete_button_top = -5;
+			var added_width = 70;
 	  }
 	
 	update();
@@ -90,7 +95,7 @@ Views.tags.create.template = function() {
 		added_tag.add(added_tag_border);
 		added_tag.add(delete_button);
 		self.view.add(added_tag);
-		self.view.width += added_width;
+		self.view.width = 60 + added_width;
 		return position + added_width;
 	};
 	

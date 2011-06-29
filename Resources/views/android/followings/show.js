@@ -37,7 +37,7 @@ Views.followings.show.template = function() {
 		backgroundImage:'images/friendshow/bar_topfriend.png'
 	});
 		
-	var avatar_link = friend.avatar_link ? friend.avatar_link : 'images/avatar_medium.jpg';
+	var avatar_link = friend.image ? Helpers.images.escape(friend.image) : 'images/avatar_medium.jpg';
 	
 	var avatar = Titanium.UI.createImageView({
 		image:avatar_link,

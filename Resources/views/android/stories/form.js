@@ -1,4 +1,4 @@
-	Views.stories.form = Views.extend();
+Views.stories.form = Views.extend();
 
 Views.stories.form.template = function() {
 	var self = this;
@@ -263,6 +263,9 @@ Views.stories.form.template = function() {
 	
 	story_title_field.addEventListener("blur", function() {
 		if(Helpers.application.isBlank(story_title_field.value)) { story_title_field.value = "Untitled Story"; };
+	});
+	
+	story_title_field.addEventListener("change", function() {
 		self.source.name = story_title_field.value;
 	});
 	
@@ -279,7 +282,7 @@ Views.stories.form.template = function() {
 				accept_button.visible = true;
 				saving_label.visible = false;
 				saving_label.right = saving_label_right;
-				win.close();
+				try{ win.close(); } catch(e){ Ti.API.info("-------CAUGHT--------------"); };
 				Layouts.stories();
 			},
 			error : function(errors) {
@@ -298,11 +301,7 @@ Views.stories.form.template = function() {
 	Views.stories.form.accept_button_toggle = function(state) {
 		accept_button.visible = state;
 	};
-	
-	// functionality_view.add(record_tray);
-
-	// functionality_view.add(rerecord_button);
-	
+		
 	functionality_view.add(tray);
 
 	tray.add(saving_label); 

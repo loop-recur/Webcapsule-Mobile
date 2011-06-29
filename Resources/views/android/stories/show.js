@@ -27,7 +27,7 @@ Views.stories.show.template = function() {
 		});
 		
 		// for really poor design where we ask for the form's source everywhere to get the story.
-		Views.stories.form.source = story;
+		Views.stories.form.source = self.source;
 		Views.stories.show_form.render(story, {win: win, player:player});
 		player.play();
 	};

@@ -204,7 +204,9 @@ Views.stories.show_form.template = function() {
 	edit_button.addEventListener('click', function() {
 		player.stop();
 		player.hide();
-		App.action(parent_win, "stories#edit", {story : self.source});
+		setTimeout(function() {
+			App.action(parent_win, "stories#edit", {story : self.source});
+		}, 1800);
 	});
 	
 	var share_button = Titanium.UI.createButton({
