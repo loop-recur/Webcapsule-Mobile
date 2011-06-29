@@ -1,7 +1,6 @@
 Layouts.login = function () {
 
 	var win = Titanium.UI.createWindow({  
-	    title:'Login',
 			backgroundImage:'images/login/bg_login.png'
 	});
 	

@@ -5,7 +5,6 @@ Views.accounts.init.template = function() {
 	var account = self.source;
 	
 	var view = Titanium.UI.createView({
-		title:'Account',
 		backgroundImage:'images/newaccount/bg_create_account.png'
 	});
 	
