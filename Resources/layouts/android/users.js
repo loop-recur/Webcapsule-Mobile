@@ -7,8 +7,8 @@ Layouts.users = function() {
 	if (Helpers.application.densityIsMedium())
 	  {
 	  var nav_top = 0;
-		var followers_button_left = 72;
-		var followees_button_right = 72;
+		var followers_button_left = 62;
+		var followees_button_right = 62;
 		var content_top = 45;
 		var content_height = 355;
 		var followers_button_top = 2;

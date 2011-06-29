@@ -21,34 +21,31 @@
 		<orientations device="iphone">
 			<orientation>Ti.UI.PORTRAIT</orientation>
 		</orientations>
-		<orientations device="ipad">
-			<orientation>Ti.UI.PORTRAIT</orientation>
-			<orientation>Ti.UI.UPSIDE_PORTRAIT</orientation>
-			<orientation>Ti.UI.LANDSCAPE_LEFT</orientation>
-			<orientation>Ti.UI.LANDSCAPE_RIGHT</orientation>
-		</orientations>
 	</iphone>
 	<android xmlns:android="http://schemas.android.com/apk/res/android">
-	<manifest>
-	<uses-permission android:name="android.permission.INTERNET" />
-	<application>	
-	<activity android:name="OAUTHActivity" android:label="webcapsule-mobile">
-      <intent-filter>
-          <action android:name="android.intent.action.VIEW" />
-          <category android:name="android.intent.category.DEFAULT"></category>
-          <category android:name="android.intent.category.BROWSABLE"></category>
-					<data android:scheme="startonuri" android:host="oauth" />
-      </intent-filter>
-  </activity>
-	</application>
-	<supports-screens 
-    android:resizeable="false"
-		android:smallScreens="false"
-    android:normalScreens="true"
-    android:largeScreens="true"
-    android:anyDensity="true"
-  />
-	</manifest>
+		<manifest>
+		<uses-permission android:name="android.permission.INTERNET" />
+		<application>	
+		<activity 
+			android:name="OAUTHActivity" 
+			android:label="webcapsule-mobile" 
+			android:screenOrientation="portrait">
+				<intent-filter>
+				    <action android:name="android.intent.action.VIEW" />
+				    <category android:name="android.intent.category.DEFAULT"></category>
+				    <category android:name="android.intent.category.BROWSABLE"></category>
+						<data android:scheme="startonuri" android:host="oauth" />
+				</intent-filter>
+	  </activity>
+		</application>
+		<supports-screens 
+	    android:resizeable="false"
+			android:smallScreens="false"
+	    android:normalScreens="true"
+	    android:largeScreens="true"
+	    android:anyDensity="true"
+	  />
+		</manifest>
 	</android>
 	<modules>
 	</modules>
