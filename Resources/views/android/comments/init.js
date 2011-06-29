@@ -4,7 +4,8 @@ Views.comments.init.template = function() {
 	var self = this;
 	var story = self.params.story;
 	var comment = self.source;
-	var win = self.win;
+	var player = self.win;
+	var win = Titanium.UI.createWindow({modal:true});
 	
 	if (Helpers.application.densityIsMedium())
 	  {
@@ -59,30 +60,19 @@ Views.comments.init.template = function() {
 	field.addEventListener('focus', function() {
 		if(field.value === "Add Comment...") { field.value = ""; }
 	});
-
-	field.addEventListener('return', function() {
-		comment.content = field.value;
-		App.action(self.win, "comments#create", {
-			comment : comment,
-			story : story,
-			success : function() {
-				field.blur();
-				view.visible = false;
-			}
-		});
-	});
 	
-	ok_button.addEventListener('click', function() {
+	var saveComment = function() {
 		comment.content = field.value;
 		App.action(self.win, "comments#create", {
 			comment : comment,
 			story : story,
-			success : function() {
-								field.blur();
-				view.visible = false;
-			}
+			success : win.close
 		});
-	});
+	}
+
+	field.addEventListener('return', saveComment);
+	
+	ok_button.addEventListener('click', saveComment);
 	
 	var cancel_button = Titanium.UI.createView({
 		backgroundImage:'images/add_tag/remove_icon.png',
@@ -99,6 +89,6 @@ Views.comments.init.template = function() {
 	view.add(ok_button);
 	view.add(field);
 	view.add(cancel_button);
-	
 	win.add(view);
+	win.open();
 };

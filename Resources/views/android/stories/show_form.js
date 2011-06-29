@@ -157,6 +157,7 @@ Views.stories.show_form.template = function() {
 	});
 
 	comment_button.addEventListener('click', function() {
+		player.stop();
 		App.action(player, "comments#init", {story : self.source});
 	});
 	

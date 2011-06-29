@@ -143,7 +143,11 @@ Views.sharings.init.template = function() {
 	};
 	
 	function connectFacebook() {
+		win.hide();
+		var temp_win = Titanium.UI.createWindow({});
 		Helpers.user.connectFacebook(function(user) {
+			temp_win.close();
+			Views.stories.show.makePlayer();
 			facebook = getAuth('facebook', user);
 			toggleFacebook();
 		});
