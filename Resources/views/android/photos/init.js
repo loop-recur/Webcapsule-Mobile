@@ -16,6 +16,8 @@ Views.photos.init.template = function() {
 		var added_photo_view_top = 15;
 		var take_picture_left = 15;
 		var take_picture_bottom = 20;
+		var choose_picture_left = 73;
+		var choose_picture_bottom = 20;
 		var done_button_right = 15;
 		var done_button_bottom = 20;
 		var lock_done_button_right = 15;
@@ -27,6 +29,8 @@ Views.photos.init.template = function() {
 		var added_photo_view_top = 15;
 		var take_picture_left = 15;
 		var take_picture_bottom = 20;
+		var choose_picture_left = 73;
+		var choose_picture_bottom = 20;
 		var done_button_right = 14;
 		var done_button_bottom = 28;
 		var lock_done_button_right = 15;
@@ -63,6 +67,20 @@ Views.photos.init.template = function() {
 	take_picture.addEventListener('click', function() {
 		Layouts.take_photo(win, self.source, self.params.story);
 	});
+	
+	var choose_existing = Titanium.UI.createButton({  
+	    value:false,
+			backgroundImage:'images/add_photo/add_photo_normal.png',
+			backgroundSelectedImage:'images/add_photo/add_photo_pressed.png',  
+	  	left:choose_picture_left,
+			bottom:choose_picture_bottom,
+	    width:"53dp",  
+	    height:"55dp"
+	});
+
+	choose_existing.addEventListener('click', function() {
+		Layouts.choose_photo(win, self.source, self.params.story);
+	});
 
 	var done_button = Titanium.UI.createButton({  
 	    value:false,
@@ -75,7 +93,7 @@ Views.photos.init.template = function() {
 	});
 
 	done_button.addEventListener('click', function() {
-		if(self.params.from_show){ Views.stories.show.makePlayer() };
+		if(self.params.from_show){ Views.stories.show.makePlayer(); };
 		win.close();
 	});
 	
@@ -100,6 +118,7 @@ Views.photos.init.template = function() {
 	photo_tray.add(done_button);
 	photo_tray.add(lock_done_button);
 	photo_tray.add(take_picture);
+	photo_tray.add(choose_existing);
 
 	win.add(photo_tray);
 	

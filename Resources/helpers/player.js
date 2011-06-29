@@ -24,7 +24,6 @@ Helpers.player.timeMonitor = function(win, player, comments, photos) {
 		buildViews(Views.photos.photo, photos);
 		var intervalId = setInterval(showOverlays, 1000);
 		stop = function() {
-			Ti.API.info("stopping");
 			clearInterval(intervalId);
 		};
 	};
@@ -68,6 +67,6 @@ Helpers.player.timeMonitor = function(win, player, comments, photos) {
 	}
 	
 	function hideAllOverlays() {
-		// Functional.map("x.close()", [Views.comments.comment, Views.photos.photo]);
+		Functional.map(function(item){ if(item.view) item.view.visible = false; }, [comments, photos]);
 	};
 };
