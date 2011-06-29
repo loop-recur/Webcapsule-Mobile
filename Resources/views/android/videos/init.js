@@ -8,6 +8,7 @@ Views.videos.init.template = function() {
 	 // http://developer.android.com/reference/android/provider/MediaStore.html
 	function record() {
 		var intent = Titanium.Android.createIntent({ action: 'android.media.action.VIDEO_CAPTURE' });
+		intent.putExtra("android.intent.extra.videoQuality", 0);
 	  Titanium.Android.currentActivity.startActivityForResult(intent, function(e) {
 	  	if (e.error) {
 				alert("There was an error uploading");

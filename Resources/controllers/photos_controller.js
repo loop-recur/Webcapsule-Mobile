@@ -13,8 +13,6 @@ Controllers.photos = {
 		photo.user_id = App.currentUser().id;
 		
 		this.db.save(photo, function(new_photo) {
-			Ti.API.info(Views.stories.form.source);
-			Ti.API.info(Views.stories.show_form.source);
 			var story = Views.stories.form.source;
 			if(!story.photo_ids) story.photo_ids = "";
 			var old_val = story.photo_ids.split(',');

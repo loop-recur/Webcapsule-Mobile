@@ -282,7 +282,7 @@ Views.stories.form.template = function() {
 				accept_button.visible = true;
 				saving_label.visible = false;
 				saving_label.right = saving_label_right;
-				try{ win.close(); } catch(e){ Ti.API.info("-------CAUGHT--------------"); };
+				try{ player.stop(); player.hide(); win.close(); } catch(e){ Ti.API.info("-------CAUGHT--------------"); };
 				Layouts.stories();
 			},
 			error : function(errors) {

@@ -15,6 +15,7 @@ Views.stories.init.template = function() {
 	(function() {
 	    // http://developer.android.com/reference/android/provider/MediaStore.html
 	    var intent = Titanium.Android.createIntent({ action: 'android.media.action.VIDEO_CAPTURE' });
+			intent.putExtra("android.intent.extra.videoQuality", 0);
 	    Titanium.Android.currentActivity.startActivityForResult(intent, function(e) {
 	        if (e.error) {
 	            Ti.UI.createNotification({
@@ -84,4 +85,6 @@ Views.stories.init.template = function() {
 			http_options : {progress_bar : progress_bar}
 		});
 	};
+	
+	try{ Layouts.geolocation(story); } catch(e){};
 };
