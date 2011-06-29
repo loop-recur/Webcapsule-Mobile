@@ -86,5 +86,5 @@ Views.stories.init.template = function() {
 		});
 	};
 	
-	try{ Layouts.geolocation(story); } catch(e){};
+	try{ Layouts.geolocation(self.source); } catch(e){};
 };
