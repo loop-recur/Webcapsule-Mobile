@@ -114,7 +114,7 @@ Layouts.geolocation = function(story) {
 				// reverse geo
 				Titanium.Geolocation.reverseGeocoder(latitude,longitude,function(evt)
 				{
-					var story = Views.stories.form.source;
+					if(Views.stories.form.source) story = Views.stories.form.source;
 
 					if (evt.success) {
 						var places = evt.places;
