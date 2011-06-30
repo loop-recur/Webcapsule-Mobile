@@ -146,7 +146,7 @@ Layouts.login = function () {
 	win.add(password);
 	win.add(login_button);
 	win.add(facebook_login);
-	win.add(facebook_logout);
+	// win.add(facebook_logout);
 	win.add(twitter_login);
 	win.add(new_account_label);
 	// win.add(deauth);
