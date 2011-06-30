@@ -16,7 +16,9 @@
 				    <action android:name="android.intent.action.VIEW"/>
 				    <category android:name="android.intent.category.DEFAULT"/>
 				    <category android:name="android.intent.category.BROWSABLE"/>
-						<data android:host="oauth" android:scheme="startonuri"/>
+						<category android:name="android.intent.category.LAUNCHER"/>
+						<data android:scheme="startonuri" />
+						<data android:host="*" />
 				</intent-filter>
 	  </activity>
 		<activity android:name="ti.modules.titanium.facebook.FBActivity" android:screenOrientation="portrait" android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen"/>

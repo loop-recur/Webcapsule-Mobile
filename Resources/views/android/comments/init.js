@@ -5,7 +5,7 @@ Views.comments.init.template = function() {
 	var story = self.params.story;
 	var comment = self.source;
 	var player = self.win;
-	var win = Titanium.UI.createWindow({modal:true});
+	var win = Titanium.UI.createWindow({modal:true, navBarHidden:true, softInputMode: Ti.UI.Android.SOFT_INPUT_ADJUST_PAN});
 	
 	if (Helpers.application.densityIsMedium())
 	  {
@@ -66,7 +66,7 @@ Views.comments.init.template = function() {
 		App.action(self.win, "comments#create", {
 			comment : comment,
 			story : story,
-			success : win.close
+			success : function() { win.close(); }
 		});
 	}
 
@@ -82,9 +82,7 @@ Views.comments.init.template = function() {
 		height:"25dp"
 	});
 	
-	cancel_button.addEventListener('click', function() {
-		view.visible = false;
-	});
+	cancel_button.addEventListener('click', function() { win.close(); });
 	
 	view.add(ok_button);
 	view.add(field);

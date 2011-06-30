@@ -16,6 +16,10 @@ BaseList = [
 	"helpers/user.js",
 	"helpers/array_funs.js",
 	"lib/birdhouse.js",
+	'lib/new_oauth/sha1.js',
+	'lib/new_oauth/oauth.js',
+	'lib/new_oauth/oauth_adapter.js',
+	'lib/new_oauth/twitter_api.js'
 ];
 
 if(Ti.Platform.osname == "iphone") {

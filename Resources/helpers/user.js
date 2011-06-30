@@ -51,9 +51,28 @@ Helpers.user.connectFacebook = function(success) {
 };
 
 Helpers.user.connectTwitter = function(success) {
-	b = new BirdHouse({consumer_key: "CgIDnN8kDKPu1uKhMK5Qg", consumer_secret: "AULwvohyIehfXfPUaKAaEifYRtzlDuOIo80qHQVRnyI", callback_url: "startonuri://oauth" });
-	b.authorize(saveTwitterAuth);
+
+	if (oa.oAuthAdapter.isAuthorized() != false) {
+		oa.oAuthAdapter.send({
+			url:'http://api.twitter.com/1/account/verify_credentials.json', 
+			parameters:[
+			],
+			method:'GET',
+			onSuccess:function(response){
+				alert(response.screen_name+' authenticated');
+				var resp = JSON.parse(response);	
+				saveTwitterAuth(resp);
+			},
+			onError:function(response){
+				alert(response.errorMessage);
+			}
+		});
+	};
 	
+	// 
+	// b = new BirdHouse({consumer_key: "CgIDnN8kDKPu1uKhMK5Qg", consumer_secret: "AULwvohyIehfXfPUaKAaEifYRtzlDuOIo80qHQVRnyI", callback_url: "startonuri://oauth" });
+	// b.authorize(saveTwitterAuth);
+	// 
 	function saveTwitterAuth(data) {
 		alert(data);
 		if(data) {
@@ -69,7 +88,7 @@ Helpers.user.connectTwitter = function(success) {
 				}
 			});
 		}	else {
-			b.deauthorize();
+			// b.deauthorize();
 		}
 	};
 };
