@@ -111,6 +111,8 @@ function BirdHouse(params) {
 		var params = (cfg.callback_url!="")?'oauth_callback='+escape(cfg.callback_url):'';
 
 		api(url,'POST',params,function(resp){
+			Ti.API.info("=================RESPONSE========");
+			Ti.API.info(resp);
 			
 			if (resp!=false) {
 				var responseParams = OAuth.getParameterMap(resp);
@@ -137,7 +139,7 @@ function BirdHouse(params) {
 	//	  be executed until get_access_token()
 	// --------------------------------------------------------
 	function get_request_verifier(callback) {
-		Ti.API.info("getting request verifier");
+		Ti.API.info("============GETTING REQUEST IDENTIFIER===============");
 		var url = "http://api.twitter.com/oauth/authenticate?oauth_token="+cfg.request_token;
 		var win = Ti.UI.createWindow({
 			top: 0,
@@ -289,12 +291,11 @@ function BirdHouse(params) {
 	//	  it will get executed after being authorized
 	// --------------------------------------------------------
 	function get_access_token(callback) {
-		Ti.API.info("getting access token");
 		var self = this;
 		var url = 'https://api.twitter.com/oauth/access_token';
-
+		Ti.API.info("================GETTING ACCESS TOKEN=============");
 		api(url,'POST','oauth_token='+cfg.request_token+'&oauth_verifier='+cfg.request_verifier,function(resp){
-			Ti.API.info("got response");
+			Ti.API.info("================ACCESS TOKEN!!!!!=============");
 			Ti.API.info(resp);
 			if (resp!=false) {
 				var responseParams = OAuth.getParameterMap(resp);
@@ -476,11 +477,10 @@ function BirdHouse(params) {
 
 
 			var XHR = Ti.Network.createHTTPClient();
-			// XHR.validatesSecureCertificate = false;
+			XHR.validatesSecureCertificate = false;
 			
 			// on success, grab the request token
 			XHR.onload = function() {
-				Ti.API.info("loaded final request");
 
 				// execute the callback function
 				if (typeof(callback)=='function') {
@@ -500,7 +500,6 @@ function BirdHouse(params) {
 				return false;
 			}
 			
-			Ti.API.info("opening finalUrl");
 			XHR.open(method, finalUrl, false);
 
 			// if we are getting request tokens do not set the HTML header

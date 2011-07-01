@@ -12,7 +12,7 @@ Views.sharings.init.template = function() {
 	if (Helpers.application.densityIsMedium())
 	  {
 	  var container_top = 80;
-		var share_button_right = 5;
+		var share_button_right = 20;
 		var facebook_button_left = 50;
 		var twitter_button_left = 122;
 		var cancel_button_left = 2;
@@ -55,8 +55,12 @@ Views.sharings.init.template = function() {
 		var story = Views.stories.form.source;
 		story.twitter = sharing.twitter;
 		story.facebook = sharing.facebook;
-		(story.twitter || story.facebook) ? Views.stories.form.toggle_sharing_icon(true) : Views.stories.form.toggle_sharing_icon(false);
-		
+		try {
+			(story.twitter || story.facebook) ? Views.stories.form.toggle_sharing_icon(true) : Views.stories.form.toggle_sharing_icon(false);
+		} catch(e) {
+			
+		};
+
 		if(automatic_share) {
 			sharing.message = "Check out this story";
 			App.action(win, "sharings#create", {

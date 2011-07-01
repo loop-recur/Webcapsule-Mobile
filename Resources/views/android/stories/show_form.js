@@ -221,6 +221,7 @@ Views.stories.show_form.template = function() {
 	});
 	
 	share_button.addEventListener('click', function() {
+		player.stop();
 		App.action(player, "sharings#init", {story : self.source, automatic_share: true});
 	});
 	

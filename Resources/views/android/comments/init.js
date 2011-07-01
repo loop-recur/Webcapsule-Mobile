@@ -5,7 +5,7 @@ Views.comments.init.template = function() {
 	var story = self.params.story;
 	var comment = self.source;
 	var player = self.win;
-	var win = Titanium.UI.createWindow({modal:true, navBarHidden:true, softInputMode: Ti.UI.Android.SOFT_INPUT_ADJUST_PAN});
+	var win = Titanium.UI.createWindow({navBarHidden:true, fullscreen:true});
 	
 	if (Helpers.application.densityIsMedium())
 	  {

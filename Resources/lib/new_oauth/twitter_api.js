@@ -1,8 +1,8 @@
 // namespace created for issues with android in the initial oAuth process, need to refactor all code into namespace for all twitter api calls.
 var oa={};
 (function(){
-	oa.consumerSecret = 'xxxxx';
-	oa.consumerKey = 'xxxxx';
+	oa.consumerSecret = 'AULwvohyIehfXfPUaKAaEifYRtzlDuOIo80qHQVRnyI';
+	oa.consumerKey = 'CgIDnN8kDKPu1uKhMK5Qg';
 })();
 
 oa.oAuthAdapter = new OAuthAdapterNew(
@@ -12,7 +12,7 @@ oa.oAuthAdapter = new OAuthAdapterNew(
 
 // load the access token for the service (if previously saved)
  oa.oAuthAdapter.loadAccessToken('twitter');
- if (oa.oAuthAdapter.isAuthorized() == false)
+ if (true)
  {
 	// this function will be called as soon as the application is authorized
 	var receivePin = function() {
@@ -33,7 +33,7 @@ oa.oAuthAdapter = new OAuthAdapterNew(
     };
 
 	accessor.tokenSecret = '';
-    var message = oa.oAuthAdapter.createMessage('https://api.twitter.com/oauth/request_token', 'POST');
+    var message = oa.oAuthAdapter.createMessage('https://api.twitter.com/oauth/request_token&oauth_callback='+escape("startonuri://oauth"), 'POST');
 Ti.API.info('message is '+ message);
 	OAuth.setTimestampAndNonce(message);
 	OAuth.setParameter(message, "oauth_timestamp", OAuth.timestamp());

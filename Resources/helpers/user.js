@@ -4,12 +4,12 @@ Helpers.user.canEdit = function(item, story) {
 	var user = App.currentUser();
 
 	function isItemCreator() {
-		return item.user_id && item.user_id == user.id
+		return item.user_id && item.user_id == user.id;
 	};
 	
 	function isStoryCreator() {
 		if(!story) return false;
-		return item.story_id && item.story_id == story.id && story.user_id == user.id
+		return item.story_id && item.story_id == story.id && story.user_id == user.id;
 	};
 	
 	return isItemCreator() || isStoryCreator();
@@ -51,30 +51,16 @@ Helpers.user.connectFacebook = function(success) {
 };
 
 Helpers.user.connectTwitter = function(success) {
-
-	if (oa.oAuthAdapter.isAuthorized() != false) {
-		oa.oAuthAdapter.send({
-			url:'http://api.twitter.com/1/account/verify_credentials.json', 
-			parameters:[
-			],
-			method:'GET',
-			onSuccess:function(response){
-				alert(response.screen_name+' authenticated');
-				var resp = JSON.parse(response);	
-				saveTwitterAuth(resp);
-			},
-			onError:function(response){
-				alert(response.errorMessage);
-			}
-		});
-	};
 	
-	// 
-	// b = new BirdHouse({consumer_key: "CgIDnN8kDKPu1uKhMK5Qg", consumer_secret: "AULwvohyIehfXfPUaKAaEifYRtzlDuOIo80qHQVRnyI", callback_url: "startonuri://oauth" });
-	// b.authorize(saveTwitterAuth);
-	// 
+	Ti.App.twitterApi = new TwitterApi({
+	    consumerKey:'FaTk271BdofynBgjGP1FkA',
+	    consumerSecret:'qu31KeYVmKbqyhqGxGeYHaAO6krhh1gNhFIITSaDs'
+	});
+	var twitterApi = Ti.App.twitterApi;
+	twitterApi.init(saveTwitterAuth);
+
 	function saveTwitterAuth(data) {
-		alert(data);
+		Ti.API.info(data);
 		if(data) {
 			data.id = data.user_id;
 			data.token = data.oauth_token;
@@ -88,7 +74,7 @@ Helpers.user.connectTwitter = function(success) {
 				}
 			});
 		}	else {
-			// b.deauthorize();
+			Ti.API.info("deauth");
 		}
 	};
 };

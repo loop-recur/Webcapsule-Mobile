@@ -182,7 +182,10 @@ var OAuthAdapterNew = function(pConsumerSecret, pConsumerKey, pSignatureMethod){
 
     // will tell if the consumer is authorized
     this.isAuthorized = function(){
-        return ! (accessToken == null || accessTokenSecret == null);
+				Ti.API.info("===============GOOOINODISFNOISDNFOISDN==============");
+				Ti.API.info(accessToken);
+				Ti.API.info(accessTokenSecret);
+        return !(accessToken || accessTokenSecret);
     };
 
     // creates a message to send to the service
@@ -406,6 +409,7 @@ var OAuthAdapterNew = function(pConsumerSecret, pConsumerKey, pSignatureMethod){
         var message = this.createMessage(params['pURL']);
         message.parameters.push(['oauth_token', params['requestToken']]);
         message.parameters.push(['oauth_verifier', pin]);
+				message.parameters.push(['oauth_callback', "startonuri://oauth"]);
 
         OAuth.setTimestampAndNonce(message);
         OAuth.SignatureMethod.sign(message, accessor);

@@ -8,7 +8,7 @@ Layouts.login = function () {
 		  {
 		  var username_top = 100;
 			var password_top = 142;
-			var login_button_top = 185;
+			var login_button_top = 195;
 			var login_button_right = 10;
 			var facebook_login_bottom = 135;
 			var twitter_login_bottom = 75; 
@@ -123,34 +123,13 @@ Layouts.login = function () {
 	new_account_label.addEventListener('click', function() {
 		App.action(win, "accounts#init");
 	});
-	// 
-	// var deauth = Titanium.UI.createLabel({
-	// 	text:'Deauth',
-	// 	bottom:4,
-	// 	width:"150dp",
-	// 	height:"40dp",
-	// 	color:'gray',
-	// 	textAlign:'center',
-	// 	font:{fontFamily:'Arial',fontWeight:'bold',fontSize:"16dp"}
-	// });
-	// 
-	// deauth.addEventListener('click', function() {
-	// 	alert("deauthing");
-	// 	b = new BirdHouse({consumer_key: "CgIDnN8kDKPu1uKhMK5Qg", consumer_secret: "AULwvohyIehfXfPUaKAaEifYRtzlDuOIo80qHQVRnyI", callback_url: "/webcapsule-mobile://" });
-	// 	b.deauthorize();
-	// });
-	
-	facebook_logout = Titanium.Facebook.createLoginButton({bottom: 4});
 
 	win.add(username);
 	win.add(password);
 	win.add(login_button);
 	win.add(facebook_login);
-	win.add(facebook_logout);
 	win.add(twitter_login);
 	win.add(new_account_label);
-	// win.add(deauth);
-
 	
 	win.open();
 };
