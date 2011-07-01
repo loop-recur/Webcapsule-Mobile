@@ -14,7 +14,7 @@ Views.tags.init.template = function() {
 	});
 
 	var tag_tray = Titanium.UI.createView({
-		height:317,
+		height:"317dp",
 		top:0,
 		backgroundImage:'images/add_tag/tag_friends_tray.png',
 		zIndex:100,
@@ -23,8 +23,8 @@ Views.tags.init.template = function() {
 	
 	var available_tags_view = Titanium.UI.createScrollView({
 		top:60,
-		height:85,
-		width:300,
+		height:"85dp",
+		width:"300dp",
 		contentWidth:"auto",
 		contentHeight:85,
 		showHorizontalScrollIndicator:true
@@ -32,10 +32,10 @@ Views.tags.init.template = function() {
 	
 	var added_tags_view = Titanium.UI.createScrollView({
 		top:155,
-		height:80,
-		width:300,
+		height:"80dp",
+		width:"300dp",
 		contentWidth:"auto",
-		contentHeight:70,
+		contentHeight:"70dp",
 		showHorizontalScrollIndicator:true
 	});
 
@@ -45,9 +45,9 @@ Views.tags.init.template = function() {
 			borderRadius:4,
 			paddingLeft:5,
 	    top:15,  
-	    width:300,  
-	    height:30,  
-	    hintText:'Loading Friends',  
+	    width:"300dp",  
+	    height:"35dp",  
+	    hintText:'Loading Friends...',  
 	    keyboardType:Titanium.UI.KEYBOARD_DEFAULT,  
 	    returnKeyType:Titanium.UI.RETURNKEY_DONE
 	});
@@ -67,8 +67,8 @@ Views.tags.init.template = function() {
 			backgroundSelectedImage:'images/app_wide/ok_pressed.png',  
 	  	right:15,
 			bottom:20,
-	    width:83,  
-	    height:49
+	    width:"83dp",  
+	    height:"49dp"
 	});
 
 	done_button.addEventListener('click', function() {
@@ -91,8 +91,8 @@ Views.tags.init.template = function() {
 	
 	function makeView() {
 		return Titanium.UI.createView({
-			width:10,
-			height:100,
+			width:"10dp",
+			height:"100dp",
 			left:0,
 			top:5
 		});
@@ -126,28 +126,28 @@ Views.tags.init.template = function() {
 		var available_tag = Titanium.UI.createView({
 			top:4,
 			left:position,
-			width:60,
-			height:60
+			width:"60dp",
+			height:"60dp"
 		});
 		
 		var tag_border = Titanium.UI.createView({
-			width:60,
-			height:60,
+			width:"60dp",
+			height:"60dp",
 			backgroundImage:'images/add_tag/tag_border_dark.png'
 		});
 		
 		var image = Titanium.UI.createImageView({
 			image: friend.image,
 			defaultImage:'images/avatar_medium.jpg',
-			width:52,
-			height:54
+			width:"52dp",
+			height:"54dp"
 		});
 		
 		var tag_name = Titanium.UI.createLabel({
 			text:friend.label,
 			bottom:4,
-			width:52,
-			height:10,
+			width:"52dp",
+			height:"10dp",
 			backgroundColor:'black',
 			color:'white',
 			textAlign:'center',

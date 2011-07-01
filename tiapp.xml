@@ -12,9 +12,9 @@
     <prerendered-icon>false</prerendered-icon>
     <statusbar-style>default</statusbar-style>
     <statusbar-hidden>false</statusbar-hidden>
-    <fullscreen>false</fullscreen>
+    <fullscreen>true</fullscreen>
     <navbar-hidden>true</navbar-hidden>
-    <analytics>true</analytics>
+    <analytics>false</analytics>
 <guid>98c7618d-7788-443c-a9e7-73ad588a55eb</guid>
 <property name="ti.facebook.appid">147009708687795</property>
 	<iphone>
@@ -25,13 +25,19 @@
 	<android xmlns:android="http://schemas.android.com/apk/res/android">
 		<manifest>
 		<uses-permission android:name="android.permission.INTERNET" />
-		<application>	
-  	<activity android:configChanges="keyboardHidden|orientation" android:label="webcapsule-mobile" android:name=".WebcapsuleMobileActivity" android:theme="@style/Theme.Titanium" android:screenOrientation="portrait">
-          <intent-filter>
-              <action android:name="android.intent.action.MAIN"/>
-              <category android:name="android.intent.category.LAUNCHER"/>
-          </intent-filter>
-      </activity>
+		<application>
+			
+  	<activity 
+			android:configChanges="keyboardHidden|orientation" 
+			android:label="webcapsule-mobile" 
+			android:name=".WebcapsuleMobileActivity" 
+			android:theme="@style/Theme.Titanium" 
+			android:screenOrientation="portrait">
+         <intent-filter>
+             <action android:name="android.intent.action.MAIN"/>
+             <category android:name="android.intent.category.LAUNCHER"/>
+         </intent-filter>
+     </activity>
 
 		<activity 
 			android:name="OAUTHActivity" 
@@ -44,7 +50,10 @@
 						<data android:scheme="startonuri" android:host="oauth" />
 				</intent-filter>
 	  </activity>
-	<activity android:name="ti.modules.titanium.facebook.FBActivity" android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen"/>
+	
+	<activity 
+		android:name="ti.modules.titanium.facebook.FBActivity"
+		android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen"/>
 		</application>
 		<supports-screens 
 	    android:resizeable="false"
