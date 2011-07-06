@@ -194,6 +194,10 @@ Views.stories._form.template = function() {
 		bottom:0
 	});
 	
+	var access_button = Titanium.UI.createButton({
+		style:Titanium.UI.iPhone.SystemButton.DISCLOSURE
+	});
+	
 	var story_title_field = Titanium.UI.createTextField({  
 	    backgroundColor:text_field_background_color,
 			color:text_field_text_color,
@@ -205,7 +209,9 @@ Views.stories._form.template = function() {
 	    hintText:'Add a title...',
 			value: self.source.name,
 	    keyboardType:Titanium.UI.KEYBOARD_DEFAULT,  
-	    returnKeyType:Titanium.UI.RETURNKEY_DONE
+	    returnKeyType:Titanium.UI.RETURNKEY_DONE,
+			leftButton:leftButton,
+			leftButtonMode:Titanium.UI.INPUT_BUTTONMODE_ALWAYS
 	});
 	
 	story_title_field.addEventListener('focus', function()
