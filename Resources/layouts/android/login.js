@@ -65,7 +65,7 @@ Layouts.login = function () {
 	var login_button = Titanium.UI.createButton({  
 	    value:false,
 			backgroundImage:'images/login/login-normal.png',
-			backgroundSelectedImage:'images/login/login-pressed.png',   
+			backgroundSelectedImage:'images/login/login-pressed.png',
 			top:login_button_top,
 	  	right:login_button_right,
 	    width:"133dp",  
