@@ -24,6 +24,8 @@ Views.stories.form.template = function() {
 		var location_button_left = 68;
 		var add_date_button_right = 68;
 		var share_button_right = 8;
+		var access_button_top = 10;
+		var access_button_right = 6;
 	  }
 	else
 	  {
@@ -43,6 +45,8 @@ Views.stories.form.template = function() {
 		var location_button_left = 100;
 		var add_date_button_right = 100;
 		var share_button_right = 10;
+		var access_button_top = 14;
+		var access_button_right = 10;
 	  }
 	
 	var form_view = Titanium.UI.createView({top: form_view_top, height:"245dp", zIndex:10});
@@ -119,6 +123,25 @@ Views.stories.form.template = function() {
 		width:"320dp",
 		bottom:tray_bottom
 	});
+	
+	var access_button = Titanium.UI.createButton({
+		backgroundImage:'images/record/unlock.png',
+		backgroundSelectedImage:'images/record/unlock.png',
+		top:access_button_top,
+		right:access_button_right,
+		width:"30dp",
+		height:"30dp",
+		unlocked: true
+	});
+
+	access_button.addEventListener("click", switchLocked);
+
+	function switchLocked() {
+		access_button.backgroundImage = access_button.unlocked ? 'images/record/lock.png' : 'images/record/unlock.png';
+		self.source.access = access_button.unlocked ? "private" : "public";
+		if(enable) share_button.enabled = !access_button.unlocked;
+		access_button.unlocked = !access_button.unlocked;
+	}
 	
 	var story_title_field = Titanium.UI.createTextField({  
 	    backgroundColor:text_field_background_color,

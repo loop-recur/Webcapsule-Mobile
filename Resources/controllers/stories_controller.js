@@ -14,7 +14,7 @@ Controllers.stories = {
 			var story = params.story;
 		} else {
 			var date = new Date();
-			var story = {id: TempId.generate(), when: date.toString()};
+			var story = {id: TempId.generate(), when: date.toString(), access : "public"};
 		};
 		view.render(story, params);
 	},
