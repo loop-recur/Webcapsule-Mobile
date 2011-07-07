@@ -7,6 +7,8 @@ Layouts.login = function () {
 		if (Helpers.application.densityIsMedium())
 		  {
 		  var username_top = 100;
+			var username_height = 35;
+			var password_height = 35;
 			var password_top = 142;
 			var login_button_top = 195;
 			var login_button_right = 10;
@@ -16,8 +18,10 @@ Layouts.login = function () {
 		  }
 		else
 		  {
-	  	var username_top = 155;
-			var password_top = 225;
+	  	var username_top = 150;
+			var username_height = 64;
+			var password_height = 64;
+			var password_top = 224;
 			var login_button_top = 310;
 			var login_button_right = 30;
 			var facebook_login_bottom = 360;
@@ -31,7 +35,7 @@ Layouts.login = function () {
 			paddingLeft:"5dp",
 			borderRadius:4,
 	    width:"250dp",  
-	    height:"35dp", 
+	    height:username_height, 
 	    hintText:'Email',  
 	    keyboardType:Titanium.UI.KEYBOARD_EMAIL,  
 	    returnKeyType:Titanium.UI.RETURNKEY_NEXT,
@@ -47,7 +51,7 @@ Layouts.login = function () {
 			color:text_field_text_color,		
 	    top:password_top,  
 	    width:"250dp",  
-	    height:"35dp",
+	    height:password_height,
 			paddingLeft:"5dp",  
 	    hintText:'Password',  
 	    passwordMask:true,  
