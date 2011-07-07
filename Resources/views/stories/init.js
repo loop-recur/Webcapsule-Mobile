@@ -18,6 +18,8 @@ Views.stories.init.template = function() {
 	self.takeVideo = function() {
 		Titanium.Media.showCamera({
 			success: function(e) {
+				Ti.API.info("============EVENT===========");
+				Ti.API.info(e);
 				Titanium.Media.saveToPhotoGallery(e.media);
 				afterRecord(e),
 			},
@@ -63,7 +65,7 @@ Views.stories.init.template = function() {
 		progress_bar = Helpers.ui.progressBar();
 		bar_area = makeProgressArea();
 		
-		video = {upload : event.media};
+		video = {upload : event.media, orientation: event.orientation};
 		saveVideo();
 		App.action(self.win, "stories#edit", {story : self.source, upload : video.upload});
 		self.win.add(bar_area);

@@ -134,11 +134,6 @@ Layouts.geolocation = function(story) {
 						tries += 1;
 						if(tries >= 4) {
 							Titanium.Geolocation.removeEventListener('location', locationCallback);
-
-							Ti.UI.createAlertDialog({
-													title:'Location Problem',
-													message:"Could not determine your location."
-												}).show();
 						}
 
 						Ti.API.info("Code translation: "+translateErrorCode(e.code));

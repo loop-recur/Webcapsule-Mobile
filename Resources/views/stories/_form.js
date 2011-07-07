@@ -204,7 +204,7 @@ Views.stories._form.template = function() {
 			borderRadius:4,
 			paddingLeft:5,
 	    top:10,  
-	    width:300,  
+	    width:250,  
 	    height:30,
 	    hintText:'Add a title...',
 			value: self.source.name,
@@ -223,7 +223,25 @@ Views.stories._form.template = function() {
 	{			
 		functionality_view.animate({bottom:0, duration:250});
 	});
-
+	
+	var access_button = Titanium.UI.createButton({
+		title:"U",
+		top:10,
+		right:10,
+		width:20,
+		height:20,
+		unlocked: true
+	});
+	
+	access_button.addEventListener("click", switchLocked);
+	
+	function switchLocked() {
+		access_button.title = access_button.unlocked ? "L" : "U";
+		self.source.access = access_button.unlocked ? "private" : "public";
+		if(enable) share_button.enabled = !access_button.unlocked;
+		access_button.unlocked = !access_button.unlocked;
+	}
+	
 	var tag_friends_button = Titanium.UI.createButton({
 		value:false,
 		top:buttons_from_top_length,
@@ -349,8 +367,8 @@ Views.stories._form.template = function() {
 		share_button.backgroundImage = state ? 'images/postrecord/share_activated.png' : 'images/postrecord/share_normal.png';
 	};
 	
-	if(enable) share_button.addEventListener('click', function() {
-		App.action(camera_overlay, "sharings#init", {story : self.source});
+	if(enable) share_button.addEventListener('click', function(){
+		if(share_button.enabled) App.action(camera_overlay, "sharings#init", {story : self.source});
 	});
 	
 	story_title_field.addEventListener("blur", function() {
@@ -417,6 +435,7 @@ Views.stories._form.template = function() {
 	functionality_view.add(tray);
 	
 	tray.add(story_title_field);
+	tray.add(access_button);
 	tray.add(tag_friends_button);
 	tray.add(location_button);
 	tray.add(add_photos_button);
