@@ -194,24 +194,19 @@ Views.stories._form.template = function() {
 		bottom:0
 	});
 	
-	var access_button = Titanium.UI.createButton({
-		style:Titanium.UI.iPhone.SystemButton.DISCLOSURE
-	});
-	
 	var story_title_field = Titanium.UI.createTextField({  
 	    backgroundColor:text_field_background_color,
 			color:text_field_text_color,
 			borderRadius:4,
 			paddingLeft:5,
-	    top:10,  
-	    width:250,  
+	    top:10,
+	  	left:10,
+	    width:270,  
 	    height:30,
 	    hintText:'Add a title...',
 			value: self.source.name,
 	    keyboardType:Titanium.UI.KEYBOARD_DEFAULT,  
-	    returnKeyType:Titanium.UI.RETURNKEY_DONE,
-			leftButton:leftButton,
-			leftButtonMode:Titanium.UI.INPUT_BUTTONMODE_ALWAYS
+	    returnKeyType:Titanium.UI.RETURNKEY_DONE
 	});
 	
 	story_title_field.addEventListener('focus', function()
@@ -225,18 +220,19 @@ Views.stories._form.template = function() {
 	});
 	
 	var access_button = Titanium.UI.createButton({
-		title:"U",
+		backgroundImage:'images/record/unlock.png',
+		backgroundSelectedImage:'images/record/unlock.png',
 		top:10,
-		right:10,
-		width:20,
-		height:20,
+		right:6,
+		width:30,
+		height:30,
 		unlocked: true
 	});
 	
 	access_button.addEventListener("click", switchLocked);
 	
 	function switchLocked() {
-		access_button.title = access_button.unlocked ? "L" : "U";
+		access_button.backgroundImage = access_button.unlocked ? 'images/record/lock.png' : 'images/record/unlock.png';
 		self.source.access = access_button.unlocked ? "private" : "public";
 		if(enable) share_button.enabled = !access_button.unlocked;
 		access_button.unlocked = !access_button.unlocked;
