@@ -226,9 +226,20 @@ Views.stories._form.template = function() {
 		right:6,
 		width:30,
 		height:30,
-		unlocked: true
+		unlocked:true
 	});
 	
+	function setAccessStatus() {
+		if(self.source.access == "public"){
+			access_button.backgroundImage = 'images/record/unlock.png';
+			access_button.unlocked = true;
+		} else {
+			access_button.backgroundImage = 'images/record/lock.png';
+			access_button.unlocked = false;
+		}
+	};
+	
+	setAccessStatus();
 	access_button.addEventListener("click", switchLocked);
 	
 	function switchLocked() {
