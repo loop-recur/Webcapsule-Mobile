@@ -12,20 +12,20 @@ Views.stories.form.template = function() {
 		var functionality_view_top = 0;
 		var record_tray_top = 0;
 		var record_tray_right = 0;
-		var accept_button_top = 0;
-		var accept_button_right = 0;
+		var accept_button_top = 13;
+		var accept_button_right = 5;
 		var saving_label_right = -100;
 		var saving_label_top = 12;
 		var rerecord_button_right = 60;
 		var tray_bottom = 0;
-		var story_title_field_top = 10;
-		var story_title_field_left = 3;
+		var story_title_field_top = 13;
+		var story_title_field_left = 5;
 		var tag_friends_button_left = 8;
 		var location_button_left = 68;
 		var add_date_button_right = 68;
 		var share_button_right = 8;
-		var access_button_top = 10;
-		var access_button_right = 25;
+		var access_button_top = 17;
+		var access_button_right = 56;
 	  }
 	else
 	  {
