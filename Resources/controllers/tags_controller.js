@@ -9,7 +9,8 @@ Controllers.tags = {
 		
 		this.db.save(friend, function(new_tag) {
 			var story = Views.stories.form.source;
-			if(!story.tag_ids) story.tag_ids = "";
+			if(!story.tags) story.tags = [];
+			if(!story.tag_ids) story.tag_ids = Functional.map('x.id', story.tags).join(",");
 			var old_val = story.tag_ids.split(',');
 			old_val.unshift(new_tag.id);
 			var new_val = old_val.join(',');
@@ -39,8 +40,12 @@ Controllers.tags = {
 		var story = params.story;
 		
 		if(!story.tag_ids) story.tag_ids = Functional.map(".id", friends).join(",");
+		Ti.API.info("BEFORE: "+ story.tag_ids);
+		Ti.API.info("BEFORE TAGS: "+ Functional.map('x.id', story.tags).join(","));
 		story.tag_ids = Helpers.array_funs.removeInString(id, story.tag_ids);
 		Helpers.array_funs.removeById(id, friends);
+		Ti.API.info("AFTER: "+ story.tag_ids);
+		Ti.API.info("AFTER TAGS: "+ Functional.map('x.id', story.tags).join(","));
 	},
 	
 	normalizeFriends: function(friend) {

@@ -107,7 +107,6 @@ Views.tags.init.template = function() {
 	
 	function makeFriends() {
 		var found = foundFriends();
-		Ti.API.info(Functional.map('.label', found).join(", "));
 		Functional.reduce(makeFriend, 10, found);
 	};
 	
@@ -162,8 +161,7 @@ Views.tags.init.template = function() {
 		available_tag.add(tag_name);
 		available_tag.add(tag_border);
 		
-		
-		self.view.width += 70;
+		self.view.width = Helpers.application.addDp(self.view.width, 70);
 		self.view.add(available_tag);
 		return position+70;
 	}

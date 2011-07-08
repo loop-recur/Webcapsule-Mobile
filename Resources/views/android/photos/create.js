@@ -96,12 +96,12 @@ Views.photos.create.template = function() {
 
 		function buildAndUpdatePosition(current_position) {
 			
-			current_position.left = addDp(current_position.left, horizontal_spacing);
+			current_position.left = Helpers.application.addDp(current_position.left, horizontal_spacing);
 			
-			if(extractInteger(current_position.left) >= extractInteger("277dp")) {
-				current_position.top = addDp(current_position.top, vertical_spacing);
+			if(Helpers.application.extractInteger(current_position.left) >= Helpers.application.extractInteger("277dp")) {
+				current_position.top = Helpers.application.addDp(current_position.top, vertical_spacing);
 				current_position.left = "10dp";
-				self.view.height = addDp(self.view.height, vertical_spacing);
+				self.view.height = Helpers.application.addDp(self.view.height, vertical_spacing);
 			};
 		};
 		
@@ -111,15 +111,3 @@ Views.photos.create.template = function() {
 	};
 	
 };
-
-
-function addDp(one, two) {
-	var ints = Functional.map(extractInteger, [one, two]);
-	var sum = Functional.reduce('x+y', 0, ints);
-	return sum + "dp";
-};
-
-function extractInteger(str) {
-	var str = new String(str);
-	return parseInt(str.replace("dp", ""));
-}

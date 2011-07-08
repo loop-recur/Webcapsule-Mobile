@@ -40,7 +40,7 @@ Views.stories.show.template = function() {
 		// for really poor design where we ask for the form's source everywhere to get the story.
 		Views.stories.form.source = self.source;
 		Views.stories.show_form.render(self.source, {win: win, player:player});
-		try{ player.play(); }catch(e) { movieLabel.text = "Can't load movie.  Please check your connection and try again."; };
+		try{ player.play(); } catch(e) { movieLabel.text = "Can't load movie.  Please check your connection and try again."; };
 	};
 	
 	Views.stories.show.makePlayer();
