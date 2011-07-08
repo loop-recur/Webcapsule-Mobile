@@ -25,7 +25,7 @@ Views.stories.form.template = function() {
 		var add_date_button_right = 68;
 		var share_button_right = 8;
 		var access_button_top = 10;
-		var access_button_right = 6;
+		var access_button_right = 25;
 	  }
 	else
 	  {
@@ -45,8 +45,8 @@ Views.stories.form.template = function() {
 		var location_button_left = 100;
 		var add_date_button_right = 100;
 		var share_button_right = 10;
-		var access_button_top = 14;
-		var access_button_right = 10;
+		var access_button_top = 21;
+		var access_button_right = 80;
 	  }
 	
 	var form_view = Titanium.UI.createView({top: form_view_top, height:"245dp", zIndex:10});
@@ -89,7 +89,7 @@ Views.stories.form.template = function() {
 		top:saving_label_top,
 		width:'auto',
 		height:'auto',
-		color:'white',
+		color:'black',
 		textAlign:'center',
 		visible:false
 	});	
@@ -139,7 +139,7 @@ Views.stories.form.template = function() {
 	function switchLocked() {
 		access_button.backgroundImage = access_button.unlocked ? 'images/record/lock.png' : 'images/record/unlock.png';
 		self.source.access = access_button.unlocked ? "private" : "public";
-		if(enable) share_button.enabled = !access_button.unlocked;
+		share_button.enabled = !access_button.unlocked;
 		access_button.unlocked = !access_button.unlocked;
 	}
 	
@@ -150,7 +150,7 @@ Views.stories.form.template = function() {
 			paddingLeft:"3dp",
 	    top:story_title_field_top,
 			left:story_title_field_left,
-	    width:"250dp",  
+	    width:"230dp",  
 	    height:"40dp",
 	    hintText:'Add a title...',
 			value: self.source.name,
@@ -329,6 +329,7 @@ Views.stories.form.template = function() {
 
 	tray.add(saving_label); 
 	tray.add(accept_button);	
+	tray.add(access_button);
 	tray.add(story_title_field);
 	tray.add(tag_friends_button);
 	tray.add(location_button);
