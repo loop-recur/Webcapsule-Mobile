@@ -28,7 +28,7 @@ Views.photos.create.template = function() {
 	update();
 	
 	function update() {
-		if(self.view) added_photo_view.remove(self.view);
+		if(self.view) self.view.visible = false;
 		self.view = makeView();
 		added_photo_view.add(self.view);
 		makePhotos();
@@ -42,7 +42,7 @@ Views.photos.create.template = function() {
 		});
 	};
 	
-	function makePhotos(position, photo) {
+	function makePhotos() {
 		Functional.reduce(makePhoto, {left:makePhotos_left, top:makePhotos_top}, (self.source || []));
 	}
 	

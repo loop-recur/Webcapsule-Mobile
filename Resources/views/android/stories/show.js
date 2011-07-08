@@ -13,8 +13,19 @@ Views.stories.show.template = function() {
 			id: "show player"
 		});
 		
+		var movieLabel = Titanium.UI.createLabel({
+				text:'Loading movie...',
+				width:'auto',
+				height:50,
+				color:'#FFF',
+				font:{fontSize:24,fontFamily:'Helvetica Neue'}
+		});
+		movieLabel.show();
+		player.add(movieLabel);
+		
 		var started;
 		player.addEventListener('load', function() {
+			movieLabel.hide();
 			if(!started) {
 				Helpers.player.timeMonitor(player, player, story.comments, story.photos);
 				started = true;
@@ -28,8 +39,8 @@ Views.stories.show.template = function() {
 		
 		// for really poor design where we ask for the form's source everywhere to get the story.
 		Views.stories.form.source = self.source;
-		Views.stories.show_form.render(story, {win: win, player:player});
-		player.play();
+		Views.stories.show_form.render(self.source, {win: win, player:player});
+		try{ player.play(); }catch(e) { movieLabel.text = "Can't load movie.  Please check your connection and try again."; };
 	};
 	
 	Views.stories.show.makePlayer();
