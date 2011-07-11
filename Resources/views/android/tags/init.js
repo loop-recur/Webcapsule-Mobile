@@ -7,6 +7,16 @@ Views.tags.init.template = function() {
 	
 	var story_tags = self.params.story_tags || [];
 	
+	
+	if (Helpers.application.densityIsMedium())
+	  {
+			var tag_width = 70;
+	  }
+	else
+	  {
+			var tag_width = 100;
+	  }
+	
 	var win = Titanium.UI.createView({
 		opacity:0.9,
 		zIndex: 30,
@@ -22,16 +32,16 @@ Views.tags.init.template = function() {
 	});
 	
 	var available_tags_view = Titanium.UI.createScrollView({
-		top:60,
+		top:"60dp",
 		height:"85dp",
 		width:"300dp",
 		contentWidth:"auto",
-		contentHeight:85,
+		contentHeight:"85dp",
 		showHorizontalScrollIndicator:true
 	});
 	
 	var added_tags_view = Titanium.UI.createScrollView({
-		top:155,
+		top:"163dp",
 		height:"80dp",
 		width:"300dp",
 		contentWidth:"auto",
@@ -46,7 +56,7 @@ Views.tags.init.template = function() {
 			paddingLeft:5,
 	    top:15,  
 	    width:"300dp",  
-	    height:"35dp",  
+	    height:"40dp",  
 	    hintText:'Loading Friends...',  
 	    keyboardType:Titanium.UI.KEYBOARD_DEFAULT,  
 	    returnKeyType:Titanium.UI.RETURNKEY_DONE
@@ -161,8 +171,8 @@ Views.tags.init.template = function() {
 		available_tag.add(tag_name);
 		available_tag.add(tag_border);
 		
-		self.view.width = Helpers.application.addDp(self.view.width, 70);
+		self.view.width = Helpers.application.addDp(self.view.width, tag_width);
 		self.view.add(available_tag);
-		return position+70;
+		return position+tag_width;
 	}
 };
