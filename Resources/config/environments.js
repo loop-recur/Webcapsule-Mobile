@@ -1,7 +1,7 @@
 App.environments = {
 	development: function() {
 		App.isDevelopment = true;
-		App.file_url = "http://www.webcapsule.com";
+		App.file_url = "http://www.webcapsule.com/";
 		App.base_url = "http://www.webcapsule.com/i_phone";
 	},
 	production: function() {

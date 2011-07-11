@@ -99,7 +99,7 @@ Views.tags.init.template = function() {
 	};	
 	
 	function update() {
-		available_tags_view.remove(self.view);
+		if(self.view){ available_tags_view.remove(self.view); }
 		self.view = makeView();
 		makeFriends();
 		available_tags_view.add(self.view);

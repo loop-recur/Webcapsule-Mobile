@@ -3,7 +3,6 @@ Views.tags.create = Views.extend();
 Views.tags.create.template = function() {
 	var self = this;
 	var scrollview = self.scrollview;
-	var tags = self.source || [];
 	
 	if (Helpers.application.densityIsMedium())
 	  {
@@ -27,7 +26,7 @@ Views.tags.create.template = function() {
 	update();
 	
 	function update() {
-		if(self.view){ scrollview.remove(self.view); };
+		if(self.view){ scrollview.remove(self.view); self.view.visible = false; };
 		self.view = makeView();
 		scrollview.add(self.view);
 		makeFriends();
@@ -42,7 +41,7 @@ Views.tags.create.template = function() {
 	};
 	
 	function makeFriends(position, friend) {
-		Functional.reduce(makeFriend, 10, tags);
+		Functional.reduce(makeFriend, 10, self.source);
 	};
 	
 	function makeFriend(position, friend) {
@@ -95,7 +94,7 @@ Views.tags.create.template = function() {
 		added_tag.add(added_tag_border);
 		added_tag.add(delete_button);
 		self.view.add(added_tag);
-		self.view.width = 60 + added_width;
+		self.view.width = Helpers.application.addDp(self.view.width, added_width);
 		return position + added_width;
 	};
 	
