@@ -9,18 +9,18 @@ Views.tags.create.template = function() {
 	  var makeView_left = 0;
 		var added_tag_top = 1;
 		var tag_name_bottom = 4;
-		var delete_button_left = -5;
-		var delete_button_top = -5;
+		var delete_button_left = -3;
+		var delete_button_top = -3;
 		var added_width = 70;
 	  }
 	else
 	  {
 		  var makeView_left = 0;
-			var added_tag_top = 1;
+			var added_tag_top = 4;
 			var tag_name_bottom = 4;
-			var delete_button_left = -5;
-			var delete_button_top = -5;
-			var added_width = 70;
+			var delete_button_left = -2;
+			var delete_button_top = -2;
+			var added_width = 100;
 	  }
 	
 	update();
