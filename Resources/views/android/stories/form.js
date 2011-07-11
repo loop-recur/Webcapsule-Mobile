@@ -133,7 +133,18 @@ Views.stories.form.template = function() {
 		height:"30dp",
 		unlocked: true
 	});
-
+	
+	function setAccessStatus() {
+		if(self.source.access == "public"){
+			access_button.backgroundImage = 'images/record/unlock.png';
+			access_button.unlocked = true;
+		} else {
+			access_button.backgroundImage = 'images/record/lock.png';
+			access_button.unlocked = false;
+		}
+	};
+	
+	setAccessStatus();
 	access_button.addEventListener("click", switchLocked);
 
 	function switchLocked() {
@@ -325,6 +336,43 @@ Views.stories.form.template = function() {
 		accept_button.visible = state;
 	};
 		
+		
+	// var quality_label = Titanium.UI.createLabel({
+	// 	text:'Medium Quality',
+	// 	top:"300dp",
+	// 	width:"80dp",
+	// 	height:"20dp",
+	// 	color:'white',
+	// 	backgroundColor:"black",
+	// 	textAlign:'center',
+	// 	font:{fontFamily:'Arial',fontWeight:'bold',fontSize:"10dp"}
+	// });
+	// 
+	// var quality_selector = Titanium.UI.createSlider({
+	// 	min:0,
+	// 	max:2,
+	// 	value:1,
+	// 	width:"100dp",
+	// 	height:"30dp",
+	// 	top:"350dp"
+	// });
+	// 
+	// quality_selector.addEventListener('change',function(e)
+	// {
+	// 	var quality = Math.round(e.value);
+	// 
+	// 	if(quality == 0){
+	// 		quality_label.text = "Low Quality";
+	// 	} else if (quality == 1) {
+	// 		quality_label.text = "Medium Quality";
+	// 	} else if (quality == 2) {
+	// 		quality_label.text = "High Quality";
+	// 	}
+	// });
+	// 
+	// player.add(quality_selector);
+	// player.add(quality_label);
+		
 	functionality_view.add(tray);
 
 	tray.add(saving_label); 
@@ -339,4 +387,5 @@ Views.stories.form.template = function() {
 
 	form_view.add(functionality_view);
 	player.add(form_view);
+
 };
