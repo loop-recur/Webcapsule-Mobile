@@ -102,6 +102,44 @@ Layouts.record = function(story) {
 	}
 	
 	overlay.add(camera_flash);
+	
+
+	var quality_label = Titanium.UI.createLabel({
+		text:'Medium Quality',
+		top:40,
+		width:80,
+		height:20,
+		color:'white',
+		backgroundColor:"black",
+		textAlign:'center',
+		font:{fontFamily:'Arial',fontWeight:'bold',fontSize:10}
+	});
+	
+	var quality_selector = Titanium.UI.createSlider({
+		min:0,
+		max:2,
+		value:1,
+		width:100,
+		height:30,
+		top:8
+	});
+	
+	quality_selector.addEventListener('change',function(e)
+	{
+		var quality = Math.round(e.value);
+		
+		if(quality == 0){
+			quality_label.text = "Low Quality";
+		} else if (quality == 1) {
+			quality_label.text = "Medium Quality";
+		} else if (quality == 2) {
+			quality_label.text = "High Quality";
+		}
+	});
+	
+	overlay.add(quality_selector);
+	overlay.add(quality_label);
+	
 
 	// TODO: Remove need for branching due to dev.  Mocks are better.
 	if(App.isDevelopment) win.add(overlay);
