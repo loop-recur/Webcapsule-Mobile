@@ -103,16 +103,12 @@ Layouts.record = function(story) {
 	
 	overlay.add(camera_flash);
 	
-
-	var quality_label = Titanium.UI.createLabel({
-		text:'Medium Quality',
-		top:40,
-		width:80,
-		height:20,
-		color:'white',
-		backgroundColor:"black",
-		textAlign:'center',
-		font:{fontFamily:'Arial',fontWeight:'bold',fontSize:10}
+	var quality_label = Titanium.UI.createView({
+		backgroundImage:'images/quality/med.png',
+		top:8,
+		right:90,
+		width:20,
+		height:20
 	});
 	
 	var quality_selector = Titanium.UI.createSlider({
@@ -129,11 +125,11 @@ Layouts.record = function(story) {
 		var quality = Math.round(e.value);
 		
 		if(quality == 0){
-			quality_label.text = "Low Quality";
+			quality_label.backgroundImage = 'images/quality/low.png';
 		} else if (quality == 1) {
-			quality_label.text = "Medium Quality";
+			quality_label.backgroundImage = 'images/quality/med.png';
 		} else if (quality == 2) {
-			quality_label.text = "High Quality";
+			quality_label.backgroundImage = 'images/quality/high.png';
 		}
 	});
 	
