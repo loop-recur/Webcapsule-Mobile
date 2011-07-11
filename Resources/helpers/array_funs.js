@@ -22,6 +22,9 @@ Helpers.array_funs.removeById = function(id, array) {
 }
 
 Helpers.array_funs.remove = function(array, item) {
+	Ti.API.info(array);
+	Ti.API.info(item);
+	Ti.API.info(array.indexOf(item));
 	array.splice(array.indexOf(item), 1);
 }
 
