@@ -103,35 +103,6 @@ Layouts.record = function(story) {
 	
 	overlay.add(camera_flash);
 	
-	var quality_selector = Titanium.UI.createSlider({
-		min:0,
-		max:2,
-		value:1,
-		width:100,
-		height:30,
-		top:8,
-		thumbImage:'images/quality/med.png',
-		highlightedThumbImage:'images/quality/med.png'
-	});
-	
-	quality_selector.addEventListener('change',function(e)
-	{
-		var quality = Math.round(e.value);
-		
-		if(quality == 0){
-			quality_selector.thumbImage = 'images/quality/low.png';
-			quality_selector.highlightedThumbImage = 'images/quality/low.png';
-		} else if (quality == 1) {
-			quality_selector.thumbImage = 'images/quality/med.png';
-			quality_selector.highlightedThumbImage = 'images/quality/med.png';
-		} else if (quality == 2) {
-			quality_selector.thumbImage = 'images/quality/high.png';
-			quality_selector.highlightedThumbImage = 'images/quality/high.png';
-		}
-	});
-	
-	overlay.add(quality_selector);
-	
 
 	// TODO: Remove need for branching due to dev.  Mocks are better.
 	if(App.isDevelopment) win.add(overlay);
