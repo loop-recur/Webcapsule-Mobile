@@ -59,26 +59,11 @@ Layouts.bottomNav = function() {
 		Layouts.record();
 	});
 	
-	var logout = Titanium.UI.createButton({
-		title:"X",
-		bottom:0,
-		right:10,
-		height:62,
-		width:81,
-		backgroundImage:'images/toolbar/navbtn_record.png',
-		backgroundSelectedImage:'images/toolbar/navbtn_record-down.png',
-		zIndex:99
-	});
-	
-	logout.addEventListener('click', function() {
-		Controllers.user_sessions.destroy();
-	});
 
 	win.add(bottom_view);
 	win.add(stories_button);
 	win.add(users_button);
 	win.add(record_button);
-	win.add(logout);
 	
 	record_button.fireEvent('click');
 	return win;

@@ -111,30 +111,12 @@ Layouts.login = function () {
 		App.action(win, "accounts#init");
 	});
 
-	var deauth = Titanium.UI.createButton({
-		title:"X",
-		bottom:0,
-		right:10,
-		height:62,
-		width:81,
-		backgroundImage:'images/toolbar/navbtn_record.png',
-		backgroundSelectedImage:'images/toolbar/navbtn_record-down.png',
-		zIndex:99
-	});
-	
-	deauth.addEventListener('click', function() {
-		alert("yes");
-		b = new BirdHouse({consumer_key: "CgIDnN8kDKPu1uKhMK5Qg", consumer_secret: "AULwvohyIehfXfPUaKAaEifYRtzlDuOIo80qHQVRnyI", callback_url: "/webcapsule-mobile://" });
-		b.deauthorize();
-	});
-
 	win.add(username);
 	win.add(password);
 	win.add(login_button);
 	win.add(facebook_login);
 	win.add(twitter_login);
 	win.add(new_account_label);
-	win.add(deauth);
 	
 	win.open();
 };

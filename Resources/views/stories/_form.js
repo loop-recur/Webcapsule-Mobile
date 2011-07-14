@@ -281,19 +281,10 @@ Views.stories._form.template = function() {
 	});
 
 	location_button.addEventListener('click', function() {
-		
-		function setGeo() {
-			Layouts.geolocation(self.source);
-		}
-		
-		function clearGeo() {
-			self.source.where = "";
-		}
-			
 		if(Helpers.application.isBlank(self.source.where)) {
-			setGeo();
+			Layouts.geolocation(self.source);
 		} else {
-			clearGeo();
+			self.source.where = "";
 			Views.stories._form.toggle_geolocation(false);
 		}
 	});	

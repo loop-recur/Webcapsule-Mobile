@@ -134,8 +134,8 @@ Layouts.geolocation = function(story) {
 					else {
 						tries += 1;
 						if(tries >= 4) {
-							alert("Sorry, we could not locate you at this time.  Please try again later.");
 							Titanium.Geolocation.removeEventListener('location', locationCallback);
+							alertUser();
 						}
 
 						Ti.API.info("Code translation: "+translateErrorCode(e.code));
@@ -146,6 +146,14 @@ Layouts.geolocation = function(story) {
 			Titanium.Geolocation.addEventListener('location', locationCallback);
 
 			locationAdded = true;
+		}
+	}
+	
+	var alerted = false;
+	function alertUser() {
+		if(!alerted) {
+			alert("Sorry, we could not locate you at this time.  Please try again later.");
+			alerted = true;
 		}
 	}
 	
