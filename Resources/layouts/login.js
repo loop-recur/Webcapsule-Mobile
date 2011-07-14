@@ -6,7 +6,7 @@ Layouts.login = function () {
 	});
 	
 	var splash = Titanium.UI.createWindow({  
-			backgroundImage:'iphone/Default.png'
+			backgroundImage:'Default.png'
 	});
 
 	var username = Titanium.UI.createTextField({  
