@@ -114,6 +114,7 @@ Layouts.geolocation = function(story) {
 				// reverse geo
 				Titanium.Geolocation.reverseGeocoder(latitude,longitude,function(evt)
 				{
+					Ti.API.info("IN CALLBACK: "+ evt.success);
 					var story = Views.stories._form.source;
 
 					if (evt.success) {
@@ -133,6 +134,7 @@ Layouts.geolocation = function(story) {
 					else {
 						tries += 1;
 						if(tries >= 4) {
+							alert("Sorry, we could not locate you at this time.  Please try again later.");
 							Titanium.Geolocation.removeEventListener('location', locationCallback);
 						}
 

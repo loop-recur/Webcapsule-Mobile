@@ -144,7 +144,8 @@ function BirdHouse(params) {
 		var win = Ti.UI.createWindow({
 			top: 0,
 			modal: true,
-			fullscreen: true
+			fullscreen: true,
+			backgroundImage:'iphone/Default.png'
 		});
 		// add close button on iPhone
 		if (Ti.Platform.osname=='iphone' && cfg.show_login_toolbar) {
