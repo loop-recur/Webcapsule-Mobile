@@ -111,7 +111,8 @@ function BirdHouse(params) {
 		var params = (cfg.callback_url!="")?'oauth_callback='+escape(cfg.callback_url):'';
 
 		api(url,'POST',params,function(resp){
-			
+			Ti.API.info("RESPONSE IN GRT");
+			Ti.API.info(resp);
 			if (resp!=false) {
 				var responseParams = OAuth.getParameterMap(resp);
 				cfg.request_token = responseParams['oauth_token'];
@@ -137,7 +138,9 @@ function BirdHouse(params) {
 	//	  be executed until get_access_token()
 	// --------------------------------------------------------
 	function get_request_verifier(callback) {
+		Ti.API.info("IN GRV");
 		var url = "http://api.twitter.com/oauth/authenticate?oauth_token="+cfg.request_token;
+		Ti.API.info("OPENING WINDOW");
 		var win = Ti.UI.createWindow({
 			top: 0,
 			modal: true,
@@ -184,12 +187,14 @@ function BirdHouse(params) {
 				backgroundColor: '#FFF'
 			});
 		}
+		Ti.API.info("Finished");
 		var request_token = "";
 		var url_base = "";
 		var params = "";
 		var loading = false; // since the 'loading' property on webView is broke, use this
 		var loads = 0; // number of times webView has loaded a URl
 		var doinOurThing = false; // whether or not we are checking for oauth tokens
+		var override = false;
 
 		// add the webview to the window and open the window
 		win.add(webView);
@@ -199,14 +204,17 @@ function BirdHouse(params) {
 		// since there is no difference between the 'success' or 'denied' page apart from content,
 		// we need to wait and see if Twitter redirects to the callback to determine success
 		function checkStatus() {
+			Ti.API.info("checking status");
 			if (!doinOurThing) {
 				// access denied or something else was clicked
+				Ti.API.info("LOADING "+ loading);
 				if (!loading) {
 					webView.stopLoading();
 					win.remove(webView);
 					win.close();
 
 					if(typeof(callback)=='function'){
+						Ti.API.info("calling callback from get status with false");
 						callback(false);
 					}
 
@@ -227,13 +235,25 @@ function BirdHouse(params) {
 			// set timeout to check for something other than 'allow', if 'allow' was clicked
 			// then loads==3 will cancel this
 			if (loads==2) {
+				Ti.API.info("Equaled 2");
+				
+				if (e.url.match(/webcapsule/)) {
+					Ti.API.info("OMG MATCHED IT");
+					override = true;
+					loads = 3;
+					e.url = 'https://api.twitter.com/oauth/authorize';
+				}
+				
 				// something else was clicked
-				if (e.url!='https://api.twitter.com/oauth/authorize') {
+				if (e.url!='https://api.twitter.com/oauth/authorize' && e.url!='https://api.twitter.com/oauth/authenticate') {
+					Ti.API.info("STOP LOADING");
+					Ti.API.info(e.url);
 					webView.stopLoading();
 					win.remove(webView);
 					win.close();
 
 					if(typeof(callback)=='function'){
+						Ti.API.info("calling callback from after get status with false");
 						callback(false);
 					}
 
@@ -246,6 +266,7 @@ function BirdHouse(params) {
 			}
 			// Twitter has redirected the page to our callback URL (most likely)
 			else if (loads==3) {
+				Ti.API.info("Equaled 3");
 				doinOurThing = true; // kill the timeout b/c we are doin our thing
 
 				// success!
@@ -271,7 +292,7 @@ function BirdHouse(params) {
 			}
 
 			// we are done loading the page
-			loading = false;
+			loading = override || false;
 		});
 
 	}
@@ -309,11 +330,15 @@ function BirdHouse(params) {
 
 				// execute the callback function
 				if(typeof(callback)=='function'){
+					Ti.API.info("calling callback from gat with");
+					Ti.API.info(responseParams);
 					callback(responseParams);
 				}
 			} else {
 				// execute the callback function
 				if(typeof(callback)=='function'){
+					Ti.API.info("calling callback from gat with false");
+					callback(resp);
 					callback(false);
 				}
 			}
@@ -426,6 +451,7 @@ function BirdHouse(params) {
 				if (!retval) {
 					// execute the callback function
 					if (typeof(callback)=='function') {
+						Ti.API.info("calling callback from after api with false");
 						callback(false);
 					}
 
@@ -479,6 +505,8 @@ function BirdHouse(params) {
 
 				// execute the callback function
 				if (typeof(callback)=='function') {
+					Ti.API.info("calling callback from load with text");
+					Ti.API.info(XHR.responseText);
 					callback(XHR.responseText);
 				}
 
@@ -489,6 +517,7 @@ function BirdHouse(params) {
 			XHR.onerror = function(e) {
 				// execute the callback function
 				if (typeof(callback)=='function') {
+					Ti.API.info("calling callback from error with false");
 					callback(false);
 				}
 
@@ -1079,6 +1108,7 @@ function BirdHouse(params) {
 	// Returns: true if the user is authorized
 	// --------------------------------------------------------
 	function authorize(callback) {
+		Ti.API.info("Authed: "+authorized);
 		if (!authorized) {
 			get_request_token(callback); // get_request_token or a function it calls will call callback
 
@@ -1088,6 +1118,8 @@ function BirdHouse(params) {
 			
 			// execute the callback function
 			if(typeof(callback)=='function'){
+				Ti.API.info("calling callback with");
+				Ti.API.info(data);
 				callback(data);
 			}
 		}

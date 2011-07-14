@@ -4,6 +4,10 @@ Layouts.login = function () {
 	    title:'Login',
 			backgroundImage:'images/login/bg_login.png'
 	});
+	
+	var splash = Titanium.UI.createWindow({  
+			backgroundImage:'iphone/Default.png'
+	});
 
 	var username = Titanium.UI.createTextField({  
 	    backgroundColor:text_field_background_color,
@@ -59,7 +63,7 @@ Layouts.login = function () {
 	});
 
 
-	var facebook_login = Titanium.UI.createButton({  
+	var facebook_login = Titanium.UI.createButton({
 	    value:false,
 			backgroundImage:'images/login/login-facebook.png',
 			backgroundSelectedImage:'images/login/login-facebook-down.png',  
@@ -69,7 +73,9 @@ Layouts.login = function () {
 	});
 
 	facebook_login.addEventListener('click', function(){
+		splash.open();
 		Helpers.user.connectFacebook(function(user) {
+			splash.close();
 			Layouts.site();
 		});
 	});
@@ -84,7 +90,9 @@ Layouts.login = function () {
 	});
 
 	twitter_login.addEventListener('click', function(){
+		splash.open();
 		Helpers.user.connectTwitter(function(user) {
+			splash.close();
 			Layouts.site();
 		});
 	});
@@ -103,13 +111,30 @@ Layouts.login = function () {
 		App.action(win, "accounts#init");
 	});
 
+	var deauth = Titanium.UI.createButton({
+		title:"X",
+		bottom:0,
+		right:10,
+		height:62,
+		width:81,
+		backgroundImage:'images/toolbar/navbtn_record.png',
+		backgroundSelectedImage:'images/toolbar/navbtn_record-down.png',
+		zIndex:99
+	});
+	
+	deauth.addEventListener('click', function() {
+		alert("yes");
+		b = new BirdHouse({consumer_key: "CgIDnN8kDKPu1uKhMK5Qg", consumer_secret: "AULwvohyIehfXfPUaKAaEifYRtzlDuOIo80qHQVRnyI", callback_url: "/webcapsule-mobile://" });
+		b.deauthorize();
+	});
+
 	win.add(username);
 	win.add(password);
 	win.add(login_button);
 	win.add(facebook_login);
 	win.add(twitter_login);
 	win.add(new_account_label);
-
+	win.add(deauth);
 	
 	win.open();
 };

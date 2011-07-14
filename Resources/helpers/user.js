@@ -50,11 +50,13 @@ Helpers.user.connectFacebook = function(success) {
 };
 
 Helpers.user.connectTwitter = function(success) {
+	Ti.API.info("making new birdhouse");
 	b = new BirdHouse({consumer_key: "CgIDnN8kDKPu1uKhMK5Qg", consumer_secret: "AULwvohyIehfXfPUaKAaEifYRtzlDuOIo80qHQVRnyI", callback_url: "/webcapsule-mobile://" });
 	b.authorize(saveTwitterAuth);
 	
 	function saveTwitterAuth(data) {
 		if(data) {
+			Ti.API.info("data!");
 			data.id = data.user_id;
 			data.token = data.oauth_token;
 			data.secret = data.oauth_token_secret;
@@ -67,6 +69,7 @@ Helpers.user.connectTwitter = function(success) {
 				}
 			});
 		}	else {
+			Ti.API.info("no data");
 			b.deauthorize();
 		}
 	};
