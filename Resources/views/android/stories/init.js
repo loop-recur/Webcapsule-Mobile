@@ -5,6 +5,7 @@ Views.stories.init.template = function() {
 	var video, progress_bar, story;
 	var story = self.source;
 	var win = null;
+	var quality = Ti.Network.networkType == Ti.Network.NETWORK_WIFI ? 1 : 0 ;
 	
 	/**
 	 * We'll use the following variable to keep track of the result of our recording action.
@@ -15,7 +16,7 @@ Views.stories.init.template = function() {
 	(function() {
 	    // http://developer.android.com/reference/android/provider/MediaStore.html
 	    var intent = Titanium.Android.createIntent({ action: 'android.media.action.VIDEO_CAPTURE' });
-			intent.putExtra("android.intent.extra.videoQuality", 0);
+			intent.putExtra("android.intent.extra.videoQuality", quality);
 	    Titanium.Android.currentActivity.startActivityForResult(intent, function(e) {
 	        if (e.error) {
 	            Ti.UI.createNotification({
