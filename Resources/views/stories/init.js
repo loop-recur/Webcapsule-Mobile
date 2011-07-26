@@ -5,16 +5,6 @@ Views.stories.init.template = function() {
 	var story = self.source;
 	var video, progress_bar, bar_area;
 	
-	var quality_selector = Titanium.UI.createSlider({
-		min:0,
-		max:2,
-		width:100,
-		height:30,
-		top:8
-	});
-	
-	var quality = self.quality || getQuality();
-	
 	Views.stories._form.render(story, {win: self.params.overlay});
 
 	// Layouts.record.toggle_flash(true);
@@ -23,55 +13,23 @@ Views.stories.init.template = function() {
 	Views.stories._form.toggle_start_stop(true);
 	Views.stories._form.toggle_record_tray(true);
 	
-	quality_selector.addEventListener('touchend',function(e)
-	{
-		var quality = Math.round(e.value);
-		switchQualityImage(quality);
-		
-		if(quality == 0){
-			switchQuality(Ti.Media.QUALITY_LOW);
-		} else if (quality == 1) {
-			switchQuality(Ti.Media.QUALITY_MED);
-		} else if (quality == 2) {
-			switchQuality(Ti.Media.QUALITY_HIGH);
-		}
-	});
-	
-	function switchQualityImage(num) {
-		types = {0 : "low", 1 : "med", 2 : "high"};
-		var img = "images/quality/"+types[num]+".png";
-		quality_selector.thumbImage = img;
-		quality_selector.highlightedThumbImage = img;
-	}
-	
-	function switchQuality(qual) {
-		quality = qual;		
-		
-		setTimeout(function(){
-			Ti.Media.hideCamera();	
-		}, 300);
-		
-		setTimeout(function(){ 
-			self.takeVideo();
-			changing = false;
-		},2200);
-	}
-	
-	self.params.overlay.add(quality_selector);
 	
 	// called below
 	self.takeVideo = function() {
 		Titanium.Media.showCamera({
 			success: function(e) {
 				Titanium.Media.saveToPhotoGallery(e.media);
-				afterRecord(e),
+				Titanium.Media.startVideoEditing({
+					media: e.media,
+					videoQuality: Ti.Media.QUALITY_MED,
+					success:afterRecord
+				});
 			},
 			cancel:function(){},
 			error:function(error){},
 			overlay:self.params.overlay,
 			showControls:false,
 			mediaTypes:Ti.Media.MEDIA_TYPE_VIDEO,
-			videoQuality:quality,
 			autohide:true
 		});
 	};
@@ -97,8 +55,8 @@ Views.stories.init.template = function() {
 			success: afterRecord,
 			cancel:function(){ self.takeVideo(); activity.hide(); Views.stories._form.toggle_upload(true); },
 			error:function(error){},
-			allowEditing:false,
-			videoQuality: quality,
+			allowEditing:true,
+			videoQuality: Ti.Media.QUALITY_MED,
 			mediaTypes:[Ti.Media.MEDIA_TYPE_VIDEO]
 		});	
 	}
@@ -195,15 +153,4 @@ Views.stories.init.template = function() {
 	self.takeVideo();
 	try{ Layouts.geolocation(story); } catch(e){};
 	
-	function getQuality() {
-		if(Ti.Network.networkType == Ti.Network.NETWORK_WIFI) {
-			switchQualityImage(2);
-			quality_selector.value = 2;
-			return Ti.Media.QUALITY_HIGH;
-		} else {
-			switchQualityImage(0);
-			quality_selector.value = 0;
-			return Ti.Media.QUALITY_LOW;
-		}
-	}
 };
