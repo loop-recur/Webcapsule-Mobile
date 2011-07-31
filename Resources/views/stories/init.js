@@ -3,7 +3,7 @@ Views.stories.init = Views.extend();
 Views.stories.init.template = function() {
 	var self = this;
 	var story = self.source;
-	var video, progress_bar, bar_area;
+	var video, progress_bar, bar_area, orientation;
 	
 	Views.stories._form.render(story, {win: self.params.overlay});
 
@@ -18,6 +18,7 @@ Views.stories.init.template = function() {
 	self.takeVideo = function() {
 		Titanium.Media.showCamera({
 			success: function(e) {
+				orientation = e.orientation;
 				Titanium.Media.saveToPhotoGallery(e.media);
 				Titanium.Media.startVideoEditing({
 					media: e.media,
@@ -65,8 +66,7 @@ Views.stories.init.template = function() {
 		Views.stories._form.toggle_start_stop(false);
 		progress_bar = Helpers.ui.progressBar();
 		bar_area = makeProgressArea();
-		
-		video = {upload : event.media, orientation: event.orientation};
+		video = {upload : event.media, orientation: (orientation || e.orientation)};
 		saveVideo();
 		App.action(self.win, "stories#edit", {story : self.source, upload : video.upload});
 		self.win.add(bar_area);
