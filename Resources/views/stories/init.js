@@ -66,7 +66,7 @@ Views.stories.init.template = function() {
 		Views.stories._form.toggle_start_stop(false);
 		progress_bar = Helpers.ui.progressBar();
 		bar_area = makeProgressArea();
-		video = {upload : event.media, orientation: (orientation || e.orientation)};
+		video = {upload : event.media, orientation: (orientation || event.orientation)};
 		saveVideo();
 		App.action(self.win, "stories#edit", {story : self.source, upload : video.upload});
 		self.win.add(bar_area);
