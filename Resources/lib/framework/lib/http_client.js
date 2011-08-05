@@ -2,7 +2,7 @@ LoopRecur.HttpClient = function() {
 	var current_client;
 	
 	function getClient() {
-		current_client = new HTTPClientWithCache({baseUrl: App.base_url, retryCount: 0, cacheSeconds: 120});
+		current_client = Titanium.Network.createHTTPClient();
 		return current_client;
 	}
 		
@@ -10,7 +10,7 @@ LoopRecur.HttpClient = function() {
 		var fixed_args = fixArgs(params_or_call_backs, call_backs);
 		call_backs = fixed_args[0];
 		params = fixed_args[1];
-		prepare("POST", url, call_backs).send({data : params});
+		prepare("POST", url, call_backs).send(params);
 	}
 	
 	function get(url, params_or_call_backs, call_backs) {
@@ -30,7 +30,7 @@ LoopRecur.HttpClient = function() {
 	}
 	
 	function expireCache() {
-		(current_client || getClient()).prune_cache(1);
+		// (current_client || getClient()).prune_cache(1);
 	}
 	
 // private
@@ -50,11 +50,10 @@ LoopRecur.HttpClient = function() {
 	function prepare(method, url, call_backs) {
 		client = getClient();
 		var progress_bar = call_backs.progress_bar;
-		client.options.skip_preload = call_backs.skip_preload;
-		if(progress_bar) client.options.onsendstream = function(e){ progress_bar.setValue(e.progress) };
-		client.options.onload = call_backs.success;
-		client.options.onerror = call_backs.error;
-		client.open(method, url);
+		if(progress_bar) client.onsendstream = function(e){ progress_bar.setValue(e.progress) };
+		client.onload = function(){ call_backs.success(this); };
+		client.onerror = function(){ call_backs.error(this); };
+		client.open(method, App.base_url+url);
 		setHeaders(client);
 		return client;
 	}
