@@ -2,6 +2,7 @@ Db = function(name) {
 	pub_obj = {};
 	
 	function all(callbacks, params, options) {
+	
 		var oldSuccess = callbacks.success || callbacks;
 		var oldError = callbacks.error || function(){};
 				

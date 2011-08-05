@@ -5,6 +5,7 @@ Views.stories.init.template = function() {
 	var video, progress_bar, story;
 	var story = self.source;
 	var win = null;
+	var quality = Ti.Network.networkType == Ti.Network.NETWORK_WIFI ? 1 : 0 ;
 	
 	/**
 	 * We'll use the following variable to keep track of the result of our recording action.
@@ -12,28 +13,38 @@ Views.stories.init.template = function() {
 	var videoUri = null;
 	var videoIntent = null;
 
-	(function() {
+	function takeVideo() {
 	    // http://developer.android.com/reference/android/provider/MediaStore.html
 	    var intent = Titanium.Android.createIntent({ action: 'android.media.action.VIDEO_CAPTURE' });
-			intent.putExtra("android.intent.extra.videoQuality", 0);
-	    Titanium.Android.currentActivity.startActivityForResult(intent, function(e) {
-	        if (e.error) {
-	            Ti.UI.createNotification({
-	                duration: Ti.UI.NOTIFICATION_DURATION_LONG,
-	                message: 'Error: ' + e.error
-	            }).show();
-	        } else {
-            if (e.resultCode === Titanium.Android.RESULT_OK) {
-                videoUri = e.intent.data;
-                // note that this isn't a physical file! it's a URI in to the MediaStore.
-						    var source = Ti.Filesystem.getFile(videoUri);
-								afterRecord(source);
-            } else {
-								Layouts.stories();
-            }
-	        }
-	    });
-	})();
+			intent.putExtra("android.intent.extra.videoQuality", quality);
+			startActivity(intent);
+	};
+	
+	function chooseVideo() {
+		var intent = Ti.Android.createIntent({ action: Ti.Android.ACTION_PICK, type: "video/*" });
+		intent.addCategory(Ti.Android.CATEGORY_DEFAULT);
+		startActivity(intent);
+	}
+		
+	function startActivity(intent) {
+		Titanium.Android.currentActivity.startActivityForResult(intent, function(e) {
+        if (e.error) {
+            Ti.UI.createNotification({
+                duration: Ti.UI.NOTIFICATION_DURATION_LONG,
+                message: 'Error: ' + e.error
+            }).show();
+        } else {
+          if (e.resultCode === Titanium.Android.RESULT_OK) {
+              videoUri = e.intent.data;
+              // note that this isn't a physical file! it's a URI in to the MediaStore.
+					    var source = Ti.Filesystem.getFile(videoUri);
+							afterRecord(source);
+          } else {
+							Layouts.stories();
+          }
+        }
+    });
+	}
 	
 	function afterRecord(source) {
 		win = Titanium.UI.createWindow({
@@ -87,4 +98,17 @@ Views.stories.init.template = function() {
 	};
 	
 	try{ Layouts.geolocation(self.source); } catch(e){};
+	
+	var dialog = Titanium.UI.createAlertDialog({
+		title:'Video method',
+		message:'Choose one of the following',
+		buttonNames: ['Camera','Upload'],
+		cancel: 1,
+	});
+	
+	dialog.addEventListener('click', function(e) {
+		(e.index < 1) ? takeVideo() : chooseVideo();
+	});
+	
+	dialog.show();
 };

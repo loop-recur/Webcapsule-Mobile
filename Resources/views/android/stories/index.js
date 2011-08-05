@@ -167,7 +167,7 @@ Views.stories.index.template = function() {
 		return row;
 	}
 
-	var data = Functional.map(createTableViewRow, self.source);
+	var data = Functional.map(createTableViewRow, (self.source || []));
 	var tableview = Titanium.UI.createTableView({ 
 		data:data
 	 });
