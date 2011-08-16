@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ti:app xmlns:ti="http://www.webcapsule.com">
-<id>com.webcapsule.webcapsule</id>
+<id>com.looprecur.webcapsulemobile</id>
 <name>webcapsule-mobile</name>
-<version>1.0</version>
-<publisher>not specified</publisher>
-<url>not specified</url>
-<description>not specified</description>
-<copyright>not specified</copyright>
+<version>0.9</version>
+<publisher>loop/recur</publisher>
+<url>www.looprecur.com</url>
+<description>Share your story. </description>
+<copyright>2011 by Webcapsule</copyright>
 <icon>default_app_logo.png</icon>
     <persistent-wifi>true</persistent-wifi>
     <prerendered-icon>false</prerendered-icon>
@@ -20,12 +20,6 @@
 	<iphone>
 		<orientations device="iphone">
 			<orientation>Ti.UI.PORTRAIT</orientation>
-		</orientations>
-		<orientations device="ipad">
-			<orientation>Ti.UI.PORTRAIT</orientation>
-			<orientation>Ti.UI.UPSIDE_PORTRAIT</orientation>
-			<orientation>Ti.UI.LANDSCAPE_LEFT</orientation>
-			<orientation>Ti.UI.LANDSCAPE_RIGHT</orientation>
 		</orientations>
 	</iphone>
 	<android xmlns:android="http://schemas.android.com/apk/res/android">
