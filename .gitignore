@@ -3,3 +3,5 @@ build/iphone/*
 build/android/*
 Resources/videotests/*
 build.log
+.project/*
+.settings/*

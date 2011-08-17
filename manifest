@@ -1,8 +1,8 @@
-#appname: webcapsule-mobile
-#publisher: taylorsmith
-#url: www.looprecur.com
-#image: appicon.png
-#appid: com.looprecur.webcapsulemobile
-#desc: undefined
-#type: mobile
-#guid: 98c7618d-7788-443c-a9e7-73ad588a55eb
+#appname:webcapsule-mobile
+#publisher:looprecur
+#url:http://www.looprecur.com
+#image:appicon.png
+#appid:webcapsulemobile
+#desc:Share your story.
+#type:mobile
+#guid:98c7618d-7788-443c-a9e7-73ad588a55eb
