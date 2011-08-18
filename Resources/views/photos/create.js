@@ -4,7 +4,6 @@ Views.photos.create.template = function() {
 	var self = this;
 	var story = self.story;
 	var added_photo_view = self.added_photo_view;
-	var hide_delete = self.hide_delete || false;
 	
 	update();
 	
@@ -53,7 +52,7 @@ Views.photos.create.template = function() {
 		added_photo.add(image);
 		added_photo.add(added_photo_border);
 
-		if(!hide_delete && Helpers.user.canEdit(photo, story)) {
+		if(Helpers.user.canEdit(photo, story)) {
 			var delete_button = Titanium.UI.createView({
 				backgroundImage:'images/add_tag/remove_icon.png',
 				left:-5,

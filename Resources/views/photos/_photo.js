@@ -5,6 +5,8 @@ Views.photos._photo.template = function() {
 	var parent_win = self.params.win;
 	var photo = self.source;
 	
+	self.close();
+	
 	var view = Titanium.UI.createImageView({
 		image: Helpers.images.escape(photo.url),
 		defaultImage:'images/avatar_medium.jpg',
@@ -17,7 +19,7 @@ Views.photos._photo.template = function() {
 	parent_win.add(view);
 	
 	self.close = function() {
-		parent_win.remove(view);
+		if(view) parent_win.remove(view);
 	};
 	
 };

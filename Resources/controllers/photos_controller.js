@@ -8,12 +8,14 @@ Controllers.photos = {
 		var photos = Views.photos.create.source || [];
 		var photo = params.photo;
 		var story = params.story;
-		
-		photo.story_id = Views.stories._form.source.id;
+
+		photo.story_id = story.id;
 		photo.user_id = App.currentUser().id;
 		
 		this.db.save(photo, function(new_photo) {
-			var story = Views.stories._form.source;
+			// var story = (story || Views.stories._form.source);
+			Ti.API.info("====================SENDING EVENT!!!!!============");
+			Ti.App.fireEvent('addedMedia', {type: "photo", source: new_photo});
 			if(!story.photo_ids) story.photo_ids = "";
 			var old_val = story.photo_ids.split(',');
 			old_val.unshift(new_photo.id);
@@ -33,12 +35,15 @@ Controllers.photos = {
 	
 	destroy: function(view, params) {
 		var photos = Views.photos.create.source || [];
-		var id = params.photo.id;
+		var photo = params.photo;
+		var id = photo.id;
 		var story = params.story;
 		if(!story.photo_ids) story.photo_ids = Functional.map(".id", photos).join(",");
 		
 		story.photo_ids = Helpers.array_funs.removeInString(id, story.photo_ids);
 		Helpers.array_funs.removeById(id, photos);
+		App.http_client.expireCache();
+		if(!TempId.isTemp(story.id)) this.db.destroy(photo, function(){ Ti.App.fireEvent('removedMedia', {id: id}) });
 	}
 	
 };

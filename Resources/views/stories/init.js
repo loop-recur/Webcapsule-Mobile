@@ -120,6 +120,16 @@ Views.stories.init.template = function() {
 			visible: false
 		});
 		
+		var close_btn = Titanium.UI.createButton({
+			backgroundImage:"images/postrecord/return.png",
+			height:26,
+			width:26,
+			top:30,
+			left:5
+		});
+		
+		close_btn.addEventListener('click', Layouts.record.closeWin);
+		
 		retry_button.addEventListener("click", function() {
 			trySaving();
 		});
@@ -142,6 +152,7 @@ Views.stories.init.template = function() {
 		view.add(activity);
 		view.add(retry_button);
 		view.add(progress_bar);
+		view.add(close_btn);
 		
 		cancel_button.visible = true;
 		retry_button.visible = false;

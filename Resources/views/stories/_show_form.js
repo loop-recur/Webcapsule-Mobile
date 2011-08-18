@@ -109,38 +109,6 @@ Views.stories._show_form.template = function() {
 	tray.add(duration);
 	tray.add(user_icon);
 	tray.add(user);
-
-
-
-	// var story_title = Titanium.UI.createLabel({
-	// 	text:self.source.name,
-	// 	font:{fontSize:18,fontWeight:'regular',fontFamily:'Helvetica Neue'},
-	// 	color:'#616161',
-	// 	top:8,
-	// 	left:10,
-	// 	height:20,
-	// 	width:300
-	// });
-	// 
-	// var story_duration = Titanium.UI.createLabel({
-	// 	text:self.source.duration,
-	// 	font:{fontSize:11, fontWeight:'bold'},
-	// 	color:'#616161',
-	// 	top:35,
-	// 	left:10,
-	// 	height:15,
-	// 	width:40
-	// });
-	// 
-	// var story_user = Titanium.UI.createLabel({
-	// 	text:self.source.user.full_name,
-	// 	font:{fontSize:13,fontWeight:'regular',fontFamily:'Helvetica Neue'},
-	// 	color:'#616161',
-	// 	top:,
-	// 	left:10,
-	// 	height:15,
-	// 	width:100
-	// });
 	
 	var comment_button = Titanium.UI.createButton({
 		value:false,
@@ -167,7 +135,7 @@ Views.stories._show_form.template = function() {
 	});
 
 	photo_button.addEventListener('click', function() {
-		App.action(win, "photos#init", {story_id : self.source.id, photos : self.source.photos, story: self.source, hide_delete: true});
+		App.action(win, "photos#init", {story_id : self.source.id, photos : self.source.photos, story: self.source});
 	});
 
 	var video_button = Titanium.UI.createButton({
@@ -230,9 +198,6 @@ Views.stories._show_form.template = function() {
 	functionality_view.add(edit_details_btn);
 	functionality_view.add(tray);
 	
-	// tray.add(story_title);
-	// tray.add(story_duration);
-	// tray.add(story_user);
 	tray.add(comment_button);
 	tray.add(photo_button);
 	tray.add(video_button);

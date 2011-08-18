@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ti:app xmlns:ti="http://www.webcapsule.com">
-<id>com.looprecur.webcapsulemobile</id>
+<id>com.webcapsule.webcapsule</id>
 <name>webcapsule-mobile</name>
 <version>1.0</version>
 <publisher>not specified</publisher>

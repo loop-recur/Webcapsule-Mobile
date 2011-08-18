@@ -2,7 +2,8 @@ Layouts.login = function () {
 
 	var win = Titanium.UI.createWindow({  
 	    title:'Login',
-			backgroundImage:'images/login/bg_login.png'
+			backgroundImage:'images/login/bg_login.png',
+			orientationModes : [Titanium.UI.PORTRAIT]
 	});
 	
 	var splash = Titanium.UI.createWindow({  
@@ -74,9 +75,12 @@ Layouts.login = function () {
 
 	facebook_login.addEventListener('click', function(){
 		splash.open();
-		Helpers.user.connectFacebook(function(user) {
-			splash.close();
-			Layouts.site();
+		Helpers.user.connectFacebook({
+			success: function(user) {
+				splash.close();
+				Layouts.site();
+			},
+			error: function(){ alert("Couldn't authorize Facebook"); splash.close(); }
 		});
 	});
 	
@@ -91,9 +95,12 @@ Layouts.login = function () {
 
 	twitter_login.addEventListener('click', function(){
 		splash.open();
-		Helpers.user.connectTwitter(function(user) {
-			splash.close();
-			Layouts.site();
+		Helpers.user.connectTwitter({
+			success: function(user) {
+				splash.close();
+				Layouts.site();
+			},
+			error: function(){ alert("Couldn't login you in with Twitter"); splash.close(); }
 		});
 	});
 

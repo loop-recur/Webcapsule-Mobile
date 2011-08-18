@@ -6,6 +6,7 @@ Controllers.comments = {
 		var story = params.story;
 		
 		this.db.save(comment, function(new_comment) {
+			Ti.App.fireEvent('addedMedia', {type: "comment", source: new_comment});
 			story.comments.push(new_comment);
 			params.success();
 		});
@@ -14,5 +15,5 @@ Controllers.comments = {
 	init: function(view, params) {
 		var comment = {id: TempId.generate(), story_id : params.story.id};
 		view.render(comment, params);
-	}	
+	}
 };
