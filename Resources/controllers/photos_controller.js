@@ -14,7 +14,6 @@ Controllers.photos = {
 		
 		this.db.save(photo, function(new_photo) {
 			// var story = (story || Views.stories._form.source);
-			Ti.API.info("====================SENDING EVENT!!!!!============");
 			Ti.App.fireEvent('addedMedia', {type: "photo", source: new_photo});
 			if(!story.photo_ids) story.photo_ids = "";
 			var old_val = story.photo_ids.split(',');

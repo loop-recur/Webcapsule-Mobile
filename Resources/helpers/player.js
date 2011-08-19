@@ -1,6 +1,8 @@
 Helpers.player = {};
 
-Helpers.player.timeMonitor = function(win, player, comments, photos) {
+Helpers.player.timeMonitor = function(win, player) {
+	Helpers.player.comments = [];
+	Helpers.player.photos = [];
 	var appear_time = 4
 	, self = this
 	, done = null
@@ -9,11 +11,10 @@ Helpers.player.timeMonitor = function(win, player, comments, photos) {
 	player.addEventListener('complete',finish);
 	
 	Ti.App.addEventListener('addedMedia',function(e) {
-		Ti.API.info("====================GOT IT!!!!!============");
 		if(e.type === "comment") {
-			comments.push(e.source);
+			Helpers.player.comments.push(e.source);
 		} else {
-			photos.push(e.source);
+			Helpers.player.photos.push(e.source);
 		}
 	});
 
@@ -22,17 +23,8 @@ Helpers.player.timeMonitor = function(win, player, comments, photos) {
 	});
 	
 	player.addEventListener('playing',start);
-		
-	start();
-	
-	function restart() {
-		stop();
-		hideAllOverlays();
-		start();
-	}
 	
 	function start() {
-		Ti.API.info("======STARTED=====");
 		done = false;
 		var intervalId = setInterval(showOverlays, 1000);
 		stop = function() {
@@ -41,11 +33,10 @@ Helpers.player.timeMonitor = function(win, player, comments, photos) {
 	};
 	
 	function showOverlays(interval) {
-		Ti.API.info("======RUNNING=====");
 		if(done) return stop();
 		var position = player.currentPlaybackTime;
-		Functional.map(showOverlay.partial(Views.comments._comment, position), comments);
-		Functional.map(showOverlay.partial(Views.photos._photo, position), photos);
+		Functional.map(showOverlay.partial(Views.comments._comment, position), Helpers.player.comments);
+		Functional.map(showOverlay.partial(Views.photos._photo, position), Helpers.player.photos);
 	};
 
 	function showOverlay(view, position, item) {
@@ -72,7 +63,6 @@ Helpers.player.timeMonitor = function(win, player, comments, photos) {
 	};
 	
 	function finish() {
-		Ti.API.info("======Finishing=====");
 		done = true;
 		hideAllOverlays();
 	}
@@ -80,4 +70,6 @@ Helpers.player.timeMonitor = function(win, player, comments, photos) {
 	function hideAllOverlays() {
 		Functional.map("x.close()", [Views.comments._comment, Views.photos._photo]);
 	};
+	
+	return {start: start}
 };

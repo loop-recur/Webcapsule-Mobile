@@ -39,7 +39,11 @@ Controllers.tags = {
 		var story = params.story;
 		
 		if(!story.tag_ids) story.tag_ids = Functional.map(".id", friends).join(",");
-		story.tag_ids = Helpers.array_funs.removeInString(id, story.tag_ids);
+		var old_val = story.tag_ids.split(',');
+		old_val.splice(old_val.indexOf(id),1);
+		var new_val = old_val.join(',');
+		story.tag_ids = new_val;
+		
 		Helpers.array_funs.removeById(id, friends);
 	},
 	

@@ -106,13 +106,14 @@ Layouts.story = function(id) {
 	}
 	
 	var started;
+	var time_monitor = Helpers.player.timeMonitor(asset_overlay, player);
 	play_pause_button.addEventListener('click', function() {
 		if(player.playing) {
 			player.stop();
 		} else {
 			player.play();
 			if(!started) {
-				Helpers.player.timeMonitor(asset_overlay, player, player.comments, player.photos);
+				time_monitor.start();
 				started = true;
 			}
 		}
