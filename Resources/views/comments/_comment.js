@@ -4,6 +4,8 @@ Views.comments._comment.template = function() {
 	var self = this;
 	var parent_win = Views.stories._show_form.comment_bar;
 	var comment = self.source;
+	
+	self.close();
 
 	view = Ti.UI.createView({
 		height:58,
@@ -45,7 +47,7 @@ Views.comments._comment.template = function() {
 	parent_win.add(view);
 	
 	self.close = function() {
-		parent_win.remove(view);
+		if(view) parent_win.remove(view);
 	};
 };
 

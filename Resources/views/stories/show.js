@@ -9,8 +9,8 @@ Views.stories.show.template = function() {
 	// TODO: offline
 	player.url =  App.file_url+story.video_url;
 	
-	player.comments = story.comments;
-	player.photos = story.photos;
+	Helpers.player.comments = story.comments;
+	Helpers.player.photos = story.photos;
 		
 	Views.stories._show_form.render(story, {win: win, player:player});
 };

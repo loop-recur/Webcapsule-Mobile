@@ -16,7 +16,7 @@ Helpers.user.canEdit = function(item, story) {
 };
 
 
-Helpers.user.connectFacebook = function(success) {
+Helpers.user.connectFacebook = function(callbacks) {
 	var file = Ti.Filesystem.getFile(Ti.Filesystem.applicationDataDirectory, 'facebook.config');
 	
 	Titanium.Facebook.loggedIn ? saveFacebookAuth() : Titanium.Facebook.authorize();	
@@ -38,18 +38,16 @@ Helpers.user.connectFacebook = function(success) {
 			data.token = Titanium.Facebook.accessToken;
 			App.action(undefined, "omniauth_callbacks#create", {
 				data : data,
-				success : success,
-				error : function() {
-					alert("Couldn't find you in our system.  Try signing up on the website.");
-				}
+				success : callbacks.success,
+				error : callbacks.error
 			});
 		} else {
-			alert("Couldn't authorize Facebook");
+			callbacks.error();
 		}
 	};
 };
 
-Helpers.user.connectTwitter = function(success) {
+Helpers.user.connectTwitter = function(callbacks) {
 	Ti.API.info("making new birdhouse");
 	b = new BirdHouse({consumer_key: "CgIDnN8kDKPu1uKhMK5Qg", consumer_secret: "AULwvohyIehfXfPUaKAaEifYRtzlDuOIo80qHQVRnyI", callback_url: "/webcapsule-mobile://" });
 	b.authorize(saveTwitterAuth);
@@ -63,13 +61,12 @@ Helpers.user.connectTwitter = function(success) {
 			data.provider = "twitter";
 			App.action(undefined, "omniauth_callbacks#create", {
 				data : data,
-				success : success,
-				error : function() {
-					alert("Couldn't find you in our system.  Try signing up on the website.");
-				}
+				success : callbacks.success,
+				error : callbacks.error
 			});
 		}	else {
 			Ti.API.info("no data");
+			callbacks.error();
 			b.deauthorize();
 		}
 	};

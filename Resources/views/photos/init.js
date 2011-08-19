@@ -92,7 +92,6 @@ Views.photos.init.template = function() {
 	
 	Views.photos.create.added_photo_view = added_photo_view;
 	Views.photos.create.story = self.params.story;
-	Views.photos.create.hide_delete = self.params.hide_delete;
 	Views.photos.create.render(self.params.photos);
 
 	win.open();

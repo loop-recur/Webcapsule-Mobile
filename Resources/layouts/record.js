@@ -1,4 +1,7 @@
 Layouts.record = function(story) {	
+	Views.photos.create.source = [];
+	Views.tags.create.source = [];
+	
 	var win = Titanium.UI.createWindow({
 		backgroundColor: "white",
 		id:"record.js window"
@@ -10,18 +13,23 @@ Layouts.record = function(story) {
 		backgroundImage:"images/postrecord/return.png",
 		height:26,
 		width:26,
-		top:5,
+		top:3,
 		left:5
 	});
-
-	close_btn.addEventListener('click', function(e) {
+	
+	Layouts.record.closeWin = function() {
 		Views.photos.create.source = [];
 		Views.tags.create.source = [];
 		Ti.Media.hideCamera();
 		win.close();
 		Layouts.stories();
-	});
+	}
+	
 
+	close_btn.addEventListener('click', function(e){
+		Layouts.record.closeWin();
+	});
+	
 	overlay.add(close_btn);
 	Layouts.close_btn = close_btn;
 	
