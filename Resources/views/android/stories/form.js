@@ -299,6 +299,10 @@ Views.stories.form.template = function() {
 		if(Helpers.application.isBlank(story_title_field.value)) { story_title_field.value = "Untitled Story"; };
 	});
 	
+	story_title_field.addEventListener("focus", function() {
+		if(story_title_field.value == "Untitled Story") { story_title_field.value = ""; };
+	});
+	
 	story_title_field.addEventListener("change", function() {
 		self.source.name = story_title_field.value;
 	});
