@@ -1,21 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ti:app xmlns:ti="http://www.webcapsule.com">
-<deployment-targets>
-    <target device="mobileweb">false</target>
-    <target device="ipad">false</target>
-    <target device="blackberry">false</target>
-    <target device="android">true</target>
-    <target device="iphone">false</target>
-</deployment-targets>
-
-<id>com.looprecur.webcapsulemobile</id>
-<name>webcapsule-mobile</name>
-<version>1.0</version>
-<publisher>taylorsmith</publisher>
-<url>www.looprecur.com</url>
-<description>No description provided</description>
-<copyright>2011 by taylorsmith</copyright>
-<icon>default_app_logo.png</icon>
+<ti:app xmlns:ti="http://ti.appcelerator.org">
+    <deployment-targets>
+        <target device="mobileweb">false</target>
+        <target device="ipad">false</target>
+        <target device="blackberry">false</target>
+        <target device="android">true</target>
+        <target device="iphone">false</target>
+    </deployment-targets>
+    <id>com.looprecur.webcapsulemobile</id>
+    <name>webcapsule-mobile</name>
+    <version>1.0</version>
+    <publisher>taylorsmith</publisher>
+    <url>http://www.looprecur.com</url>
+    <description>No description provided</description>
+    <copyright>2011 by taylorsmith</copyright>
+    <icon>default_app_logo.png</icon>
     <persistent-wifi>true</persistent-wifi>
     <prerendered-icon>false</prerendered-icon>
     <statusbar-style>default</statusbar-style>
