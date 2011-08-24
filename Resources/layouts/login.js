@@ -2,8 +2,7 @@ Layouts.login = function () {
 
 	var win = Titanium.UI.createWindow({  
 	    title:'Login',
-			backgroundImage:'images/login/bg_login.png',
-			orientationModes : [Titanium.UI.PORTRAIT]
+			backgroundImage:'images/login/bg_login.png'
 	});
 	
 	var splash = Titanium.UI.createWindow({  

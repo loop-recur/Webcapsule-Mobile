@@ -7,7 +7,6 @@ Layouts.story = function(id) {
 	
 	var player = Titanium.Media.createVideoPlayer({
 		movieControlStyle:Titanium.Media.VIDEO_CONTROL_NONE,
-		// movieControlMode:Titanium.Media.VIDEO_CONTROL_FULLSCREEN,
 		scalingMode:Titanium.Media.VIDEO_SCALING_MODE_FILL,
 		autoplay:false,
 		id:"player"
@@ -105,6 +104,9 @@ Layouts.story = function(id) {
 		}
 	}
 	
+	var vid_activity = Helpers.ui.spinner({top: 0, left:295});
+	vid_activity.hide();
+	
 	var started;
 	var time_monitor = Helpers.player.timeMonitor(asset_overlay, player);
 	play_pause_button.addEventListener('click', function() {
@@ -113,6 +115,7 @@ Layouts.story = function(id) {
 		} else {
 			player.play();
 			if(!started) {
+				vid_activity.show();
 				time_monitor.start();
 				started = true;
 			}
@@ -124,9 +127,6 @@ Layouts.story = function(id) {
 		player.stop();
 		play_pause_button.backgroundImage = "images/playercontrols/play_btn.png";
 	});
-	
-	var vid_activity = Helpers.ui.spinner({top: 0, left:295});
-	vid_activity.hide();
 	
 	player.addEventListener('loadstate', function(e) {
 		var state = e.loadState;
