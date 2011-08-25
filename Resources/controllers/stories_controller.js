@@ -1,8 +1,8 @@
 Controllers.stories = {
 	db: Db("stories"),
 
-	index: function(view, params) {
-		this.db.all(function(stories){ view.render(stories); }, params);
+	index: function(view, params, options) {
+		this.db.all(function(stories){ view.render(stories, params); }, params, options);
 	},
 	
 	edit: function(view, params) {
@@ -24,7 +24,7 @@ Controllers.stories = {
 			success: function(story){
 				view.render(story, params);
 			}
-		}, { skip_preload: true });
+		}, {wifi: this._isWifi() }, { skip_preload: true });
 	},
 	
 	update: function(view, params) {
@@ -38,5 +38,9 @@ Controllers.stories = {
 			},
 			error: params.error
 		}, (params.http_options || {}));
+	},
+	
+	_isWifi: function() {
+		return Ti.Network.networkType == Ti.Network.NETWORK_WIFI;
 	}
 };

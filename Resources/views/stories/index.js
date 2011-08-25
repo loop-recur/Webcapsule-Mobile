@@ -2,6 +2,30 @@ Views.stories.index = Views.extend();
 
 Views.stories.index.template = function() {
 	var self = this;
+	
+	var load_more_row = Ti.UI.createTableViewRow({
+		backgroundImage:'images/feed/item_bg.png',
+		height:80,
+		width:320,
+		hasChild:true,
+		id: "more"
+	});
+	
+	var load_label = Ti.UI.createLabel({
+		color:'#6b6b6b',
+		font:{
+			fontFamily:'Helvetica Neue',
+			fontSize:18,
+			fontWeight:'bold'
+		},
+		left:100,
+		top:30,
+		height:20,
+		width:190,
+		text:"Load More"
+	});
+	
+	load_more_row.add(load_label);
 
 	function createTableViewRow(story) {
 		
@@ -126,13 +150,31 @@ Views.stories.index.template = function() {
 	}
 
 	var data = Functional.map(createTableViewRow, self.source);
+	if(self.source.length > 9) data.push(load_more_row);
+	
 	var tableview = Titanium.UI.createTableView({ 
 		data:data
 	 });
 
 	tableview.addEventListener('click', function(e) {
-		Layouts.story(e.rowData.id);
+		(e.rowData.id == "more") ? loadMore() : Layouts.story(e.rowData.id);
 	});
 	
 	self.win.add(tableview);
+	
+	function loadMore() {
+		self.params.page += 1;
+		
+		Controllers.stories.index({
+			render : function(stories, params) {
+				data.pop();
+				if(stories.length > 0) {
+					var rows = Functional.map(createTableViewRow, stories);
+					data = data.concat(rows);
+					data = data.concat(load_more_row);
+				}
+				tableview.setData(data);
+			}
+		}, self.params, {skip_preload: true});
+	}
 };
