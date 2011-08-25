@@ -2,6 +2,7 @@ Views.stories.index = Views.extend();
 
 Views.stories.index.template = function() {
 	var self = this;
+	if(!self.params.page) self.params.page = 1;
 	
 		
 	if (Helpers.application.densityIsMedium())
