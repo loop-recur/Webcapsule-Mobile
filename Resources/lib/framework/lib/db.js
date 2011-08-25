@@ -20,7 +20,7 @@ Db = function(name) {
 		callApi("get", getPath(), callbacks, params, options);
 	};
 	
-	function find(id, callbacks, options) {
+	function find(id, callbacks, params, options) {
 		var oldSuccess = callbacks.success || callbacks;
 				
 		callbacks.error = function(r) {
@@ -35,7 +35,7 @@ Db = function(name) {
 			oldSuccess(json);
 		};
 		
-		callApi("get", getPath(id), callbacks, {}, options);
+		callApi("get", getPath(id), callbacks, {}, params, options);
 	};
 	
 	function save(obj, callbacks, options) {

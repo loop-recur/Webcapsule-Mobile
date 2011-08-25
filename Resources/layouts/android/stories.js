@@ -47,7 +47,7 @@ Layouts.stories = function() {
 	});
 
 	my_stories_button.addEventListener('click', function(){
-		App.action(content, "stories#index");
+		App.action(content, "stories#index", {page : 1});
 	});
 	
 	var feed_button = Titanium.UI.createButton({  
@@ -61,7 +61,7 @@ Layouts.stories = function() {
 	});
 
 	feed_button.addEventListener('click', function(){
-		App.action(content, "stories#index", {feed : true});
+		App.action(content, "stories#index", {feed : true, page : 1});
 	});
 	
 	nav.add(my_stories_button);
