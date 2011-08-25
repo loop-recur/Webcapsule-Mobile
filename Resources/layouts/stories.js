@@ -34,10 +34,10 @@ Layouts.stories = function() {
 	tabbed_bar.addEventListener('click',function(e) {
 		switch(e.index) {
 			case 0: 				
-				App.action(content, "stories#index");
+				App.action(content, "stories#index", {page : 1});
 				break;
 			case 1: 
-				App.action(content, "stories#index", {feed : true});
+				App.action(content, "stories#index", {feed : true, page : 1});
 				break;	
 		}
 	});

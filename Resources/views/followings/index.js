@@ -48,7 +48,4 @@ Views.followings.index.template = function() {
 	});
 
 	self.win.add(tableview);
-	
-	// For some reason, this was in here, overwriting itself. Removed for now. 
-	// Layouts.replaceContent(self.win);	
 };

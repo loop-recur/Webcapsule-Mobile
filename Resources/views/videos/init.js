@@ -5,7 +5,6 @@ Views.videos.init.template = function() {
 	var video = self.source;
 	var win = Titanium.UI.createWindow({backgroundColor: "#ccc"});
 	var progress_bar = Helpers.ui.progressBar();
-	var quality = Ti.Network.networkType == Ti.Network.NETWORK_WIFI ? Ti.Media.QUALITY_MED : Ti.Media.QUALITY_LOW;
 	
 	
 	Titanium.Media.showCamera({
@@ -38,7 +37,7 @@ Views.videos.init.template = function() {
 			win.close();
 		},
 		mediaTypes: Titanium.Media.MEDIA_TYPE_VIDEO,
-		videoQuality:quality
+		videoQuality:Ti.Media.QUALITY_MED
 	});
 	
 	
