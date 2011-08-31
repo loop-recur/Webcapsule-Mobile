@@ -6,8 +6,9 @@ Layouts.story = function(id) {
 	view.add(activity);
 	
 	var player = Titanium.Media.createVideoPlayer({
-		movieControlStyle:Titanium.Media.VIDEO_CONTROL_NONE,
+		movieControlStyle:Titanium.Media.VIDEO_CONTROL_FULLSCREEN,
 		scalingMode:Titanium.Media.VIDEO_SCALING_MODE_FILL,
+		height: 533,
 		autoplay:false,
 		id:"player"
 	});
@@ -22,7 +23,7 @@ Layouts.story = function(id) {
 		backgroundImage:"images/postrecord/return.png",
 		height:26,
 		width:26,
-		top:5,
+		top:28,
 		left:5
 	});
 	
@@ -104,8 +105,8 @@ Layouts.story = function(id) {
 		}
 	}
 	
-	var vid_activity = Helpers.ui.spinner({top: 0, left:295});
-	vid_activity.hide();
+	// var vid_activity = Helpers.ui.spinner({top: 0, left:295});
+	// vid_activity.hide();
 	
 	var started;
 	var time_monitor = Helpers.player.timeMonitor(asset_overlay, player);
@@ -115,7 +116,7 @@ Layouts.story = function(id) {
 		} else {
 			player.play();
 			if(!started) {
-				vid_activity.show();
+				// vid_activity.show();
 				time_monitor.start();
 				started = true;
 			}
@@ -128,17 +129,17 @@ Layouts.story = function(id) {
 		play_pause_button.backgroundImage = "images/playercontrols/play_btn.png";
 	});
 	
-	player.addEventListener('loadstate', function(e) {
-		var state = e.loadState;
-		if(state) {
-			state = parseInt(state);
-			if(state == 0) return vid_activity.hide();
-			(state >= 3) ? vid_activity.hide() : vid_activity.show();
-		}
-	});
+	// player.addEventListener('loadstate', function(e) {
+	// 	var state = e.loadState;
+	// 	if(state) {
+	// 		state = parseInt(state);
+	// 		if(state == 0) return vid_activity.hide();
+	// 		(state >= 3) ? vid_activity.hide() : vid_activity.show();
+	// 	}
+	// });
 
 	view.add(player);
-	view.add(vid_activity);
+	// view.add(vid_activity);
 	win.add(view);
 	win.add(asset_overlay);
 	compact_play_controls.add(play_pause_button);
