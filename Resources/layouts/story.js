@@ -9,7 +9,7 @@ Layouts.story = function(id) {
 		movieControlStyle:Titanium.Media.VIDEO_CONTROL_FULLSCREEN,
 		scalingMode:Titanium.Media.VIDEO_SCALING_MODE_FILL,
 		height: 533,
-		autoplay:false,
+		autoplay:true,
 		id:"player"
 	});
 
@@ -90,7 +90,9 @@ Layouts.story = function(id) {
 	function updateControls(time) {
 		if(!time) time = 1200;
 		
-		if(player.playing) {
+		if(player.playbackState != 1) {
+			play_pause_button.backgroundImage = "images/playercontrols/play_btn.png";
+		} else {
 			play_pause_button.backgroundImage = "images/playercontrols/pause_btn.png";
 			
 			if(!set) {
@@ -100,26 +102,20 @@ Layouts.story = function(id) {
 					compact_play_controls.animate({opacity:0,duration:1000});
 				}, time);
 			}
-		} else {
-			play_pause_button.backgroundImage = "images/playercontrols/play_btn.png"
 		}
 	}
-	
-	// var vid_activity = Helpers.ui.spinner({top: 0, left:295});
-	// vid_activity.hide();
 	
 	var started;
 	var time_monitor = Helpers.player.timeMonitor(asset_overlay, player);
 	play_pause_button.addEventListener('click', function() {
-		if(player.playing) {
-			player.stop();
-		} else {
+		if(player.playbackState != 1) {
 			player.play();
 			if(!started) {
-				// vid_activity.show();
 				time_monitor.start();
 				started = true;
 			}
+		} else {
+			player.pause();
 		}
 		updateControls();
 	});
@@ -128,18 +124,8 @@ Layouts.story = function(id) {
 		player.stop();
 		play_pause_button.backgroundImage = "images/playercontrols/play_btn.png";
 	});
-	
-	// player.addEventListener('loadstate', function(e) {
-	// 	var state = e.loadState;
-	// 	if(state) {
-	// 		state = parseInt(state);
-	// 		if(state == 0) return vid_activity.hide();
-	// 		(state >= 3) ? vid_activity.hide() : vid_activity.show();
-	// 	}
-	// });
 
 	view.add(player);
-	// view.add(vid_activity);
 	win.add(view);
 	win.add(asset_overlay);
 	compact_play_controls.add(play_pause_button);
