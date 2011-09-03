@@ -8,7 +8,7 @@
         <target device="iphone">true</target>
     </deployment-targets>
     <id>com.looprecur.webcapsulemobile</id>
-    <name>webcapsulemobile</name>
+    <name>Webcapsule</name>
     <version>0.9</version>
     <publisher>looprecur</publisher>
     <url>http://www.looprecur.com</url>
